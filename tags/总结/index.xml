@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>总结 on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 总结 on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Tue, 15 Nov 2016 12:19:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>写在学伴叁的边上</title>
+      <link>https://example.com/the-end-ofx/</link>
+      <pubDate>Tue, 15 Nov 2016 12:19:15 +0000</pubDate>
+      
+      <guid>https://example.com/the-end-ofx/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hackathon on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/hackathon/</link>
+    <description>Recent content in Hackathon on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/hackathon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ti-Alloy：一次 TiDB Hackathon 摸鱼</title>
+      <link>https://example.com/tidb-hackthon/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tidb-hackthon/</guid>
+      <description>上个周末又是一次 PingCap 举办的 TiDB Hackathon，上一次某个拿了一等奖的老哥又拉我参赛。日常的对整个系统了解程度一般没什么预先准备，key-point 也不是特别出彩的东西，因此也难免 Hackathon 陪跑、Prize Skip （笑死🤣）。不过参加 Hackathon 本身就是件比较有意思的事情，因为在有限的时间内找出 key-point、对复杂的代码进行分析理解找出实现方案、写代码完成功能、做 Slide 给大家吹水，其实都是比较锻炼能力的。
+在国内面试很多面试官都会对某些流行框架代码的实现方案有所要求，但是其实这方面固然重要但是只要你去看很少能有你看不懂的东西。从个人而言，可能会更看重快速了解一份陌生代码、陌生系统的设计逻辑，找出症结、获得经验方面的能力。所以可能推荐大家可以多摸摸 Hackathon 方面的鱼，还是有很多增长的。
+ 这次由于上周一直在感冒发烧，所以这次的 Hackathon 全程是在家云的，而且由于 key-point 比较小，代码写起来也很快，因此娱乐休息在家一个没落下，感冒发烧还好了，比较开心。
+“这也能云☁️？？”
+ 这次做出的最后的结果，其实是一个 TiDB 上比较容易的拓展方案集（包括换 UDF 支持、给 TiDB 换 Store Engine、DSL 支持）。其实开始做的时候打算的内容还挺多的，不过时间太短也没都做完就选了几个点来完成了，这里简单做下记录。
+（最后看了很多 dalao 的开发演示，深感在做 db 和分布式方面的能力还是有待加强，很多方案真的挺惊艳的）。
+ 本文目录
+  User Defined Function 支持 Ti-Alloy Engine 替换 彩蛋：Where DSL 支持  User Defined Function 支持 方案 TiDB 一直是支持 MySQL Protocol 的，不过对于其中的一些特性也没有完全支持，其中 UDF （User Defined Function 用户自定义方法）就一直在 Github 上的 ReadMe 上写着不支持。其实从日常使用上来看 UDF 还是一个挺常见的功能一直不支持也是挺难受 orz。</description>
+    </item>
+    
+  </channel>
+</rss>

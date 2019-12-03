@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Androidtips on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/androidtips/</link>
+    <description>Recent content in Androidtips on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Tue, 06 Sep 2016 19:32:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/androidtips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AndroidTips1:从View源码学习点击事件的模拟</title>
+      <link>https://example.com/androidtips1/</link>
+      <pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
+      
+      <guid>https://example.com/androidtips1/</guid>
+      <description>作者：刘丰恺
+作者博客：若梦浮生
+转载请注明文章来源
+ 我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() / onLongClick()事件是不能被响应的了。
+现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。
+模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
+Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
+int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &amp;gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;amp;&amp;amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</description>
+    </item>
+    
+  </channel>
+</rss>

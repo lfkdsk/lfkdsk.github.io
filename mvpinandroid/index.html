@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="lfkdsk" />
+  <meta property="og:url" content="https://example.com/mvpinandroid/" />
+  <link rel="canonical" href="https://example.com/mvpinandroid/" />
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://example.com"
+      },
+      "articleSection" : "",
+      "name" : "MVP In Android",
+      "headline" : "MVP In Android",
+      "description" : "众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
+所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
+What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。
+MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。
+Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
+按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
+如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
+Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&lt;Presenter&gt; { void initialRecycler(List&lt;ExamArrange&gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
+Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
+Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。",
+      "inLanguage" : "en-US",
+      "author" : "lfkdsk",
+      "creator" : "lfkdsk",
+      "publisher": "lfkdsk",
+      "accountablePerson" : "lfkdsk",
+      "copyrightHolder" : "lfkdsk",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-09-06 07:57:49 &#43;0000 UTC",
+      "dateModified" : "2016-09-06 07:57:49 &#43;0000 UTC",
+      "url" : "https://example.com/mvpinandroid/",
+      "keywords" : [ "Android","Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>MVP In Android - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="MVP In Android - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
+所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
+What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。
+MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。
+Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
+按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
+如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
+Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&lt;Presenter&gt; { void initialRecycler(List&lt;ExamArrange&gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
+Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
+Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。" />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">
+            <h1 class="post-title">MVP In Android</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2016-09-06 07:57:49 UTC">
+                  06 Sep 2016
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="to-top">
+            <a href="#top" class="paper-btn margin">^</a>
+          </div> 
+          <div class="post-content markdown-body">
+            
+
+<p>众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。</p>
+
+<p>所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank">to-do-mvp</a> ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。</p>
+
+<h2 id="what-is-mvp">What is MVP?</h2>
+
+<p>MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。</p>
+
+<p>MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。</p>
+
+<h2 id="structure">Structure</h2>
+
+<p>这里参照Google的官方推荐标准来讲解如何使用MVP的模式。</p>
+
+<p><img src="mvp.png" alt="mvp" /></p>
+
+<p>按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。</p>
+
+<p>如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。</p>
+
+<h3 id="contract-interface">Contract Interface</h3>
+
+<pre><code class="language-java">public class ExamArrangeContract {
+
+    /**
+     * @link ExamArrange 考场安排
+     */
+    interface View extends BaseView&lt;Presenter&gt; {
+        void initialRecycler(List&lt;ExamArrange&gt; arranges);
+
+        void notifyRefreshRecycler();
+
+        void stopRefresh();
+    }
+
+    interface Presenter extends BasePresenter {
+        void initialDataForRecycler();
+
+        void beginLoad(PtrFrameLayout frame);
+
+        void loadMore();
+    }
+}
+</code></pre>
+
+<p>契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。</p>
+
+<p>Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。</p>
+
+<h3 id="base-interface">Base Interface</h3>
+
+<pre><code class="language-java">public interface BaseView&lt;T&gt; {
+
+    void setPresenter(T presenter);
+
+}
+</code></pre>
+
+<p>Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</p>
+
+<pre><code class="language-java">public interface BasePresenter {
+
+    void start();
+
+}
+</code></pre>
+
+<p>另外Presenter的Base类中也只提供了一个<code>start()</code>函数用作Presenter的启动函数。一般放在Activity的<code>onStart()</code>或者是<code>onResume()</code>就可以了。</p>
+
+<h3 id="implemention">Implemention</h3>
+
+<p>实现类只需要分别继承契约类里面的接口就可以了。</p>
+
+<p>下面放上跟那个契约类相关的实现方法。</p>
+
+<h4 id="首先是在fragment里实现view接口">首先是在Fragment里实现View接口</h4>
+
+<pre><code class="language-java">public class ExamArrangeFragment extends RecyclerFragment implements ExamArrangeContract.View {
+
+    public static ExamArrangeFragment newInstance() {
+        Bundle args = new Bundle();
+        ExamArrangeFragment fragment = new ExamArrangeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    private ExamArrangeContract.Presenter examArrangePresenter;
+
+    private CommonAdapter&lt;ExamArrange&gt; adapter;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View wrapper = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, wrapper);
+
+        titleBar.setTitle(&quot;考场安排&quot;);
+
+        return wrapper;
+    }
+
+    @Override
+    public void beginLoad(PtrFrameLayout frame) {
+        examArrangePresenter.beginLoad(frame);
+    }
+
+    @Override
+    public void loadMore() {
+        examArrangePresenter.loadMore();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        examArrangePresenter.start();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void setPresenter(ExamArrangeContract.Presenter presenter) {
+        this.examArrangePresenter = presenter;
+    }
+
+    @Override
+    public void initialRecycler(List&lt;ExamArrange&gt; arranges) {
+        adapter = new CommonAdapter&lt;ExamArrange&gt;(
+                getContext(),
+                R.layout.item_exam_room,
+                arranges) {
+            @Override
+            public void bind(ViewHolder holder, ExamArrange examArrange) {
+//                holder.setText(R.id.exam_item_score_name, examArrange.getName());
+            }
+        };
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        baseRecycler.setLayoutManager(manager);
+        baseRecycler.setAdapter(adapter);
+        baseRecycler.addOnScrollListener(new EndlessRecyclerOnScrollListener(manager) {
+            @Override
+            public void onLoadMore(int currentPage) {
+                examArrangePresenter.loadMore();
+            }
+        });
+
+        createFooterView();
+    }
+
+    private void createFooterView() {
+        View view = LayoutInflater.from(getContext())
+                .inflate(R.layout.cube_views_load_more_default_footer,
+                        baseRecycler, false);
+        HeaderViewRecyclerAdapter headerViewRecyclerAdapter = new HeaderViewRecyclerAdapter(adapter);
+        baseRecycler.setAdapter(headerViewRecyclerAdapter);
+        headerViewRecyclerAdapter.addFooterView(view);
+    }
+
+    @Override
+    public void notifyRefreshRecycler() {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void stopRefresh() {
+        ptrFrameLayout.refreshComplete();
+    }
+}	
+</code></pre>
+
+<p>在setPresenter中绑定一个引用，然后在UI里面就可以调用数据了。</p>
+
+<h4 id="presenter实现类">Presenter实现类</h4>
+
+<p>Presenter实现类</p>
+
+<pre><code class="language-java">public class ExamArrangePresenter implements ExamArrangeContract.Presenter {
+
+    private ExamArrangeContract.View mView;
+    
+    private ArrayList&lt;ExamArrange&gt; arranges;
+
+    public ExamArrangePresenter(ExamArrangeContract.View mView) {
+        this.mView = mView;
+        this.mView.setPresenter(this);
+        this.arranges = new ArrayList&lt;&gt;();
+    }
+
+
+    @Override
+    public void start() {
+        mView.initialRecycler(arranges);
+    }
+
+    @Override
+    public void initialDataForRecycler() {
+		...
+    }
+
+    @Override
+    public void beginLoad(PtrFrameLayout frame) {
+        for (int i = 0; i &lt; 10; i++) {
+            arranges.add(new ExamArrange());
+        }
+        mView.notifyRefreshRecycler();
+        mView.stopRefresh();
+    }
+
+    @Override
+    public void loadMore() {
+        simulateLoadMoreData();
+    }
+    
+    private void simulateLoadMoreData() {
+        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .map(new Func1&lt;Long, Object&gt;() {
+                    @Override
+                    public Object call(Long aLong) {
+                        loadMoreData();
+                        mView.notifyRefreshRecycler();
+                        return null;
+                    }
+                }).subscribe();
+    }
+
+    private void loadMoreData() {
+        List&lt;ExamArrange&gt; moreList = new ArrayList&lt;&gt;();
+        for (int i = 1; i &lt; 13; i++) {
+            ExamArrange arrange = new ExamArrange();
+            arrange.setName(&quot;fuck &quot; + 1);
+            moreList.add(arrange);
+        }
+        arranges.addAll(moreList);
+    }
+}
+</code></pre>
+
+<h3 id="bind">Bind</h3>
+
+<p>最后在Activity中将两者绑定。</p>
+
+<pre><code class="language-java">public class ExamArrangeActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exam_arrange);
+
+        ExamArrangeFragment fragment = (ExamArrangeFragment)
+                getSupportFragmentManager().findFragmentById(R.id.exam_arrangement_contain);
+
+        if (fragment == null) {
+            fragment = ExamArrangeFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                    fragment, R.id.exam_arrangement_contain);
+        }
+
+        ExamArrangePresenter presenter = new ExamArrangePresenter(fragment);
+    }
+}
+</code></pre>
+
+<h2 id="最后再说两句">最后再说两句</h2>
+
+<p>上面介绍的方法也只是MVP在Android上的一种实现方式，其实还有把Acivity当成presenter的做法，多种方式不一而足。不过使用了MVP架构之后UI和逻辑都更为清晰这也是显而易见的，希望大家能有所收获，让Android工程更为清晰。</p>
+
+          </div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>

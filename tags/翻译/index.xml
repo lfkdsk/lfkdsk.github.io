@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>翻译 on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in 翻译 on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Fri, 24 Feb 2017 21:43:32 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sketch的过去现在和未来</title>
+      <link>https://example.com/tanslate-sketch/</link>
+      <pubDate>Fri, 24 Feb 2017 21:43:32 +0000</pubDate>
+      
+      <guid>https://example.com/tanslate-sketch/</guid>
+      <description>原文链接 : The Past, Present and Future of Sketch
+ 原文作者 : Geoff Teehan
+ 译文出自 : 掘金翻译计划
+ 译者 : lfkdsk
+ 校对者:邵辉Vista, lihenair
+  Sketch的过去现在和未来 在一次 Adobe 的活动上有人问我对 Comet 有什么看法。这让我想起了 Comet 对 Sketch 意味着什么。
+Sketch 和 Photoshop 已经成为产品设计者的首选工具，而且大部分我今天交流的设计者都已经从 Photoshop 切换到 Sketch 了。
+产品原型已经成为产品设计的一个重要组成部分，然而直到 Comet 出现之前， Adobe 在这个领域没有做出任何建树。 Adobe 也意识到类似于 Sketch 的简单而专注的设计工具会逐渐流行普及，变成产品设计者的首选工具，这可能对 Comet 的问世充当了重要的角色。
+我当时的想法是如果我是 Pieter ，我一定会吓得屁滚尿流。我周围的谈话都是关于 Pieter ， Comet 以及 Sketch 将如何反击的。当时，我非常严厉的跟 Pieter 说，如果他想避免公司破产，他就需要融资并发展 Sketch 。 David 和 Goliath ，也许现在角色要对换一下。</description>
+    </item>
+    
+    <item>
+      <title>选择使用正确的 Markdown Parser</title>
+      <link>https://example.com/translate-md/</link>
+      <pubDate>Fri, 24 Feb 2017 21:40:55 +0000</pubDate>
+      
+      <guid>https://example.com/translate-md/</guid>
+      <description>原文链接 : Choosing the Right Markdown Parser 原文作者 : CSS-TRICKS 译文出自 : 掘金翻译计划 译者 : lfkdsk 校对者: brucezz lekenny  以下客座文章由Ray Villalobos提供。在这篇文章中Ray将要去探索很多种不同的Markdown语法。所有的这些MarkDown变种均提供了不同的特性，都超越传统的Markdown语法，却又相互之间又各有不同。如果你正在挑选一门Markdown语言使用（或是提供给你的Web产品的用户使用），那你就值得的去了解它们，一旦选定就很难再切换到别的Markdown版本而且挑选的结果依赖于你需要哪些特性。Ray提供的一门关于MarkDown课程将会分享这些不同的版本都拥有哪些特性去帮助你做出明智的选择。
+Markdown改变了很多专业领域的书写方式。这种语言使用简单的文本和极少的标记就能够将其转换为越来越多的格式。然而不是所有的Markdown解析器被创造出来都是一样的。因为原来的规范没有与时俱进，替代版本像是 Multi-Markdown、GFM(Github Flavored Markdown)、Markdown Extra和其他的版本扩充了这门语言。
+Markdown的原始解析器是用Perl编写的。核心的特性包括解析块元素（例如段落，换行，标头，块引用，列表，代码块和水平线）和行内元素（链接，加重，代码段和图片）。从那以后，该解析器的作者John Gruber再也没有扩充过语法了，所以很多的新增和实现伴随着不同的他们认为合适的、或是支持解释某些元素的解析器支持浮出水面。
+选择一个版本 在一个程序里实现Markdown功能需要考虑很多，包括你将要使用的开发语言和你想要支持的特性。原始的版本是由Perl编写的，对于每一个项目来说，这并不是一个实用的选择。最流行的实现版本包括：PHP、Ruby和JavaScript。你选择了哪种语言将会间接影响你能支持哪些特性和能使用哪些库。让我们来看看一些选择：
+   语言 库 (下载项目)     Perl Original version   JavaScript CommonMark、Marked、Markdown-it、Remarkable、Showdown   Ruby Github Flavored Markup、Kramdown、Maruku、Redcarpet   PHP Cebe Markdown、Ciconia、Parsedown、PHP Markdown Extended   Python Python Markdown    以防万一你想用别的语言去实现Markdown，这里还有许多额外的其他的语言实现的版本。</description>
+    </item>
+    
+  </channel>
+</rss>

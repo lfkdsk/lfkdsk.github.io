@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>游戏编程 on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in 游戏编程 on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Thu, 08 Sep 2016 16:04:42 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何处理游戏中的碰撞事件</title>
+      <link>https://example.com/how-to-solve-co/</link>
+      <pubDate>Thu, 08 Sep 2016 16:04:42 +0000</pubDate>
+      
+      <guid>https://example.com/how-to-solve-co/</guid>
+      <description>作者 ：刘丰恺
+作者博客：若梦浮生
+转载需征得作者本人同意
+ 之前试着在Android平台封装了一个轻量级的游戏开发框架JustWeEngine ,因为是轻量级的所以也没想太多，很多地方的处理都不太够，比如关于碰撞事件的处理，就是一个简单的On2的遍历，前一阵还被吐槽了233333。
+其实优化On2碰撞的思路是一而贯之的，就是不去处理根本不可能撞在一起的对象。所以就文章讨论一下我了解的在游戏开发中经常被使用的碰撞机制。
+示例图 图示是使用了四叉树进行碰撞判断的一个图示，变成紫色的是从四叉树中拿取的离我最近的可能碰撞对象，这里我们只需要处理最近的四个对象就可以了，这个demo感谢FriceEngine的demo。
+物体分组 对Engine所加载的对象进行分层处理，每层维护一个对象列表，对可能根本不需要进行碰撞处理的对象不去处理，不会发生碰撞的层也不去处理，这样我们的O2的复杂度没变，但是我们减少了很多无用的碰撞对象，而我们想要他们碰撞也可以非常简单的切换。
+我在JustWeEngine里面就试着用了物体分组的方式
+public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围 protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; }  通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
+private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); }  然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。</description>
+    </item>
+    
+  </channel>
+</rss>

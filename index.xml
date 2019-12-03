@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lfkdsk&#39;s Blog</title>
+    <link>https://example.com/</link>
+    <description>Recent content on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ti-Alloy：一次 TiDB Hackathon 摸鱼</title>
+      <link>https://example.com/tidb-hackthon/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tidb-hackthon/</guid>
+      <description>上个周末又是一次 PingCap 举办的 TiDB Hackathon，上一次某个拿了一等奖的老哥又拉我参赛。日常的对整个系统了解程度一般没什么预先准备，key-point 也不是特别出彩的东西，因此也难免 Hackathon 陪跑、Prize Skip （笑死🤣）。不过参加 Hackathon 本身就是件比较有意思的事情，因为在有限的时间内找出 key-point、对复杂的代码进行分析理解找出实现方案、写代码完成功能、做 Slide 给大家吹水，其实都是比较锻炼能力的。
+在国内面试很多面试官都会对某些流行框架代码的实现方案有所要求，但是其实这方面固然重要但是只要你去看很少能有你看不懂的东西。从个人而言，可能会更看重快速了解一份陌生代码、陌生系统的设计逻辑，找出症结、获得经验方面的能力。所以可能推荐大家可以多摸摸 Hackathon 方面的鱼，还是有很多增长的。
+ 这次由于上周一直在感冒发烧，所以这次的 Hackathon 全程是在家云的，而且由于 key-point 比较小，代码写起来也很快，因此娱乐休息在家一个没落下，感冒发烧还好了，比较开心。
+“这也能云☁️？？”
+ 这次做出的最后的结果，其实是一个 TiDB 上比较容易的拓展方案集（包括换 UDF 支持、给 TiDB 换 Store Engine、DSL 支持）。其实开始做的时候打算的内容还挺多的，不过时间太短也没都做完就选了几个点来完成了，这里简单做下记录。
+（最后看了很多 dalao 的开发演示，深感在做 db 和分布式方面的能力还是有待加强，很多方案真的挺惊艳的）。
+ 本文目录
+  User Defined Function 支持 Ti-Alloy Engine 替换 彩蛋：Where DSL 支持  User Defined Function 支持 方案 TiDB 一直是支持 MySQL Protocol 的，不过对于其中的一些特性也没有完全支持，其中 UDF （User Defined Function 用户自定义方法）就一直在 Github 上的 ReadMe 上写着不支持。其实从日常使用上来看 UDF 还是一个挺常见的功能一直不支持也是挺难受 orz。</description>
+    </item>
+    
+    <item>
+      <title>快速了解 SkipList</title>
+      <link>https://example.com/quick-learn-skip-list/</link>
+      <pubDate>Mon, 11 Sep 2017 23:52:38 +0000</pubDate>
+      
+      <guid>https://example.com/quick-learn-skip-list/</guid>
+      <description>快速的 SkipList 实现教程  在计算机科学领域，跳跃链表是一种数据结构，允许快速查询一个有序连续元素的数据链表。快速查询是通过维护一个多层次的链表，且每一层链表中的元素是前一层链表元素的子集。
+基于并联的链表，其效率可比拟于二叉查找树（对于大多数操作需要O(log n)平均时间）。
+基本上，跳跃列表是对有序的链表增加上附加的前进链接，增加是以随机化的方式进行的，所以在列表中的查找可以快速的跳过部分列表，因此得名。所有操作都以对数随机化的时间进行。 要查找一个目标元素，起步于头元素和顶层列表，并沿着每个链表搜索，直到到达小于或着等于目标的最后一个元素。通过跟踪起自目标直到到达在更高列表中出现的元素的反向查找路径，在每个链表中预期的步数显而易见是 1/*p*。所以查找的总体代价是 O((log1/p n) / p)，当p 是常数时是 O(log n)。通过选择不同 p 值，就可以在查找代价和存储代价之间作出权衡。
+插入和删除的实现非常像相应的链表操作，除了&amp;rdquo;高层&amp;rdquo;元素必须在多个链表中插入或删除之外。
+跳跃列表不像某些传统平衡树数据结构那样提供绝对的最坏情况性能保证，因为用来建造跳跃列表的扔硬币方法总有可能（尽管概率很小）生成一个糟糕的不平衡结构。但是在实际中它工作的很好，随机化平衡方案比在平衡二叉查找树中用的确定性平衡方案容易实现。跳跃列表在并行计算中也很有用，这里的插入可以在跳跃列表不同的部分并行的进行，而不用全局的数据结构重新平衡。
+​ —— Wikipedia
+ 以上就是 Wikipedia 中对 SkipList 的描述，从描述中和以往的了解我们可以得知，SkipList 是对 List 的一种加强，通过拔高某些 Node 的层次来达到快速搜索的目的，根据这个想法我们可以知道，这个有点类似于躺平的二叉搜索树，这套 快速实现教程 的目的，就是截取文章中讨论内容的重点部分，通过重点讨论其中的精要部分来达到快速实现的目的。
+搜索方法 我们知道 SkipList 的结构知道我们就知道应该怎么对这个东西进行搜索，首先是从最上层的开始搜索，根据 Key 的比较进行判断向哪个方向进行搜索：
+private SkipListNode&amp;lt;K, V&amp;gt; findNodeByKey(K key) { SkipListNode&amp;lt;K, V&amp;gt; head = headNode; while (true) { // 首先右侧节点不为空 并且当前节点比右侧节点大 ===&amp;gt; 我们可以往右侧进行查找 while (head.right.key != null &amp;amp;&amp;amp; key.compareTo(head.right.key) &amp;gt;= 0) { head = head.</description>
+    </item>
+    
+    <item>
+      <title>Retrofit 实现分析</title>
+      <link>https://example.com/read-retrofit/</link>
+      <pubDate>Thu, 24 Aug 2017 19:50:32 +0000</pubDate>
+      
+      <guid>https://example.com/read-retrofit/</guid>
+      <description>Retrofit 为我们提供了一种非常优雅的方式去书写 Restful 的请求的接口代码，和 OkHttp 、Rxjava 都能方便的无缝搭配，为我们在 Java 和 Android 提供了非常便捷的网络请求的编写方式。这篇文章中我们会从 Usage 出发，逐个步骤的分析 Retrofit 的实现方式。
+实现分析 我们可以定义这样的一个接口，代表一种 restful 请求：
+public interface GitHubService { @GET(&amp;quot;users/{user}/repos&amp;quot;) Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;quot;user&amp;quot;) String user); }  在使用 Retrofit 的时候：
+Retrofit retrofit = new Retrofit.Builder() .baseUrl(&amp;quot;https://api.github.com/&amp;quot;) .build(); GitHubService service = retrofit.create(GitHubService.class);  我们通过 Builder 模式拼好 baseUrl 等字串，通过 retrofit 对象可以创建我们的接口对应的实体类，我们通过对这个实体类的操作，就能对我们定义好的接口去请求对应的数据：
+Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot;octocat&amp;quot;);  创建请求类 @SuppressWarnings(&amp;quot;unchecked&amp;quot;) // Single-interface proxy creation guarded by parameter safety. public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { Utils.</description>
+    </item>
+    
+    <item>
+      <title>0x05：SICP 的魔法 - 实例:数字电路模拟</title>
+      <link>https://example.com/learn-sicp-5/</link>
+      <pubDate>Tue, 08 Aug 2017 00:16:16 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-5/</guid>
+      <description>在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
+ 创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：
+ 在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
+共享和相等 我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：
+(define x (list &#39;a &#39;b)) (define z1 (cons x x))  我们定义了这样的一个结构，x 是&#39;a 和 &#39;b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 *z2*：
+(define z2 (cons (list &#39;a &#39;b) (list &#39;a &#39;b)))  这两个结构的定义起来，看起来的结构是一样的：
+这里我们能看到放置 &#39;a 和 &#39;b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：</description>
+    </item>
+    
+    <item>
+      <title>0x04：SICP 的魔法 - 模块化、状态、环境</title>
+      <link>https://example.com/learn-sicp-4/</link>
+      <pubDate>Sun, 23 Apr 2017 15:37:48 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-4/</guid>
+      <description>现在我们终于到了 SICP 的第三章的内容了。就个人而言我觉得 SICP 的前三章都在着眼于构建各种层次的抽象系统，三章以后的内容才是 SICP 本身比较精髓和有趣的内容了。但是万丈高楼平地起，正是之前的这些和 “抽象”、“思想” 有关的东西构建了我们在后几章学到的解释器系统。
+前两章我们见识到了 Scheme 在两个主要方向上的抽象能力。我们在第一章中学到了和过程抽象有关系的知识，我们把他认定为 Scheme 系统的第一公民，看到了各种高阶函数组合起来的魅力。在第二章我们主要讨论的问题是如何进行数据抽象，从一个 “有理数” 的 Demo 入手，建立了抽象屏蔽的系统层次，我们还引入了符号数据，进一步提升了运算的抽象层次，求导等写起来很麻烦的程序都可以借助符号数据来轻松实现。之后我们还见到了通过 dispatch 使用过程保存了对象的状态，学到了使用消息传递的构建方式，等等很多的和 “抽象” 有关的知识。
+我们确实通过以上的知识，在上一节末构建了一个通用操作的复数系统。但是对于一个更为拟真、更为复杂的系统的时候，以上或是计算、或是对模型抽象的知识就显得远远不足了。我们还应该需要一系列模式或者是说原则去规定去构建这整个系统。换句话说，我们要学习如何去模拟这个世界。
+ 模拟真实世界？
+很多语言的设计者或是系统的实现者一直致力于让某种编程语言实现的系统去拟真现实世界，从中诞生了很多相关的思想和技术，OOP、OOC 还有各种设计模式都是这种努力的产出。另外很多语言也在致力于语法语义化，试图让编程语言 “看起来” 更像自然语言。
+ 我们如何模拟世界 ​ 我们在学习很多 OOP 的语言的时候，都会讲很多 OOP 设计的好处，其中几个优点都有类似的特点，就是说 OOP 实际上是对现实世界的一种模拟，从开发人员的角度来说编写容易思考，而且从系统实现上也比较贴近现实。
+在实现中我们可以从这两个角度去实现：
+ 我们把现实中的每一种实体抽象为一个对应的程序对象（当然还可能会提取出对对象的抽象：类） 把每个现实中实现的具体方法模拟为一个程序中对应的活动。  通过对 “对象” 和 “活动” 的拟真，我们就可以用程序去对现实世界进行模拟。
+我们遇到了一些问题 可以通过上面的两条去完成从现实到程序的一种转化。但是我们明显发现了一些问题，因为现实世界纷繁复杂，每时每刻的每个实体都在发生着不同的变化，而且每个实体都在发生着不同的动作，相互之间还有大量的交互，如果全部用程序去实现和模拟难以实现。
+因而我们希望在程序在具体的实现之中，不要有大范围的甚至是全局的数据变化（这不好管理），我们希望把对象的增删修改、活动的产生消亡限定在一个有限的局部内。这样我们的整个系统会被分为不同的小的部分和结构，我们就把整个系统进行了分解的操作。
+ 高内聚和低耦合
+高内聚和低耦合是我们经常听到的设计方式，这样一个使用 模块化 的方式，其实是对这种设计思路的一种实践。高内聚是在说模块内聚化，功能内聚在对象之中，只留出相应的接口，使用接口进行交互，降低模块相互的耦合。
+ 对象的世界 从 对象 的角度上来看，世界是什么样子的呢？对象的世界本质上是由一大堆对象组成的，对象有自己的属性和状态，随着时间的流逝，对象有一系列的状态的变迁。为此我们要通过一种方式去记录这个状态，通过这个被记录下的状态，我们能表现出这个对象的变化规程，而且还可以通过这个状态去继续计算对象的一系列后续的状态。
+通过以上的这一系列的对 对象的世界 的描述，我们可以很容易的发现，我们描述的这种模块化、对象化的设计方式，其实和我们曾经学过的 Cpp、Java、CSharp 的世界非常的相近。我们从上帝的视角，把整个计算系统分解成对每个对象的计算的上去， 用它们模拟真实系统中对象的行为。
+但是对上面我们提到的那个 状态的变化 我们会发现，我们缺少一个我们很熟悉的东西——赋值 ，下面对对象世界的展开讨论就要从 赋值 这个基本操作开始谈。</description>
+    </item>
+    
+    <item>
+      <title>0x03：SICP 的魔法 - 符号演算和数据表示方法</title>
+      <link>https://example.com/learn-sicp-3/</link>
+      <pubDate>Mon, 20 Mar 2017 16:24:51 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-3/</guid>
+      <description>符号数据 有过CPP，Java等 OO 语言编程经验的人，肯定对基本类型和各种封箱的引用类型的区别有很大的感触。符号数据是什么，在这里的开始，我们可以先粗浅得把他理解成对象的引用，当然 Scheme 中的符号数据和这个还是有很大的区别的，理解这个符号我们可以先举一个这个例子：
+两句话就能看明白 Symbol 和 Value 的区别，第一句话让我们说我们最喜欢的颜色，第二句是说“你最喜欢的颜色”。自然语言中能区分词语本身和词语的含义的不同，Scheme 中也有类似的机制。
+表示符号数据 在 Scheme 的解释器中，我们之前已经了解到了，解释器就是一个不断接收数据的 eval() 循环：
+每当我们输入表达式，就会接到表达式的返回值。同时我们还知道了，块级作用域的的实现本身是通过层层的 Map 来实现的，那我们只需要一个过程从对应的作用域表里面取出对应名字的引用就可以实现符号数据了。在 Sheme 中我们通常会使用 &#39; 符号代表这个值是一个符号类型而非基本类型：
+&amp;gt; (define A 10) &amp;gt; A &amp;gt; ; Value: 10 使用的是基础类型 &amp;gt; &#39;A &amp;gt; ; Value: a 使用的符号类型  但是直观上来看这个引号似乎破坏了 Scheme 中的语法，如果为了 &#39; 在解释器里单独实现一套机制难免得不偿失，而且是一种给解释器开洞的行为。但实际上在 Scheme 中这个问题被很轻松的解决了，&#39; 本身实际上是 (quote x) 的一种语法糖。
+ Tips : eq? 和 equal? 和 symbol?
+ eq? 判断是不是一个引用 equal? 判断字面是否相等 symbol? 判断元素是不是符号   符号求导 书中讨论了简化版的求导函数，导函数完全由乘积和求和合成：</description>
+    </item>
+    
+    <item>
+      <title>第二周:有点不知所谓</title>
+      <link>https://example.com/week-1/</link>
+      <pubDate>Sat, 18 Mar 2017 15:35:56 +0000</pubDate>
+      
+      <guid>https://example.com/week-1/</guid>
+      <description>今天是周六了，时间过的快的惊人，这周给我感觉就是没干什么的感觉，突然莫名其妙的就到了周六。
+然后在充实的一天学习之后，就到了周日。
+这周周一到周五活的有点颓，事情很多，时间很少，每天要被单词，然后还有很多的复习任务，单词越背越多，然后根据记忆曲线推荐的复习单词也越来越多，不过这个周末我调整的不错，这些对于我来说已经不是问题了，我觉得扇贝单词那个应用真的没什么用，词书没有单词软件的多，然后还净是错的，很多东西都没有合理的词根记忆方式。我现在自己找的背诵方式还是挺适合我的，我要是 TOFEL 考得好，我也来分享一下哈。
+这个周末和冉学长去吃了火锅，我每次吃火锅都会吃撑，但是还是很喜欢吃火锅的感觉。
+周五和朱老师说了要去小屋（他的闲置办公室去学习），我着实调整的不错，效率也得到了很大的提高，应该背的单词都背完了，还能看书写文章，等单词再背几天我就去开始刷 OG 好了，以后的生活只会越来越忙碌，但是如果自己能有成就感，活的还是挺幸福的，哈哈。
+一个人呆着活的还能很开心，可能我的性格还是很内向的吧。不过这样最专心了，就像在图书馆一样，不过图书馆要随身带好多东西，心里不爽，还是实验室方便啊，写代码读书复习都很好。看到了书架上的三言二拍，很久以前亚马逊的打折版，纸质不是很好，昨天回顾了第一章，感觉故事缺了点什么，今天用 Kindle 下了一本便携来看，纸质版果然是删掉了很污的东西2333333，三言二拍果然很污。
+在找一个后端代码的 Bug ，找了很久目前还在卡着，难过。
+唔，复习完单词就去睡觉去好了，明天没什么课，可以复习数学去，顺便继续推 SICP 和相关的文章，我最近在知乎还吸了不少粉啊哈哈，想到哪说到哪，赶紧去复习单词了。
+没人打扰的房间开心：</description>
+    </item>
+    
+    <item>
+      <title>第一周:迷惘中的蹒跚</title>
+      <link>https://example.com/week-0/</link>
+      <pubDate>Sat, 11 Mar 2017 20:26:36 +0000</pubDate>
+      
+      <guid>https://example.com/week-0/</guid>
+      <description>这应该是进入大三下学期的第二个周末了，自从决定有出国读书的打算。日子就一天天变得忙碌起来，自己定了个每天200+单词的计划，听着唬人，但其实从自身来看也是挺符合科学规律的，通过反复的练习，目前背了大概四天的乱序的红宝书（其实是绿色的），860+的单词基本上都背下来了，接下来就是不能懈怠，坚持住每天学习。
+这周的周一试着面了个试，美团的猫眼电影，说起来其实要是准备出国的话，下学期可能就不能如期去外面实习去了。不过想想也没什么好遗憾的，那种实际的工作体验自己又不是没有经受过，再这么早去公司遭罪，觉得也没什么太大的必要。不过面试的反馈还没有，龙学长说效果还不错，但愿如此吧。面试官问的东西，大多数都知道吧，少数有拿不准的知识，最后来了一个DFS的遍历View树，也是很简单的知识。
+如果不打算着急找工作了的话，其实每天就没有太多的事情了。趁着这段时间应该好好的复习和学习知识，最近的生活习惯也还算好，基本上都能保证12点之前睡觉，起床平时的话起的也不晚，7点10分差不多就起了。每天的课不多，正好可以用来背单词看书，我总是觉得自己的算法学的不怎么好，最近买了几本书去刷一刷知识。
+最近不怎么去图书馆了，倒是常来实验室，我发现了如果我只是背单词的的话，平时基本上都不会分心去做什么事，但是如果要是写起了代码就控制不住啦23333。今天下午开始改HobbyScript的解释器，搞到现在才差不多改完，说实话我真的都不想再改了。这样子弄的好耽误事，还好今天的单词复习完了。最近在读SICP，相关的读书笔记也已经写了两篇了，这里就不再赘述了。里面的东西虽然简单，但是为了能更深刻的了解，我觉得我还是应该仔细的阅读和学习。
+今天就说到这吧，现在在实验室都快10.10分了，再不走就回不去了，那我先走了～～</description>
+    </item>
+    
+    <item>
+      <title>0x02：SICP 的魔法 - 数据抽象、层次抽象</title>
+      <link>https://example.com/learn-sicp-2/</link>
+      <pubDate>Sat, 11 Mar 2017 18:17:35 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-2/</guid>
+      <description>在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
+与此相类，数据本身也可以作为一种抽象，我们在之前接触的数据都是一些简单的数据，所以可能没什么感受。但是数据也可以包含不止一种的信息，使用的时候隐藏具体的实现细节，具体使用的时候又能作为元素出现在程序任意的位置，因此数据也是一种抽象。
+ 有过 OO 语言经验的同学 可以借助类的概念理解一下以上的概念
+但是类的概念是无法完全概括的哦～
+ 数据抽象 我们从最简单的数据抽象开始，首先说最小的数据抽象集合 —— 序对。
+序对 要实现数据抽象首先要有能把数据打成一个包的方法，我们叫它构造函数，还应该有能把数据从捆中取出来的方法，我们叫他选择函数。
+在 Scheme 中提供了能实现这些方法的 API:
+   Function Name Usage     ( cons p1 p2) 能把两个参数打包成一个对象   ( car x ) 能从 cons 打包出的对象 取出其中的第一个数据   ( cdr x ) 能从 cons 打包出的对象 取出其中的第二个数据    对于能非常方便构建 class 或是 struct 这样的数据结构的其他语言的使用者来看，这个序对的作用实在是微乎其微，但是大的抽象模式都是从最小的抽象方式开始的，我们这里使用序对也只是为了演示 Scheme 的抽象能力。
+如何定义有理数？ 这看起来似乎不是个问题，因为语言都会原生支持各种类型的浮点数，能轻松的用来表示有理数，但是请先忘了有关这方面的知识，单纯考虑当我们的系统只能支持整形数据的时候我们应该怎么表示有理数。
+从上一小节的序对的知识出发，我们很容易找到答案，我们可以把有理数的小数点前后的部分，分别用一个整形数据来表示，再把他们用 cons 打包，当进行计算的时候再拆开计算就可以了。</description>
+    </item>
+    
+    <item>
+      <title>推荐一篇有趣的论文</title>
+      <link>https://example.com/recommand-i-paper/</link>
+      <pubDate>Fri, 10 Mar 2017 17:05:28 +0000</pubDate>
+      
+      <guid>https://example.com/recommand-i-paper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>0x01：SICP 的魔法 - 过程的求值计算和高阶过程</title>
+      <link>https://example.com/learn-sicp-1/</link>
+      <pubDate>Mon, 27 Feb 2017 12:01:15 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-1/</guid>
+      <description>过程的求值计算 这里面我们先来介绍一种最为简单、通用的求值模型，代换模型并不能概括全部的求值方式，但是我们先从这个开始。
+代换模型 通用的表达式计算模式，描述起来其实非常简单，先求出各子表达式的值，找到要调用的过程的定义，用求出的实际参数代换过程体里的形式参数，再对过程体进行求值，本质上一种使用等价性的表达式的拆分机制，比如下例，是对一个平方和函数进行计算的详细步骤：
+(define (sum-of-squares x y) (+ (square x) (square y))) ; sum-of-squares 求两个数的平方和 (define (f x) (sum-of-squares (+ x 1) (+ x 2))) (f 5) (sum-of-squares (+ 5 1) (* 5 2)) ; 注意这两行，首先算出来形参 (+ (square 6) (square 10)) (+ (* 6 6) (* 10 10)) (+ 36 100) 136   Tips: 上面的代换方式又被称作应用序的计算方式，这也是 Scheme 解释器的计算方式，除此之外，还有一种被称作正则序的计算方式，正则性和上面不一样的地方在于，它不会先计算出调用过程的形参，反倒是一定要把整个表达式最小化到所有的东西都能直接计算的程序(摊开了的感觉):
+&amp;gt; (f 5) &amp;gt; (sum-of-squares (+ 5 1) (* 5 2)) &amp;gt; (+ (square (+ 5 1)) (square (* 5 2)) ); 注意这两行这里没往下计算形参 &amp;gt; (+ (* (+ 5 1) (+ 5 1)) (* (* 5 2) (* 5 2))) &amp;gt; (+ (* 6 6) (* 10 10)) ; 反倒是都摊开了才开始进行规约 &amp;gt; (+ 36 100) &amp;gt; 136 &amp;gt; ``` &amp;gt; &amp;gt; PS: 有个很简单的Demo能证明所用的解释器到底用了什么计算顺序: &amp;gt; &amp;gt; ```lisp &amp;gt; (define (p) (p)) &amp;gt; (define (test x y) &amp;gt; (if (= x 0) &amp;gt; 0 &amp;gt; y)) &amp;gt; ``` &amp;gt; &amp;gt; 大家可以想想`正则序`和`应用序`分别会有什么结果。 ### 迭代与递归 我们首先从两个简单例子开始： !</description>
+    </item>
+    
+    <item>
+      <title>Sketch的过去现在和未来</title>
+      <link>https://example.com/tanslate-sketch/</link>
+      <pubDate>Fri, 24 Feb 2017 21:43:32 +0000</pubDate>
+      
+      <guid>https://example.com/tanslate-sketch/</guid>
+      <description>原文链接 : The Past, Present and Future of Sketch
+ 原文作者 : Geoff Teehan
+ 译文出自 : 掘金翻译计划
+ 译者 : lfkdsk
+ 校对者:邵辉Vista, lihenair
+  Sketch的过去现在和未来 在一次 Adobe 的活动上有人问我对 Comet 有什么看法。这让我想起了 Comet 对 Sketch 意味着什么。
+Sketch 和 Photoshop 已经成为产品设计者的首选工具，而且大部分我今天交流的设计者都已经从 Photoshop 切换到 Sketch 了。
+产品原型已经成为产品设计的一个重要组成部分，然而直到 Comet 出现之前， Adobe 在这个领域没有做出任何建树。 Adobe 也意识到类似于 Sketch 的简单而专注的设计工具会逐渐流行普及，变成产品设计者的首选工具，这可能对 Comet 的问世充当了重要的角色。
+我当时的想法是如果我是 Pieter ，我一定会吓得屁滚尿流。我周围的谈话都是关于 Pieter ， Comet 以及 Sketch 将如何反击的。当时，我非常严厉的跟 Pieter 说，如果他想避免公司破产，他就需要融资并发展 Sketch 。 David 和 Goliath ，也许现在角色要对换一下。</description>
+    </item>
+    
+    <item>
+      <title>选择使用正确的 Markdown Parser</title>
+      <link>https://example.com/translate-md/</link>
+      <pubDate>Fri, 24 Feb 2017 21:40:55 +0000</pubDate>
+      
+      <guid>https://example.com/translate-md/</guid>
+      <description>原文链接 : Choosing the Right Markdown Parser 原文作者 : CSS-TRICKS 译文出自 : 掘金翻译计划 译者 : lfkdsk 校对者: brucezz lekenny  以下客座文章由Ray Villalobos提供。在这篇文章中Ray将要去探索很多种不同的Markdown语法。所有的这些MarkDown变种均提供了不同的特性，都超越传统的Markdown语法，却又相互之间又各有不同。如果你正在挑选一门Markdown语言使用（或是提供给你的Web产品的用户使用），那你就值得的去了解它们，一旦选定就很难再切换到别的Markdown版本而且挑选的结果依赖于你需要哪些特性。Ray提供的一门关于MarkDown课程将会分享这些不同的版本都拥有哪些特性去帮助你做出明智的选择。
+Markdown改变了很多专业领域的书写方式。这种语言使用简单的文本和极少的标记就能够将其转换为越来越多的格式。然而不是所有的Markdown解析器被创造出来都是一样的。因为原来的规范没有与时俱进，替代版本像是 Multi-Markdown、GFM(Github Flavored Markdown)、Markdown Extra和其他的版本扩充了这门语言。
+Markdown的原始解析器是用Perl编写的。核心的特性包括解析块元素（例如段落，换行，标头，块引用，列表，代码块和水平线）和行内元素（链接，加重，代码段和图片）。从那以后，该解析器的作者John Gruber再也没有扩充过语法了，所以很多的新增和实现伴随着不同的他们认为合适的、或是支持解释某些元素的解析器支持浮出水面。
+选择一个版本 在一个程序里实现Markdown功能需要考虑很多，包括你将要使用的开发语言和你想要支持的特性。原始的版本是由Perl编写的，对于每一个项目来说，这并不是一个实用的选择。最流行的实现版本包括：PHP、Ruby和JavaScript。你选择了哪种语言将会间接影响你能支持哪些特性和能使用哪些库。让我们来看看一些选择：
+   语言 库 (下载项目)     Perl Original version   JavaScript CommonMark、Marked、Markdown-it、Remarkable、Showdown   Ruby Github Flavored Markup、Kramdown、Maruku、Redcarpet   PHP Cebe Markdown、Ciconia、Parsedown、PHP Markdown Extended   Python Python Markdown    以防万一你想用别的语言去实现Markdown，这里还有许多额外的其他的语言实现的版本。</description>
+    </item>
+    
+    <item>
+      <title>0x00：SICP 的魔法 - Scheme 基础和黑盒抽象</title>
+      <link>https://example.com/learn-sicp-0/</link>
+      <pubDate>Tue, 21 Feb 2017 22:22:14 +0000</pubDate>
+      
+      <guid>https://example.com/learn-sicp-0/</guid>
+      <description>作者 ：刘丰恺
+作者博客：若梦浮生
+转载需征得作者本人同意
+ 计算机科学的内容包罗万象，其中的经典的课程也是不胜枚举。但是在这其中SICP(Structure and Interpretation of Computer Programs)绝对是其中的经典和翘楚，在2008年以前SICP的MIT6.001课程历来是CS相关专业必修入门课程。
+SICP的核心内容是什么呢？众说纷云，有人说是一本有关Lisp／Scheme的书主要讲函数式编程的思想，有的说是一本有关解释器构造的入门书籍，和我们学过的龙书挂钩，但就我个人而言，SICP作为一本入门书更多的不是担负起介绍某一方面具体的知识的重任，而是从多个角度去教一个初学者从程序抽象、理解工程架构、学习DSL的构建方法&amp;hellip;&amp;hellip;，不单纯介绍一方面的知识而是完备的形成一个闭环的去像你介绍什么是Computer Science。相比于这些当初选用MIT Scheme现在使用Python，不过是最大程度上减小编程语言本身的复杂度对学生理解的影响，个人觉得无足挂怀。
+SICP的各个版本的封面，都选择了魔法师作为其中的主要素材，这里也作为我这个系列的名字，让我们一起领略SICP的魔法。
+学习之前 在正式开始之前，我们先简单的了解几个问题。
+我们如何看待Computer Science？ 很惊人对吧，第一次看到这个NO COMPUTER NO SCIENCE的时候我也是被这种说法吓到了。但是对于这个说法的讲解倒也是能自圆其说。
+首先是NO SCIENCE，作者在课上说CS不像是一门科学更像是一门艺术或者是工程。工程好理解，但是艺术听起来就很玄之又玄的感觉，但是这里笔者想谈谈自己的感受，对于笔者个人而言，编程像是一种写作，就想写作当前这篇文章的感觉是一样的，代码／文字从手中流淌出来，形成程序／文章，两者可以说是近乎相同的。
+再说这个NO COMPUTER，作者认为这门学科也不是完全和计算机有关，就像几何学不一定合圆规和量角器有关系一样，文以载道，计算机只是帮助我们实现这些功能的工具而已，这也就是为什么变成会被称作和魔法相同，编写代码／编写咒语，即使我们生活在一个没有计算机的魔法世界，我们仍然能学习这门课程（当然不会再被称之为CS了）。
+定义和过程的理解 我们首先来看这个公式，这是一个对于平方根的定义，和我们在数学书上学到的一样。给我们一个y的值我们可以很方便的确定是不是x的平方根，但是这个公式并不能告诉我们平方根到底是怎么求的，也就是说上文只是在告诉我们平方根到底是什么。
+但是如果要涉及怎么求平方根，我们就需要借助牛顿迭代法了，通过猜测一个数字，再根据求出商，两者相加求平均值作为下一次的平方根猜测量，这样逐步逼近到达一个最接近的数值就是x的平方根。
+ 如下求 2 的平方根
+    猜测量 商 平均值     1 2&amp;frasl;1 = 2 (2 + 1) / 2 = 1.5   1.5 2 / 1.5 = 1.3333 (1.5 + 1.3333) / 2 = 1.</description>
+    </item>
+    
+    <item>
+      <title>学伴中 Tinker 简单配置</title>
+      <link>https://example.com/tinker-simple-use/</link>
+      <pubDate>Mon, 13 Feb 2017 01:05:27 +0000</pubDate>
+      
+      <guid>https://example.com/tinker-simple-use/</guid>
+      <description>学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。
+这里记录一下使用Tinker第三方应用平台的简单配置，以飨后人。
+Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件 classpath &amp;quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&amp;quot; } }  Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用 provided(&amp;quot;com.tencent.tinker:tinker-android-anno:1.7.7&amp;quot;) compile(&amp;quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&amp;quot;) }  Tinker Gradle apply plugin: &#39;tinkerpatch-support&#39; /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&amp;quot;${buildDir}/bakApk/&amp;quot;) // 当前版本号 和 build.gradle 相同 def version = &amp;quot;3.0.4&amp;quot; // 具体的发布时间 def baseInfo = &amp;quot;app-&amp;quot; + version + &amp;quot;-0213-01-55-20&amp;quot; // 版本 def variantName = &amp;quot;release&amp;quot; /** * SDK 位置 * http://tinkerpatch.</description>
+    </item>
+    
+    <item>
+      <title>Learn iOS With Swift 1</title>
+      <link>https://example.com/learn-ios-with-swift-1/</link>
+      <pubDate>Tue, 10 Jan 2017 14:14:48 +0000</pubDate>
+      
+      <guid>https://example.com/learn-ios-with-swift-1/</guid>
+      <description>The Basics  常量 let ／ 变量 var
+ 注释：
+  单行 //
+多行 /* */ 且可以嵌套
+ 分号可用在多行语句写在一行的情况下
+ 整型：uint8，16，32，int照旧
+ 浮点型：Float , Double 分别是6位和15位
+ 字面量类型推断：浮点数优先推断Double
+ 整数字面量可以被写作：
+  一个十进制数，没有前缀 一个二进制数，前缀是0b 一个八进制数，前缀是0o 一个十六进制数，前缀是0x
+ typealias类型别名
+ 使用(...,...)包装元组，可以进行分解，作为返回值。
+ 可选类型：
+  很多的现代语言都使用了可选类型的设计，可选类型中的nil并非传统意义的空指针，而是指这个字段可能为空，为空就是nil。
+!表示可以强制解析，此时需要通过非空判定。
+ 可选绑定：  if let firstNumber = Int(&amp;quot;4&amp;quot;) { if let secondNumber = Int(&amp;quot;42&amp;quot;) { if firstNumber &amp;lt; secondNumber &amp;amp;&amp;amp; secondNumber &amp;lt; 100 { print(&amp;quot;\(firstNumber) &amp;lt; \(secondNumber) &amp;lt; 100&amp;quot;) } } } // Prints &amp;quot;4 &amp;lt; 42 &amp;lt; 100”   隐式解析的可选类型：  可通过如var lfkdsk:String!</description>
+    </item>
+    
+    <item>
+      <title>Learn iOS With Swift 0</title>
+      <link>https://example.com/learn-ios-with-swift-0/</link>
+      <pubDate>Tue, 20 Dec 2016 22:01:11 +0000</pubDate>
+      
+      <guid>https://example.com/learn-ios-with-swift-0/</guid>
+      <description>Swift之初见 let常量值 let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。
+let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化要提供类型推倒 lfkdsk = 100 let lfkdsk = 100 + String(1000) // 类型转化要使用显示转换 let apple = 1000 let lfkdsk = &amp;quot;lfkdsk have \(apple) apples&amp;quot; // 类比Ruby的${}  字典和元组 var shoppingList = [&amp;quot;fuck &amp;quot;,&amp;quot;you&amp;quot;] var occupations = [&amp;quot;S&amp;quot;:&amp;quot;M&amp;quot;,&amp;quot;F&amp;quot;,&amp;quot;Y&amp;quot;] occupations[&amp;quot;F&amp;quot;] = xxx // 这些都很好理解  // 创建空数组合字典 可以写出类型 let emptyArray = [String]() // 但是初始化之后就不能再修改了 let emptyDictionary = [String: Float]()  类型可以显示推断的话用:</description>
+    </item>
+    
+    <item>
+      <title>Effective CPP 学习笔记</title>
+      <link>https://example.com/eff-cpp-tips/</link>
+      <pubDate>Mon, 12 Dec 2016 15:27:51 +0000</pubDate>
+      
+      <guid>https://example.com/eff-cpp-tips/</guid>
+      <description>Effective CPP 学习笔记
+ 1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。
+3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)
+low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
+const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。
+使用const成员函数调用重载的non-const函数:
+char &amp;amp; operand[] (std::size_t position){ return const_cast&amp;lt;char&amp;amp;&amp;gt;( static_cast&amp;lt;const TextBlock&amp;amp;&amp;gt;(*this) [position]; ) }  4.保证使用前初始化 对inner type 和object都要在使用前初始化。
+使用initializer-list对类进行初始化，而不是适用赋值操作。
+跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。
+FileSystem &amp;amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
+6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
+7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。</description>
+    </item>
+    
+    <item>
+      <title>写在学伴叁的边上</title>
+      <link>https://example.com/the-end-ofx/</link>
+      <pubDate>Tue, 15 Nov 2016 12:19:15 +0000</pubDate>
+      
+      <guid>https://example.com/the-end-ofx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>如何处理游戏中的碰撞事件</title>
+      <link>https://example.com/how-to-solve-co/</link>
+      <pubDate>Thu, 08 Sep 2016 16:04:42 +0000</pubDate>
+      
+      <guid>https://example.com/how-to-solve-co/</guid>
+      <description>作者 ：刘丰恺
+作者博客：若梦浮生
+转载需征得作者本人同意
+ 之前试着在Android平台封装了一个轻量级的游戏开发框架JustWeEngine ,因为是轻量级的所以也没想太多，很多地方的处理都不太够，比如关于碰撞事件的处理，就是一个简单的On2的遍历，前一阵还被吐槽了233333。
+其实优化On2碰撞的思路是一而贯之的，就是不去处理根本不可能撞在一起的对象。所以就文章讨论一下我了解的在游戏开发中经常被使用的碰撞机制。
+示例图 图示是使用了四叉树进行碰撞判断的一个图示，变成紫色的是从四叉树中拿取的离我最近的可能碰撞对象，这里我们只需要处理最近的四个对象就可以了，这个demo感谢FriceEngine的demo。
+物体分组 对Engine所加载的对象进行分层处理，每层维护一个对象列表，对可能根本不需要进行碰撞处理的对象不去处理，不会发生碰撞的层也不去处理，这样我们的O2的复杂度没变，但是我们减少了很多无用的碰撞对象，而我们想要他们碰撞也可以非常简单的切换。
+我在JustWeEngine里面就试着用了物体分组的方式
+public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围 protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; }  通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
+private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); }  然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。</description>
+    </item>
+    
+    <item>
+      <title>AndroidTips1:从View源码学习点击事件的模拟</title>
+      <link>https://example.com/androidtips1/</link>
+      <pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
+      
+      <guid>https://example.com/androidtips1/</guid>
+      <description>作者：刘丰恺
+作者博客：若梦浮生
+转载请注明文章来源
+ 我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() / onLongClick()事件是不能被响应的了。
+现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。
+模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
+Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
+int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &amp;gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;amp;&amp;amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</description>
+    </item>
+    
+    <item>
+      <title>MVP In Android</title>
+      <link>https://example.com/mvpinandroid/</link>
+      <pubDate>Tue, 06 Sep 2016 07:57:49 +0000</pubDate>
+      
+      <guid>https://example.com/mvpinandroid/</guid>
+      <description>众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
+所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
+What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。
+MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。
+Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
+按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
+如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
+Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&amp;lt;Presenter&amp;gt; { void initialRecycler(List&amp;lt;ExamArrange&amp;gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
+Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
+Base Interface public interface BaseView&amp;lt;T&amp;gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</description>
+    </item>
+    
+    <item>
+      <title>使用DFA做文本编辑器的自动提示</title>
+      <link>https://example.com/dfa-auto-suggestion/</link>
+      <pubDate>Mon, 11 Jul 2016 07:59:17 +0000</pubDate>
+      
+      <guid>https://example.com/dfa-auto-suggestion/</guid>
+      <description>之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。
+DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; import java.util.Map; /** * Dfa 状态 * * @author liufengkai * Created by liufengkai on 16/7/10. */ public class DfaState implements Comparable&amp;lt;DfaState&amp;gt; { private static int DFA_ID_COUNT = 0; /** * state id */ private int stateId; /** * transition set * char / set of dfaState */ private Map&amp;lt;Integer, DfaState&amp;gt; transitionSet; private DfaState parentState; private Integer parentInput; /** * 构造方法 * * @param input 输入串 * @param parentState 父节点 */ public DfaState(Integer input, DfaState parentState) { this.</description>
+    </item>
+    
+    <item>
+      <title>学习制作一门有趣的编程语言－0x04</title>
+      <link>https://example.com/make-new-language-4/</link>
+      <pubDate>Sat, 25 Jun 2016 22:33:35 +0000</pubDate>
+      
+      <guid>https://example.com/make-new-language-4/</guid>
+      <description>几种常用算法 我们日常会用正则表达式的时候，我们会发现正则表达式用了非常精简的语法就能概括多种输入串的特征，</description>
+    </item>
+    
+    <item>
+      <title>我们来写一些魔法</title>
+      <link>https://example.com/some-magic-things/</link>
+      <pubDate>Thu, 16 Jun 2016 21:30:29 +0000</pubDate>
+      
+      <guid>https://example.com/some-magic-things/</guid>
+      <description>请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
+SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
+首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, &amp;quot;key&amp;quot;, 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
+同时在AndroidManifest文件中：
+&amp;lt;receiver android:name=&amp;quot;.SecretReceiver&amp;quot; android:enabled=&amp;quot;true&amp;quot; android:exported=&amp;quot;true&amp;quot;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;quot;android.provider.Telephony.SECRET_CODE&amp;quot; /&amp;gt; &amp;lt;data android:host=&amp;quot;12467&amp;quot; android:scheme=&amp;quot;android_secret_code&amp;quot; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/receiver&amp;gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
+host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
+添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.</description>
+    </item>
+    
+    <item>
+      <title>2014to2016梦回吹角连营</title>
+      <link>https://example.com/2014to2016/</link>
+      <pubDate>Thu, 09 Jun 2016 00:23:04 +0000</pubDate>
+      
+      <guid>https://example.com/2014to2016/</guid>
+      <description>​ 今年的高考在今天结束了，这对我实在没什么实感，仔细一想高考都是两年前的事情了。两年过去了当年的高中同学也都风流云散了，保持联系的人也不是太多了。这都是无可避免的事情，活着不过是迎来送往。不过今天听妈提到她的一个同事的侄子，他比我小一届吧，之前他的事我高中的时候也有所耳闻，上一次考试失利，这次复读重考。听到这个消息才让我又想起来我的高考了。
+​ “梦回吹角连营”，对于这个题目我觉得这句真是太恰当了，高考对于我来讲真的是一场战争，一生的梦魇。有的时候和朋友谈起高考，我都会选择一些轻松的语调去描述我的高考，说说自己那时候也贪玩，也不听课，也会和朋友去网吧。但说实话这描述虽是实情，但是要说我整个高三都处在这种状态下我都不信，这种说法可能是真的属于一个经历过的人的云淡风轻吧。要单纯讲出我高三的状态可能就是“晕”吧。其实我高一／高二也挺晕的，因为玩得多睡得少，而且不用太上心就能考出差强人意的成绩，可能我自己都不太在意吧。但是高三的晕是真的头晕眼花，每天的睡眠时间都小于5个小时，2，3点睡觉的时候也屡见不鲜，我甚至到了分不清当天是周几，分不清一件事是哪天发生的，早上上学过马路看不清车都被车擦到的情况出现。我记得中午可以午睡，但是只能睡十分钟，对于重度缺觉的人，这点时间几乎可以忽略不计了，因为我基本上头碰上手臂的时候就睡着了，然后醒的时候意识还停留在刚睡的时候，更不要提有的时候会在梦里梦到还在学习，结果醒了疲劳度不减反增。最有印象的是数学的，高三转来了一个讲得不错的数学老师，从某种意义上是挽救了我们全班的数学。数学课自然要好好听的，但是还困，所以我们基本上整堂课都自动的去后面站着。我还是挺佩服我自己的临考状态的，我虽然睡眠已经严重不足，甚至思路都不清楚了，但是还能坚持正确的做题。可能真的是所谓的“学习机器”的程度吧，困的已经干扰了正常生活了，却还能正常的做题，想来也是挺讽刺的。那时候我们产生了一个很奇怪的兴趣，就是总想去买练习册去做，总想多做题，但是不幸的是对于我精神上还是能坚持的住的，但是身体的疲劳已经撑不住了，就是脑子想着“我还能打一年”，但实际已经趴着就起不来了。我高考时候的状态就大抵如此。
+​ 说了这么多，其实不是想诉苦，或者标榜什么的。说起来都是两年前的事了，吹嘘什么的一点意思都没有，而且有种钱钟书所说的“兄弟我在英国的时候”的感觉。但是高考真的是对学生一次很痛苦的经历，好坏众说纷纭，但是我想我还不至于变成斯达哥尔摩综合症，经历过就去跪舔这个痛苦的经历，即使我或许也算高考的某种既得利益者（？）。其实我倒是认识很多的学霸，他们的作息方式和我有很大区别的，听起来似乎没我拼命，但是我想或许他们也有他们自己的努力，毕竟世上还是没有真正的不劳而获。我辛苦到如上所说或许是我真的很笨吧！
+​ 有人说我有被害妄想症，可能是因为我天天想着会饿死街头（不会？）。但是说真的这种惨烈的经历没办法不让我不去想。我甚至都不敢想如果高考落榜现在会在做什么，是再来一次，还是从根本上就放弃治疗的颓废的一败涂地。我不知道。我虽然经常写鸡汤，但也就是给自己洗个脑什么的，估计别人看到都不信，但是真实的生活是热血杀出来的道路，是不相信鸡汤的。所以我非常反感给高考盲灌鸡汤的人，说什么不是唯一的出路之类的，这些人看起来都是悲天悯人的普世情怀，其实都是一群看热闹不嫌事大的帮闲。什么叫还有其他出路啊，你跟我提出路什么的先别把我其他的路堵上啊。一个普通的工薪阶层的家庭出来的孩子，你还能给我提出一个除了读书立命的之外的出路么？从商做生意？问一下本金谁出啊？从军入伍？看起来不错，但是想提干，军校的经历不才是最重要的？所以很多人说千军万马过独木桥，谁不想更好的活着啊，就像你说国家的就业为什么这么困难，还不是都要留在好城市，西部大开发倒是职位过剩，说得就跟你愿意去似的。我这个人看起来感性，但是考虑这些问题的时候我真的会变得很现实的，因为这确实是很现实的问题啊！
+​ 今年我二十岁了，无论今人还是古人的标准都是真正的成年人了。很多问题都要提到议程上面了，很多想法也都不能仅仅按照以前的标准来要求自己的了。20-30三十岁这十年我们都会遇到很多很多的难题，我们可能要去一个陌生的城市工作学习，要和不同的陌生人结识并且沟通了解，这十年我们也会发现印象里我们正处在壮年的父母似乎永运都不会老的父母，开始显出老态，记忆里越来越不好，你们分隔的也越来越远，曾经的朝夕相处也只能变成逢年过节的短短相聚。甚至，你还会遇见几场人生的生离死别，为你更加惨烈的30-40进行一些铺垫。你可能会经历几次爱情，或许会出现不顺利的时候，但你还是要咬着牙在这个不属于自己的城市继续打拼下去。你可能需要在大城市买个房子，还有车什么的，但是这些钱都需要你勤奋努力的工作去获取。父母老了之后难免会生病，国内的养老医疗大家也都知道，养老归根结底还是要靠自己努力，所以怎么让父母能够老有所依，老有所养也会是成为即将面对的一个严重的问题。你可能还会在这个年龄段之间有孩子，那一个孩子在给一个家庭带来快乐的同时也会带来很多的负担，照顾，上学，很多很多复杂的事情要处理。当然谈论这些也可能太远，想谈论这些你首先得有一个&amp;hellip;&amp;hellip;。是吧？
+​ 谈了我很多的忧虑和要去做到和完成的事情啊，很多人会说我想多了，但是“人无远虑，必有近忧”，难道你做事还指望船到桥头自然直么？这些事情怎么处理呢？我也想不到什么好方法，只有持续不断的努力吧，努力的做好手头的事情再为之后的事情做好准备吧。写到这里才发现我写的东西真是跑题严重啊，从高考居然跳着跳着跑到了对未来的讨论了。但是我想从某种角度说也不算跑题吧，高考的重要性真的是已经到了事关人生的程度了。或许我真的有一些宿命论和被害妄想吧，我总是要很努力才能和周围的人不拉开太大的差距。不过生活总得继续，把痛苦说出来只会缓解不会消灭，今天谈完当年的高考，还是要继续期末复习，总是要向前看的啊。
+​ 我估计大家都不会看到这篇文章吧，毕竟夜已经深了，我也快要去睡了，祝大家都有一个前程似锦的前程吧。
+P,S:我很的挺感谢现在的这个大学的，虽然某工不是我能考上的最好的大学，当年华科，华南皇家理工，武大什么的我也都是能考上的，但是某工开发区这个地方真是平时除了学习之外找不到什么其它能做的，果然是硬点的学在某工啊。</description>
+    </item>
+    
+    <item>
+      <title>学习制作一门有趣的编程语言－0x03</title>
+      <link>https://example.com/make-new-language-3/</link>
+      <pubDate>Wed, 01 Jun 2016 22:28:06 +0000</pubDate>
+      
+      <guid>https://example.com/make-new-language-3/</guid>
+      <description>分析一个C语言的Lex &amp;amp; Yacc 程序 博客地址： http://lfkdsk.github.io
+代码地址： https://github.com/lfkdsk/CodeParse
+本节我们来分析一个能匹配C语言的Lex &amp;amp; Yacc 程序
+ Lex文件:http://www.lysator.liu.se/c/ANSI-C-grammar-l.html
+Yacc文件:http://www.lysator.liu.se/c/ANSI-C-grammar-y.html
+ 也可以直接在我的github代码地址中进行下载。
+先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)*  首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
+&amp;quot;/*&amp;quot;	{ comment(); }  第16行匹配了C语言的注释开始，并且调用了comment()函数。
+comment() { char c, c1; loop: while ((c = input()) != &#39;*&#39; &amp;amp;&amp;amp; c != 0) putchar(c); if ((c1 = input()) != &#39;/&#39; &amp;amp;&amp;amp; c != 0) { unput(c1); goto loop; } if (c !</description>
+    </item>
+    
+    <item>
+      <title>学习制作一门有趣的编程语言－0x02</title>
+      <link>https://example.com/make-new-language-2/</link>
+      <pubDate>Wed, 01 Jun 2016 12:13:17 +0000</pubDate>
+      
+      <guid>https://example.com/make-new-language-2/</guid>
+      <description>博客地址： http://lfkdsk.github.io
+代码地址： https://github.com/lfkdsk/CodeParse
+ 为计算器添加一些新功能  本节代码：CalcWithTable
+ 上次我们使用Lex &amp;amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
+先看Lex文件 %{ #include &amp;quot;y.tab.h&amp;quot; #include &amp;lt;math.h&amp;gt; #include &amp;quot;link_list.h&amp;quot; %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf(&amp;quot;number : %s \n&amp;quot;, yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } &amp;quot;$&amp;quot; { return 0; } \n | .</description>
+    </item>
+    
+    <item>
+      <title>学习制作一门有趣的编程语言－0x01</title>
+      <link>https://example.com/make-new-language-1/</link>
+      <pubDate>Fri, 27 May 2016 08:37:20 +0000</pubDate>
+      
+      <guid>https://example.com/make-new-language-1/</guid>
+      <description>熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
+tips：阅读此篇需要一定的C语言基础和正则表达式的知识
+ 首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp;amp; Yacc 的用法，Lex &amp;amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp;amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 词法记号流， 而 Yacc 负责语法分析，将词法记号流处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种三地址代码的形式，经过优化器的优化生成机器指令就可以运行在机器中了。
+ 词法记号：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token
+三地址代码：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。
+ 刚才说了这么多那Lex &amp;amp; Yacc帮我们做了什么呢？答案是在我们代码的辅助下几乎都做了，首先在前端方面，根据Lex &amp;amp; Yacc 进行了词法和语法分析，在后端代码被直接生成了C语言代码，借助C语言优秀的编译链可以轻松的生成的程序。
+具体使用 上面我们介绍了Lex &amp;amp; Yacc的功能，毫无疑问Lex &amp;amp; Yacc是非常完美的编译生成程序，接下来我们来介绍一下Lex &amp;amp; Yacc的用法。
+ 推荐书籍:O&amp;rsquo;Relly出版的 Lex &amp;amp; Yacc 是一本介绍 Lex 和 Yacc功能非常好的书，1994年出版，我在图书馆淘到了2002年的第二版。
+ Lex: Lex的使用方法如图所示，分为三个区域：
+ 定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&amp;rdquo;%%&amp;ldquo;符号，终止于&amp;rdquo;%%&amp;ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。
+1.首先是定义区：</description>
+    </item>
+    
+    <item>
+      <title>学习制作一门有趣的编程语言 － 序</title>
+      <link>https://example.com/make-new-language-0/</link>
+      <pubDate>Thu, 26 May 2016 20:29:00 +0000</pubDate>
+      
+      <guid>https://example.com/make-new-language-0/</guid>
+      <description>你的问题在于读书太少，想的太多 —— 杨绛
+ 昨天惊闻杨绛先生去世，突然想到了几年前看到的杨绛先生的这句话。我觉得在计算机领域理论知识更是尤为重要，现在某乎上盛行的计算机理论知识（尤指算法）无用论当真特别可悲。在这里我觉得讨论科班非科班的人都是别有用心的，重要的问题在于这些基础的训练，而不是科班非科班，我们知道很多大神都不是计算机相关专业的，但是他们的基础的深厚程度，确是很多科班出身的人无法能及的，所以说一切的问题还是要积累知识。
+这学期一直在学编译原理的课程，我实实在在的感觉到了这个课程和相关内容的有趣。尤其是我在学习之前试着自己不借助任何的理论去写一个解释器，竟然也命中了不少的知识，这让我感到很欣喜。所以呢就斗胆开了这个题目来试图逐步的实现一个自己的实验性语言，说了是实验性语言就是说并不能完成目前语言的工程性工作，但是在自己这个语言方面能够形成闭环。这门语言或许残缺，或许会遇到很多问题，而且很长时间都会依赖C语言，但是这是一个完整的、成型的、和朋友商议好的计划，一定会逐步的实现的。
+目前的计划:
+ 使用Lex和Yacc去实现逐步实现语言的雏形
+Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富，简洁易懂，在编译器前端的实现上有很大优势。与此同时在编译器的后端比较复杂，我会先把代码转换成C，然后使用C的成型的编译链进行。 更换前端，采取手动构建的方式
+有一些我想实现的功能如果使用Lex和Yacc可能不是那么方便，而且在知识性还有效率上，手动实现都是一个很有趣的工程。 希望能够实现一个编译器后端，可能是转机器码，可能写栈式虚拟机
+这个目前还没有想好，也只是希望去做的。  愿杨绛先生一路走好。</description>
+    </item>
+    
+    <item>
+      <title>情怀向：仙剑Dos版攻略</title>
+      <link>https://example.com/xianjian10/</link>
+      <pubDate>Sat, 10 Feb 2007 22:36:42 +0000</pubDate>
+      
+      <guid>https://example.com/xianjian10/</guid>
+      <description>初中时候的中二之作。</description>
+    </item>
+    
+  </channel>
+</rss>

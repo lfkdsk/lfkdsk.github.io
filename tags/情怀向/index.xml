@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>情怀向 on lfkdsk&#39;s Blog</title>
+    <link>https://example.com/tags/%E6%83%85%E6%80%80%E5%90%91/</link>
+    <description>Recent content in 情怀向 on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Sat, 10 Feb 2007 22:36:42 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/%E6%83%85%E6%80%80%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>情怀向：仙剑Dos版攻略</title>
+      <link>https://example.com/xianjian10/</link>
+      <pubDate>Sat, 10 Feb 2007 22:36:42 +0000</pubDate>
+      
+      <guid>https://example.com/xianjian10/</guid>
+      <description>初中时候的中二之作。</description>
+    </item>
+    
+  </channel>
+</rss>

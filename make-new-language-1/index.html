@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="lfkdsk" />
+  <meta property="og:url" content="https://example.com/make-new-language-1/" />
+  <link rel="canonical" href="https://example.com/make-new-language-1/" />
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://example.com"
+      },
+      "articleSection" : "",
+      "name" : "学习制作一门有趣的编程语言－0x01",
+      "headline" : "学习制作一门有趣的编程语言－0x01",
+      "description" : "熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
+tips：阅读此篇需要一定的C语言基础和正则表达式的知识
+ 首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp; Yacc 的用法，Lex &amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 词法记号流， 而 Yacc 负责语法分析，将词法记号流处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种三地址代码的形式，经过优化器的优化生成机器指令就可以运行在机器中了。
+ 词法记号：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token
+三地址代码：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。
+ 刚才说了这么多那Lex &amp; Yacc帮我们做了什么呢？答案是在我们代码的辅助下几乎都做了，首先在前端方面，根据Lex &amp; Yacc 进行了词法和语法分析，在后端代码被直接生成了C语言代码，借助C语言优秀的编译链可以轻松的生成的程序。
+具体使用 上面我们介绍了Lex &amp; Yacc的功能，毫无疑问Lex &amp; Yacc是非常完美的编译生成程序，接下来我们来介绍一下Lex &amp; Yacc的用法。
+ 推荐书籍:O&rsquo;Relly出版的 Lex &amp; Yacc 是一本介绍 Lex 和 Yacc功能非常好的书，1994年出版，我在图书馆淘到了2002年的第二版。
+ Lex: Lex的使用方法如图所示，分为三个区域：
+ 定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&rdquo;%%&ldquo;符号，终止于&rdquo;%%&ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。
+1.首先是定义区：",
+      "inLanguage" : "en-US",
+      "author" : "lfkdsk",
+      "creator" : "lfkdsk",
+      "publisher": "lfkdsk",
+      "accountablePerson" : "lfkdsk",
+      "copyrightHolder" : "lfkdsk",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-05-27 08:37:20 &#43;0000 UTC",
+      "dateModified" : "2016-05-27 08:37:20 &#43;0000 UTC",
+      "url" : "https://example.com/make-new-language-1/",
+      "keywords" : [ "编程语言","Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>学习制作一门有趣的编程语言－0x01 - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="学习制作一门有趣的编程语言－0x01 - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
+tips：阅读此篇需要一定的C语言基础和正则表达式的知识
+ 首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp; Yacc 的用法，Lex &amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 词法记号流， 而 Yacc 负责语法分析，将词法记号流处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种三地址代码的形式，经过优化器的优化生成机器指令就可以运行在机器中了。
+ 词法记号：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token
+三地址代码：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。
+ 刚才说了这么多那Lex &amp; Yacc帮我们做了什么呢？答案是在我们代码的辅助下几乎都做了，首先在前端方面，根据Lex &amp; Yacc 进行了词法和语法分析，在后端代码被直接生成了C语言代码，借助C语言优秀的编译链可以轻松的生成的程序。
+具体使用 上面我们介绍了Lex &amp; Yacc的功能，毫无疑问Lex &amp; Yacc是非常完美的编译生成程序，接下来我们来介绍一下Lex &amp; Yacc的用法。
+ 推荐书籍:O&rsquo;Relly出版的 Lex &amp; Yacc 是一本介绍 Lex 和 Yacc功能非常好的书，1994年出版，我在图书馆淘到了2002年的第二版。
+ Lex: Lex的使用方法如图所示，分为三个区域：
+ 定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&rdquo;%%&ldquo;符号，终止于&rdquo;%%&ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。
+1.首先是定义区：" />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">
+            <h1 class="post-title">学习制作一门有趣的编程语言－0x01</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2016-05-27 08:37:20 UTC">
+                  27 May 2016
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="to-top">
+            <a href="#top" class="paper-btn margin">^</a>
+          </div> 
+          <div class="post-content markdown-body">
+            
+
+<h3 id="熟悉一下lex-和-yacc的用法">熟悉一下Lex 和 Yacc的用法</h3>
+
+<blockquote>
+<p><code>博客地址</code>： <a href="http://lfkdsk.github.io" target="_blank">http://lfkdsk.github.io</a>
+<code>代码地址</code>： <a href="https://github.com/lfkdsk/CodeParse" target="_blank">https://github.com/lfkdsk/CodeParse</a></p>
+
+<p><code>tips</code>：阅读此篇需要一定的C语言基础和正则表达式的知识</p>
+</blockquote>
+
+<p>首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp; Yacc 的用法，Lex &amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 <code>词法记号流</code>， 而 Yacc 负责语法分析，将<code>词法记号流</code>处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种<code>三地址代码</code>的形式，经过<code>优化器</code>的优化生成机器指令就可以运行在机器中了。</p>
+
+<blockquote>
+<p><code>词法记号</code>：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token</p>
+
+<p><code>三地址代码</code>：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。</p>
+</blockquote>
+
+<p>刚才说了这么多那Lex &amp; Yacc帮我们做了什么呢？答案是在我们代码的辅助下几乎都做了，首先在前端方面，根据Lex &amp; Yacc 进行了词法和语法分析，在后端代码被直接生成了C语言代码，借助C语言优秀的编译链可以轻松的生成的程序。</p>
+
+<p><img src="parser_page.png" alt="parser_page" /></p>
+
+<h3 id="具体使用">具体使用</h3>
+
+<p>上面我们介绍了Lex &amp; Yacc的功能，毫无疑问Lex &amp; Yacc是非常完美的编译生成程序，接下来我们来介绍一下Lex &amp; Yacc的用法。</p>
+
+<blockquote>
+<p><code>推荐书籍</code>:O&rsquo;Relly出版的 Lex &amp; Yacc 是一本介绍 Lex 和 Yacc功能非常好的书，1994年出版，我在图书馆淘到了2002年的第二版。</p>
+</blockquote>
+
+<h4 id="lex">Lex:</h4>
+
+<p><img src="lex_page.png" alt="lex_page" /></p>
+
+<p>Lex的使用方法如图所示，分为三个区域：</p>
+
+<ul>
+<li>定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。</li>
+<li>规则部分：规则部分起始于&rdquo;%%&ldquo;符号，终止于&rdquo;%%&ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。</li>
+<li>子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子
+程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。</li>
+</ul>
+
+<p>只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。</p>
+
+<p>1.首先是定义区：</p>
+
+<p>​<br />
+​   %{</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+unsigned charCount = 0, wordCount = 0, lineCount = 0;
+
+%}
+
+/* 这里是一个替换的规则  */
+/* 不是 空格、制表符、换行符的非空内容 */
+word [^ \t\n]+
+eol  \n
+</code></pre>
+
+<p>这部分很简单我们导入来C的基础输入输出库，定义了几个全局变量字符数，单词数、行数。
+定义了两个规则，第一个代表单词（所有空格、制表符、换行符取反的非空集），一个是输入结束匹配换行符。
+2.规则区：</p>
+
+<pre><code class="language-c"> /* 规则区 这里面的注释不能顶格写 */
+/* yyleng 是拿到的输入长度 */
+{word} {
+      wordCount++;
+      charCount += yyleng;
+   }
+
+{eol}  {
+     charCount++;
+     lineCount++;
+   }
+/* 匹配其他字符 */
+.      {
+     charCount++;
+   }
+</code></pre>
+
+<p>规则区对三种类型进行了匹配，并用括号里的方法对计数进行更新。</p>
+
+<p>3.用户程序区：</p>
+
+<pre><code class="language-c">int main(){
+	yylex();
+	printf(&quot;%d %d %d \n&quot;, lineCount, wordCount, charCount);
+	return 0;
+}
+</code></pre>
+
+<p>​</p>
+
+<p>用户程序区也很简单yylex()是Lex的内置函数，调用就可以进行匹配，每一次处理结束后就会进行一次打印。</p>
+
+<p>写完这段代码后，我们用命令行调用：</p>
+
+<pre><code class="language-shell">$ lex word_cound.l
+</code></pre>
+
+<p>就会生成yy.lex.c的文件。</p>
+
+<p>调用：</p>
+
+<pre><code class="language-shell">$ cc -o wordcount lex.yy.c -ll 
+</code></pre>
+
+<p>进行编译就可以生成 wordcount可执行程序。</p>
+
+<pre><code class="language-shell">$ ./wordcount 
+</code></pre>
+
+<p>就可以运行了。</p>
+
+<p><img src="code_word_count.png" alt="word_count_1" /></p>
+
+<h4 id="yacc">YACC:</h4>
+
+<p>Yacc的文件格式类似Lex(或者说是 Lex 类似 Yacc ) ，也同样包含定义段、规则段、用户子例程段落，但是内容却有所不同。</p>
+
+<ul>
+<li>定义段： 除了和 Lex 相类的C程序植入之外还包括％token、％type、％left、％right 等类型的声明</li>
+
+<li><p>规则段： 使用BNF范式（形如lable：expression 的产生式）和C代码构成，C代码会被原封不动的复制进源程序,BNF范式由一个规则和冒号组成，相同左端的右端使用‘｜’分隔，对应的使用C语言代码作为处理代码置入。</p></li>
+
+<li><p>子例程段： 用户植入的子例程段，主要负责用户动作调用的代码，会被复制到源程序中。</p></li>
+</ul>
+
+<h4 id="写一个简单的计算器">写一个简单的计算器：</h4>
+
+<p>在这个例程中我们会同时用到 Lex 和 Yacc ,这个Demo的地址在<a href="https://github.com/lfkdsk/CodeParse/tree/master/make_new_language_demo/calc_demo_with_l%26y" target="_blank">Calc</a>中大家可以下载使用。</p>
+
+<p>首先是 Lex 的代码：</p>
+
+<pre><code class="language-C">
+%{
+#include &lt;stdio.h&gt;
+	/* 这里引入的库是Yacc生成的所以一会要先运行Yacc */
+#include &quot;y.tab.h&quot;
+
+	/* Lex 的读取模式是可以读取文件的，yywrap()这个函数就是在读取之后判断是否完毕的函数  */
+	/* 返回值为1代表读取完毕不再进行读取 */
+	/* Lex 中有这些内置函数 yylex()负责处理 yylex()的末尾会自动调用yywrap() */
+int yywrap(void)
+{
+    return 1;
+}
+
+%}
+
+
+%%
+
+	/* 这里匹配了几种符号类型 返回值是一个词素Token Token定义在Yacc中 */
+&quot;+&quot;             return ADD;
+&quot;-&quot;             return SUB;
+&quot;*&quot;             return MUL;
+&quot;/&quot;             return DIV;
+&quot;\n&quot;            return CR;
+
+	/* 下面匹配的是一个整型数和浮点型数 在这种模式下0要单独写否则两种正则无法匹配到0 */
+([1-9][0-9]*)|0|([0-9]+\.[0-9]*) {
+    double temp;
+    sscanf(yytext, &quot;%lf&quot;, &amp;temp);
+    /* yylval是一个内置的联合体 由程序自动生成 double_value是用户在Yacc中定义的一个double型的变量 */
+    yylval.double_value = temp;
+    /* 返回的Token */
+    return DOUBLE_LITERAL;
+}
+[ \t] ;
+. {
+	/* 其他符号作为错误处理 */
+    fprintf(stderr, &quot;lexical error.\n&quot;);
+    exit(1);
+}
+%%
+
+
+</code></pre>
+
+<p>上面 Lex 的代码相对于上一道题有一定的难度，但是我的注释已经非常详细了， Lex 的作用就是识别特定的
+正规式然后把数字和对应的token返回给Yacc去处理。按常规这些Token是在Yacc中被处理的。、</p>
+
+<p>下面我们来看Yacc的代码：</p>
+
+<p>1.首先是规则区：</p>
+
+<pre><code class="language-C">
+%{
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define YYDEBUG 1
+%}
+%union {
+    int          int_value;
+    double       double_value;
+}
+%token &lt;double_value&gt;      DOUBLE_LITERAL
+%token ADD SUB MUL DIV CR
+%type &lt;double_value&gt; expression term primary_expression
+%%
+
+</code></pre>
+
+<p>%{ %}中置入的库就不用多说了 <code>YYDEBUG＝1</code> 是开启DEBUG模式，这样在yacc生成的过程中使用debug参数
+就能看到输出的状态转移图。
+接下来使用%union 设置了yylval的内容类型 里面存储了int、double的类型参数
+接下来使用%token 设置了多个Token，double类型的DOUBLE_LITERAL，无类型的加减乘除，还有double类型的
+各种产生式。</p>
+
+<p>2.规则段落：</p>
+
+<pre><code class="language-C">	
+	/* 设定的规则是逐行处理 这里的line_list能由 line 或者是line_list line 构成*/
+line_list
+    : line
+    | line_list line
+    ;
+    /* 一行是由一个表达式和回车组成的 这代表打印输入的表达式的结果 */
+line
+    : expression CR
+    {
+        printf(&quot;&gt;&gt;%lf\n&quot;, $1);
+    }
+    ;
+    /* 一个表达式由 term ＋ term 或者 term - term 组成的 */
+    /* $$ 表示左式的值 $num 表明右式中的第num个项 */
+expression
+    : term
+    | expression ADD term
+    {
+        $$ = $1 + $3;
+    }
+    | expression SUB term
+    {
+        $$ = $1 - $3;
+    }
+    ;
+    /* 而 term 由 pri * pri 和 pri / pri 组成 */
+term
+    : primary_expression
+    | term MUL primary_expression
+    {
+        $$ = $1 * $3;
+    }
+    | term DIV primary_expression
+    {
+        $$ = $1 / $3;
+    }
+    ;
+    /* 这是最原子的操作 把DOUBLE的Token的对象规约成primary_expression */
+primary_expression
+    : DOUBLE_LITERAL
+    ;
+%%
+
+</code></pre>
+
+<p>规则段落的编写和之前的介绍是一样的BNF范式构成，对应的产生式对应于C操作代码，但是这里还有一些要解释。
+* 比如将DOUBLE_LITERAL规约为primary_expression的时候我们没有任何的语义动作，其实这里是使用了一个
+  隐含的语义动作{ $$ = $1 }就是把对应的数据进行赋值。</p>
+
+<ul>
+<li>还有就是这里的加减和乘除分开定义了，这里是用来修改文法的方式来进行处理语法的优先级问题乘除的优先级高于
+加减的优先级，在下一个Demo中我们会看到利用yacc特性进行的优先级处理。</li>
+</ul>
+
+<p>3.例程区：</p>
+
+<pre><code class="language-C">
+int yyerror(char const *str)
+{
+    extern char *yytext;
+    fprintf(stderr, &quot;parser error near %s\n&quot;, yytext);
+    return 0;
+}
+
+int main(void)
+{
+    extern int yyparse(void);
+    extern FILE *yyin;
+
+    yyin = stdin;
+    if (yyparse()) {
+        fprintf(stderr, &quot;Error ! Error ! Error !\n&quot;);
+        exit(1);
+    }
+}
+
+
+
+</code></pre>
+
+<p>这段落就比较简单了，yyerror()是复写了yacc的内置函数处理了打印错误的工作。
+main函数作为调用的主函数 把yacc的输入流从文件改为标准输入然后运行yyparse()进行yacc的分析。</p>
+
+<p>写完这两个文件之后我们调用如下命令进行编译：</p>
+
+<pre><code class="language-shell">
+$ yacc -d mycalc.y
+$ lex mycalc.l
+$ cc -o mycalc y.tab.c lex.yy.c -ly -ll 
+
+</code></pre>
+
+<p>编译运行之后的结果：</p>
+
+<p><img src="yacc_page.png" alt="yacc_page" /></p>
+
+<p>至此我们已经学习了Lex &amp; Yacc 的一些基础应用，Lex &amp; Yacc 有很多用途
+除了进行编译相关工作之外，对于基础的文本处理也有优势。但是我认为这个工具
+没有必要进行过分的深究特性，因为特性并不复杂，而且对于开发一门语言来说
+Lex &amp; Yacc 为你处理了过多的前端工作，这让出于兴趣的开发并不是很有趣了，
+所以虽然接下来会做一些lex &amp; Yacc的练习，但是并不会以这个为主。</p>
+
+          </div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>
