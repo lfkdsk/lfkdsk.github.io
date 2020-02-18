@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>https://example.com/learn-sicp-7/</loc>
+    <lastmod>2019-03-18T10:54:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/learn-sicp-6/</loc>
+    <lastmod>2017-09-27T10:16:16+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://example.com/quick-learn-skip-list/</loc>
     <lastmod>2017-09-11T23:52:38+00:00</lastmod>
   </url>
@@ -216,7 +226,7 @@
   
   <url>
     <loc>https://example.com/tags/sicp/</loc>
-    <lastmod>2017-08-08T00:16:16+00:00</lastmod>
+    <lastmod>2019-03-18T10:54:16+00:00</lastmod>
     <priority>0</priority>
   </url>
   
