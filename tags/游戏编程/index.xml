@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>游戏编程 on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/</link>
+    <link>https://lfkdsk.github.io/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/</link>
     <description>Recent content in 游戏编程 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Thu, 08 Sep 2016 16:04:42 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何处理游戏中的碰撞事件</title>
-      <link>https://example.com/how-to-solve-co/</link>
+      <link>https://lfkdsk.github.io/how-to-solve-co/</link>
       <pubDate>Thu, 08 Sep 2016 16:04:42 +0000</pubDate>
       
-      <guid>https://example.com/how-to-solve-co/</guid>
+      <guid>https://lfkdsk.github.io/how-to-solve-co/</guid>
       <description>作者 ：刘丰恺
 作者博客：若梦浮生
 转载需征得作者本人同意

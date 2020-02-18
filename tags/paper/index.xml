@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Paper on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/paper/</link>
+    <link>https://lfkdsk.github.io/tags/paper/</link>
     <description>Recent content in Paper on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Fri, 10 Mar 2017 17:05:28 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/paper/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/paper/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>推荐一篇有趣的论文</title>
-      <link>https://example.com/recommand-i-paper/</link>
+      <link>https://lfkdsk.github.io/recommand-i-paper/</link>
       <pubDate>Fri, 10 Mar 2017 17:05:28 +0000</pubDate>
       
-      <guid>https://example.com/recommand-i-paper/</guid>
+      <guid>https://lfkdsk.github.io/recommand-i-paper/</guid>
       <description></description>
     </item>
     

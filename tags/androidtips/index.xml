@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Androidtips on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/androidtips/</link>
+    <link>https://lfkdsk.github.io/tags/androidtips/</link>
     <description>Recent content in Androidtips on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Tue, 06 Sep 2016 19:32:07 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/androidtips/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/androidtips/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AndroidTips1:从View源码学习点击事件的模拟</title>
-      <link>https://example.com/androidtips1/</link>
+      <link>https://lfkdsk.github.io/androidtips1/</link>
       <pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
       
-      <guid>https://example.com/androidtips1/</guid>
+      <guid>https://lfkdsk.github.io/androidtips1/</guid>
       <description>作者：刘丰恺
 作者博客：若梦浮生
 转载请注明文章来源

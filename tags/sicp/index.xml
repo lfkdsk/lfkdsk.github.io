@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sicp on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/sicp/</link>
+    <link>https://lfkdsk.github.io/tags/sicp/</link>
     <description>Recent content in Sicp on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Mon, 18 Mar 2019 10:54:16 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/sicp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/sicp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>0x07：SICP 的魔法 - 元语言抽象</title>
-      <link>https://example.com/learn-sicp-7/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-7/</link>
       <pubDate>Mon, 18 Mar 2019 10:54:16 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-7/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-7/</guid>
       <description>从这一篇文章开始就进入了 SICP 第四章的内容了，在前三章的内容之中我们接触了 数据抽象，过程抽象，模块化 三个，第四章的内容主要就是实现了一个元循环解释器 (meta-circular) 并对其进行不断地改造引申出别的问题。从篇幅内容来看这一章的主要内容反倒是对当时初读的我最为简单的，因为在学过编译原理的相关课程之后，笔者已经尝试使用了自举的方式实现了一些基于 JVM 的编程语言(这里也建议大家在学习理论的同时也要加强知识的运用，否则没有实际的使用过很多知识就不是那么立体)。本章我们对这个 Scheme 求值器的具体实现不会介绍的特别具体，毕竟书上已经把全部代码都贴上去了，这里更想关注一些引申的问题。
 在之前的篇幅之中我们讨论了很多和程序设计相关的内容，主要研究的三个内容是：
  数据抽象：如何组合程序的基本元素，构造更复杂的结构 过程抽象：如何将复杂的结构抽象出高层组件，提供更高维度的组合型 模块化，通过高抽象层次的组织方法，提高系统的模块性  通过这些手段已经足够我们设计大部分程序了，但是现实世界中遇到的问题可能更为复杂，或者可能类似的问题出现在同一个领域内。这时候我们可能就要在程序之中引入 DSL(领域内语言)了。本质上来讲我们引入 DSL 就是通过语言设计，为程序提供一种 语言层的抽象 ，来进一步提高我们程序的模块化。
@@ -27,10 +27,10 @@
     
     <item>
       <title>0x06：SICP 的魔法 - 并发、时间与流模拟</title>
-      <link>https://example.com/learn-sicp-6/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-6/</link>
       <pubDate>Wed, 27 Sep 2017 10:16:16 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-6/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-6/</guid>
       <description>在上一篇文章之中我们见识到了基于变动数据、内部状态的程序设计的能力，但是就像之前提及过多次的引用透明性的问题被打破，程序中引入了时间的概念，导致我们无论是求值顺序还是过程的运行都出现了一个时序性的问题，我们在 数字电路模拟 之中使用了一个 待处理表 的子过程，用来为我们的信号传播进行排序，通过模拟延时构造了程序的时序性。但是在现实世界中，我们不可能只通过一张表去排序构造顺序，现实系统中的对象都有更为复杂的同时的活动，为了构造这种更为现实的模拟系统，我们可能需要：
  使用一组系统进行对同时发生的事情进行模拟 分解我们使用的模型，增强内部状态的演化，就是更为 模块化 能够支持多个进程的硬件支持  在多内核处理器普及的今天，硬件支持已经渐渐不是并发编程的难题了。但是并发编程的复杂性让然没有因为这个原因而降低难度。首先我们要承认正确的运用并行编程是有利的，能提升我们程序的运行效率和对硬件的利用率。
 但是由于并发系统的时间的不确定性，两个同时运行并有所依赖的进程，我们并不能确定什么时候某个能运行完，而一个又不能对另一个的结果进行无限的等待。还有就是资源获取的问题，两个并行的程序如何对资源进行管理，比如第三章开始的那个例子，从银行取钱，如果无法控制程序对资源的有效管理就可能造成两个人同时使用一个账户同时取钱，都能取出来的情况出现。
@@ -50,10 +50,10 @@
     
     <item>
       <title>0x05：SICP 的魔法 - 实例:数字电路模拟</title>
-      <link>https://example.com/learn-sicp-5/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-5/</link>
       <pubDate>Tue, 08 Aug 2017 00:16:16 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-5/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-5/</guid>
       <description>在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
  创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：
  在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
@@ -65,10 +65,10 @@
     
     <item>
       <title>0x04：SICP 的魔法 - 模块化、状态、环境</title>
-      <link>https://example.com/learn-sicp-4/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-4/</link>
       <pubDate>Sun, 23 Apr 2017 15:37:48 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-4/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-4/</guid>
       <description>现在我们终于到了 SICP 的第三章的内容了。就个人而言我觉得 SICP 的前三章都在着眼于构建各种层次的抽象系统，三章以后的内容才是 SICP 本身比较精髓和有趣的内容了。但是万丈高楼平地起，正是之前的这些和 “抽象”、“思想” 有关的东西构建了我们在后几章学到的解释器系统。
 前两章我们见识到了 Scheme 在两个主要方向上的抽象能力。我们在第一章中学到了和过程抽象有关系的知识，我们把他认定为 Scheme 系统的第一公民，看到了各种高阶函数组合起来的魅力。在第二章我们主要讨论的问题是如何进行数据抽象，从一个 “有理数” 的 Demo 入手，建立了抽象屏蔽的系统层次，我们还引入了符号数据，进一步提升了运算的抽象层次，求导等写起来很麻烦的程序都可以借助符号数据来轻松实现。之后我们还见到了通过 dispatch 使用过程保存了对象的状态，学到了使用消息传递的构建方式，等等很多的和 “抽象” 有关的知识。
 我们确实通过以上的知识，在上一节末构建了一个通用操作的复数系统。但是对于一个更为拟真、更为复杂的系统的时候，以上或是计算、或是对模型抽象的知识就显得远远不足了。我们还应该需要一系列模式或者是说原则去规定去构建这整个系统。换句话说，我们要学习如何去模拟这个世界。
@@ -88,10 +88,10 @@
     
     <item>
       <title>0x03：SICP 的魔法 - 符号演算和数据表示方法</title>
-      <link>https://example.com/learn-sicp-3/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-3/</link>
       <pubDate>Mon, 20 Mar 2017 16:24:51 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-3/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-3/</guid>
       <description>符号数据 有过CPP，Java等 OO 语言编程经验的人，肯定对基本类型和各种封箱的引用类型的区别有很大的感触。符号数据是什么，在这里的开始，我们可以先粗浅得把他理解成对象的引用，当然 Scheme 中的符号数据和这个还是有很大的区别的，理解这个符号我们可以先举一个这个例子：
 两句话就能看明白 Symbol 和 Value 的区别，第一句话让我们说我们最喜欢的颜色，第二句是说“你最喜欢的颜色”。自然语言中能区分词语本身和词语的含义的不同，Scheme 中也有类似的机制。
 表示符号数据 在 Scheme 的解释器中，我们之前已经了解到了，解释器就是一个不断接收数据的 eval() 循环：
@@ -103,10 +103,10 @@
     
     <item>
       <title>0x02：SICP 的魔法 - 数据抽象、层次抽象</title>
-      <link>https://example.com/learn-sicp-2/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-2/</link>
       <pubDate>Sat, 11 Mar 2017 18:17:35 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-2/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-2/</guid>
       <description>在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
 与此相类，数据本身也可以作为一种抽象，我们在之前接触的数据都是一些简单的数据，所以可能没什么感受。但是数据也可以包含不止一种的信息，使用的时候隐藏具体的实现细节，具体使用的时候又能作为元素出现在程序任意的位置，因此数据也是一种抽象。
  有过 OO 语言经验的同学 可以借助类的概念理解一下以上的概念
@@ -121,10 +121,10 @@
     
     <item>
       <title>0x01：SICP 的魔法 - 过程的求值计算和高阶过程</title>
-      <link>https://example.com/learn-sicp-1/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-1/</link>
       <pubDate>Mon, 27 Feb 2017 12:01:15 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-1/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-1/</guid>
       <description>过程的求值计算 这里面我们先来介绍一种最为简单、通用的求值模型，代换模型并不能概括全部的求值方式，但是我们先从这个开始。
 代换模型 通用的表达式计算模式，描述起来其实非常简单，先求出各子表达式的值，找到要调用的过程的定义，用求出的实际参数代换过程体里的形式参数，再对过程体进行求值，本质上一种使用等价性的表达式的拆分机制，比如下例，是对一个平方和函数进行计算的详细步骤：
 (define (sum-of-squares x y) (+ (square x) (square y))) ; sum-of-squares 求两个数的平方和 (define (f x) (sum-of-squares (+ x 1) (+ x 2))) (f 5) (sum-of-squares (+ 5 1) (* 5 2)) ; 注意这两行，首先算出来形参 (+ (square 6) (square 10)) (+ (* 6 6) (* 10 10)) (+ 36 100) 136   Tips: 上面的代换方式又被称作应用序的计算方式，这也是 Scheme 解释器的计算方式，除此之外，还有一种被称作正则序的计算方式，正则性和上面不一样的地方在于，它不会先计算出调用过程的形参，反倒是一定要把整个表达式最小化到所有的东西都能直接计算的程序(摊开了的感觉):
@@ -133,10 +133,10 @@
     
     <item>
       <title>0x00：SICP 的魔法 - Scheme 基础和黑盒抽象</title>
-      <link>https://example.com/learn-sicp-0/</link>
+      <link>https://lfkdsk.github.io/learn-sicp-0/</link>
       <pubDate>Tue, 21 Feb 2017 22:22:14 +0000</pubDate>
       
-      <guid>https://example.com/learn-sicp-0/</guid>
+      <guid>https://lfkdsk.github.io/learn-sicp-0/</guid>
       <description>作者 ：刘丰恺
 作者博客：若梦浮生
 转载需征得作者本人同意

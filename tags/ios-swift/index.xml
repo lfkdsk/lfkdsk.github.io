@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ios Swift on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/ios-swift/</link>
+    <link>https://lfkdsk.github.io/tags/ios-swift/</link>
     <description>Recent content in Ios Swift on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Tue, 10 Jan 2017 14:14:48 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/ios-swift/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/ios-swift/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Learn iOS With Swift 1</title>
-      <link>https://example.com/learn-ios-with-swift-1/</link>
+      <link>https://lfkdsk.github.io/learn-ios-with-swift-1/</link>
       <pubDate>Tue, 10 Jan 2017 14:14:48 +0000</pubDate>
       
-      <guid>https://example.com/learn-ios-with-swift-1/</guid>
+      <guid>https://lfkdsk.github.io/learn-ios-with-swift-1/</guid>
       <description>The Basics  常量 let ／ 变量 var
  注释：
   单行 //
@@ -37,10 +37,10 @@
     
     <item>
       <title>Learn iOS With Swift 0</title>
-      <link>https://example.com/learn-ios-with-swift-0/</link>
+      <link>https://lfkdsk.github.io/learn-ios-with-swift-0/</link>
       <pubDate>Tue, 20 Dec 2016 22:01:11 +0000</pubDate>
       
-      <guid>https://example.com/learn-ios-with-swift-0/</guid>
+      <guid>https://lfkdsk.github.io/learn-ios-with-swift-0/</guid>
       <description>Swift之初见 let常量值 let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。
 let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化要提供类型推倒 lfkdsk = 100 let lfkdsk = 100 + String(1000) // 类型转化要使用显示转换 let apple = 1000 let lfkdsk = &amp;quot;lfkdsk have \(apple) apples&amp;quot; // 类比Ruby的${}  字典和元组 var shoppingList = [&amp;quot;fuck &amp;quot;,&amp;quot;you&amp;quot;] var occupations = [&amp;quot;S&amp;quot;:&amp;quot;M&amp;quot;,&amp;quot;F&amp;quot;,&amp;quot;Y&amp;quot;] occupations[&amp;quot;F&amp;quot;] = xxx // 这些都很好理解  // 创建空数组合字典 可以写出类型 let emptyArray = [String]() // 但是初始化之后就不能再修改了 let emptyDictionary = [String: Float]()  类型可以显示推断的话用:</description>
     </item>

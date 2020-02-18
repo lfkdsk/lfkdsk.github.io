@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cpp on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/cpp/</link>
+    <link>https://lfkdsk.github.io/tags/cpp/</link>
     <description>Recent content in Cpp on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Mon, 12 Dec 2016 15:27:51 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Effective CPP 学习笔记</title>
-      <link>https://example.com/eff-cpp-tips/</link>
+      <link>https://lfkdsk.github.io/eff-cpp-tips/</link>
       <pubDate>Mon, 12 Dec 2016 15:27:51 +0000</pubDate>
       
-      <guid>https://example.com/eff-cpp-tips/</guid>
+      <guid>https://lfkdsk.github.io/eff-cpp-tips/</guid>
       <description>Effective CPP 学习笔记
  1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。
 3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Android on lfkdsk&#39;s Blog</title>
-    <link>https://example.com/tags/android/</link>
+    <link>https://lfkdsk.github.io/tags/android/</link>
     <description>Recent content in Android on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Tue, 06 Sep 2016 07:57:49 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/android/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lfkdsk.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MVP In Android</title>
-      <link>https://example.com/mvpinandroid/</link>
+      <link>https://lfkdsk.github.io/mvpinandroid/</link>
       <pubDate>Tue, 06 Sep 2016 07:57:49 +0000</pubDate>
       
-      <guid>https://example.com/mvpinandroid/</guid>
+      <guid>https://lfkdsk.github.io/mvpinandroid/</guid>
       <description>众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
 所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
 What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。

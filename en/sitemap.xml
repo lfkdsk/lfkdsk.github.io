@@ -3,47 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/en/categories/</loc>
+    <loc>https://lfkdsk.github.io/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://example.com/categories/"
+                href="https://lfkdsk.github.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/categories/"
+                href="https://lfkdsk.github.io/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/en/tags/</loc>
+    <loc>https://lfkdsk.github.io/en/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://example.com/tags/"
+                href="https://lfkdsk.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/tags/"
+                href="https://lfkdsk.github.io/en/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/en/</loc>
+    <loc>https://lfkdsk.github.io/en/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://example.com/"
+                href="https://lfkdsk.github.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/"
+                href="https://lfkdsk.github.io/en/"
                 />
   </url>
   
