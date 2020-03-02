@@ -43,16 +43,6 @@
   </url>
   
   <url>
-    <loc>https://lfkdsk.github.io/week-1/</loc>
-    <lastmod>2017-03-18T15:35:56+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lfkdsk.github.io/week-0/</loc>
-    <lastmod>2017-03-11T20:26:36+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lfkdsk.github.io/learn-sicp-2/</loc>
     <lastmod>2017-03-11T18:17:35+00:00</lastmod>
   </url>
@@ -266,12 +256,6 @@
                 hreflang="cn"
                 href="https://lfkdsk.github.io/"
                 />
-  </url>
-  
-  <url>
-    <loc>https://lfkdsk.github.io/tags/%E5%91%A8%E8%AE%B0/</loc>
-    <lastmod>2017-03-18T15:35:56+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
