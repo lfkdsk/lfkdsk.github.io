@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lfkdsk.github.io/flutter-for-web-compile/</loc>
+    <lastmod>2020-03-06T15:09:37+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lfkdsk.github.io/tidb-hackthon/</loc>
     <lastmod>2019-12-03T00:00:00+00:00</lastmod>
   </url>
@@ -185,8 +190,20 @@
   </url>
   
   <url>
+    <loc>https://lfkdsk.github.io/tags/compile/</loc>
+    <lastmod>2020-03-06T15:09:37+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lfkdsk.github.io/tags/cpp/</loc>
     <lastmod>2016-12-12T15:27:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lfkdsk.github.io/tags/flutter/</loc>
+    <lastmod>2020-03-06T15:09:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -244,7 +261,7 @@
   
   <url>
     <loc>https://lfkdsk.github.io/</loc>
-    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-06T15:09:37+08:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

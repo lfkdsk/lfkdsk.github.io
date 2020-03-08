@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flutter on lfkdsk&#39;s Blog</title>
+    <link>https://lfkdsk.github.io/tags/flutter/</link>
+    <description>Recent content in Flutter on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Fri, 06 Mar 2020 15:09:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>FlutterWeb 编译流程分析</title>
+      <link>https://lfkdsk.github.io/flutter-for-web-compile/</link>
+      <pubDate>Fri, 06 Mar 2020 15:09:37 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/flutter-for-web-compile/</guid>
+      <description>本篇文章你会学到
+ Flutter Web 的编译流程 dart compiler 使用方案 compiler 模块实现分析（next chapter）  前言 Flutter for Web 是 Flutter 框架在 Web 平台的支持方案，在很长一段时间一直是独立于 Flutter 主分支之外进行独立开发的，直到 19 年九月才合入主分支，目前仍在 Flutter 的 beta channel 之中（早期使用的案例可以我之前的调研报告、文章）。下图为 Flutter For Web 的实现方案，之前已经写过文章分析过了：
+与之前 preview 版本较为复杂的配置流程（flutter 所有库都要切到 web branch 之中）不同，目前版本的 FlutterWeb 可以被融入了 flutter_tools 处理流程之中了，并且 release 模式也能够提供完整的可独立运行的 dump 出的 web 程序。
+ 本篇文章我们就来分析 FlutterWeb 完整的编译处理流程，原本这篇文章也包含对 dart2js 部分的实现分析，但是由于篇幅过长不太容易在有一篇文章之中解释清楚。因此打算单独开一个关于 Dart 编译器设计的系列文章，从内部 kernel 出发到，前端的 front_end 的实现，compiler 模块的构成，包含从算法基础到实现引申的全部内容敬请期待。
+ FlutterWeb 编译流程 整体结构 熟悉 flutter_tools 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，flutter_tools 的命令利用对应的处理框架进行了比较有效的解耦。在 lib/src 文件夹下增加了 web 的 实现 。具体新增的文件列表如下图：</description>
+    </item>
+    
+  </channel>
+</rss>
