@@ -6,22 +6,10 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Thu, 11 Jun 2020 18:20:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2020 17:58:07 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>静态分析 Static Analysis Intro</title>
-      <link>https://lfkdsk.github.io/sa-01/</link>
-      <pubDate>Thu, 11 Jun 2020 18:20:39 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/sa-01/</guid>
-      <description>PL 领域目前主要关注三个方面的事情：
- Theory 理论：包括语言设计、类型系统、语义与逻辑 Environment 环境：包括各种 Compiler、各种 Runtime System 运行时系统 Application 应用：程序静态分析、程序验证、程序可靠性  Why We Need Static Analysis  Program Relability：null pointer derefer、memory leak Program Security：private infro leadk、injection attack Compiler Optimization：dead code elim、code motion Program Understanding：IDEcall hierarchy、type indication  Static Analysis Intro  Any non-trivial property of this behavior of programs in a r.e language is undecidable.
-不存在一种程序能够完美分析分析所有的 non-trivial 的特性。
-  Sound （Overapproximate）—— 过量的 Complete （Underapproximate）——过少的 Truth （undecidable）——不存在的真实值   Sound but not fully-precise static analysis.</description>
-    </item>
     
     <item>
       <title>关于《十三机兵防卫圈》的一些真相</title>
