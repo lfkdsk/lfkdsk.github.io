@@ -6,10 +6,33 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Fri, 06 Mar 2020 15:09:37 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2020 18:20:39 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>静态分析 Static Analysis Introy</title>
+      <link>https://lfkdsk.github.io/sa-01/</link>
+      <pubDate>Thu, 11 Jun 2020 18:20:39 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/sa-01/</guid>
+      <description>PL 领域目前主要关注三个方面的事情：
+ Theory 理论：包括语言设计、类型系统、语义与逻辑 Environment 环境：包括各种 Compiler、各种 Runtime System 运行时系统 Application 应用：程序静态分析、程序验证、程序可靠性  Why We Need Static Analysis  Program Relability：null pointer derefer、memory leak Program Security：private infro leadk、injection attack Compiler Optimization：dead code elim、code motion Program Understanding：IDEcall hierarchy、type indication  Static Analysis Intro  Any non-trivial property of this behavior of programs in a r.e language is undecidable.
+不存在一种程序能够完美分析分析所有的 non-trivial 的特性。
+  Sound （Overapproximate）—— 过量的 Complete （Underapproximate）——过少的 Truth （undecidable）——不存在的真实值   Sound but not fully-precise static analysis.</description>
+    </item>
+    
+    <item>
+      <title>关于《十三机兵防卫圈》的一些真相</title>
+      <link>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</link>
+      <pubDate>Sun, 05 Apr 2020 17:58:07 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</guid>
+      <description>FBI WARNING ! ⚠️ 严重剧透警告
+ 人物出场图
+   年代 / 人物 和泉十郎 [大佐] 森村千寻 [博士] 三浦慎太郎 [设计师] 比治山隆俊 鞍部玉绪 [AI 专家] 鹰宫由贵 药师寺惠 关之原瑛 乡登莲也 南奈津乃 绪方稔二 如月兔美 井田铁也 冬云谅子 冲野司     1940 年代   三浦慎太郎 （昭和20 年三人是发小） 比治山隆俊 （军人） 鞍部玉绪          女装冲野司   1980 年代 鞍部十郎 冬坂五百里   鞍部玉绪 [婆婆状态] 鹰宫由贵[不良少女]     绪方稔二（敷岛富二代，不良少年，七岁见过森村）  网口愁     2020 年代            如月兔美（互联网歌姬） 井田铁也     2060 年代        关之原瑛 乡登莲也   因幡深雪  冬云谅子    2100 年代 （扇区 1） 和泉十郎 森村千寻（当前周期：冬坂五百里 来自扇区 1）   玉绪人形机器人       如月人形机器人   冲野司   2188 真实年代 大佐 纳米机械博士 工程师，南奈津乃恋人 军人，与冲野司是情侣 AI 博士，参与设计方舟计划 鹰宫教授，探测机繁殖研究 8 岁和泉大佐养女 敷岛集团(乡登莲也)雇佣杀手，杀害森村 敷岛 CEO 鹰宫的女儿，三浦的恋人 敷岛财阀少爷，引发枪战事件 地球化学者 研究员？ 被井田利用，触发 Dmonster 摧毁所有扇区 设计万物中枢的天才工程师    几个前置事实  真实历史：真实历史已经过去了 2000万年，故事的依赖来源于 15 个人类幸存者的克隆体，故事的大部分来自于虚拟现实体验 时空穿越：虚拟现实之中的各个年份同时存在五个区域，五个区域的时间分别为 1940 ~ 2100 年，每个扇区分别间隔 40 年。 人类毁灭的原因：森村博士的纳米机械技术被滥用。 D-Monster 在虚拟现实中干扰世界的原因：冬云谅子被井田铁也的利用，导致对人类失望，希望能够设计出完全没有人类的世界。  2188 年真实历史时间线 2187 年绪方宪吾去世，绪方宪吾生前利用利用森村千寻出售纳米机械是世界毁灭的元凶，绪方宪吾保存了自己的 AI 希望能够在方舟计划之后利用儿子的基因进行复活。三浦与南通讯期待下一个休息日见面，伦理委员会介入计划寸步难行。</description>
+    </item>
     
     <item>
       <title>FlutterWeb 编译流程分析</title>
@@ -424,7 +447,7 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
 ​ 今年我二十岁了，无论今人还是古人的标准都是真正的成年人了。很多问题都要提到议程上面了，很多想法也都不能仅仅按照以前的标准来要求自己的了。20-30三十岁这十年我们都会遇到很多很多的难题，我们可能要去一个陌生的城市工作学习，要和不同的陌生人结识并且沟通了解，这十年我们也会发现印象里我们正处在壮年的父母似乎永运都不会老的父母，开始显出老态，记忆里越来越不好，你们分隔的也越来越远，曾经的朝夕相处也只能变成逢年过节的短短相聚。甚至，你还会遇见几场人生的生离死别，为你更加惨烈的30-40进行一些铺垫。你可能会经历几次爱情，或许会出现不顺利的时候，但你还是要咬着牙在这个不属于自己的城市继续打拼下去。你可能需要在大城市买个房子，还有车什么的，但是这些钱都需要你勤奋努力的工作去获取。父母老了之后难免会生病，国内的养老医疗大家也都知道，养老归根结底还是要靠自己努力，所以怎么让父母能够老有所依，老有所养也会是成为即将面对的一个严重的问题。你可能还会在这个年龄段之间有孩子，那一个孩子在给一个家庭带来快乐的同时也会带来很多的负担，照顾，上学，很多很多复杂的事情要处理。当然谈论这些也可能太远，想谈论这些你首先得有一个&amp;hellip;&amp;hellip;。是吧？
 ​ 谈了我很多的忧虑和要去做到和完成的事情啊，很多人会说我想多了，但是“人无远虑，必有近忧”，难道你做事还指望船到桥头自然直么？这些事情怎么处理呢？我也想不到什么好方法，只有持续不断的努力吧，努力的做好手头的事情再为之后的事情做好准备吧。写到这里才发现我写的东西真是跑题严重啊，从高考居然跳着跳着跑到了对未来的讨论了。但是我想从某种角度说也不算跑题吧，高考的重要性真的是已经到了事关人生的程度了。或许我真的有一些宿命论和被害妄想吧，我总是要很努力才能和周围的人不拉开太大的差距。不过生活总得继续，把痛苦说出来只会缓解不会消灭，今天谈完当年的高考，还是要继续期末复习，总是要向前看的啊。
 ​ 我估计大家都不会看到这篇文章吧，毕竟夜已经深了，我也快要去睡了，祝大家都有一个前程似锦的前程吧。
-P,S:我很的挺感谢现在的这个大学的，虽然某工不是我能考上的最好的大学，当年华科，华南皇家理工，武大什么的我也都是能考上的，但是某工开发区这个地方真是平时除了学习之外找不到什么其它能做的，果然是硬点的学在某工啊。</description>
+P,S:我很的挺感谢现在的这个大学的，虽然某工不是我能考上的最好的大学，当年华科，华南皇家理工，武大什么的我也都是能考上的，但是某工开发区这个地方真是平时除了学习之外找不到什么其它能做的，果然是硬点的学在某工啊。x</description>
     </item>
     
     <item>

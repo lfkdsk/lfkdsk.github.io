@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="lfkdsk" />
+  <meta property="og:url" content="https://lfkdsk.github.io/sa-01/" />
+  <link rel="canonical" href="https://lfkdsk.github.io/sa-01/" />
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "静态分析 Static Analysis Introy",
+      "headline" : "静态分析 Static Analysis Introy",
+      "description" : "PL 领域目前主要关注三个方面的事情：
+ Theory 理论：包括语言设计、类型系统、语义与逻辑 Environment 环境：包括各种 Compiler、各种 Runtime System 运行时系统 Application 应用：程序静态分析、程序验证、程序可靠性  Why We Need Static Analysis  Program Relability：null pointer derefer、memory leak Program Security：private infro leadk、injection attack Compiler Optimization：dead code elim、code motion Program Understanding：IDEcall hierarchy、type indication  Static Analysis Intro  Any non-trivial property of this behavior of programs in a r.e language is undecidable.
+不存在一种程序能够完美分析分析所有的 non-trivial 的特性。
+  Sound （Overapproximate）—— 过量的 Complete （Underapproximate）——过少的 Truth （undecidable）——不存在的真实值   Sound but not fully-precise static analysis.",
+      "inLanguage" : "en-US",
+      "author" : "lfkdsk",
+      "creator" : "lfkdsk",
+      "publisher": "lfkdsk",
+      "accountablePerson" : "lfkdsk",
+      "copyrightHolder" : "lfkdsk",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-06-11 18:20:39 &#43;0800 CST",
+      "dateModified" : "2020-06-11 18:20:39 &#43;0800 CST",
+      "url" : "https://lfkdsk.github.io/sa-01/",
+      "keywords" : [ "Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>静态分析 Static Analysis Introy - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="静态分析 Static Analysis Introy - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="PL 领域目前主要关注三个方面的事情：
+ Theory 理论：包括语言设计、类型系统、语义与逻辑 Environment 环境：包括各种 Compiler、各种 Runtime System 运行时系统 Application 应用：程序静态分析、程序验证、程序可靠性  Why We Need Static Analysis  Program Relability：null pointer derefer、memory leak Program Security：private infro leadk、injection attack Compiler Optimization：dead code elim、code motion Program Understanding：IDEcall hierarchy、type indication  Static Analysis Intro  Any non-trivial property of this behavior of programs in a r.e language is undecidable.
+不存在一种程序能够完美分析分析所有的 non-trivial 的特性。
+  Sound （Overapproximate）—— 过量的 Complete （Underapproximate）——过少的 Truth （undecidable）——不存在的真实值   Sound but not fully-precise static analysis." />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">     
+            <h1 class="post-title">静态分析 Static Analysis Introy</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2020-06-11 18:20:39 CST">
+                  11 Jun 2020
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="to-left">
+            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
+          </div>
+          <div class="to-top">
+            <a href="#top" class="paper-btn margin">^</a>
+          </div> 
+          <div class="post-content markdown-body">
+            
+
+<p>PL 领域目前主要关注三个方面的事情：</p>
+
+<ol>
+<li>Theory 理论：包括语言设计、类型系统、语义与逻辑</li>
+<li>Environment 环境：包括各种 Compiler、各种 Runtime System 运行时系统</li>
+<li>Application 应用：程序静态分析、程序验证、程序可靠性</li>
+</ol>
+
+<h2 id="why-we-need-static-analysis">Why We Need Static Analysis</h2>
+
+<ul>
+<li>Program Relability：null pointer derefer、memory leak</li>
+<li>Program Security：private infro leadk、injection attack</li>
+<li>Compiler Optimization：dead code elim、code motion</li>
+<li>Program Understanding：IDEcall hierarchy、type indication</li>
+</ul>
+
+<h2 id="static-analysis-intro">Static Analysis Intro</h2>
+
+<blockquote>
+<p>Any non-trivial property of this behavior of programs in a r.e language is undecidable.</p>
+
+<p>不存在一种程序能够完美分析分析所有的 non-trivial 的特性。</p>
+</blockquote>
+
+<ul>
+<li>Sound （Overapproximate）—— 过量的</li>
+<li>Complete （Underapproximate）——过少的</li>
+<li>Truth （undecidable）——不存在的真实值</li>
+</ul>
+
+<p><img src="image-20200611190900797.png" alt="image-20200611190900797" /></p>
+
+<blockquote>
+<p>Sound but not fully-precise static analysis.</p>
+
+<p>可以妥协误报而非漏报。</p>
+</blockquote>
+
+<h3 id="abstraction-抽象">Abstraction 抽象</h3>
+
+<p>如何分析一段程序的符号（+，-，0），以一段程序运行为例：</p>
+
+<pre><code>Concrete Domain      Abstract Domain
+v = 1000                   +
+v = 1											 +
+v = 0											 0
+v = e ? 1 : -1						 T (Top Or Unknown)
+v = w / 0									 ⊥ (Undefined)
+</code></pre>
+
+<p>静态分析是在分析程序的抽象表示而非原形式。</p>
+
+<h3 id="over-approximation-近似方法-transfer-functions">Over-Approximation 近似方法：Transfer Functions</h3>
+
+<ul>
+<li>针对程序之中的每一个语句提供抽象值的转换关系（taggless final 是好文明，确信）。</li>
+<li>根据分析错误（analysis problem）和语义（semantics）共同决定 transfer-function 的构成。</li>
+</ul>
+
+<h3 id="over-approximation-control-flows">Over-Approximation: Control Flows</h3>
+
+<p><img src="image-20200616225941124.png" alt="image-20200616225941124" /></p>
+
+<p>Flow merging ：所有 Control Flow 汇聚的点都要能够抽象 or 近似。</p>
+
+<h2 id="compilers-and-static-analyzers">Compilers and Static Analyzers</h2>
+
+<pre><code>Source Code 
+-&gt; Lexial Analysis (Regular Expression) 
+--Tokens--&gt; Syntax Analysis (Context-Free Grammar) 
+--AST--&gt; Type Checker (Semantic Analysis, Attribute Grammar)
+--Decorated AST --&gt; Translator 
+--IR --&gt; **Static Analysis** -&gt; Code Generator
+-&gt; Machine Code
+</code></pre>
+
+<h2 id="ast-vs-ir">AST vs IR</h2>
+
+<ul>
+<li>更高层级的语法结构 vs 更低级更接近 machine code</li>
+<li>通常与语言相关 vs 通常是语言独立</li>
+<li>适合快速的类型分析 vs 压缩和统一（uniform）</li>
+<li>缺少 CFI（Control Flow Info） VS 静态分析的基本信息</li>
+</ul>
+
+<h3 id="ir-intermediate-representation">IR（Intermediate Representation）</h3>
+
+<h3 id="3-ac-3-address-code">3 AC （3-Address Code）</h3>
+
+<p>三种类型</p>
+
+<ol>
+<li>Name: a, b</li>
+<li>Constant: 3, 4, const value</li>
+<li>Compiler-generated temporary: t1, t2</li>
+</ol>
+
+<h3 id="common-3ac-forms">Common 3AC Forms</h3>
+
+<ul>
+<li>bop: binary arith or logical operator</li>
+<li>uop: unary operator (-, !, cast)</li>
+<li>L: label</li>
+<li>rop: relational operator (&lt;,&gt;,==, etc.)</li>
+<li>Goto L, if &hellip; goto L: goto.</li>
+</ul>
+
+<h3 id="soot">Soot</h3>
+
+<blockquote>
+<p>Soot is out of date&hellip;</p>
+</blockquote>
+
+<ul>
+<li>Invokespecial: call constructor, call superclass, call private methods.</li>
+<li>Invokevirtural: instance method call (dynamic dispatch)</li>
+<li>Invokeinterface: cannot optimization，checking interface impl</li>
+<li>InvokeStatic：call static methods.</li>
+<li>method signature: class name: return type.</li>
+</ul>
+
+<h3 id="ssa-static-single-assignment">SSA: Static Single Assignment</h3>
+
+<p>SSA 之中所有的 assignments （赋值）:</p>
+
+<ul>
+<li><strong>每一次赋值行为赋予一个新的变量名</strong></li>
+<li><strong>在这个程序的整个生命周期内的任一变量仅有唯一的定义</strong>.</li>
+</ul>
+
+<p><img src="image-20200618185151294.png" alt="image-20200618185151294" /></p>
+
+<h4 id="if-菱形分支"><strong>If 菱形分支</strong></h4>
+
+<p><img src="image-20200618185358374.png" alt="image-20200618185358374" /></p>
+
+<ul>
+<li>使用 phi-function 描述的 Phi 节点了来处理汇聚点</li>
+<li>Phi(x0, x1) 表示 CFA True 的时候走 x0, 否则走 x1</li>
+</ul>
+
+<h4 id="why-why-not">Why？Why Not？</h4>
+
+<p>优点：</p>
+
+<ul>
+<li>程序流能够间接的合并进在 <code>unique variable names</code> ，因此能够进行 <code>flow-insensitive</code> 的分析。SSA 上进行分析能够有效地利用并行化加快分析处理，相对而言也会降低精度（指可能引入过多的变量名和 Phi 节点，不过也有相应的优化算法）。</li>
+<li>一些优化 SSA 上会更明显：常量传播、全局值分析</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>可能引入过多的变量名和 Phi 节点</li>
+<li>当 SSA &ndash;&gt; Machine Code 可能会产生翻译错误</li>
+</ul>
+
+<h3 id="control-flow-analysis">Control Flow Analysis</h3>
+
+<ul>
+<li>IR to  Control Flow Graph （CFG）</li>
+</ul>
+
+<p>CFG 是静态分析的基本组成结构，CFG 中的节点可能是 IR 或是 Basic Block。</p>
+
+<p><img src="image-20200618190913010.png" alt="image-20200618190913010" /></p>
+
+<h4 id="basic-block">Basic Block</h4>
+
+<p>一个 IR 的基本块，入口唯一出口唯一。</p>
+
+          </div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>
