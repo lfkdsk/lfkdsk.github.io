@@ -6,9 +6,19 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
+    <lastBuildDate>Sat, 04 Jul 2020 18:17:48 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/en/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Learning Techical Writing</title>
+      <link>https://lfkdsk.github.io/en/techical-writing/</link>
+      <pubDate>Sat, 04 Jul 2020 18:17:48 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/en/techical-writing/</guid>
+      <description>Words Define new or unfamiliar terms  If the term already exists, link to a good existing explanation. (Don&amp;rsquo;t reinvent the wheel.) If your document is introducing the term, define the term. If your document is introducing many terms, collect the definitions into a glossary.  Use terms consitently  Protocol Buffers provide their own definition language. Blah, blah, blah. And that&amp;rsquo;s why protobufs have won so many county fairs.</description>
+    </item>
     
   </channel>
 </rss>

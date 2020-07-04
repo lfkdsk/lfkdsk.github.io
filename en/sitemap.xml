@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lfkdsk.github.io/en/techical-writing/</loc>
+    <lastmod>2020-07-04T18:17:48+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lfkdsk.github.io/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -34,6 +39,7 @@
   
   <url>
     <loc>https://lfkdsk.github.io/en/</loc>
+    <lastmod>2020-07-04T18:17:48+08:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
