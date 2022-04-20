@@ -6,10 +6,22 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Nov 2021 03:20:31 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redex: Use SExpr to embed IR code</title>
+      <link>https://lfkdsk.github.io/redex-sexpr/</link>
+      <pubDate>Mon, 29 Nov 2021 03:20:31 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/redex-sexpr/</guid>
+      <description>A better way to write outline method or modify ir code in redex.
+ Background In Redex, we may often modify/insert methods&amp;rsquo; ir code and redex actually supported some ways to write these. Such as :
+auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&amp;gt;set_type(DexType::make_type(&amp;quot;LFoo;&amp;quot;));  Or just us dasm api :
+auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&amp;quot;LFoo;&amp;quot;), {});  It&amp;rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.</description>
+    </item>
     
     <item>
       <title>My Resume 2021</title>
