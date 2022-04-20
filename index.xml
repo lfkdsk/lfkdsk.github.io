@@ -466,7 +466,8 @@ Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富�
       <pubDate>Sat, 10 Feb 2007 22:36:42 +0000</pubDate>
       
       <guid>https://lfkdsk.github.io/xianjian10/</guid>
-      <description>初中时候的中二之作。</description>
+      <description>初中时候的中二之作。
+ --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-bottom: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }  Previous Next &amp;nbsp; &amp;nbsp; Page:  /       window.</description>
     </item>
     
   </channel>
