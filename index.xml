@@ -6,10 +6,40 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Sun, 05 Apr 2020 17:58:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My Resume 2021</title>
+      <link>https://lfkdsk.github.io/resume-2021/</link>
+      <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/resume-2021/</guid>
+      <description>#the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+    </item>
+    
+    <item>
+      <title>CompilerDev: Bytecode error in Dart</title>
+      <link>https://lfkdsk.github.io/dart-error-asm/</link>
+      <pubDate>Thu, 10 Dec 2020 02:49:51 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/dart-error-asm/</guid>
+      <description>Problem: phenomenon that cannot be fully covered When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:
+ input keys [] [info]::Trans--2020-11-27 14:16:04.755980: Transformer Debug Open. [info]::Trans--2020-11-27 14:16:04.759208: Load Pass: hook [info]::Trans--2020-11-27 14:16:05.074541: print hook_coverage::HookAllMethod start [389]@[346] [346] #C2 @[358] [358] #C5 class HookAllMethod extends dart.</description>
+    </item>
+    
+    <item>
+      <title>CompilerDev: How to impl conditional-import in Dart ?</title>
+      <link>https://lfkdsk.github.io/dart-conditional-import/</link>
+      <pubDate>Tue, 27 Oct 2020 07:59:17 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/dart-conditional-import/</guid>
+      <description>Background  Dart Conditional Import official documentation:https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files
+ Dart Conditional Import itself is a syntax element that exists in Dart 1 and 2. It used to support command line control on the Dart side. However, in the Compiler FrontEnd after Dart 2, this function is converged to only support the check scheme of dart.library, which is used for judging the Flutter web environment:
+export &#39;src/none.dart&#39; // Stub implementation if (dart.</description>
+    </item>
     
     <item>
       <title>关于《十三机兵防卫圈》的一些真相</title>
@@ -52,6 +82,33 @@
     </item>
     
     <item>
+      <title>Flutter：编译器体系分享</title>
+      <link>https://lfkdsk.github.io/flutter-compiler/</link>
+      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/flutter-compiler/</guid>
+      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+    </item>
+    
+    <item>
+      <title>Flutter：Intro 通识分享</title>
+      <link>https://lfkdsk.github.io/flutter-intro/</link>
+      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/flutter-intro/</guid>
+      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+    </item>
+    
+    <item>
+      <title>Flutter：多源输入的富文本渲染实现分享</title>
+      <link>https://lfkdsk.github.io/flutter-render/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/flutter-render/</guid>
+      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+    </item>
+    
+    <item>
       <title>0x07：SICP 的魔法 - 元语言抽象</title>
       <link>https://lfkdsk.github.io/learn-sicp-7/</link>
       <pubDate>Mon, 18 Mar 2019 10:54:16 +0000</pubDate>
@@ -63,6 +120,15 @@
 元语言抽象 这节之中我们会试着用 Scheme 来实现一个 Scheme 的解释器，用一种语言实现其自身的求值器，称为元循环（meta-circular）。这里我们可以复习一下 3.2 节之中出现的求值模型，其中的求值流程分成两步：
  求值组合式（非特殊形式）时  先求值组合式的各子表达式 把运算符子表达式的值作用于运算对象子表达式的值   把复合过程应用于实参，是在一个新环境里求值过程体  新环境：过程对象（里环境指针指向）的环境加一个新框架 新框架里是过程的形参与对应实参的约束   这两个步骤构成了 Scheme 求值的基本循环，这两个步骤也是能相互调用和递归 (自己递归或相互递归。求值的子表达式可能要应用复合过程，过程体本身通常又是组合式)，逐步规约到：
  符号 (从 env 里面取值） 基本过程（直接调用基本过程的代码） 值类型 (primary type 直接取值)  以上的两个步骤可以被抽象为过程 eval 和 apply ，其中 eval 负责表达式的求值，apply 把一个过程对象应用于一组实际参数，这两者相互递归调用，eval 还有自递归。eval 和 apply 就像下图的这个像是太极图一样的图里，两者相互调用相互生成。</description>
+    </item>
+    
+    <item>
+      <title>My  Resume 2017</title>
+      <link>https://lfkdsk.github.io/resume-2017/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/resume-2017/</guid>
+      <description>Resume</description>
     </item>
     
     <item>
@@ -467,7 +533,7 @@ Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富�
       
       <guid>https://lfkdsk.github.io/xianjian10/</guid>
       <description>初中时候的中二之作。
- --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-bottom: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }  Previous Next &amp;nbsp; &amp;nbsp; Page:  /       window.</description>
+ --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
     </item>
     
   </channel>

@@ -22,7 +22,7 @@
       "name" : "情怀向：仙剑Dos版攻略",
       "headline" : "情怀向：仙剑Dos版攻略",
       "description" : "初中时候的中二之作。
- --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-bottom: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }  Previous Next &nbsp; &nbsp; Page:  /       window.",
+ --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &nbsp; &nbsp; Page:  /   window.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -41,7 +41,7 @@
   <meta property="og:title" content="情怀向：仙剑Dos版攻略 - lfkdsk&#39;s Blog" />
   <meta property="og:type" content="article" />
   <meta name="description" content="初中时候的中二之作。
- --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-bottom: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }  Previous Next &nbsp; &nbsp; Page:  /       window." />
+ --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      Previous Next &nbsp; &nbsp; Page:  /   window." />
 
   <link
     href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
@@ -128,7 +128,7 @@
 #paginator {
   display: none;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 #loadingWrapper {
@@ -158,24 +158,24 @@
 }
 </style>
 
-<div id="paginator">
-    <button id="prev">Previous</button>
-    <button id="next">Next</button>
-    &nbsp; &nbsp;
-    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
-</div>
 <div id="embed-pdf-container">
     <div id="loadingWrapper">
       <div id="loading"></div>
     </div>
     <canvas id="the-canvas"></canvas>
 </div>
+<div id="paginator">
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+  &nbsp; &nbsp;
+  <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+</div>
 
 <script type="text/javascript">
 window.onload = function() {
 
 
-var url = "https:\/\/lfkdsk.github.io" + '.\/xianjian10\/xianjian.pdf';
+var url = '.\/xianjian10\/xianjian.pdf'.startsWith("http") ? "" : "https:\/\/lfkdsk.github.io" + '.\/xianjian10\/xianjian.pdf';
 
 var hidePaginator = "" === "true";
 var hideLoader = "" === "true";
