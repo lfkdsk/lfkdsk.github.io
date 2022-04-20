@@ -17,6 +17,15 @@ body {
   font-size: 16px;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: 600;
+  text-decoration: underline;
+}
 /* i18n */
 
 .Chinese .markdown-body {
@@ -81,7 +90,7 @@ a {
 }
 
 .site-date-catalog {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .signatures {
@@ -111,7 +120,7 @@ a {
 
 .posts-date,
 .posts-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .post-line {
