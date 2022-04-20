@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/learn-sicp-1/" />
   <link rel="canonical" href="https://lfkdsk.github.io/learn-sicp-1/" />
 
@@ -26,11 +26,11 @@
 (define (sum-of-squares x y) (+ (square x) (square y))) ; sum-of-squares 求两个数的平方和 (define (f x) (sum-of-squares (+ x 1) (+ x 2))) (f 5) (sum-of-squares (+ 5 1) (* 5 2)) ; 注意这两行，首先算出来形参 (+ (square 6) (square 10)) (+ (* 6 6) (* 10 10)) (+ 36 100) 136   Tips: 上面的代换方式又被称作应用序的计算方式，这也是 Scheme 解释器的计算方式，除此之外，还有一种被称作正则序的计算方式，正则性和上面不一样的地方在于，它不会先计算出调用过程的形参，反倒是一定要把整个表达式最小化到所有的东西都能直接计算的程序(摊开了的感觉):
 &gt; (f 5) &gt; (sum-of-squares (+ 5 1) (* 5 2)) &gt; (+ (square (+ 5 1)) (square (* 5 2)) ); 注意这两行这里没往下计算形参 &gt; (+ (* (+ 5 1) (+ 5 1)) (* (* 5 2) (* 5 2))) &gt; (+ (* 6 6) (* 10 10)) ; 反倒是都摊开了才开始进行规约 &gt; (+ 36 100) &gt; 136 &gt; ``` &gt; &gt; PS: 有个很简单的Demo能证明所用的解释器到底用了什么计算顺序: &gt; &gt; ```lisp &gt; (define (p) (p)) &gt; (define (test x y) &gt; (if (= x 0) &gt; 0 &gt; y)) &gt; ``` &gt; &gt; 大家可以想想`正则序`和`应用序`分别会有什么结果。 ### 迭代与递归 我们首先从两个简单例子开始： !",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2017",
       "datePublished": "2017-02-27 12:01:15 &#43;0000 UTC",
       "dateModified" : "2017-02-27 12:01:15 &#43;0000 UTC",
@@ -74,6 +74,10 @@
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -101,14 +105,12 @@
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 

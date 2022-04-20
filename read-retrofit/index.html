@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/read-retrofit/" />
   <link rel="canonical" href="https://lfkdsk.github.io/read-retrofit/" />
 
@@ -27,11 +27,11 @@ public interface GitHubService { @GET(&quot;users/{user}/repos&quot;) Call&lt;Li
 Retrofit retrofit = new Retrofit.Builder() .baseUrl(&quot;https://api.github.com/&quot;) .build(); GitHubService service = retrofit.create(GitHubService.class);  我们通过 Builder 模式拼好 baseUrl 等字串，通过 retrofit 对象可以创建我们的接口对应的实体类，我们通过对这个实体类的操作，就能对我们定义好的接口去请求对应的数据：
 Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);  创建请求类 @SuppressWarnings(&quot;unchecked&quot;) // Single-interface proxy creation guarded by parameter safety. public &lt;T&gt; T create(final Class&lt;T&gt; service) { Utils.",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2017",
       "datePublished": "2017-08-24 19:50:32 &#43;0000 UTC",
       "dateModified" : "2017-08-24 19:50:32 &#43;0000 UTC",
@@ -76,6 +76,10 @@ Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);  �
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -103,14 +107,12 @@ Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);  �
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 

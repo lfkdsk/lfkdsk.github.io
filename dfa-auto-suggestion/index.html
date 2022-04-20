@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/dfa-auto-suggestion/" />
   <link rel="canonical" href="https://lfkdsk.github.io/dfa-auto-suggestion/" />
 
@@ -24,11 +24,11 @@
       "description" : "之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。
 DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; import java.util.Map; /** * Dfa 状态 * * @author liufengkai * Created by liufengkai on 16/7/10. */ public class DfaState implements Comparable&lt;DfaState&gt; { private static int DFA_ID_COUNT = 0; /** * state id */ private int stateId; /** * transition set * char / set of dfaState */ private Map&lt;Integer, DfaState&gt; transitionSet; private DfaState parentState; private Integer parentInput; /** * 构造方法 * * @param input 输入串 * @param parentState 父节点 */ public DfaState(Integer input, DfaState parentState) { this.",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
       "datePublished": "2016-07-11 07:59:17 &#43;0000 UTC",
       "dateModified" : "2016-07-11 07:59:17 &#43;0000 UTC",
@@ -70,6 +70,10 @@ DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; 
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -97,14 +101,12 @@ DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; 
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 

@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/make-new-language-2/" />
   <link rel="canonical" href="https://lfkdsk.github.io/make-new-language-2/" />
 
@@ -27,11 +27,11 @@
  上次我们使用Lex &amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
 先看Lex文件 %{ #include &quot;y.tab.h&quot; #include &lt;math.h&gt; #include &quot;link_list.h&quot; %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf(&quot;number : %s \n&quot;, yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } &quot;$&quot; { return 0; } \n | .",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
       "datePublished": "2016-06-01 12:13:17 &#43;0000 UTC",
       "dateModified" : "2016-06-01 12:13:17 &#43;0000 UTC",
@@ -76,6 +76,10 @@
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -103,14 +107,12 @@
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 

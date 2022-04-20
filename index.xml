@@ -190,15 +190,6 @@ Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot
     </item>
     
     <item>
-      <title>推荐一篇有趣的论文</title>
-      <link>https://lfkdsk.github.io/recommand-i-paper/</link>
-      <pubDate>Fri, 10 Mar 2017 17:05:28 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/recommand-i-paper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>0x01：SICP 的魔法 - 过程的求值计算和高阶过程</title>
       <link>https://lfkdsk.github.io/learn-sicp-1/</link>
       <pubDate>Mon, 27 Feb 2017 12:01:15 +0000</pubDate>
@@ -211,7 +202,7 @@ Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot
     </item>
     
     <item>
-      <title>Sketch的过去现在和未来</title>
+      <title>Sketch 的过去现在和未来</title>
       <link>https://lfkdsk.github.io/tanslate-sketch/</link>
       <pubDate>Fri, 24 Feb 2017 21:43:32 +0000</pubDate>
       
@@ -274,40 +265,6 @@ Project Gradle buildscript { repositories { jcenter() } dependencies { // Tinker
     </item>
     
     <item>
-      <title>Learn iOS With Swift 1</title>
-      <link>https://lfkdsk.github.io/learn-ios-with-swift-1/</link>
-      <pubDate>Tue, 10 Jan 2017 14:14:48 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-ios-with-swift-1/</guid>
-      <description>The Basics  常量 let ／ 变量 var
- 注释：
-  单行 //
-多行 /* */ 且可以嵌套
- 分号可用在多行语句写在一行的情况下
- 整型：uint8，16，32，int照旧
- 浮点型：Float , Double 分别是6位和15位
- 字面量类型推断：浮点数优先推断Double
- 整数字面量可以被写作：
-  一个十进制数，没有前缀 一个二进制数，前缀是0b 一个八进制数，前缀是0o 一个十六进制数，前缀是0x
- typealias类型别名
- 使用(...,...)包装元组，可以进行分解，作为返回值。
- 可选类型：
-  很多的现代语言都使用了可选类型的设计，可选类型中的nil并非传统意义的空指针，而是指这个字段可能为空，为空就是nil。
-!表示可以强制解析，此时需要通过非空判定。
- 可选绑定：  if let firstNumber = Int(&amp;quot;4&amp;quot;) { if let secondNumber = Int(&amp;quot;42&amp;quot;) { if firstNumber &amp;lt; secondNumber &amp;amp;&amp;amp; secondNumber &amp;lt; 100 { print(&amp;quot;\(firstNumber) &amp;lt; \(secondNumber) &amp;lt; 100&amp;quot;) } } } // Prints &amp;quot;4 &amp;lt; 42 &amp;lt; 100”   隐式解析的可选类型：  可通过如var lfkdsk:String!</description>
-    </item>
-    
-    <item>
-      <title>Learn iOS With Swift 0</title>
-      <link>https://lfkdsk.github.io/learn-ios-with-swift-0/</link>
-      <pubDate>Tue, 20 Dec 2016 22:01:11 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-ios-with-swift-0/</guid>
-      <description>Swift之初见 let常量值 let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。
-let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化要提供类型推倒 lfkdsk = 100 let lfkdsk = 100 + String(1000) // 类型转化要使用显示转换 let apple = 1000 let lfkdsk = &amp;quot;lfkdsk have \(apple) apples&amp;quot; // 类比Ruby的${}  字典和元组 var shoppingList = [&amp;quot;fuck &amp;quot;,&amp;quot;you&amp;quot;] var occupations = [&amp;quot;S&amp;quot;:&amp;quot;M&amp;quot;,&amp;quot;F&amp;quot;,&amp;quot;Y&amp;quot;] occupations[&amp;quot;F&amp;quot;] = xxx // 这些都很好理解  // 创建空数组合字典 可以写出类型 let emptyArray = [String]() // 但是初始化之后就不能再修改了 let emptyDictionary = [String: Float]()  类型可以显示推断的话用:</description>
-    </item>
-    
-    <item>
       <title>Effective CPP 学习笔记</title>
       <link>https://lfkdsk.github.io/eff-cpp-tips/</link>
       <pubDate>Mon, 12 Dec 2016 15:27:51 +0000</pubDate>
@@ -355,7 +312,7 @@ private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener
     </item>
     
     <item>
-      <title>AndroidTips1:从View源码学习点击事件的模拟</title>
+      <title>从 View 源码学习点击事件的模拟</title>
       <link>https://lfkdsk.github.io/androidtips1/</link>
       <pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
       
@@ -423,7 +380,7 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
     </item>
     
     <item>
-      <title>2014to2016梦回吹角连营</title>
+      <title>2014 =&gt; 2016 梦回吹角连营</title>
       <link>https://lfkdsk.github.io/2014to2016/</link>
       <pubDate>Thu, 09 Jun 2016 00:23:04 +0000</pubDate>
       

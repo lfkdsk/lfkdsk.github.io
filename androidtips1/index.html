@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/androidtips1/" />
   <link rel="canonical" href="https://lfkdsk.github.io/androidtips1/" />
 
@@ -19,8 +19,8 @@
            "@id": "https://lfkdsk.github.io"
       },
       "articleSection" : "",
-      "name" : "AndroidTips1:从View源码学习点击事件的模拟",
-      "headline" : "AndroidTips1:从View源码学习点击事件的模拟",
+      "name" : "从 View 源码学习点击事件的模拟",
+      "headline" : "从 View 源码学习点击事件的模拟",
       "description" : "作者：刘丰恺
 作者博客：若梦浮生
 转载请注明文章来源
@@ -30,11 +30,11 @@
 Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
 int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
       "datePublished": "2016-09-06 19:32:07 &#43;0000 UTC",
       "dateModified" : "2016-09-06 19:32:07 &#43;0000 UTC",
@@ -43,8 +43,8 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
   }
 </script>
 
-  <title>AndroidTips1:从View源码学习点击事件的模拟 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="AndroidTips1:从View源码学习点击事件的模拟 - lfkdsk&#39;s Blog" />
+  <title>从 View 源码学习点击事件的模拟 - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="从 View 源码学习点击事件的模拟 - lfkdsk&#39;s Blog" />
   <meta property="og:type" content="article" />
   <meta name="description" content="作者：刘丰恺
 作者博客：若梦浮生
@@ -82,6 +82,10 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -100,7 +104,7 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
             <div class="head-line"></div>
           </a>
           <header class="post-header">     
-            <h1 class="post-title">AndroidTips1:从View源码学习点击事件的模拟</h1>
+            <h1 class="post-title">从 View 源码学习点击事件的模拟</h1>
             <div class="row">
               <div class="col-xs-6">
                 <time class="post-date" datetime="2016-09-06 19:32:07 UTC">
@@ -109,14 +113,12 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 

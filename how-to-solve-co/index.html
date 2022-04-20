@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
+  <meta name="author" content="Intra-Mind Traveler" />
   <meta property="og:url" content="https://lfkdsk.github.io/how-to-solve-co/" />
   <link rel="canonical" href="https://lfkdsk.github.io/how-to-solve-co/" />
 
@@ -32,11 +32,11 @@
 public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围 protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; }  通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
 private ArrayList&lt;Layer&gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); }  然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。",
       "inLanguage" : "en-US",
-      "author" : "lfkdsk",
-      "creator" : "lfkdsk",
-      "publisher": "lfkdsk",
-      "accountablePerson" : "lfkdsk",
-      "copyrightHolder" : "lfkdsk",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
       "datePublished": "2016-09-08 16:04:42 &#43;0000 UTC",
       "dateModified" : "2016-09-08 16:04:42 &#43;0000 UTC",
@@ -86,6 +86,10 @@ private ArrayList&lt;Layer&gt; e_layers; public interface ScreenListener { void 
 
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
   
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
   <script>
     
 
@@ -113,14 +117,12 @@ private ArrayList&lt;Layer&gt; e_layers; public interface ScreenListener { void 
               </div>
               <div class="col-xs-6">
                 <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
                 </div>
               </div>
             </div>
           </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
+          
           <div class="to-top">
             <a href="#top" class="paper-btn margin">^</a>
           </div> 
