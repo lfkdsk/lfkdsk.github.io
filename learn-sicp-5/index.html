@@ -228,7 +228,7 @@
 <h2 id="数字电路模拟">数字电路模拟</h2>
 
 <blockquote>
-<p>本节中的代码可以到 Github 仓库 <a href="https://github.com/lfkdsk/SICP-Magical-Book" target="_blank"><strong>SICP-Magical-Book</strong></a> 中获取</p>
+<p>本节中的代码可以到 Github 仓库 <a href="https://github.com/lfkdsk/SICP-Magical-Book"><strong>SICP-Magical-Book</strong></a> 中获取</p>
 </blockquote>
 
 <p><img src="plus.gif" alt="plus" /></p>
@@ -238,7 +238,7 @@
 <h3 id="事件驱动设计">事件驱动设计</h3>
 
 <blockquote>
-<p><strong>事件驱动程序设计</strong>（英语：<strong>Event-driven programming</strong>）是一种电脑<a href="http://www.wikiwand.com/zh-sg/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88" target="_blank">程序设计</a><a href="http://www.wikiwand.com/zh-sg/%E6%A8%A1%E5%9E%8B" target="_blank">模型</a>。这种模型的程序运行流程是由用户的动作（如<a href="http://www.wikiwand.com/zh-sg/%E6%BB%91%E9%BC%A0" target="_blank">鼠标</a>的按键，键盘的按键动作）或者是由其他程序的<a href="http://www.wikiwand.com/zh-sg/%E8%A8%8A%E6%81%AF" target="_blank">消息</a>来决定的。相对于批处理程序设计（batch programming）而言，程序运行的流程是由<a href="http://www.wikiwand.com/zh-sg/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%B8%AB" target="_blank">程序员</a>来决定。批量的程序设计在初级程序设计教学课程上是一种方式。然而，事件驱动程序设计这种设计模型是在交互程序（Interactive program）的情况下孕育而生的。</p>
+<p><strong>事件驱动程序设计</strong>（英语：<strong>Event-driven programming</strong>）是一种电脑<a href="http://www.wikiwand.com/zh-sg/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88">程序设计</a><a href="http://www.wikiwand.com/zh-sg/%E6%A8%A1%E5%9E%8B">模型</a>。这种模型的程序运行流程是由用户的动作（如<a href="http://www.wikiwand.com/zh-sg/%E6%BB%91%E9%BC%A0">鼠标</a>的按键，键盘的按键动作）或者是由其他程序的<a href="http://www.wikiwand.com/zh-sg/%E8%A8%8A%E6%81%AF">消息</a>来决定的。相对于批处理程序设计（batch programming）而言，程序运行的流程是由<a href="http://www.wikiwand.com/zh-sg/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%B8%AB">程序员</a>来决定。批量的程序设计在初级程序设计教学课程上是一种方式。然而，事件驱动程序设计这种设计模型是在交互程序（Interactive program）的情况下孕育而生的。</p>
 
 <p>—— Wikipedia</p>
 </blockquote>
@@ -273,7 +273,7 @@
 <blockquote>
 <p>Tips 半加器：</p>
 
-<p>半加器的功能是将两个一位二进制数相加。它具有两个输入和两个输出（分别是和、进位）。输出的进位信号代表了输入两个数相加溢出的高一位数值。因此，这两2个一位二级制数的和等于2<em>C</em> + *S*。根据两个一位二进制数相加的结果，可以通过真值表、<a href="https://zh.wikipedia.org/wiki/%E5%8D%A1%E8%AF%BA%E5%9B%BE" target="_blank">卡诺图</a>得到右图所描绘的简易半加器设计。它使用了一个<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96%E9%97%A8" target="_blank">异或门</a>来产生和*S*，并使用了一个<a href="https://zh.wikipedia.org/wiki/%E4%B8%8E%E9%97%A8" target="_blank">与门</a>来产生进位信号*C*。如果再添加一个<a href="https://zh.wikipedia.org/wiki/%E6%88%96%E9%97%A8" target="_blank">或门</a>来接收低位的进位输出信号，则两个半加器就构成了一个全加器。</p>
+<p>半加器的功能是将两个一位二进制数相加。它具有两个输入和两个输出（分别是和、进位）。输出的进位信号代表了输入两个数相加溢出的高一位数值。因此，这两2个一位二级制数的和等于2<em>C</em> + *S*。根据两个一位二进制数相加的结果，可以通过真值表、<a href="https://zh.wikipedia.org/wiki/%E5%8D%A1%E8%AF%BA%E5%9B%BE">卡诺图</a>得到右图所描绘的简易半加器设计。它使用了一个<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96%E9%97%A8">异或门</a>来产生和*S*，并使用了一个<a href="https://zh.wikipedia.org/wiki/%E4%B8%8E%E9%97%A8">与门</a>来产生进位信号*C*。如果再添加一个<a href="https://zh.wikipedia.org/wiki/%E6%88%96%E9%97%A8">或门</a>来接收低位的进位输出信号，则两个半加器就构成了一个全加器。</p>
 </blockquote>
 
 <p>电路需要由连线来连接我们的基础功能块，由基础的功能块组成更大的功能块，我们这里先使用一个定义生成基础连线的方法 <em>(make-wire)</em> 生成一条连线，我们可以通过这个方法生成连线，然后把各个部件绑定在一起：</p>

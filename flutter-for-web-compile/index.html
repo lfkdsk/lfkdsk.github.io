@@ -143,7 +143,7 @@
 
 <h3 id="整体结构">整体结构</h3>
 
-<p>熟悉 <code>flutter_tools</code> 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，<code>flutter_tools</code> 的命令利用对应的处理框架进行了比较有效的解耦。在 <code>lib/src</code> 文件夹下增加了 <code>web</code> 的 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/tree/packages/flutter_tools/lib/src/web" target="_blank">实现</a> 。具体新增的文件列表如下图：</p>
+<p>熟悉 <code>flutter_tools</code> 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，<code>flutter_tools</code> 的命令利用对应的处理框架进行了比较有效的解耦。在 <code>lib/src</code> 文件夹下增加了 <code>web</code> 的 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/tree/packages/flutter_tools/lib/src/web">实现</a> 。具体新增的文件列表如下图：</p>
 
 <pre><code>├── bootstrap.dart
 ├── chrome.dart
@@ -167,7 +167,7 @@
 
 <h3 id="编译流程">编译流程</h3>
 
-<p>通过对 <code>compile</code> 文件的继续分析，实际上的 <code>BuildTarget</code> 都存储在 <code>lib/src/build_system</code> 之中 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/blob/packages/flutter_tools/lib/src/build_system/targets/web.dart#L16" target="_blank">处理</a> 。关于 build target 的实现方案，其实和 Dart Compiler 内部的 compile target 的设计方案有异曲同工之妙（不过因为 compiler 里面的部分内容比较私货，如果可以打通编译链的话也有一定的好处）。</p>
+<p>通过对 <code>compile</code> 文件的继续分析，实际上的 <code>BuildTarget</code> 都存储在 <code>lib/src/build_system</code> 之中 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/blob/packages/flutter_tools/lib/src/build_system/targets/web.dart#L16">处理</a> 。关于 build target 的实现方案，其实和 Dart Compiler 内部的 compile target 的设计方案有异曲同工之妙（不过因为 compiler 里面的部分内容比较私货，如果可以打通编译链的话也有一定的好处）。</p>
 
 <p>其中包含四个主要的 <code>Target</code> :</p>
 

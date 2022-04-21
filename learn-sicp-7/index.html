@@ -313,7 +313,7 @@
 </ol>
 
 <blockquote>
-<p>Tips 基础递归解释器的 <a href="https://github.com/lfkdsk/SICP-Magical-Book/blob/master/code/meta-evaluator/evaluator.rkt" target="_blank">源码</a>：</p>
+<p>Tips 基础递归解释器的 <a href="https://github.com/lfkdsk/SICP-Magical-Book/blob/master/code/meta-evaluator/evaluator.rkt">源码</a>：</p>
 
 <p>这里给出了基础的递归解释器的实现代码，这里的程序可以直接使用 <code>racket</code> 运行，记得要安装 <code>sicp</code> 的包。</p>
 
@@ -348,7 +348,7 @@
 
 <p>我们在上文中提到了求值器本质上是一个 <code>&quot;通用机器&quot;</code> ，这种描述方式让人感觉似曾相识。按照我们上文讨论的说法，我们通过 Scheme 本身实现了一个 Scheme 的解释器，忽略时间和空间的角度上来讲一个解释器可以模拟任意的其他解释器。这样原则上可计算的概念向我们揭示了一个有关 <code>可计算性的</code> 全新的领域，图灵根据上文的相似思想给出了称为图灵机的计算模型，证明了计算机的可实现。</p>
 
-<p>图灵的基本思想是用机器来模拟人们用纸笔进行<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6" target="_blank">数学</a>运算的过程，他把这样的过程看作下列两种简单的动作：</p>
+<p>图灵的基本思想是用机器来模拟人们用纸笔进行<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6">数学</a>运算的过程，他把这样的过程看作下列两种简单的动作：</p>
 
 <ul>
 <li>在纸上写上或擦除某个符号；</li>
@@ -392,7 +392,7 @@
 <blockquote>
 <p>Tips: 关于可计算性 (Computability)</p>
 
-<p>关于图灵机、可计算性相关的知识笔者也只有概念上的理解。涉及到具体知识的学习笔者在看 <a href="https://introtcs.org/public/index.html" target="_blank">CS121 Introduction to Theoretical Computer Science</a> 这门入门课和 《Computability》这本书。</p>
+<p>关于图灵机、可计算性相关的知识笔者也只有概念上的理解。涉及到具体知识的学习笔者在看 <a href="https://introtcs.org/public/index.html">CS121 Introduction to Theoretical Computer Science</a> 这门入门课和 《Computability》这本书。</p>
 </blockquote>
 
 <h4 id="停机问题">停机问题</h4>
@@ -415,7 +415,7 @@
 <p>这个 <code>halts</code> 肯定是找不到的，<code>try</code> 的实现本身就是 <strong>交叉</strong> 矛盾的，如果有 <code>(halts? p p )</code> 为 <code>True</code> 那就会 <code>run-forever</code> 持续运行下去，而如果 <code>(halts? p p)</code> 为 <code>False</code>，那么程序又会 <code>halted</code> 。因此我们能非常直观的从程序而非逻辑、数学的角度来发现这个问题。</p>
 
 <blockquote>
-<p>Tips 其实图灵发现的这个奇怪的反证方法并不是靠灵光一闪，而是康托尔 <a href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E8%A7%92%E8%AB%96%E8%AD%89%E6%B3%95" target="_blank">对角线方法</a> 的一个实质的应用，读一下 《Gödel, Escher, Bach: An Eternal Golden Braid》 之中的相关章节，能获得更多的情报。</p>
+<p>Tips 其实图灵发现的这个奇怪的反证方法并不是靠灵光一闪，而是康托尔 <a href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E8%A7%92%E8%AB%96%E8%AD%89%E6%B3%95">对角线方法</a> 的一个实质的应用，读一下 《Gödel, Escher, Bach: An Eternal Golden Braid》 之中的相关章节，能获得更多的情报。</p>
 </blockquote>
 
 <h3 id="内部定义">内部定义</h3>

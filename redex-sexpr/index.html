@@ -139,7 +139,7 @@ Specifically, the method contains several blocks and entry point or several if/s
 It seems like <code>StringBuilderOutline</code> or <code>InstructionSequenceOutlinerPass</code> is the most complex generator method in redex. You could see that in their create_outlined_method method.
 So I think we could improve the experience of writing the outline method or complex ir code. In LLVM, we have a pass named Cpp Backend what we input LLVM IR (such as we call it code) and get the IR builder codes which could build code we input by cpp.</p>
 
-<p>You could get LLVM CxxBackend from : <a href="https://github.com/zhangjiantao/llvm-cxxapi" target="_blank">https://github.com/zhangjiantao/llvm-cxxapi</a></p>
+<p>You could get LLVM CxxBackend from : <a href="https://github.com/zhangjiantao/llvm-cxxapi">https://github.com/zhangjiantao/llvm-cxxapi</a></p>
 
 <p>Use ir to write ir is a better way to write complex ir code.</p>
 
@@ -195,7 +195,7 @@ The code will be more readable and easier to modify (just re-gen it).</p>
 <h2 id="implement">Implement</h2>
 
 <blockquote>
-<p>S-Expr <a href="https://en.wikipedia.org/wiki/S-expression" target="_blank">https://en.wikipedia.org/wiki/S-expression</a></p>
+<p>S-Expr <a href="https://en.wikipedia.org/wiki/S-expression">https://en.wikipedia.org/wiki/S-expression</a></p>
 </blockquote>
 
 <pre><code class="language-cpp">void GenAsSExpr::run_pass(DexStoresVector&amp; stores,

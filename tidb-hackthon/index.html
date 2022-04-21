@@ -295,7 +295,7 @@ func (b *TrimFunction) EvalString(row chunk.Row) (d string, isNull bool, err err
 
 <p>在 TiDB 里面从 SQL 的输入开始，会经过文法分析转变成等价的 AST，之后生成对应的 Logical Plan，经过一些优化逻辑的处理会生成实际执行的 Physical Plan 物理计划，这部分的 Executor 就可以增加一个 Plugin 的 Engine 支持，实质上也就是在 TableInfo 增加了一个 Engine 字段，可以指定使用对应的 Plugin Executor 进行解析。</p>
 
-<p>在具体的 <a href="https://github.com/WPH95/tidb/pull/10/files#diff-badfcd30d7596a08cd207b8e6ae778e6R1954" target="_blank">实现 executor/build.go</a> 之中 <code>buildTableReader</code>, <code>buildTableScan</code> 等相关处理 Scan、Select 的部分加了钩子，根据 Engine 去选择 Plugin Engine 插入对应的流程：</p>
+<p>在具体的 <a href="https://github.com/WPH95/tidb/pull/10/files#diff-badfcd30d7596a08cd207b8e6ae778e6R1954">实现 executor/build.go</a> 之中 <code>buildTableReader</code>, <code>buildTableScan</code> 等相关处理 Scan、Select 的部分加了钩子，根据 Engine 去选择 Plugin Engine 插入对应的流程：</p>
 
 <pre><code class="language-go">type PluginScanExecutor struct {
 	baseExecutor
@@ -452,9 +452,9 @@ func OnDropTable(tblInfo *model.TableInfo) error {
 
 <h3 id="方案-2">方案</h3>
 
-<p>上面的实现都是比较功能性的支持，但是闲的没事也想做点看起来炫酷能讲的点，这里也简单的实现了一个针对 Where DSL 的支持，这里对标的是 <a href="https://github.com/zombodb/zombodb" target="_blank">zombodb</a> 其中实现的部分 Query DSL：</p>
+<p>上面的实现都是比较功能性的支持，但是闲的没事也想做点看起来炫酷能讲的点，这里也简单的实现了一个针对 Where DSL 的支持，这里对标的是 <a href="https://github.com/zombodb/zombodb">zombodb</a> 其中实现的部分 Query DSL：</p>
 
-<p><a href="https://github.com/zombodb/zombodb/blob/master/QUERY-DSL.md" target="_blank">https://github.com/zombodb/zombodb/blob/master/QUERY-DSL.md</a></p>
+<p><a href="https://github.com/zombodb/zombodb/blob/master/QUERY-DSL.md">https://github.com/zombodb/zombodb/blob/master/QUERY-DSL.md</a></p>
 
 <p><img src="query_dsl.png" alt="image-20191029184410130" /></p>
 
