@@ -81,8 +81,9 @@ a {
 /* header */
 
 .site-title {
-  font-size: 2rem;
-  margin-top: 32px;
+  font-size: 1.8rem;
+  margin-top: 24px;
+  margin-bottom: 20px;
 }
 
 .site-title a {
@@ -112,6 +113,12 @@ a {
   font-weight: 600;
 }
 
+.header-line {
+  width: 100%;
+  border-width: 2px;
+  border-color: #482936;
+  border-style: solid none none none;
+}
 /* posts */
 
 .posts {
@@ -163,7 +170,7 @@ a {
 }
 
 .post-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600;
   word-wrap:break-word; 
   word-break:break-all; 
