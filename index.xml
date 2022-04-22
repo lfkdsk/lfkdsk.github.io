@@ -6,10 +6,19 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 29 Nov 2021 03:20:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Apr 2022 21:45:48 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Enhance RSSHub and Export RSS from XiaoYuZhou</title>
+      <link>https://lfkdsk.github.io/enhance-xyz/</link>
+      <pubDate>Fri, 22 Apr 2022 21:45:48 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/enhance-xyz/</guid>
+      <description>Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it&amp;rsquo;s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou&amp;rsquo;s backend editor, we could not subscribe to them except xiaoyuzhou.</description>
+    </item>
     
     <item>
       <title>Redex: Use SExpr to embed IR code</title>
