@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Intra-Mind Traveler" />
+  <meta property="og:url" content="https://lfkdsk.github.io/flutter-trans-bridge/" />
+  <link rel="canonical" href="https://lfkdsk.github.io/flutter-trans-bridge/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
+  <link rel="icon" href="./img/favicon.ico" />
+  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "TransBridge: Flutter/Web/Native Cross Bridge Solution",
+      "headline" : "TransBridge: Flutter/Web/Native Cross Bridge Solution",
+      "description" : "Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-04-13 18:53:33 &#43;0000 UTC",
+      "dateModified" : "2020-04-13 18:53:33 &#43;0000 UTC",
+      "url" : "https://lfkdsk.github.io/flutter-trans-bridge/",
+      "keywords" : [ "Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>TransBridge: Flutter/Web/Native Cross Bridge Solution - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="TransBridge: Flutter/Web/Native Cross Bridge Solution - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use." />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">     
+            <h1 class="post-title">TransBridge: Flutter/Web/Native Cross Bridge Solution</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2020-04-13 18:53:33 UTC">
+                  13 Apr 2020
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          
+          
+          <div class="post-content markdown-body">
+            
+
+<p>Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use. This solution will also become one of the core parts of the future Flutter cross-end integration solution.</p>
+
+<p>The design of the cross-end trans-bridge consists of two main components, the Flutter Client, which supports automatic codegen generation of bridge call code fragments on the Flutter side, and the trans-bridge, which provides higher-level abstraction for the Native Bridge on the native side. We will describe the use of these two parts and the principles of the parts below.</p>
+
+<h2 id="flutter-client">Flutter Client</h2>
+
+<h3 id="single-bridge-channel-implementation">Single Bridge Channel Implementation</h3>
+
+<p>Based on the analysis of the Flutter Platform Channel, we can conclude that the communication implemented by Flutter on the Dart and Native sides is full-duplex asynchronous communication. Therefore, in principle, we use a single MethodChannel name for integrated transmission and communication of multiple bridges, which will not cause blocking problems in itself, and verify through pressure measurement experiments that the split transmission of the same large text (1M text in multiple asynchronous logical transmissions and a single channel transmission) will not be faster, so we can pass it through a single Bridge Channel and transfer it to the Bridge side.</p>
+
+<h3 id="bridge-annotation">Bridge Annotation</h3>
+
+<p>Take a simple show toast method as an example:</p>
+
+<pre><code class="language-dart">    @Bridge('Toast')
+    mixin Toast on BridgeModule {
+     @BridgeMethod()
+     Future&gt; showToast(
+       {@required String title,
+       @required int duration,
+       Map extra});
+     @BridgeMethod()
+     Future&gt; hideToast();
+    }
+</code></pre>
+
+<p>By writing a class that uses Bridge to describe Toast, and in which showToast and hideToast corresponding to Web Bridge are implemented according to parameter needs and use<code>BridgeMethod</code>These Annotations have some parameters that can control the code generation of some specific CodeGen Processor, only the default situation is used here.</p>
+
+<ul>
+<li>Code generation:</li>
+</ul>
+
+<pre><code class="language-shell">    flutter packages pub run build_runner build
+</code></pre>
+
+<ul>
+<li>The result is:</li>
+</ul>
+
+<pre><code class="language-dart">    // GENERATED CODE - DO NOT MODIFY BY HAND
+    part of 'toast.dart';
+    // **************************************************************************
+    // BridgeGenerator
+    // **************************************************************************
+    class ToastBridge extends BridgeModule with Toast {
+     ToastBridge({BridgeClient client}) : super(client: client);
+     Future showToast({
+      @required String title,
+      @required int duration,
+      Map extra,
+     }) {
+      var _$params = {
+       'title': title,
+       'duration': duration,
+       'extra': extra,
+      };
+      var _$result = client.getData('TTRToast.showToast', params: _$params);
+      return _$result;
+     }
+     Future hideToast() {
+      var _$result = client.getData('TTRToast.hideToast');
+      return _$result;
+     }
+    }
+</code></pre>
+
+<p>Generates the result of automatic splicing parameters, and according to the Web side naming, parameter rules will call Bridge Client for transmission.</p>
+
+<p>Bridge Client Support</p>
+
+<pre><code class="language-dart">    */// Bridge channel.*
+    final MethodChannel _channel;
+    */// Default channel name.*
+    static const String *defaultChannelName* =
+      'com.example.hybrid.bridge-flutter';
+    */// Error emitter.*
+    final StreamController _errorEmitter =
+      new StreamController.broadcast(sync: false);
+    BridgeClient({
+     String channelName = *defaultChannelName*,
+    }) : _channel = MethodChannel(channelName, JSONMethodCodec()) {
+     _channel.setMethodCallHandler(_onEvent);
+    }
+</code></pre>
+
+<p>The Bridge Client side uses a unified Method Channel for development, which is not only compatible with the existing Bridge implemented by the Web and React Native side, but also avoids the inconvenient multi-Method Channel scheme at this stage. Due to the full duplex and asynchronous call scheme implementation of Method Channel, using a single Method Channel will not cause additional performance problems.</p>
+
+<p>You can write the following code directly by calling on the Dart side:</p>
+
+<pre><code class="language-dart">    client.ui.toast('xxxxx')
+</code></pre>
+
+<h2 id="trans-bridge-implementation">Trans Bridge Implementation</h2>
+
+<blockquote>
+<p>Flutter&rsquo;s Plugins code organization is not yet mature compared to the Method organization of various Bridge applications. Of course, Flutter is also gradually promoting the development of more convenient cross-end methods to enable better hybrid engineering.</p>
+</blockquote>
+
+<p>Trans Bridge implements a set of bridge implementations with a higher level of abstraction in dual-ended Android and iOS. Through the extraction of the intermediate protocol layer, the information sent from the dual-ended can be trans to different specific jsbridge, react native bridge, flutter bridge, and native support. Whether it contains various bridge support libraries inside and outside the company, or js-bridge or react native-bridge, but if you need to implement cross-end support from Flutter to Native, you must design an implementation plan to develop and support multiple bridges, and use this to continue the development of end capabilities. At present, this system supports trans-support access for PGC Hybrid and IES JSBridge.</p>
+
+<p>Structure</p>
+
+<p>Only the Trans Bridge scheme for accessing Flutter is described here. The structure contains the following modules:</p>
+
+<blockquote>
+<pre><code>- fluttermk
+- transbridge-core
+- transbridge-hybrid
+- transbridge-jsbridge2
+- transbridge-flutterimpl
+- ... other bridge impl.
+</code></pre>
+</blockquote>
+
+<ul>
+<li>Fluttermk: At present, flutter does not have an expedient solution for product-dependent implementations. It provides some required flutter-sdk mock interfaces on the pule-native side, and provides corresponding Adapter bindings in regular flutter-plugins. Currently, only MethodChannel related bindings are used.</li>
+</ul>
+
+<blockquote>
+<p>At present, Flutter&rsquo;s hybrid engineering implementation should have a corresponding mvn library, hoping to better develop product-dependent solutions and reduce the implementation of similar protocols.</p>
+</blockquote>
+
+<ul>
+<li><p>Transbridge-core: provides abstract connection from Flutter Method Channel to generalized JsBridge Call, provides simple Call, Result, Host, Context and other related operations, leaving enough interfaces with specific bridge implementations for access.</p></li>
+
+<li><p>Transbridge-xxx: Flutter - Web Bridge JsBridge for different specific implementation of the difference, leaving enough available send event and call method interface for automatic binding, the current completion of the hybird jsbridge, jsbridge 2 access.</p></li>
+
+<li><p>Transbridge-flutterimpl: Bridge support without specifying it, no spec coupling with related platforms such as js, react native or flutter, provides a specific call and implementation of the interface described by the core module, and includes binding access to Flutter spec outside here.</p></li>
+</ul>
+
+<h3 id="bridge-usage">Bridge Usage</h3>
+
+<p>When using Trans Bridge, it is very similar to the implementation of most jsbridges. For example, the above Flutter Client-side example can be implemented on the native side as:</p>
+
+<pre><code>    public class VLUIBridge extends BridgeMethods.ComposeMethod {
+      @SubMethod
+      public Single showToast(IBridgeContext context, String name, JsonObject params) {
+        Toast.*makeText*(getContext(), params.get(&quot;text&quot;).getAsString(), Toast.*LENGTH_SHORT*).show();
+        return BridgeResult.*createSingleSuccessBridgeResult*();
+      }
+    }
+</code></pre>
+
+<h3 id="bridge-core-design">Bridge Core Design</h3>
+
+<pre><code>├── AbsBridgetMethodCallHandler.java
+├── IBridgeAuth.java
+├── IBridgeCall.java
+├── IBridgeContext.java
+├── IBridgeHost.java
+├── IBridgeMethod.java
+└── IBridgeResult.java
+</code></pre>
+
+<p>Bridge Core includes only the following interfaces, and the default Stub implementation of each interface to avoid interface upgrade conflicts:</p>
+
+<ul>
+<li><p>IBridgeCall provides a usage description for a specific Bridge</p></li>
+
+<li><p>AbsBridgeMethodCallHandler describes calls from FlutterMK to an IBridgeCall abstract description</p></li>
+
+<li><p>IBridgeContext describes the Context abstractions included in the runtime</p></li>
+
+<li><p>IBridgeMethod provides abstraction for concrete Bridge Method</p></li>
+
+<li><p>IBridgeResult provides a description of the results for Bridge</p></li>
+
+<li><p>IBridgeHost provides an abstraction of the Bridge call host delegate</p></li>
+
+<li><p>IBridgeAuth provides authentication abstraction for BridgeScope</p></li>
+</ul>
+
+<p>Here are some representative abstract descriptions:</p>
+
+<h4 id="bridgecall">BridgeCall</h4>
+
+<pre><code class="language-java">    public interface IBridgeCall {
+      void call(@NonNull String name, @NonNull JsonObject params, @NonNull View view, @NonNull MethodChannelMk.ResultMk result);
+    }
+</code></pre>
+
+<p>Bridge Call can be abstracted as a method signature description of (name, params, view, result ) =&gt; Unit. It can be considered that an abstracted bridge only needs to provide:</p>
+
+<ul>
+<li><p>Name Method name</p></li>
+
+<li><p>Params parameter information</p></li>
+
+<li><p>View for relevant spec information</p></li>
+
+<li><p>FlutterMk return receipt held as a result</p></li>
+</ul>
+
+<p>It can be described as an abstraction of a Bridge. A spec bridge can be called and supported by the Bridge Method Call Handler through the description of the IBridgeCall interface.</p>
+
+<h4 id="bridgemethodcallhandler">BridgeMethodCallHandler</h4>
+
+<pre><code class="language-java">      @Override
+      public void onMethodCall(@NonNull MethodCallMk call, @NonNull MethodChannelMk.ResultMk result) {
+        if (call.name() == null || call.name().length() == 0) {
+          result.notImplemented();
+          return;
+        }
+        JsonObject args = (JsonObject) call.arguments();
+        bridge.call(call.name(), args, host, result);
+      }
+</code></pre>
+
+<p>MethodCallHandler uses FlutterMk&rsquo;s Flutter Protocol to forward the Flutter-side Method Channel to an abstract description of an IBridgeCall, which can be considered as the calling process of a specific Bridge. From this step, Flutter&rsquo;s actual Method Channel is converted to a specific Native-side Bridge implementation.</p>
+
+<h4 id="bridgemethod">BridgeMethod</h4>
+
+<pre><code class="language-java">    public interface IBridgeMethod {
+      EnumSet getType();
+      Single call(IBridgeContext context, String name, JsonObject params);
+    }
+</code></pre>
+
+<p>The abstraction of BridgeMethod only provides MethodTypes saved through EnumSet, which we then implement for different MethodTypes to handle various permission processing, async or sync call processes separately. And the main method<code>call</code>That is, the above IBridgeCall call scheme for Bridge support.</p>
+
+<p>IBridgeMethod also supports the specialization of many types of methods, such as Public, Private, Protected attributes for management Bridge permission control and ASync, Sync, Compose and other attributes can be used according to needs. And in flutter-impl support implements a simple registration mode for various combination types of Annotation.</p>
+
+<h4 id="bridge-spec-impl">Bridge Spec Impl</h4>
+
+<p>The Spec Impl here specifies the Spec specialization of the Trans-Bridge to a specific JSBridge, which is different from the full set of JSBridge implementations implemented by flutter-impl. On top of a specific Bridge transformation, more is how to convert the abstract methods and invocation methods described by Bridge-Core to a corresponding Bridge implementation, or by wrapping the abstract method into the method package of the specific Bridge. Currently, it has been implemented to connect to the other bridges.</p>
+
+<p>For example, the above figure is a concrete implementation of converting this straddle bridge solution to jsbridge2. Flutter Bridge Impl only realizes the relevant functions of Flutter Mk&rsquo;s Protocol Adapter. The core JsBridge2Call describes how to abstract jsbridge2 to the implementation of IBridgeCall:</p>
+
+<pre><code class="language-java">    public class Jsbridge2Call extends IBridgeCall.BridgeCallStub {
+      private final JsBridge2 bridge;
+      private final FlutterBridgeImpl actualBridge;
+      public Jsbridge2Call(MethodChannelMk channelMk) {
+        Environment env = JsBridge2.*create*().setCustomBridge(new FlutterBridgeImpl(channelMk));
+        this.actualBridge = (FlutterBridgeImpl) env.getCustomBridge();
+        this.bridge = env.build();
+      }
+      @Override
+      public void call(@NonNull String name, @NonNull JsonObject params, @NonNull View view, @NonNull MethodChannelMk.ResultMk result) {
+        Js2JavaCall call = Js2JavaCall.*builder*()
+            .setMethodName(name)
+            .setCallbackId(&quot;invalid&quot;)
+            .setType(&quot;invalid&quot;)
+            .setVersion(&quot;1.0&quot;)
+            .setNamespace(&quot;host&quot;)
+            .setParams(params.toString())
+            .build();
+        this.actualBridge.setResultMk(call,result);
+        this.actualBridge.invokeMethod(call);
+      }
+    }
+
+</code></pre>
+
+<p>This communication with Amano opened up the internal bridge call method, and constructed the parameters of the call parameters through the built-in data class Js2JavaCall of jsbridge2. The specific invoke process was later implemented in the implementation of FlutterBridgeImpl, invoke Js and invodeJsCallBack, but only forwarded part of the FlutterMk implementation Protocol.</p>
+
+<pre><code class="language-dart">    @Override
+    protected void invokeJs(String params) {
+      JsonObject obj = *gson*.fromJson(params, JsonObject.class);
+      channelMk.invokeMethod(obj.get(&quot;__event_id&quot;).getAsString(), obj.getAsJsonObject(&quot;__params&quot;));
+    }
+    @Override
+    protected void invokeJsCallback(String data, @Nullable Js2JavaCall call) {
+      if (call == null || resultMkMap.get(call) == null) {
+        return;
+      }
+      JsonObject obj = *gson*.fromJson(data, JsonObject.class);
+      int code = obj.get(&quot;code&quot;).getAsInt();
+      String resultData = obj.get(&quot;__data&quot;).getAsString();
+      MethodChannelMk.ResultMk resultMk = resultMkMap.get(call);
+      // TODO: result value callback
+      this.resultMkMap.remove(call);
+    }
+</code></pre>
+
+<h3 id="flutter-impl">Flutter Impl</h3>
+
+<p>Flutter-impl is a concrete implementation of a description scheme in Bridge-Core. If there is no particularly strong demand for jsbridge support on the end, integrated cross-end projects will be directly connected to the implementation of Flutter-Impl. Most of the functions can be understood as a no-platform-spec bridge design, and we will only explain and describe some of the features in the introduction here.</p>
+
+<p>The implementation of Transbridge provides the use of binding to the lifecycle (although it may not be used), provides the abstraction of Host Delegate, binds to the lifecycle of Activity and the cycle of View, and will automatically destroy according to the lifecycle:</p>
+
+<pre><code class="language-dart">    public void addModule(View view, final Object key, Object module, boolean isWeak) {
+      int id = ViewIDMarker.*ensureBridgeId*(view);
+      Map map = mModules.get(key);
+      if (map == null) {
+        map = new ConcurrentHashMap&lt;&gt;();
+        mModules.put(key, map);
+      }
+      map.put(id, isWeak ? new WeakReference&lt;&gt;(module) : module);
+      if (view != null) {
+        view.addOnAttachStateChangeListener(...);
+      }
+    }
+</code></pre>
+
+<p>Among them, the View ID Marker is provided through the lock-free mode of CAS, that is, it can quickly add Tag to the bundled View so that it can be quickly bound and processed when calling. In the bound view, in addition to more convenient binding life cycle, it can also get more specific data and information based on the implementation of different platforms (such as FlutterView and ReactNativeView) according to the Platform View.</p>
+
+<p>In the overall data model, it can be considered that the bridge-method is preloaded, and the corresponding Host Delegate only adds a temporary entry-pointer to the call bridge. However, after the life cycle is destructed, the entry-pointer of this temporary response cannot be called.</p>
+
+<pre><code class="language-dart">    public interface IBridgeHook extends IBridgeMethod {
+      // *TODO:* *add others hook type.*
+      enum HookType {
+    //     PRE,
+        *CONVERT*,
+    //     POST
+      }
+      HookType hookType();
+    }
+    public interface IGhostHook {
+      Single onGhostHooks(IBridgeContext context, String name, JsonObject params);
+    }
+</code></pre>
+
+<p>On top of the overall process according to the Bridge-Core given Context, Result, Method, Auth specific implementation, and provides a variety of manual support business Hook, GhostMethod Hook redefinition, unified processing can not be invoked Ghost Method.</p>
+
+<pre><code class="language-dart">    for (final Method declaredMethod : clazz.getDeclaredMethods()) {
+      SubMethod subMethod = declaredMethod.getAnnotation(SubMethod.class);
+      if (subMethod == null) {
+        continue;
+      }
+      this.register(name + '.' + declaredMethod.getName(), new BridgeMethods.PublicMethod() {
+        @Override
+        public Single call(IBridgeContext context, String name, JsonObject params) {
+          try {
+            return (Single) declaredMethod.invoke(method, context, name, params);
+          } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+          }
+          return BridgeResult.*createSingleErrorBridgeResult*(name);
+        }
+      });
+</code></pre>
+
+<p>In terms of Method registration, different registration schemes are also provided for the specific implementation of various Method Types. For example, the calling scheme using Compose Method can use @SubMethod to describe multiple Methods to design a group of non-independent Bridge Methods that can share states. And through Call to Observable, it is also very easy to implement the scheme that Async or Sync methods are called by value throughout the process.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>This article explains the design and implementation of Flutter&rsquo;s cross-end Bridge solution at present and for a period of time. Mainly from how to design a cross-end infrastructure design, how to split the fine grain and business-friendly fine grain modules, and how to integrate with the existing Native infrastructure in the Flutter life cycle. This also reminds us that when we design the architecture, we should also take into account the historical process. The project structure and call process that are too different from the original architecture are easy to be inconsistent. How to think about more generic architecture design can improve the universality and maintainability of the project. How to make the project have a better development experience and business friendliness is also the direction that Flutter officials and our Flutter Infra will strive for in the future.</p>
+
+          </div>
+          
+          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
+
+          <div style="height:50px"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>

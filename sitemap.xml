@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://lfkdsk.github.io/redex-remapping-pure-exception-string/</loc>
+    <lastmod>2021-11-25T20:38:02+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lfkdsk.github.io/redex-pass-reorder/</loc>
     <lastmod>2021-10-14T18:30:14+00:00</lastmod>
   </url>
@@ -40,6 +45,11 @@
   <url>
     <loc>https://lfkdsk.github.io/dart-conditional-import/</loc>
     <lastmod>2020-10-27T07:59:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lfkdsk.github.io/flutter-trans-bridge/</loc>
+    <lastmod>2020-04-13T18:53:33+00:00</lastmod>
   </url>
   
   <url>
