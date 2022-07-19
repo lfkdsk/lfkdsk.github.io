@@ -71,6 +71,17 @@ import java.util.* import kotlinx.coroutines.* class KotlinLambdaInline { var si
     </item>
     
     <item>
+      <title>Dart Conditional Pub: Pub With Conditinal-Compliation</title>
+      <link>https://lfkdsk.github.io/dart-conditional-pub/</link>
+      <pubDate>Tue, 11 May 2021 10:14:14 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/dart-conditional-pub/</guid>
+      <description>Background Previously, for Dart&amp;rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:
+ Previous Blog: https://lfkdsk.github.io/dart-conditional-import/
+ However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch.</description>
+    </item>
+    
+    <item>
       <title>My Resume 2021</title>
       <link>https://lfkdsk.github.io/resume-2021/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>

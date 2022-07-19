@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Intra-Mind Traveler" />
+  <meta property="og:url" content="https://lfkdsk.github.io/dart-conditional-pub/" />
+  <link rel="canonical" href="https://lfkdsk.github.io/dart-conditional-pub/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
+  <link rel="icon" href="./img/favicon.ico" />
+  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "Dart Conditional Pub: Pub With Conditinal-Compliation",
+      "headline" : "Dart Conditional Pub: Pub With Conditinal-Compliation",
+      "description" : "Background Previously, for Dart&rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:
+ Previous Blog: https://lfkdsk.github.io/dart-conditional-import/
+ However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-05-11 10:14:14 &#43;0000 UTC",
+      "dateModified" : "2021-05-11 10:14:14 &#43;0000 UTC",
+      "url" : "https://lfkdsk.github.io/dart-conditional-pub/",
+      "keywords" : [ "Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>Dart Conditional Pub: Pub With Conditinal-Compliation - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="Dart Conditional Pub: Pub With Conditinal-Compliation - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Background Previously, for Dart&rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:
+ Previous Blog: https://lfkdsk.github.io/dart-conditional-import/
+ However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch." />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">     
+            <h1 class="post-title">Dart Conditional Pub: Pub With Conditinal-Compliation</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2021-05-11 10:14:14 UTC">
+                  11 May 2021
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          
+          
+          <div class="post-content markdown-body">
+            
+
+<h2 id="background">Background</h2>
+
+<p>Previously, for Dart&rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:</p>
+
+<blockquote>
+<p>Previous Blog: <a href="https://lfkdsk.github.io/dart-conditional-import/">https://lfkdsk.github.io/dart-conditional-import/</a></p>
+</blockquote>
+
+<p>However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch.</p>
+
+<p>For example, the bridge_client I developed by myself relies on analyzer , source_gen and other basic libraries that are strongly related to the Dart version, so it is difficult to directly make this library run directly on the two Dart versions on the two basic libraries.</p>
+
+<p>Therefore, by modifying Dart Pub to make it open with Conditional Import, we can also choose according to different conditions in the configuration file of Dart Pub.</p>
+
+<h2 id="how-to-impl">How to impl ?</h2>
+
+<p>Details in : <a href="https://github.com/lfkdsk/dart_pub">https://github.com/lfkdsk/dart_pub</a></p>
+
+<h2 id="how-to-use">How to use ?</h2>
+
+<blockquote>
+<p>How to use Conditional Import, please refer to: <a href="https://lfkdsk.github.io/dart-conditional-import/">https://lfkdsk.github.io/dart-conditional-import/</a></p>
+</blockquote>
+
+<p>For example, in pubspec.yaml configuration file, we need to rely on two versions <code>branch_1</code> and <code>branch_1</code>:</p>
+
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.0
+  bridge_client:
+    condition.branch_1: ^1.0.0
+    condition.branch_2: ^2.0.0
+</code></pre>
+
+<p>Among them <code>condition.branch_1</code> and <code>condition.branch_2</code> are automatically injected by the flutter_tools frame part.
+At this time we use flutter pub get:</p>
+
+<pre><code class="language-shell">flutter pub get --local-engine-src-path=xxxxx
+</code></pre>
+
+<p>Note that pub get can pass dependencies in pubspec.lock:</p>
+
+<pre><code class="language-yaml">  bridge_client:
+    dependency: &quot;direct main&quot;
+    description:
+      name: bridge_client
+    source: hosted
+    version: &quot;2.0.2&quot;
+</code></pre>
+
+<p>Dependencies can also be pulled correctly to ^ 2.0.0 and above, supporting the version of the flutter 1.22 engine.</p>
+
+<h2 id="advanced-mode">Advanced mode</h2>
+
+<h3 id="version-can-be-customized">Version can be customized</h3>
+
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
+    
+  bd_bridge_client:
+    condition.branch_1: 
+        git: xxx.git
+        ref: xxxx
+    condition.branch_2: ^2.0.0
+</code></pre>
+
+<p>Everything in Conditional Pub is the same as the rules pubspec.yaml before, so we can easily use git dependencies, hosted dependencies, and normal version number descriptions for different versions.</p>
+
+<h3 id="conditions-can-be-customized">Conditions can be customized</h3>
+
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
+    
+  cupertino_icons: ^1.0.0
+  hook_coverage:
+    condition.hooked: 
+        git: xxx.git
+        ref: xxxx
+    condition.no_hooked: ^2.0.0-wrapper
+
+conditions:
+   condition.hooked: true
+   condition.no_hooked: false        
+</code></pre>
+
+<p>The solution gets through Conditional Import, so you can freely use custom conditions for version selection. For example, we can use it according to whether to turn on the hook switch.</p>
+
+          </div>
+          
+          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
+
+          <div style="height:50px"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>
