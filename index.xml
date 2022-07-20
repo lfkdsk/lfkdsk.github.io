@@ -61,7 +61,7 @@ throw new IllegalArgumentException(&amp;quot;tag must not be null or empty&amp;q
     </item>
     
     <item>
-      <title>Redex: RewriteKotlinSingletonInstancePass</title>
+      <title>Redex: Rewrite Kotlin SingletonInstance Pass</title>
       <link>https://lfkdsk.github.io/redex-rewrite-kotlin/</link>
       <pubDate>Thu, 16 Sep 2021 18:24:14 +0000</pubDate>
       
