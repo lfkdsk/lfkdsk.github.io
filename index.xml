@@ -6,10 +6,50 @@
     <description>Recent content on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Fri, 22 Apr 2022 21:45:48 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Oct 2022 16:34:49 +0800</lastBuildDate>
     
 	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>技术分享：结合 C# IL 分析与 Dex IR 修改开发 Unity 修改器</title>
+      <link>https://lfkdsk.github.io/hack-unity-project/</link>
+      <pubDate>Fri, 28 Oct 2022 16:34:49 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/hack-unity-project/</guid>
+      <description>前言 在终端设备上，出于游戏的便携性与计算性能的考虑很多手机游戏经常以 PVE 本地计算为主 + 联网 sync 数据的模式组合的方式进行设计（例如本地的卡片、塔防、战斗计算 + 联网的抽卡、购买以及异步联机功能），其他本身就是单机游戏当然就全部由本地进行计算。而无论 PC 游戏还是 Mobile 游戏的修改器开发，也通常有以下的两种方案：
+ 通过劫持网络连接进行修改 通过对指定内存数据进行修改  但是两种方案都有一些局限性和容易被发现的问题：
+ 劫持网络修改：开发商使用加密 websocket 的连接发送数据就很难被分析劫持，并且通过对发送数据包前后的数据进行本地校验很容易在本地发现问题。 指定内存数据修改：现在的游戏开发商都会有单独的守护线程对扫描修改内存的行为进行监控，并且笔者在尝试分析的过程中工具也很容易被分析出来、另外就是如果有本地的重计算校验也很容易被分析出来。  在最近一段时间的工作中笔者恰好对 Unity il2cpp 逻辑、C# 静态分析以及 Android 平台的 Dex IR 修改比较熟悉。因此在本文中笔者提出了一种能够应用我们已有知识的方案，通过对 Unity 应用的 il2cpp 产物进行分析、通过对 C# IL 与 Dex IR 的分析修改来直接修改游戏本体的方式来应用技术。
+这样的方案有以下几种好处：
+ 不修改网络数据能够避免 Web 数据校验 不通过监控内存实现避免干扰和扫描 相对于能实现同样功能的直接进行「二进制分析修改」来说，代码可读性更好容易进行持续迭代开发  效果展示 方案设计 上文中我们简述了方案的思路，包含几个方面：
+ Unity il2cpp 二进制产物的分析：通过对 il2cpp 的各种分析获取指定函数的指针地址（？）。 编写针对指定指针的 Hook 函数：有指定的指针地址之后我们可以通过写类似 Hook 的方案来对指针指向的内容来进行修改。 通过修改 Dex IR 织入 Hook 模块：编写好指定的 Hook 函数之后我们还需要通过编写一些指定的 bytecode 来使得 Android 能够加载我们的 Hook 模块。  破题：函数指针分析 il2cpp 背景知识 il2cpp 是 Unity 自己开发的一套 C# 的 aot backend。从整体的数据流程上来看，用户编写的 C# 代码会先被 C# 的 compiler frontend 翻译成 CIL bytecode 格式，随后会通过 Linker 进行 strip code，再被 il2cpp 程序将 CIL 逐个文件翻译为 Cpp 文件，最终被 LLVM 程序编译为 native 程序。</description>
+    </item>
+    
+    <item>
+      <title>Compile Share：Unity il2cpp compilation</title>
+      <link>https://lfkdsk.github.io/unity-compile/</link>
+      <pubDate>Fri, 12 Aug 2022 17:11:40 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/unity-compile/</guid>
+      <description>Audio     Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+    </item>
+    
+    <item>
+      <title>抖音 Android 包体积优化探索：基于 ReDex 的 DEX 优化落地实践</title>
+      <link>https://lfkdsk.github.io/redex-extra-blog/</link>
+      <pubDate>Sun, 12 Jun 2022 16:55:16 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/redex-extra-blog/</guid>
+      <description>本文为作者工作内容外发文章的转载 本文作者：冯瑞；廖斌斌；刘丰恺
+ 前言 应用安装包的体积会显著影响应用的下载速度和安装速度，按照 Google 的经验数据，包体积每增加 1M 会造成 0.17%的新增折损。抖音的一些实验也证明了包体积会显著影响下载激活的转化率。
+Android 的安装包是 APK 格式的，在抖音的安装包中 DEX 的体积占比达到了 40%以上，所以针对 DEX 的体积优化是一种行之有效的包体积优化手段。
+DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对字节码进行业务无感的通用优化成为我们的一个探索方向。
+优化结果 终端基础技术团队和抖音基础技术团队在过去的一年里，利用 ReDex 在抖音包体积优化方面取得了一些明显的收益，这些优化也被同步到了其他各大 App 上。
+在抖音、头条和其他应用上，我们的优化对 APK 体积的缩减普遍达到了 4%以上，对 DEX 体积的缩减则可以达到 8% ~ 10%
+优化思路 在 android 应用的构建过程中，Java/Kotlin 代码会先被编译成 Class 字节码，在这个阶段 gradle 提供了 Transformer 可以进行字节码的自定义处理，很多插件都是在这个阶段处理字节码的。然后，Class 文件经过 dexBuilder/mergeDex 等任务的处理会生成 DEX 文件，并最终被打进安装包中。整个过程如下所示：
+所以，针对字节码的优化是有 2 个时机可以进行的:
+ 在 transformer 阶段对 Class 字节码进行优化 在 DEX 阶段对 DEX 文件进行优化  显然，对 DEX 进行优化是更理想的一种方式，因为在 DEX 文件中，除了字节码指令外，还存在跨 DEX 引用、字符串池这样的结构，针对这些 DEX 格式的优化是无法在 transformer 阶段进行的。</description>
+    </item>
     
     <item>
       <title>Enhance RSSHub and Export RSS from XiaoYuZhou</title>

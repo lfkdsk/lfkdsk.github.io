@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.53" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Intra-Mind Traveler" />
+  <meta property="og:url" content="https://lfkdsk.github.io/unity-compile/" />
+  <link rel="canonical" href="https://lfkdsk.github.io/unity-compile/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
+  <link rel="icon" href="./img/favicon.ico" />
+  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "Compile Share：Unity il2cpp compilation",
+      "headline" : "Compile Share：Unity il2cpp compilation",
+      "description" : "Audio     Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &lt;- - &nbsp; &nbsp; Page:  /   window.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2022",
+      "datePublished": "2022-08-12 17:11:40 &#43;0800 CST",
+      "dateModified" : "2022-08-12 17:11:40 &#43;0800 CST",
+      "url" : "https://lfkdsk.github.io/unity-compile/",
+      "keywords" : [ "Blog", "Joway's Blog", "Joway" ]
+  }
+</script>
+
+  <title>Compile Share：Unity il2cpp compilation - lfkdsk&#39;s Blog</title>
+  <meta property="og:title" content="Compile Share：Unity il2cpp compilation - lfkdsk&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="Audio     Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &lt;- - &nbsp; &nbsp; Page:  /   window." />
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
+  />
+
+  <link
+  rel="stylesheet"
+  href="/css/paper.css"
+  />
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+  <script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+
+  
+</head>
+
+
+  <body>
+    <article class="post Chinese" id="article">
+      <div class="row">
+        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <a href="/">
+            <div class="head-line"></div>
+          </a>
+          <header class="post-header">     
+            <h1 class="post-title">Compile Share：Unity il2cpp compilation</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <time class="post-date" datetime="2022-08-12 17:11:40 CST">
+                  12 Aug 2022
+                </time>
+              </div>
+              <div class="col-xs-6">
+                <div class="post-author">
+                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
+                </div>
+              </div>
+            </div>
+          </header>
+          
+          
+          <div class="post-content markdown-body">
+            
+
+<h2 id="audio">Audio</h2>
+
+<figure >
+    <audio controls preload="metadata">
+    <source src="/unity-compile/audio1.mp4" type="audio/mpeg">
+    </audio>
+    
+</figure>
+
+<figure >
+    <audio controls preload="metadata">
+    <source src="/unity-compile/audio2.mp4" type="audio/mpeg">
+    </audio>
+    
+</figure>
+
+<h2 id="slide">Slide</h2>
+
+<script type="text/javascript" src= 'https://lfkdsk.github.io/js/pdf-js/build/pdf.js'></script>
+<style>
+#the-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+#paginator {
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+#loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style>
+
+<div id="embed-pdf-container">
+    <div id="loadingWrapper">
+      <div id="loading"></div>
+    </div>
+    <canvas id="the-canvas"></canvas>
+</div>
+<div id="paginator">
+  <button id="prev">&lt;-</button>
+  <button id="next">-></button>
+  &nbsp; &nbsp;
+  <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+
+
+var url = '.\/unity-compile\/slide.pdf'.startsWith("http") ? "" : "https:\/\/lfkdsk.github.io" + '.\/unity-compile\/slide.pdf';
+
+var hidePaginator = "" === "true";
+var hideLoader = "" === "true";
+var selectedPageNum = parseInt("") || 1;
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/lfkdsk.github.io" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = selectedPageNum,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    canvas = document.getElementById('the-canvas'),
+    ctx = canvas.getContext('2d'),
+    paginator = document.getElementById("paginator"),
+    loadingWrapper = document.getElementById('loadingWrapper');
+
+
+
+showPaginator();
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent();
+      
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+  
+  document.getElementById('page_num').textContent = num;
+}
+
+
+
+function showContent() {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  if(hideLoader) return
+  loadingWrapper.style.display = 'flex';
+  canvas.style.display = 'none';
+}
+
+
+
+function showPaginator() {
+  if(hidePaginator) return
+  paginator.style.display = 'block';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function onPrevPage() {
+  if (pageNum <= 1) {
+    return;
+  }
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+document.getElementById('prev').addEventListener('click', onPrevPage);
+
+
+
+function onNextPage() {
+  if (pageNum >= pdfDoc.numPages) {
+    return;
+  }
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+document.getElementById('next').addEventListener('click', onNextPage);
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  var numPages = pdfDoc.numPages;
+  document.getElementById('page_count').textContent = numPages;
+  
+  
+  if(pageNum > numPages) {
+    pageNum = numPages
+  }
+
+  
+  renderPage(pageNum);
+});
+}
+
+</script>
+
+
+          </div>
+          
+          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
+
+          <div style="height:50px"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+
+  </body>
+</html>
