@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
-  <meta property="og:url" content="https://lfkdsk.github.io/learn-ios-with-swift-0/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/learn-ios-with-swift-0/" />
-
-  <script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="lfkdsk" name="author"/>
+<meta content="https://lfkdsk.github.io/learn-ios-with-swift-0/" property="og:url"/>
+<link href="https://lfkdsk.github.io/learn-ios-with-swift-0/" rel="canonical"/>
+<script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -36,147 +34,103 @@ let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化�
       "keywords" : [ "iOS Swift","Blog", "Joway's Blog", "Joway" ]
   }
 </script>
-
-  <title>Learn iOS With Swift 0 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Learn iOS With Swift 0 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="Swift之初见 let常量值 let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。
-let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化要提供类型推倒 lfkdsk = 100 let lfkdsk = 100 &#43; String(1000) // 类型转化要使用显示转换 let apple = 1000 let lfkdsk = &quot;lfkdsk have \(apple) apples&quot; // 类比Ruby的${}  字典和元组 var shoppingList = [&quot;fuck &quot;,&quot;you&quot;] var occupations = [&quot;S&quot;:&quot;M&quot;,&quot;F&quot;,&quot;Y&quot;] occupations[&quot;F&quot;] = xxx // 这些都很好理解  // 创建空数组合字典 可以写出类型 let emptyArray = [String]() // 但是初始化之后就不能再修改了 let emptyDictionary = [String: Float]()  类型可以显示推断的话用:" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <script>
+<title>Learn iOS With Swift 0 - lfkdsk's Blog</title>
+<meta content="Learn iOS With Swift 0 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='Swift之初见 let常量值 let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。
+let lfkdsk = 1000 // 直接初始化 let lfkdsk : Int // 没有直接初始化要提供类型推倒 lfkdsk = 100 let lfkdsk = 100 + String(1000) // 类型转化要使用显示转换 let apple = 1000 let lfkdsk = "lfkdsk have \(apple) apples" // 类比Ruby的${}  字典和元组 var shoppingList = ["fuck ","you"] var occupations = ["S":"M","F","Y"] occupations["F"] = xxx // 这些都很好理解  // 创建空数组合字典 可以写出类型 let emptyArray = [String]() // 但是初始化之后就不能再修改了 let emptyDictionary = [String: Float]()  类型可以显示推断的话用:' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Learn iOS With Swift 0</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2016-12-20 22:01:11 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Learn iOS With Swift 0</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-12-20 22:01:11 UTC">
                   20 Dec 2016
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
-          <div class="to-top">
-            <a href="#top" class="paper-btn margin">^</a>
-          </div> 
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@lfkdsk</a>
+</div>
+</div>
+</div>
+</header>
+<div class="to-left">
+<a class="paper-btn" href="javascript:history.back()">&lt;</a>
+</div>
+<div class="to-top">
+<a class="paper-btn margin" href="#top">^</a>
+</div>
+<div class="post-content markdown-body">
 <h1 id="swift之初见">Swift之初见</h1>
-
 <h2 id="let常量值">let常量值</h2>
-
 <p>let 表示定义好的常量值，并不一定在编译期确定但是的确只能被初始化一次。</p>
-
 <pre><code class="language-swift">let lfkdsk = 1000 // 直接初始化
 let lfkdsk : Int // 没有直接初始化要提供类型推倒
 lfkdsk = 100
 let lfkdsk = 100 + String(1000) // 类型转化要使用显示转换
 let apple = 1000
-let lfkdsk = &quot;lfkdsk have \(apple) apples&quot; // 类比Ruby的${}
+let lfkdsk = "lfkdsk have \(apple) apples" // 类比Ruby的${}
 </code></pre>
-
 <h2 id="字典和元组">字典和元组</h2>
-
-<pre><code class="language-swift">var shoppingList = [&quot;fuck &quot;,&quot;you&quot;]
-var occupations = [&quot;S&quot;:&quot;M&quot;,&quot;F&quot;,&quot;Y&quot;]
-occupations[&quot;F&quot;] = xxx
+<pre><code class="language-swift">var shoppingList = ["fuck ","you"]
+var occupations = ["S":"M","F","Y"]
+occupations["F"] = xxx
 // 这些都很好理解
 </code></pre>
-
 <pre><code class="language-swift">// 创建空数组合字典 可以写出类型
 let emptyArray = [String]() // 但是初始化之后就不能再修改了
 let emptyDictionary = [String: Float]()
 </code></pre>
-
 <p>类型可以显示推断的话用:</p>
-
 <pre><code class="language-swift">shoppingList = []
 occupations = [:]
 </code></pre>
-
 <h2 id="条件控制">条件控制</h2>
-
 <p>使用if和switch来进行条件操作，使用for-in、for、while和repeat-while来进行循环。包裹条件和循环变量括号可以省略，但是语句体的大括号是必须的。</p>
-
 <p>后加<code>？</code>表示可选变量</p>
-
 <pre><code class="language-swift">let nickName: String? = nil
-let fullName: String = &quot;John Appleseed&quot;
+let fullName: String = "John Appleseed"
 // 另一种提供默认值的方式
-let informalGreeting = &quot;Hi \(nickName ?? fullName)”
+let informalGreeting = "Hi \(nickName ?? fullName)”
 </code></pre>
-
 <p>Swich语句支持多种类型和表达式，无需<code>break</code>但是不可缺少<code>default</code>:</p>
-
-<pre><code class="language-swift">let vegetable = &quot;red pepper&quot;
+<pre><code class="language-swift">let vegetable = "red pepper"
 switch vegetable {
-case &quot;celery&quot;:
-    print(&quot;Add some raisins and make ants on a log.&quot;)
-case &quot;cucumber&quot;, &quot;watercress&quot;:
-    print(&quot;That would make a good tea sandwich.&quot;)
-case let x where x.hasSuffix(&quot;pepper&quot;):
-    print(&quot;Is it a spicy \(x)?&quot;)
+case "celery":
+    print("Add some raisins and make ants on a log.")
+case "cucumber", "watercress":
+    print("That would make a good tea sandwich.")
+case let x where x.hasSuffix("pepper"):
+    print("Is it a spicy \(x)?")
 default:
-    print(&quot;Everything tastes good in soup.&quot;)
+    print("Everything tastes good in soup.")
 }
 </code></pre>
-
 <p><code>for-in</code>语句，可设定key-value值的样子：</p>
-
 <pre><code class="language-swift">let interestingNumbers = [
-    &quot;Prime&quot;: [2, 3, 5, 7, 11, 13],
-    &quot;Fibonacci&quot;: [1, 1, 2, 3, 5, 8],
-    &quot;Square&quot;: [1, 4, 9, 16, 25],
+    "Prime": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Square": [1, 4, 9, 16, 25],
 ]
 var largest = 0
 for (kind, numbers) in interestingNumbers {
@@ -187,9 +141,7 @@ for (kind, numbers) in interestingNumbers {
     }
 }
 </code></pre>
-
 <p><code>while</code>语句：</p>
-
 <pre><code class="language-swift">var n = 2
 while n &lt; 100 {
     n = n * 2
@@ -209,17 +161,13 @@ for i in 0..&lt;4 { // 0...&lt;4包含上界
 }
 print(total)
 </code></pre>
-
 <h2 id="函数和闭包">函数和闭包</h2>
-
 <pre><code class="language-swift">func greet(name: String, day: String) -&gt; String {
-    return &quot;Hello \(name), today is \(day).&quot;
+    return "Hello \(name), today is \(day)."
 }
-greet(name:&quot;Bob&quot;, day: &quot;Tuesday&quot;)
+greet(name:"Bob", day: "Tuesday")
 </code></pre>
-
 <p>如代码所示，使用参数调用函数，使用<code>-&gt;</code>设定返回值（总的来说语法很类似）。</p>
-
 <pre><code class="language-swift">func calculateStatistics(scores: [Int]) -&gt; (min: Int, max: Int, sum: Int) {
     var min = scores[0]
     var max = scores[0]
@@ -238,9 +186,7 @@ let statistics = calculateStatistics(scores:[5, 3, 100, 3, 9])
 print(statistics.sum)
 print(statistics.2)
 </code></pre>
-
 <p>返回多个返回值。</p>
-
 <pre><code class="language-swift">func sumOf(numbers: Int...) -&gt; Int {
     var sum = 0
     for number in numbers {
@@ -251,11 +197,8 @@ print(statistics.2)
 sumOf()
 sumOf(numbers: 42, 597, 12)
 </code></pre>
-
 <p>可变参数，这个和很多语言都很类似。</p>
-
 <p>可定义函数内函数，作用域包含外界，所以也可以传递函数：</p>
-
 <pre><code class="language-swift">func makeIncrementer() -&gt; ((Int) -&gt; Int) {
     func addOne(number: Int) -&gt; Int {
         return 1 + number
@@ -265,7 +208,6 @@ sumOf(numbers: 42, 597, 12)
 var increment = makeIncrementer()
 increment(7)
 </code></pre>
-
 <pre><code class="language-swift">func hasAnyMatches(list: [Int], condition: (Int) -&gt; Bool) -&gt; Bool {
     for item in list {
         if condition(item) {
@@ -280,16 +222,13 @@ func lessThanTen(number: Int) -&gt; Bool {
 var numbers = [20, 19, 7, 12]
 hasAnyMatches(list: numbers, condition: lessThanTen)
 </code></pre>
-
 <p>函数实际上是一种特殊的闭包:它是一段能之后被调取的代码。闭包中的代码能访问闭包所建作用域中能得到的变量和函数，即使闭包是在一个不同的作用域被执行的 - 你已经在嵌套函数例子中所看到。你可以使用{}来创建一个匿名闭包。使用in将参数和返回值类型声明与闭包函数体进行分离。</p>
-
 <pre><code class="language-swift">numbers.map({
     (number: Int) -&gt; Int in // 匿名闭包 使用 in 区分
     let result = 3 * number
     return result
 })
 </code></pre>
-
 <pre><code class="language-swift">var numbers = [20, 19, 7, 12]
 
 numbers.map({
@@ -302,13 +241,11 @@ numbers.sort{ $0 &gt; $1}
 
 print(numbers)
 </code></pre>
-
 <h2 id="类和对象">类和对象</h2>
-
 <pre><code class="language-swift">class Shape {
     var numberOfSides = 0
     func simpleDescription() -&gt; String {
-        return &quot;A shape with \(numberOfSides) sides.&quot;
+        return "A shape with \(numberOfSides) sides."
     }
 }
 
@@ -316,11 +253,8 @@ var shape = Shape()
 shape.numberOfSides = 7
 var shapeDescription = shape.simpleDescription()
 </code></pre>
-
 <p>类中的<code>init</code>和<code>deinit</code>函数是构造函数和析构函数。</p>
-
 <p>子类在类名后添加父类的名称，函数重载需要加<code>override</code>标签。</p>
-
 <pre><code class="language-swift">class EquilateralTriangle: NamedShape {
     var sideLength: Double = 0.0
  
@@ -340,23 +274,20 @@ var shapeDescription = shape.simpleDescription()
     }
  
     override func simpleDescription() -&gt; String {
-        return &quot;An equilateral triagle with sides of length \(sideLength).&quot;
+        return "An equilateral triagle with sides of length \(sideLength)."
     }
 }
-var triangle = EquilateralTriangle(sideLength: 3.1, name: &quot;a triangle&quot;)
+var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
 print(triangle.perimeter)
 triangle.perimeter = 9.9
 print(triangle.sideLength)
 </code></pre>
-
 <p>构造器执行了三步：</p>
-
 <ol>
 <li>设置子类声明的属性值</li>
 <li>调用父类的构造器</li>
 <li>改变父类的属性值，其他的工作如调用方法，<code>getters</code>和<code>setters</code>也可以在这个阶段完成。</li>
 </ol>
-
 <pre><code class="language-swift">class TriangleAndSquare {
     var triangle: EquilateralTriangle {
         willSet {
@@ -373,21 +304,17 @@ print(triangle.sideLength)
         triangle = EquilateralTriangle(sideLength: size, name: name)
     }
 }
-var triangleAndSquare = TriangleAndSquare(size: 10, name: &quot;another test shape&quot;)
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
 print(triangleAndSquare.square.sideLength)
 print(triangleAndSquare.triangle.sideLength)
-triangleAndSquare.square = Square(sideLength: 50, name: &quot;larger square&quot;)
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 print(triangleAndSquare.triangle.sideLength)
 </code></pre>
-
 <p>处理变量的可选值时，你可以在操作（比如方法、属性和子脚本）之前加?。如果?之前的值是nil，?后面的东西都会被忽略，并且整个表达式返回nil。否则，?之后的东西都会被运行。在这两种情况下，整个表达式的值也是一个可选值。</p>
-
-<pre><code class="language-swift">let optionalSquare: Square? = Square(sideLength: 2.5, name: &quot;optional square&quot;)
+<pre><code class="language-swift">let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
 let sideLength = optionalSquare?.sideLength
 </code></pre>
-
 <h2 id="枚举和结构体">枚举和结构体</h2>
-
 <pre><code class="language-swift">enum Rank: Int {
     case Ace = 1
     case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
@@ -395,13 +322,13 @@ let sideLength = optionalSquare?.sideLength
     func simpleDescription() -&gt; String {
     switch self {
         case .Ace:
-            return &quot;ace&quot;
+            return "ace"
         case .Jack:
-            return &quot;jack&quot;
+            return "jack"
         case .Queen:
-            return &quot;queen&quot;
+            return "queen"
         case .King:
-            return &quot;king&quot;
+            return "king"
         default:
             return String(self.rawValue)
         }
@@ -410,60 +337,51 @@ let sideLength = optionalSquare?.sideLength
 let ace = Rank.Ace
 let aceRawValue = ace.rawValue
 </code></pre>
-
 <p>枚举可以包含方法。</p>
-
 <p><code>struct</code>的使用：</p>
-
 <pre><code class="language-swift">struct Card {
     var rank: Rank
     var suit: Suit
     func simpleDescription() -&gt; String {
-        return &quot;The \(rank.simpleDescription()) of \(suit.simpleDescription())&quot;
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
 }
 let threeOfSpades = Card(rank: .Three, suit: .Spades)
 let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 </code></pre>
-
 <p>结构体和类的区别是，结构体是传值，类是传引用。</p>
-
 <pre><code class="language-swift">enum ServerResponse {
     case Result(String, String)
     case Failure(String)
 }
 // 实例和原始值
-let success = ServerResponse.Result(&quot;6:00 am&quot;, &quot;8:09 pm&quot;)
-let failure = ServerResponse.Failure(&quot;Out of cheese.&quot;)
+let success = ServerResponse.Result("6:00 am", "8:09 pm")
+let failure = ServerResponse.Failure("Out of cheese.")
  
 switch success {
 case let .Result(sunrise, sunset):
-    let serverResponse = &quot;Sunrise is at \(sunrise) and sunset is at \(sunset).&quot;
+    let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
 case let .Failure(message):
-    print(&quot;Failure...  \(message)&quot;)
+    print("Failure...  \(message)")
 }
 </code></pre>
-
 <h2 id="协议和扩展">协议和扩展</h2>
-
 <p>使用protocol来声明一个协议，就是interface，protocol这种命名真是奇怪。</p>
-
 <p>使用<code>mutating</code>来标记Struct中改变内容的值，使用<code>extension</code>拓展一个类的内容。</p>
-
 <pre><code class="language-swift">protocol ExampleProtocol {
     var simpleDescription: String { get }
     mutating func adjust()
 }
 class SimpleClass: ExampleProtocol {
-    var simpleDescription: String = &quot;A very simple class.&quot;
+    var simpleDescription: String = "A very simple class."
     var anotherProperty: Int = 69105
     func adjust() {
-        simpleDescription += &quot;  Now 100% adjusted.&quot;
+        simpleDescription += "  Now 100% adjusted."
     }
 }
 extension Int: ExampleProtocol {
     var simpleDescription: String {
-        return &quot;The number \(self)&quot;
+        return "The number \(self)"
     }
     mutating func adjust() {
         self += 42
@@ -471,38 +389,30 @@ extension Int: ExampleProtocol {
 }
 print(7.simpleDescription)
 </code></pre>
-
 <h2 id="错误处理">错误处理</h2>
-
 <p>嗯，首先有Error这个Interface来代表错误信息。</p>
-
 <p>函数后标记<code>throw</code>表示可以抛出错误。</p>
-
 <p>错误处理：</p>
-
 <pre><code class="language-swift">func sendToPrinter(printerName: String) throws -&gt; String {
-    if printerName == &quot;Never Has Toner&quot; {
+    if printerName == "Never Has Toner" {
         throw PrinterError.NoToner
     }
-    return &quot;Job sent&quot;
+    return "Job sent"
 }
 
 do {
-    let printerResponse = try sendToPrinter(&quot;Bi Sheng&quot;)
+    let printerResponse = try sendToPrinter("Bi Sheng")
     print(printerResponse)
 } catch {
     print(error)
 } 
 </code></pre>
-
-<pre><code class="language-swift">let printerSuccess = try? sendToPrinter(&quot;Mergenthaler&quot;)
-let printerFailure = try? sendToPrinter(&quot;Never Has Toner&quot;)
+<pre><code class="language-swift">let printerSuccess = try? sendToPrinter("Mergenthaler")
+let printerFailure = try? sendToPrinter("Never Has Toner")
 </code></pre>
-
 <p><code>defer</code>绑定函数结尾，写到这，我觉得swift越来越像golang了。</p>
-
 <pre><code class="language-swift">var fridgeIsOpen = false
-let fridgeContent = [&quot;milk&quot;, &quot;eggs&quot;, &quot;leftovers&quot;]
+let fridgeContent = ["milk", "eggs", "leftovers"]
  
 func fridgeContains(_ food: String) -&gt; Bool {
     fridgeIsOpen = true
@@ -513,12 +423,10 @@ func fridgeContains(_ food: String) -&gt; Bool {
     let result = fridgeContent.contains(food)
     return result
 }
-fridgeContains(&quot;banana&quot;)
+fridgeContains("banana")
 print(fridgeIsOpen)
 </code></pre>
-
 <h2 id="泛型">泛型</h2>
-
 <pre><code class="language-swift">func repeatItem&lt;Item&gt;(repeating item: Item, numberOfTimes: Int) -&gt; [Item] {
     var result = [Item]()
     for _ in 0..&lt;numberOfTimes {
@@ -526,15 +434,12 @@ print(fridgeIsOpen)
     }
     return result
 }
-repeatItem(repeating: &quot;knock&quot;, numberOfTimes:4)
+repeatItem(repeating: "knock", numberOfTimes:4)
 </code></pre>
-
 <p>返回一个泛型数组，使用<code>where</code>子句实现泛型的特化。</p>
-
-          </div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -547,22 +452,14 @@ repeatItem(repeating: &quot;knock&quot;, numberOfTimes:4)
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -572,6 +469,5 @@ repeatItem(repeating: &quot;knock&quot;, numberOfTimes:4)
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

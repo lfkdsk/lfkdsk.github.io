@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/redex-sexpr/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/redex-sexpr/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/redex-sexpr/" property="og:url"/>
+<link href="https://lfkdsk.github.io/redex-sexpr/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -38,54 +37,28 @@ auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {})
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>Redex: Use SExpr to embed IR code - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Redex: Use SExpr to embed IR code - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="A better way to write outline method or modify ir code in redex.
- Background In Redex, we may often modify/insert methods&rsquo; ir code and redex actually supported some ways to write these. Such as :
-auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&gt;set_type(DexType::make_type(&quot;LFoo;&quot;));  Or just us dasm api :
-auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {});  It&rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly." />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+<title>Redex: Use SExpr to embed IR code - lfkdsk's Blog</title>
+<meta content="Redex: Use SExpr to embed IR code - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='A better way to write outline method or modify ir code in redex.
+ Background In Redex, we may often modify/insert methods’ ir code and redex actually supported some ways to write these. Such as :
+auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&gt;set_type(DexType::make_type("LFoo;"));  Or just us dasm api :
+auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type("LFoo;"), {});  It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -93,71 +66,51 @@ auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {})
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Redex: Use SExpr to embed IR code</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2021-11-29 03:20:31 CST">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Redex: Use SExpr to embed IR code</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2021-11-29 03:20:31 CST">
                   29 Nov 2021
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <blockquote>
 <p>A better way to write outline method or modify ir code in redex.</p>
 </blockquote>
-
 <h2 id="background">Background</h2>
-
-<p>In Redex, we may often modify/insert methods&rsquo; ir code and redex actually supported some ways to write these. Such as :</p>
-
+<p>In Redex, we may often modify/insert methods’ ir code and redex actually supported some ways to write these. Such as :</p>
 <pre><code class="language-cpp">auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE))
-                 -&gt;set_type(DexType::make_type(&quot;LFoo;&quot;));
+                 -&gt;set_type(DexType::make_type("LFoo;"));
 </code></pre>
-
 <p>Or just us dasm api :</p>
-
-<pre><code class="language-cpp">auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {});       
+<pre><code class="language-cpp">auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type("LFoo;"), {});       
 </code></pre>
-
-<p>It&rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly. It will be very difficult to write the right code and verify them after every time we change the api.
+<p>It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly. It will be very difficult to write the right code and verify them after every time we change the api.
 Specifically, the method contains several blocks and entry point or several if/switch structure and mult-conditions. Maybe this is why there is no much complex outline method in redex pass.
 It seems like <code>StringBuilderOutline</code> or <code>InstructionSequenceOutlinerPass</code> is the most complex generator method in redex. You could see that in their create_outlined_method method.
 So I think we could improve the experience of writing the outline method or complex ir code. In LLVM, we have a pass named Cpp Backend what we input LLVM IR (such as we call it code) and get the IR builder codes which could build code we input by cpp.</p>
-
 <p>You could get LLVM CxxBackend from : <a href="https://github.com/zhangjiantao/llvm-cxxapi">https://github.com/zhangjiantao/llvm-cxxapi</a></p>
-
 <p>Use ir to write ir is a better way to write complex ir code.</p>
-
 <h2 id="how-to-use-genasexpr-when-should-we-use-it">How to use GenAsExpr ? When should we use it ?</h2>
-
-<p>For example, I&rsquo;m writing a new StringBuilderOutline pass to reduce spec string builder method calls. So I need to write a generic method to handle these intermediate results and append them into a string builder. But using IRCode APIs to write this method is difficult and easy to make mistake. (Because it has a for-loop, we need to de-sugar it by mind to write some ir like labels with goto and insert some branch targets).</p>
-
+<p>For example, I’m writing a new StringBuilderOutline pass to reduce spec string builder method calls. So I need to write a generic method to handle these intermediate results and append them into a string builder. But using IRCode APIs to write this method is difficult and easy to make mistake. (Because it has a for-loop, we need to de-sugar it by mind to write some ir like labels with goto and insert some branch targets).</p>
 <h3 id="step-1-write-method-in-java-demo">Step 1: write method in java demo.</h3>
-
 <p>So we could use IRReGen pass to resolve this work. What method we actually need is just like this :</p>
-
 <pre><code class="language-java">@Keep
 public static String bind(Object... args) {
     StringBuilder builder = new StringBuilder();
@@ -167,44 +120,38 @@ public static String bind(Object... args) {
     return builder.toString();
 }
 </code></pre>
-
 <p>So we write it in a demo project and add @Keep to ensure it will be saved in the release version.
 Step 2: add pass in redex.config
 Add IRReGenPass into our demo redex.config and add args to array named gen_s_expr_for like the following code.</p>
-
 <pre><code class="language-json">{
-  &quot;redex&quot;: {
-    &quot;passes&quot;: [
-       &quot;IRReGenPass&quot;,
+  "redex": {
+    "passes": [
+       "IRReGenPass",
        // other pass.
     ]
   },
-  &quot;IRReGen&quot;: {
-    &quot;gen_s_expr_for&quot;: [
-      &quot;Lcom/example/myapplication/MainActivity;.bind:([Ljava/lang/Object;)Ljava/lang/String;&quot;
+  "IRReGen": {
+    "gen_s_expr_for": [
+      "Lcom/example/myapplication/MainActivity;.bind:([Ljava/lang/Object;)Ljava/lang/String;"
     ]
   },
   // ... other params
 }
 </code></pre>
-
 <p>ALERT: Write the JVM method description with the complete method type signature.
 Step 3: get the result in log and use it !
 Run redex compile and you will get the following log in shell:
-<img src="code0.png" alt="" />
+<img alt="" src="code0.png"/>
 UPDATE now support the convert whole method to s_expr
-<img src="code1.png" alt="" />
+<img alt="" src="code1.png"/>
 Log prints the target method in the s-expr way. So we could use api in IRAssembler.h to create DexMethod from s-expr data. Such as:
-<img src="code2.png" alt="" />
+<img alt="" src="code2.png"/>
 Now we could use this s-expr code as DexMethod directly ~~~
 The code will be more readable and easier to modify (just re-gen it).</p>
-
 <h2 id="implement">Implement</h2>
-
 <blockquote>
 <p>S-Expr <a href="https://en.wikipedia.org/wiki/S-expression">https://en.wikipedia.org/wiki/S-expression</a></p>
 </blockquote>
-
 <pre><code class="language-cpp">void GenAsSExpr::run_pass(DexStoresVector&amp; stores,
                        ConfigFiles&amp; conf,
                        PassManager&amp; mgr) {
@@ -225,7 +172,7 @@ The code will be more readable and easier to modify (just re-gen it).</p>
     auto s_expr = assembler::method_to_s_expr(m);
     auto s_expr_str = s_expr.pretty_str();
 
-    std::cout &lt;&lt; &quot;Generate Method for: &quot; &lt;&lt; method_name &lt;&lt; &quot; : \n&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Generate Method for: " &lt;&lt; method_name &lt;&lt; " : \n" &lt;&lt; std::endl;
     std::cout &lt;&lt; s_expr_str &lt;&lt; std::endl;
   });
 
@@ -245,29 +192,23 @@ The code will be more readable and easier to modify (just re-gen it).</p>
     auto s_expr = assembler::class_to_s_expr(cls);
     auto s_expr_str = s_expr.pretty_str(/* depth */ 3);
 
-    std::cout &lt;&lt; &quot;Generate Class for: &quot; &lt;&lt; cls_name &lt;&lt; &quot; : \n&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Generate Class for: " &lt;&lt; cls_name &lt;&lt; " : \n" &lt;&lt; std::endl;
     std::cout &lt;&lt; s_expr_str &lt;&lt; std::endl;
 
   });
 }
 
 </code></pre>
-
 <p>We often use s-expr like expr in some Lisp-like langs. And many languages could compile their code into s-expr for serialization or check error. Redex also supports compile ir to s-expr and re-compile ir code from s-expr.
 So I added a new pass to accept method descriptions and compile it to s-expr. I also added some methods to make their output prettier. Maybe we can add more features to this pass.</p>
-
 <p>Redex s-expr still has some features not supported:
 - Try - cache structure
 - Filled-array-data opcode</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -280,22 +221,14 @@ So I added a new pass to accept method descriptions and compile it to s-expr. I 
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -305,6 +238,5 @@ So I added a new pass to accept method descriptions and compile it to s-expr. I 
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

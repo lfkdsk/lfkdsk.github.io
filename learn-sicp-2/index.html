@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/learn-sicp-2/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/learn-sicp-2/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/learn-sicp-2/" property="og:url"/>
+<link href="https://lfkdsk.github.io/learn-sicp-2/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -44,11 +43,10 @@
       "keywords" : [ "SICP","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>0x02：SICP 的魔法 - 数据抽象、层次抽象 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="0x02：SICP 的魔法 - 数据抽象、层次抽象 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
+<title>0x02：SICP 的魔法 - 数据抽象、层次抽象 - lfkdsk's Blog</title>
+<meta content="0x02：SICP 的魔法 - 数据抽象、层次抽象 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
 与此相类，数据本身也可以作为一种抽象，我们在之前接触的数据都是一些简单的数据，所以可能没什么感受。但是数据也可以包含不止一种的信息，使用的时候隐藏具体的实现细节，具体使用的时候又能作为元素出现在程序任意的位置，因此数据也是一种抽象。
  有过 OO 语言经验的同学 可以借助类的概念理解一下以上的概念
 但是类的概念是无法完全概括的哦～
@@ -57,47 +55,22 @@
 在 Scheme 中提供了能实现这些方法的 API:
    Function Name Usage     ( cons p1 p2) 能把两个参数打包成一个对象   ( car x ) 能从 cons 打包出的对象 取出其中的第一个数据   ( cdr x ) 能从 cons 打包出的对象 取出其中的第二个数据    对于能非常方便构建 class 或是 struct 这样的数据结构的其他语言的使用者来看，这个序对的作用实在是微乎其微，但是大的抽象模式都是从最小的抽象方式开始的，我们这里使用序对也只是为了演示 Scheme 的抽象能力。
 如何定义有理数？ 这看起来似乎不是个问题，因为语言都会原生支持各种类型的浮点数，能轻松的用来表示有理数，但是请先忘了有关这方面的知识，单纯考虑当我们的系统只能支持整形数据的时候我们应该怎么表示有理数。
-从上一小节的序对的知识出发，我们很容易找到答案，我们可以把有理数的小数点前后的部分，分别用一个整形数据来表示，再把他们用 cons 打包，当进行计算的时候再拆开计算就可以了。" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+从上一小节的序对的知识出发，我们很容易找到答案，我们可以把有理数的小数点前后的部分，分别用一个整形数据来表示，再把他们用 cons 打包，当进行计算的时候再拆开计算就可以了。" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -105,57 +78,41 @@
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">0x02：SICP 的魔法 - 数据抽象、层次抽象</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2017-03-11 18:17:35 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">0x02：SICP 的魔法 - 数据抽象、层次抽象</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2017-03-11 18:17:35 UTC">
                   11 Mar 2017
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <p>在第一章里面，我们已经见识到了<code>过程</code>抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。</p>
-
 <p>与此相类，<code>数据</code>本身也可以作为一种抽象，我们在之前接触的数据都是一些简单的数据，所以可能没什么感受。但是数据也可以包含不止一种的信息，使用的时候隐藏具体的实现细节，具体使用的时候又能作为元素出现在程序任意的位置，因此数据也是一种抽象。</p>
-
 <blockquote>
 <p>有过 OO 语言经验的同学 可以借助类的概念理解一下以上的概念</p>
-
 <p>但是<code>类</code>的概念是无法完全概括的哦～</p>
 </blockquote>
-
 <h2 id="数据抽象">数据抽象</h2>
-
 <p>我们从最简单的数据抽象开始，首先说最小的数据抽象集合 —— 序对。</p>
-
 <h3 id="序对">序对</h3>
-
 <p>要实现数据抽象首先要有能把数据打成一个包的方法，我们叫它<code>构造函数</code>，还应该有能把数据从捆中取出来的方法，我们叫他<code>选择函数</code>。</p>
-
 <p>在 Scheme 中提供了能实现这些方法的 API:</p>
-
 <table>
 <thead>
 <tr>
@@ -163,35 +120,26 @@
 <th>Usage</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>( cons p1 p2)</td>
 <td>能把两个参数打包成一个对象</td>
 </tr>
-
 <tr>
 <td>( car x )</td>
 <td>能从 <code>cons</code> 打包出的对象 取出其中的第一个数据</td>
 </tr>
-
 <tr>
 <td>( cdr x )</td>
 <td>能从 <code>cons</code> 打包出的对象 取出其中的第二个数据</td>
 </tr>
 </tbody>
 </table>
-
 <p>对于能非常方便构建 <code>class</code> 或是 <code>struct</code> 这样的数据结构的其他语言的使用者来看，这个序对的作用实在是微乎其微，但是大的抽象模式都是从最小的抽象方式开始的，我们这里使用序对也只是为了演示 Scheme 的抽象能力。</p>
-
 <h3 id="如何定义有理数">如何定义有理数？</h3>
-
 <p>这看起来似乎不是个问题，因为语言都会原生支持各种类型的浮点数，能轻松的用来表示有理数，但是请先忘了有关这方面的知识，单纯考虑当我们的系统只能支持整形数据的时候我们应该怎么表示有理数。</p>
-
 <p>从上一小节的序对的知识出发，我们很容易找到答案，我们可以把有理数的小数点前后的部分，分别用一个整形数据来表示，再把他们用 <code>cons</code> 打包，当进行计算的时候再拆开计算就可以了。</p>
-
 <p>所以我们对于有理数的定义甚至都可以用上面的函数来表示 ：</p>
-
 <table>
 <thead>
 <tr>
@@ -199,27 +147,22 @@
 <th>Usage</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>( make-rat x y )</td>
 <td>生成有理数 x.y</td>
 </tr>
-
 <tr>
 <td>( number bundle )</td>
 <td>获取 x.y 中的 x</td>
 </tr>
-
 <tr>
 <td>( denom bundle )</td>
 <td>获取 x.y 中的 y</td>
 </tr>
 </tbody>
 </table>
-
 <p>写实现也很简单 ：</p>
-
 <pre><code class="language-lisp">; 直接打包
 (define (make-rat x y) 
   (cons x y))
@@ -230,9 +173,7 @@
 (define (number bundle)
   (cdr bundle))
 </code></pre>
-
 <p>我们这样就可以用上面的 API 去实现有理数的四则运算什么的 ：</p>
-
 <pre><code class="language-lisp">(define (add-rat x y)
 	(make-rat (+ (* (numer x) (denom y))
 		(* (numer y) (denom x)))
@@ -243,85 +184,56 @@
 		(* (denom x) (denom y))))
 ; ... 还有很多
 </code></pre>
-
 <p>这样我们会发现 <code>add-rat</code> 、<code>sub-rat</code> 这样的函数作为过程抽象，仅接受我们定义的 <code>有理数</code> 类型 ( 即 <code>cons</code> 包裹的类型 ) 的数据就可以了，我们甚至完全不需要知道有理数到底是什么，只需要把有理数提交给过程，就可以拿到返回的有理数类型的返回结果了。</p>
-
 <p>数据抽象和过程抽象相辅相承，在他们的帮助之下，我们为系统增加了类型，这无疑是一种新的进步，我们可以自己制作类型了。</p>
-
 <h3 id="实现抽象屏障">实现抽象屏障</h3>
-
 <p>刚才的有理数程序可以体现为这样的一张层次图：　</p>
-
-<p><img src="floor.png" alt="floor" /></p>
-
+<p><img alt="floor" src="floor.png"/></p>
 <p>可以看出来，对于不同层次的程序来讲，有理数的意义都是不同的，对于使用的程序来讲，有理数就是一个普通元素，到了需要表示有理数的层次，有理数被分成了分子分母来使用，到了序对表述的层次，有理数是通过某种系统实现，将两个整形数据绑定在一起的。</p>
-
 <p>实现这样的抽象屏障有什么好处？包括但不限于：</p>
-
 <ul>
 <li>不同的部分关联极少，可以独立修改和增添方法。</li>
 <li>修改实现方便，减少错误的发生。</li>
 <li>修改方便的话，我们对设计就也有帮助，一些决策可以推迟。</li>
 </ul>
-
 <blockquote>
 <p>Tips: 修改实现如何体现方便呢？</p>
-
 <p>举个例子，如果我们换了实现 <code>序对</code> 的 API，那我们也只需要修改最下面一层就可以全部修改。相反，如果我们所有的方法都依赖于 最下层实现，比如如果我们的 <code>add-rat</code> 方法里面还是用了 <code>car</code> 、<code>cdr</code> 这样的方法，那我们如果想彻底改掉这套 API 需要修改下方全部的三层实现。</p>
 </blockquote>
-
 <h3 id="数据的过程实现">数据的过程实现</h3>
-
 <p>我们之前使用的有理数程序，仅靠了三个基本过程去定义，而没有看到具体的实现过程，那么“数据到底是什么呢”？</p>
-
 <p>数据的抽象实现有很多种办法，这里我们挑一种不依赖低层实现，尽在 Scheme 中就能实现的方法，通过过程去实现数据抽象：</p>
-
 <pre><code class="language-lisp">; cons 定义
 (define (cons x y)
 	(define (dispatch m)
 		(cond ((= m 0) x)
 			  ((= m 1) y)
-			  (else (error &quot;Argument error &quot;)))))
+			  (else (error "Argument error ")))))
 ; car / cdr 定义
 (define (car z) (z 0))
 (define (cdr z) (z 1))
 </code></pre>
-
 <p>当然 Scheme 中的数据实现肯定不是这么做的，为了效率很定是通过底层实现的。但是从这个例子里我们可以回顾在本书开头的一句话，过程和数据之间没有绝对界限，这里就看到了过程可以直接表示数据的能力。</p>
-
 <blockquote>
 <p>Tips : Church encoding 丘奇计数</p>
-
 <p>看起来很鬼畜，但是可以通过完全通过 $ \lambda $ 演算去实现全部的整数运算系统。</p>
-
 <p>比如说像下图一样，我们用 lambda 的层数去表达数字，还可以通过这个来实现运算。</p>
-
-<p><img src="church.svg" alt="church" /></p>
-
+<p><img alt="church" src="church.svg"/></p>
 <p>Test 2.6 就和这个有关。</p>
 </blockquote>
-
 <h2 id="层次抽象">层次抽象</h2>
-
 <p>我们有了序对的具体实现，但也并不是说我们就只能把两个数据捆绑在一起，我们的 Bundle 也可以作为序对的一个元素出现，这样子我们就可以通过层次结构去实现线性结构，我们通常可以把它们描绘成一个盒图的形式：</p>
-
-<p><img src="pair.png" alt="pair" /></p>
-
+<p><img alt="pair" src="pair.png"/></p>
 <p>我们可以说这种特性是一种闭包性质。</p>
-
 <blockquote>
 <p>Tips 闭包的含义：</p>
-
 <ul>
 <li>书里面的意思应该是说组合数据对象的结果仍能继续组合，这是符合数学含义的意义( list 中的元素在运算下封闭)</li>
 <li><code>Closure</code> 的另一个含义，是指带有自由变量的过程，<code>Closure Function</code> 和普通函数一样拥有作用并且在传递的过程中仍能携带这些自由变元。</li>
 </ul>
 </blockquote>
-
 <h3 id="序列的形成">序列的形成</h3>
-
 <p>从上图可以看出，我们的 <code>Pair</code> 可以通过结成链的形式形成一个线性的序列，实际上这看起来和我们所知道的线性表的实现如出一辙，通过把 <code>cons</code> 过程的层层嵌套我们得到了一个线性表：</p>
-
 <pre><code class="language-lisp">; 通过这样的方式结成链
 (cons 1
       (cons 2
@@ -330,11 +242,8 @@
 ; 当然我们也可以直接使用 list API
 (list 1 2 3)
 </code></pre>
-
 <p>在结成了一个序列之后，我们的过程 <code>car</code> 和 <code>cdr</code> 都有了新的意义，<code>car</code> 可以取出 list 中的第一个元素， 而 <code>cdr</code> 返回的是第一个元素以外的剩余元素所形成的列表。</p>
-
 <p>有了数据表，就可以实现很多常见的表操作了，比如：</p>
-
 <pre><code class="language-lisp">(define (length items)
   	(if (null? items)
   		0
@@ -346,17 +255,12 @@
         (cons (car list1) (append (cdr list1) list2))))
 ; 合并两个数据表
 </code></pre>
-
 <blockquote>
 <p>Tips：数据表在现在流行语言中是常见的数据结构，无论是 CPP STL 里面的 list 还是 Java 中的 List 系列的数据结构都是从 Lisp 的表中吸取了很多的特性。</p>
 </blockquote>
-
 <h3 id="高阶操作和层次结构">高阶操作和层次结构</h3>
-
 <p>一些现代的、支持函数式的语言都提供了类似 <code>map</code> 、<code>reduce</code> 、<code>filter</code> 这些高阶函数的支持，都是实现了一种映射的操作。用其中的 <code>map</code> 举例子，它的实质是提供了一个对所有元素操作的映射，所得到的序列顺序不变。</p>
-
 <p>比如我们可以写一个对每个元素等比例放大的例子：</p>
-
 <pre><code class="language-lisp">(define (scale-list items factor)
     (if (null? items)
         nil
@@ -366,9 +270,7 @@
 (scale-list (list 1 2 3 4 5) 10)
 (10 20 30 40 50)
 </code></pre>
-
 <p>如果我们将这个过程在提高一层抽象我们就可以得到了 <code>map</code> 的定义了：</p>
-
 <pre><code class="language-lisp">(define (map proc items)
     (if (null? items)
         nil
@@ -379,15 +281,10 @@
 (map lambda(x) (* x 10) (list 1 2 3 4 5))
 (10 20 30 40 50)
 </code></pre>
-
 <p><code>map</code> 操作是一个重要的里程碑，这表明了我们可以脱离对序列的具体操作，而专注于对元素的操作上面。映射的层次从元素的等级提升到了表层。</p>
-
 <p>我们可以把本身是元素的节点也替换成 <code>list</code> 去推广这个映射方式，那线性的表就变成了立体的树：</p>
-
-<p><img src="tree.png" alt="tree" /></p>
-
+<p><img alt="tree" src="tree.png"/></p>
 <p>树形结构的便利就很有迹可循了，可以自然地用递归方式处理。仍然使用之前对序列的例子（对序列进行等比例放缩），相应的我们可以写出相应的 Scheme 代码：</p>
-
 <pre><code class="language-lisp">(define (scale-tree tree factor)
     (cond ((null? tree) nil)
         ((not (pair? tree)) (* tree factor))
@@ -397,9 +294,7 @@
 (scale-tree (list 1 (list 2 (list 3 4) 5) (list 6 7)) 10)
 (10 (20 (30 40) 50) (60 70))
 </code></pre>
-
 <p>当然本身这个过程也可以使用 <code>map</code> 进行抽象：</p>
-
 <pre><code class="language-lisp">(define (scale-tree tree factor)
     (map (lambda (sub-tree)
             (if (pair? sub-tree) 
@@ -407,17 +302,11 @@
                 (* sub-tree factor)))
           tree)) 	
 </code></pre>
-
 <p>树本身也可以看做一个序列，我们可以使用 <code>map</code> 映射到子树的每一个节点，然后再分别对每一个节点进行处理，有子树的向下继续递归，叶子就翻倍。</p>
-
 <h3 id="序列操作">序列操作</h3>
-
 <p>我们先举两个例子：</p>
-
-<p><img src="example.png" alt="example" /></p>
-
+<p><img alt="example" src="example.png"/></p>
 <p>这两个问题看起来有很大的不同，但是其实两个过程本身都有一些通性：</p>
-
 <table>
 <thead>
 <tr>
@@ -428,7 +317,6 @@
 <th>选出的数操作</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>求平方和</td>
@@ -437,7 +325,6 @@
 <td>过滤奇数</td>
 <td>平方和</td>
 </tr>
-
 <tr>
 <td>Fib</td>
 <td>枚举所有的 Fib</td>
@@ -447,30 +334,20 @@
 </tr>
 </tbody>
 </table>
-
 <p>可以画成这样的流程图：</p>
-
-<p><img src="lib.png" alt="lib" /></p>
-
+<p><img alt="lib" src="lib.png"/></p>
 <p>上图表现出了一个信息流的传递过程，在程序中表现出这个信息的传递过程，就能让数据操作更为清晰。</p>
-
 <blockquote>
 <p>Tips: 链式调用和流式 API</p>
-
 <p>事实上链式调用和流式 API 在现代的编程中起到很大的作用。无论是 jQuery 还是 Reactive 系的各类 程序库，都使用了这种方式去设计 API。</p>
-
 <p>Tips: 信息流结构</p>
-
 <ul>
 <li>需要注意表示和处理从一个步骤向下一步骤流动的信息</li>
 <li>表适合表示和传递这些信息，通过表操作实现各步处理</li>
 </ul>
 </blockquote>
-
 <h4 id="filter">filter</h4>
-
 <p>Filter 过滤器的实现思路很简单，递归发现不满足条件的跳过，满足条件的继续，最后重整成一个表。</p>
-
 <pre><code class="language-lisp">(define (filter predicate sequence)
     (cond ((null? sequence) nil) ; 不满足的丢掉
           ((predicate (car sequence))
@@ -478,47 +355,34 @@
           		(filter predicate (cdr sequence))))
           (else (filter predicate (cdr sequence))))) 
 </code></pre>
-
 <h4 id="accumulate">accumulate</h4>
-
 <p>累加器之前已经有过介绍了，通过传入操作符，递归使用操作符进行计算。</p>
-
 <pre><code class="language-lisp">(define (accumulate op initial sequence)
     (if (null? sequence)
         initial
         (op (car sequence)
         	(accumulate op initial (cdr sequence)))))
 </code></pre>
-
 <h4 id="enumerate">enumerate</h4>
-
 <p>树和序列的枚举之前都已经出现过了，可以直接使用。</p>
-
 <h4 id="重整序列">重整序列</h4>
-
 <p>重整过的序列操作，就可以通过以上提供的 API 进行整理，我们求一棵树奇数树叶的平方和的过程就可以定义出来了：</p>
-
 <pre><code class="language-lisp">(define (sum-odd-squares tree)
     (accumulate +
                 0
                 (map square
                 	(filter odd? (enumerate-tree tree))))) 
 </code></pre>
-
 <p>我们求  <code>Fib</code>  的程序中也可以通过改变上面这些序列的顺序去表示：</p>
-
 <pre><code class="language-lisp">(define (even-fibs n)
     (accumulate cons
                 nil
                 (filter even?
                 		(map fib (enumerate-interval 0 n))))) 
 </code></pre>
-
 <blockquote>
 <p>Tips : flatmap 的过程</p>
-
 <p>用过使用函数式编程库的人都会很熟悉 flatmap 这个过程，flatmap 被描述为一个映射积累的过程。</p>
-
 <pre><code class="language-lisp">&gt; (define (flatmap proc seq)
 &gt;       (accumulate append nil (map proc seq)))
 &gt; ```
@@ -560,118 +424,79 @@ public abstract class Monoid&lt;T&gt; implement SemiGroup&lt;T&gt; {
 
 // String 的 demo
 public class StringMonoid extend Monid&lt;String&gt; {
-  	protect String identityValue = &quot;&quot;;
+  	protect String identityValue = "";
   	public String append(String a, String b) {
       	return a + b;
   	}
 }
 </code></pre>
 </blockquote>
-
 <p>那我们说<code>StringMonoid</code> 就是一个幺半群的实例。你可以从<code>String</code> 的理解去理解幺半群这个概念，存在幺元（“” 空字符），存在封闭性（合成的字符串对 String 封闭），存在结合律（<code>append</code> 的嵌套使用）。</p>
-
 <h3 id="functor">Functor</h3>
-
 <blockquote>
 <p>Tips 范畴</p>
-
 <p>范畴论中的范畴概念由三部分组成：</p>
-
 <ul>
 <li>对象</li>
 <li>态射</li>
 <li>态射组合</li>
 </ul>
-
 <p>态射就是上图中的 <code>Int =&gt; String</code> 绑定两个对象，从 <code>Int</code> 到 <code>String</code> 。</p>
-
 <p>态射组合是由多个态射组合成的对象</p>
-
 <p>Tips 范畴公理</p>
-
 <ul>
 <li>态射的组合操作要满足结合律</li>
 <li>范畴中任何对象存在单位态射（A =&gt; A / Int =&gt; Int）</li>
 <li>态射在复合操作下是闭合的</li>
 </ul>
 </blockquote>
-
 <p><code>Functor</code> 通常被翻译成<code>函子</code>，函子表示着范畴之间的转换关系，我们可以用这样的图来表示：</p>
-
-<p><img src="Functor.png" alt="functor" /></p>
-
+<p><img alt="functor" src="Functor.png"/></p>
 <p>这里我们假设里面范畴1 里面有两个类型(a 和 b)， $ a =&gt; b $ , 范畴2 里面有两种类型（F a 和 F b），$ Fa =&gt; Fb $ ，这两个范畴之间还存在着映射，$ a =&gt; Fa $ 和 $ b =&gt; Fb $ ，我们就称两个范畴之间的映射是<strong>函子(Functor)</strong> 。</p>
-
 <p>我们可以用 <code>Integer</code> 和 <code>String</code> 之间的关系去更方便的去理解：</p>
-
-<p><img src="Functor_1.png" alt="Functor_1" /></p>
-
+<p><img alt="Functor_1" src="Functor_1.png"/></p>
 <p>这其中 <code>自函子</code>  是一类比较特殊的函子，它是一种将范畴映射到自身的函子：</p>
-
-<p><img src="endofFunctor.png" alt="endof" /></p>
-
+<p><img alt="endof" src="endofFunctor.png"/></p>
 <p>那 <code>Functor(函子)</code> 到底做了一件什么事情呢，我们以<code>functor((Int =&gt; String) =&gt; (List[Int] =&gt; List[String])</code>函子大概做了这样的三件事：</p>
-
 <ul>
 <li>生成出所有元素的态射结果</li>
 <li>对生成的结果执行 F 变化，生成集合的集合</li>
 <li>在自然变换下，将集合的集合合并成一个大的集合</li>
 </ul>
-
 <h3 id="monad">Monad</h3>
-
 <blockquote>
 <p>A monad is just a monoid in the category of endofunctors</p>
 </blockquote>
-
 <p>这说明 Monad 作为一个幺半群，它的元素都是自函子。这个范畴的态射既包含元态射，也包含组合态射。</p>
-
 <p>假设我们现在有一个范畴 <code>Friends</code> ，list本身是一个 Monad:</p>
-
-<pre><code class="language-java">list = [ &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;E&quot;]   
+<pre><code class="language-java">list = [ "A","B","C","D","E","E"]   
 </code></pre>
-
 <p>这个范畴里的<code>态射</code>是<code>findFriend</code> 函数：</p>
-
 <pre><code class="language-java">AFriendList = A.findFriend()
 </code></pre>
-
 <p>我们做的第一步就是生成了所有元素的态射对象的结果，针对每一个人找寻他们的朋友，获得到了每个人的朋友的集合。</p>
-
 <p>然后全体使用 Functor 映射到另一个范畴上生成集合的集合：</p>
-
 <pre><code class="language-java">A =&gt; List[A] // 元素全集
 AFriendList =&gt; List[AFriendList] // 朋友的 list 全集
 </code></pre>
-
 <p>这时候这个 list 的构成是这样的：</p>
-
 <pre><code class="language-java">list = [
   [a - friends],
   [b - friends],
   ...
 ]
 </code></pre>
-
 <p>我们再把这个数组拍成平面的，就获得了最后所求的全部的朋友列表：</p>
-
 <pre><code class="language-java">list = [ a-friends, b-friends ,...] 
 </code></pre>
-
 <p>我们会发现这个操作恰恰和我们之前提到的 <code>flatmap</code> 操作是相同的，我们把某个操作映射到一个集合里面，然后又把所有的结果形成一个集合返回。所以说<strong>Monad 的类型都实现了 <code>flatmap</code> 过程</strong>。</p>
-
 <h2 id="小结">小结</h2>
-
 <p>这一节里面我们学到了和数据抽象和层次抽象的知识，数据的抽象体现在了形成序列和抽象屏障两方面，层次抽象体现在了在高阶过程的定义和通过序列的操作，最后还真对 <code>flatmap</code> 的操作简单的介绍了一些和 Monad (单子)的 知识，下一节我们会看到更为有趣的符号运算和数据的多重表示。</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -684,22 +509,14 @@ AFriendList =&gt; List[AFriendList] // 朋友的 list 全集
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -709,6 +526,5 @@ AFriendList =&gt; List[AFriendList] // 朋友的 list 全集
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

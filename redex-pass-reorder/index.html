@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/redex-pass-reorder/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/redex-pass-reorder/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/redex-pass-reorder/" property="og:url"/>
+<link href="https://lfkdsk.github.io/redex-pass-reorder/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -35,51 +34,25 @@
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>Redex: PassReorder Pipeline - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Redex: PassReorder Pipeline - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="Implement in simple  Pre download universal.apk, mapping.txt, configuration.txt and save in this project. Read the original redex.config , and generate all passes full permutations. Filter out some passes with the wrong relationship (eq: InterDexPass before RegallocPass ) Generate tasks and run them in devbox server.  Result now Currently there are so few passes used in Tik Tok and most of them have relative relationships that there is currently no significant difference." />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+<title>Redex: PassReorder Pipeline - lfkdsk's Blog</title>
+<meta content="Redex: PassReorder Pipeline - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="Implement in simple  Pre download universal.apk, mapping.txt, configuration.txt and save in this project. Read the original redex.config , and generate all passes full permutations. Filter out some passes with the wrong relationship (eq: InterDexPass before RegallocPass ) Generate tasks and run them in devbox server.  Result now Currently there are so few passes used in Tik Tok and most of them have relative relationships that there is currently no significant difference." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -87,68 +60,51 @@
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Redex: PassReorder Pipeline</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2021-10-14 18:30:14 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Redex: PassReorder Pipeline</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2021-10-14 18:30:14 UTC">
                   14 Oct 2021
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
-<p><img src="im-1.png" alt="" />
-<img src="im-2.png" alt="" />
-<img src="im-3.png" alt="" /></p>
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<p><img alt="" src="im-1.png"/>
+<img alt="" src="im-2.png"/>
+<img alt="" src="im-3.png"/></p>
 <h2 id="implement-in-simple">Implement in simple</h2>
-
 <ol>
 <li>Pre download universal.apk, mapping.txt, configuration.txt and save in this project.</li>
 <li>Read the original redex.config , and generate all passes full permutations.</li>
 <li>Filter out some passes with the wrong relationship (eq: InterDexPass before RegallocPass )</li>
 <li>Generate tasks and run them in devbox server.</li>
 </ol>
-
 <h2 id="result-now">Result now</h2>
-
 <p>Currently there are so few passes used in Tik Tok and most of them have relative relationships that there is currently no significant difference.</p>
-
 <h2 id="future">Future</h2>
-
 <ul>
 <li>Change full permutation to a heuristic algorithm or machine learning algorithm</li>
 </ul>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -161,22 +117,14 @@
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -186,6 +134,5 @@
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/flutter-for-web-compile/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/flutter-for-web-compile/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/flutter-for-web-compile/" property="og:url"/>
+<link href="https://lfkdsk.github.io/flutter-for-web-compile/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -39,55 +38,29 @@
       "keywords" : [ "Flutter","Compile","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>FlutterWeb 编译流程分析 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="FlutterWeb 编译流程分析 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="本篇文章你会学到
+<title>FlutterWeb 编译流程分析 - lfkdsk's Blog</title>
+<meta content="FlutterWeb 编译流程分析 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="本篇文章你会学到
  Flutter Web 的编译流程 dart compiler 使用方案 compiler 模块实现分析（next chapter）  前言 Flutter for Web 是 Flutter 框架在 Web 平台的支持方案，在很长一段时间一直是独立于 Flutter 主分支之外进行独立开发的，直到 19 年九月才合入主分支，目前仍在 Flutter 的 beta channel 之中（早期使用的案例可以我之前的调研报告、文章）。下图为 Flutter For Web 的实现方案，之前已经写过文章分析过了：
 与之前 preview 版本较为复杂的配置流程（flutter 所有库都要切到 web branch 之中）不同，目前版本的 FlutterWeb 可以被融入了 flutter_tools 处理流程之中了，并且 release 模式也能够提供完整的可独立运行的 dump 出的 web 程序。
  本篇文章我们就来分析 FlutterWeb 完整的编译处理流程，原本这篇文章也包含对 dart2js 部分的实现分析，但是由于篇幅过长不太容易在有一篇文章之中解释清楚。因此打算单独开一个关于 Dart 编译器设计的系列文章，从内部 kernel 出发到，前端的 front_end 的实现，compiler 模块的构成，包含从算法基础到实现引申的全部内容敬请期待。
- FlutterWeb 编译流程 整体结构 熟悉 flutter_tools 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，flutter_tools 的命令利用对应的处理框架进行了比较有效的解耦。在 lib/src 文件夹下增加了 web 的 实现 。具体新增的文件列表如下图：" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+ FlutterWeb 编译流程 整体结构 熟悉 flutter_tools 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，flutter_tools 的命令利用对应的处理框架进行了比较有效的解耦。在 lib/src 文件夹下增加了 web 的 实现 。具体新增的文件列表如下图：" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -95,63 +68,46 @@
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">FlutterWeb 编译流程分析</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2020-03-06 15:09:37 CST">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">FlutterWeb 编译流程分析</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2020-03-06 15:09:37 CST">
                   06 Mar 2020
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <p><strong>本篇文章你会学到</strong></p>
-
 <ul>
 <li>Flutter Web 的编译流程</li>
 <li>dart compiler 使用方案</li>
 <li>compiler 模块实现分析（next chapter）</li>
 </ul>
-
 <h2 id="前言">前言</h2>
-
 <p>Flutter for Web 是 Flutter 框架在 Web 平台的支持方案，在很长一段时间一直是独立于 Flutter 主分支之外进行独立开发的，直到 19 年九月才合入主分支，目前仍在 Flutter 的 beta channel 之中（早期使用的案例可以我之前的调研报告、文章）。下图为 Flutter For Web 的实现方案，之前已经写过文章分析过了：</p>
-
-<p><img src="flutter-web.png" alt="web" /></p>
-
+<p><img alt="web" src="flutter-web.png"/></p>
 <p>与之前 preview 版本较为复杂的配置流程（flutter 所有库都要切到 web branch 之中）不同，目前版本的 FlutterWeb 可以被融入了 <code>flutter_tools</code> 处理流程之中了，并且 release 模式也能够提供完整的可独立运行的 dump 出的 web 程序。</p>
-
 <blockquote>
 <p>本篇文章我们就来分析 FlutterWeb 完整的编译处理流程，原本这篇文章也包含对 <code>dart2js</code> 部分的实现分析，但是由于篇幅过长不太容易在有一篇文章之中解释清楚。因此打算单独开一个关于 <code>Dart</code> 编译器设计的系列文章，从内部 <code>kernel</code> 出发到，前端的 <code>front_end</code> 的实现，<code>compiler</code> 模块的构成，包含从算法基础到实现引申的全部内容敬请期待。</p>
 </blockquote>
-
 <h2 id="flutterweb-编译流程">FlutterWeb 编译流程</h2>
-
 <h3 id="整体结构">整体结构</h3>
-
 <p>熟悉 <code>flutter_tools</code> 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，<code>flutter_tools</code> 的命令利用对应的处理框架进行了比较有效的解耦。在 <code>lib/src</code> 文件夹下增加了 <code>web</code> 的 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/tree/packages/flutter_tools/lib/src/web">实现</a> 。具体新增的文件列表如下图：</p>
-
 <pre><code>├── bootstrap.dart
 ├── chrome.dart
 ├── compile.dart
@@ -161,9 +117,7 @@
 ├── web_validator.dart
 └── workflow.dart
 </code></pre>
-
 <p>主要的几个文件内容的功能如下：</p>
-
 <ul>
 <li>bootstrap` 提供了一个简单的生成模板生成编译流程的插入入口。</li>
 <li><code>chrome</code> 主要是处理了开启启动 chrome 浏览器的相关功能。</li>
@@ -171,21 +125,13 @@
 <li><code>web_device</code> ，<code>web_runner</code> 将 Chrome mock 成一个启动设备。</li>
 <li><code>compile</code> 模块处理了 web 的编译的处理流程的简单封装。</li>
 </ul>
-
 <h3 id="编译流程">编译流程</h3>
-
 <p>通过对 <code>compile</code> 文件的继续分析，实际上的 <code>BuildTarget</code> 都存储在 <code>lib/src/build_system</code> 之中 <a href="https://sourcegraph.com/github.com/flutter/flutter@fabeb2a16f1d008ab8230f450c49141d35669798/-/blob/packages/flutter_tools/lib/src/build_system/targets/web.dart#L16">处理</a> 。关于 build target 的实现方案，其实和 Dart Compiler 内部的 compile target 的设计方案有异曲同工之妙（不过因为 compiler 里面的部分内容比较私货，如果可以打通编译链的话也有一定的好处）。</p>
-
 <p>其中包含四个主要的 <code>Target</code> :</p>
-
-<p><img src="streams.jpg" alt="" /></p>
-
+<p><img alt="" src="streams.jpg"/></p>
 <p>四个流程都会在 <code>.dart_tools</code> 的构建目录生成这些模块的临时文件，并且在最后才会讲最后可用的文件归入 <code>build/web</code> 的目录之中。</p>
-
 <h4 id="webentrypointer">WebEntryPointer</h4>
-
 <p>顾名思义这个 Target 生成了 Web 应用程序的 Dart 侧入口，这个只是在运行 FlutterWeb 能用到的流程。通过简单地字符串拼接生成了类似如下的入口：</p>
-
 <pre><code class="language-dart">import 'dart:ui' as ui;
 import 'package:myapp/main.dart' as entrypoint;
 Future&lt;void&gt; main() async {
@@ -195,17 +141,11 @@ Future&lt;void&gt; main() async {
   entrypoint.main();
 }
 </code></pre>
-
 <p>这里把我们编写的 Flutter 部分的 Main 入口作为 <code>entrypointer</code> 引入重新封装了启动部分，自动帮忙增加了 wrapper 来初始化 web 平台的一些初始化操作。这个思路也可以借鉴到开发其他的部分诸如开发 AOP 部分，mock 一个 wrapper 的部分来进行一些初始化操作，当然直接在 <code>flutter_tools</code> 植入 Transformers 是最为合适了。</p>
-
 <p>这其中生成了 <code>web_entrypoint.stamp</code> 模块记录了生成的输入以及输出的主模块文件路径。</p>
-
 <h4 id="dart2js">Dart2JS</h4>
-
 <p>Dart Compiler 模块最重要的一个产出使用就是 <code>dart2js</code> 的功能。这个 Compiler 的最初的设计模式其实是为了多个编译器后端的设计所产出的，曾经可选的编译器后端有 dart (dart2dart), dartino (dart 在 arduino 上的实验方案)，dvm (llvm backend) 等等，不过这些项目都在 2015 ~ 2016 年左右因为各种原因所取消了。</p>
-
 <p>纵观 Dart Compiler 的编译器后端设计，其实还是有个不错的架构设计，多 Backend 的输出也比较符合业界习惯（比如主要 backend 在 js 上的 Haskell 方言 PureScript，本身有非常多的其他 backends）。不过可惜的是 Dart 的大多数 backend 都被砍掉了，目前只有 dump 到 js 的方案保存，这也只能说是非战之罪吧，并非是那些 backends 不靠谱，而是工程量太多实际情况也很难做。<strong>就如卷首语一样，关于 Dart Compiler 的话题还有很多可写可聊的，之后也会出专题系列文章来</strong></p>
-
 <pre><code class="language-dart">    final ProcessResult result = await globals.processManager.run(&lt;String&gt;[
       globals.artifacts.getArtifactPath(Artifact.engineDartBinary),
       globals.artifacts.getArtifactPath(Artifact.dart2jsSnapshot),
@@ -230,41 +170,26 @@ Future&lt;void&gt; main() async {
       environment.buildDir.childFile('main.dart').path,
     ]);
 </code></pre>
-
 <p>这些复杂的都不谈，先来关注 Dart2JS 这个 Build Target，其实其中的核心部分就是这段。这里的处理很直球的直接 call process 了，如果能直接调用 Dart Compiler 的 dart2js target 其实也能完成这样的实现。这里创建了一个新的 process 来运行 dart2js ，处理的部分包括部分 Flutter Framework 的部分、<code>.packages</code> 索引到的模块（即我们依赖的第三方程序），以及我们实例程序之中的 Dart 文件。并将所有的 codegen 产物生成了一个文件 <code>main.min.js</code> 文件。</p>
-
 <blockquote>
 <p>其实这里应该还没有做好足够的优化，因为其实可以筛选所有实际使用到的 Dart 文件这样最终生成的产物的 size 也会有很大程度的缩减，不过由于获取 imports 目前可能也需要 compiler 进行预处理，可能会消耗编译时间换取空间，具体如何实现可能还要具体评估。</p>
 </blockquote>
-
 <p>不过目前涉及到哪些 Flutter Framework 的部分是通过 <code>flutter/bin/cache/flutter_web_sdk/libraries.json</code> 这个文件是通过 <code>libraries.yaml</code> 来进行描述的，其中索引到了生成的具体模块和文件。</p>
-
 <p>在完成了这个步骤之后程序生成了 <code>main.min.js</code> 以及对应的 <code>mian.min.js.map</code> 等对应的 map 文件，除此以外还 dump 出了类似下图的 <code>main.dart.js.deps</code> ，其中记录了 dart2js 过程索引到的所有 dart 文件的绝对路径：</p>
-
-<p><img src="maindeps.png" alt="main deps" /></p>
-
+<p><img alt="main deps" src="maindeps.png"/></p>
 <p>以及它的路径压缩的简单版本 <code>dart2js.d</code>。</p>
-
 <h4 id="web-release">Web Release</h4>
-
 <p>重要的 codegen 部分已经过去了，Web Release 的部分主要的部分就是读取 <code>assets</code> 模块的文件数据，dump 生成了 <code>flutter_assets.d</code> 记录了所有的文件路径。并且将之前生成的 <code>main.dart</code> 入口，生成的 js 部分，以及 <code>assets</code> 下的相关资源。最后所有的资源路径都会统一被记录到 <code>web_assets.d</code> 文件之中。</p>
-
 <p>此时的主要的 Target 都做完了，我们现在生成的目标程序（位于 <code>build/web</code>）已经足够直接运行了。实时证明 dump 出来的文件并不需要 Dart 的 server 再做什么处理了，因为之前所说的 <code>devfs</code> 也不过就是开了个普通的 http server 而已。</p>
-
 <p>哪怕在 <code>build/web</code> 直接使用或是通过关闭 Chrome 的本地跨域检查都可以直接使用：</p>
-
 <pre><code class="language-python"># py3
 python -m http.server 8000
 # just run in chrome (mac ver.)
 open /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --allow-file-access-from-files
 </code></pre>
-
-<p><img src="webpage.png" alt="" /></p>
-
+<p><img alt="" src="webpage.png"/></p>
 <h4 id="webserviceworker">WebServiceWorker</h4>
-
 <p>最后的 WebService Worker 流程也非常简单，直接通过字符串拼接大法生成了 ServiceWorker 用于生成 PWA 应用，其中生成了每个文件到 MD5 的 map 信息：</p>
-
 <pre><code class="language-dart">    final Map&lt;String, String&gt; uriToHash = &lt;String, String&gt;{
       for (File file in contents)
         // Do not force caching of source maps.
@@ -273,31 +198,23 @@ open /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --all
           md5.convert(await file.readAsBytes()).toString(),
     };
 </code></pre>
-
 <p>生成结果类似于：</p>
-
 <pre><code class="language-dart">const RESOURCES = {
-&quot;/index.html&quot;: &quot;61b7719527881ef63ebfbdfb6c63c83d&quot;,
-&quot;/main.dart.js&quot;: &quot;41066c43b06e985269386e7a2356a89c&quot;,
-&quot;/manifest.json&quot;: &quot;90429e89de58cfca8f025ed8b460774a&quot;,
-&quot;/assets/LICENSE&quot;: &quot;1a80be6c5724a31e6f9c9e06dba53b63&quot;,
-&quot;/assets/AssetManifest.json&quot;: &quot;2efbb41d7877d10aac9d091f58ccd7b9&quot;,
+"/index.html": "61b7719527881ef63ebfbdfb6c63c83d",
+"/main.dart.js": "41066c43b06e985269386e7a2356a89c",
+"/manifest.json": "90429e89de58cfca8f025ed8b460774a",
+"/assets/LICENSE": "1a80be6c5724a31e6f9c9e06dba53b63",
+"/assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
 // ...
 };
 </code></pre>
-
 <h2 id="总结">总结</h2>
-
 <p>本篇文章讲解了 FlutterWeb 的过程是如何融合到原有的 Flutter 编译流程，并且详细梳理了 dart2js 以及在全链路的 compile targets 上是如何进行的资源处理代码生成，通过这些知识我们对多端一体化的设计方案有了一定程度的祛眛。不过从 FlutterWeb 的角度来看，也只能如同管中窥豹的一瞥 Flutter、Dart 的 Compiler 流程与设计方案。之后还会推出针对 Dart Compiler 编译器设计的相关文章，敬请期待。</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -310,22 +227,14 @@ open /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --all
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -335,6 +244,5 @@ open /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --all
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

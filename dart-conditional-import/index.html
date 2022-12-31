@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/dart-conditional-import/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/dart-conditional-import/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/dart-conditional-import/" property="og:url"/>
+<link href="https://lfkdsk.github.io/dart-conditional-import/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -37,53 +36,27 @@ export 'src/none.dart' // Stub implementation if (dart.",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>CompilerDev: How to impl conditional-import in Dart ? - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="CompilerDev: How to impl conditional-import in Dart ? - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="Background  Dart Conditional Import official documentation:https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files
+<title>CompilerDev: How to impl conditional-import in Dart ? - lfkdsk's Blog</title>
+<meta content="CompilerDev: How to impl conditional-import in Dart ? - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="Background  Dart Conditional Import official documentation:https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files
  Dart Conditional Import itself is a syntax element that exists in Dart 1 and 2. It used to support command line control on the Dart side. However, in the Compiler FrontEnd after Dart 2, this function is converged to only support the check scheme of dart.library, which is used for judging the Flutter web environment:
-export &#39;src/none.dart&#39; // Stub implementation if (dart." />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+export 'src/none.dart' // Stub implementation if (dart." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -91,114 +64,80 @@ export &#39;src/none.dart&#39; // Stub implementation if (dart." />
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">CompilerDev: How to impl conditional-import in Dart ?</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2020-10-27 07:59:17 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">CompilerDev: How to impl conditional-import in Dart ?</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2020-10-27 07:59:17 UTC">
                   27 Oct 2020
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <h2 id="background">Background</h2>
-
 <blockquote>
 <p>Dart Conditional Import official documentation:<a href="https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files">https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files</a></p>
 </blockquote>
-
 <p>Dart Conditional Import itself is a syntax element that exists in Dart 1 and 2. It used to support command line control on the Dart side. However, in the Compiler FrontEnd after Dart 2, this function is converged to only support the check scheme of dart.library, which is used for judging the Flutter web environment:</p>
-
 <pre><code>export 'src/none.dart' // Stub implementation
     if (dart.library.io) 'src/io.dart' // dart:io implementation
     if (dart.library.html) 'src/html.dart'; // dart:html implementation
 </code></pre>
-
 <p>As shown above, when io is in stock, import<code>src/io.dart</code>Files, and import when in a web environment<code>html</code>The corresponding warehouse.</p>
-
 <p>Conditional Import can be effectively used as a Dart Compiler engine precompilation reference function, which can determine the reference logic and order of some code at the compilation time, which is very useful. Therefore, after _1-20, we have improved the user-defined function of Conditional Import through customized modifications for Compiler.</p>
-
 <h3 id="introduction-to-custom-conditional-import">Introduction to Custom Conditional Import</h3>
-
 <blockquote>
 <p>The following Conditional Import uses the Hook Coverage use case.</p>
 </blockquote>
-
 <p>Here is a use case of Conditional import under Hook Plugin, see [Byte Dart Hook Stake Coverage SDK Access Documentation]()</p>
-
 <pre><code>import 'package:hook_coverage/empty.dart'
     if (condition.hooked) 'package:hook_coverage/hook_coverage.dart';
 </code></pre>
-
 <p>The precompilation semantics of the above code are:</p>
-
 <ul>
 <li><strong>Default import in code</strong> <code>package:hook_coverage/empty.dart</code>Such a near-empty code file.</li>
 <li>And when the user-defined conditions, namely<code>condition.hooked</code>When the value is true,<strong>Turn to import</strong> <code>package:hook_coverage/hook_coverage.dart';</code>Such a file.</li>
 </ul>
-
 <blockquote>
 <p>In this way, users can either import empty when not passing conditions without affecting normal program development and packaging, and the code related to Coverage is not processed at the compilation time in the TFA of AOT, so it will not be entered into the final result product. It will not affect the package size and running efficiency when the Coverage function is not turned on.</p>
 </blockquote>
-
 <h3 id="custom-conditional-import-usage">Custom Conditional Import Usage</h3>
-
 <p>Above<code>condition.hooked</code>Is a condition that can be supported on the command line and configuration files. If there is no relevant condition injection, it means the default is false:</p>
-
 <ol>
 <li>#### Declare macro conditions in pubspec.yaml</li>
 </ol>
-
-<!---->
-
+<!-- -->
 <pre><code>conditions:
  condition.hooked: true
 </code></pre>
-
 <p>Remember that all conditions must be based on<code>condition.</code>As a declared constraint at the beginning, the value can be set to true or false. Conditions that will not change for a long time are recommended to be placed here for processing.</p>
-
 <ol>
 <li>#### Declare macro conditions on the command line</li>
 </ol>
-
-<!---->
-
+<!-- -->
 <pre><code>flutter run --conditions condition.hooked=true,conditions.xxxx=false
 </code></pre>
-
 <p>As shown above, we can also declare conditions on any command line of flutter, and multiple conditions can be declared at the same time (use<code>,</code>As a dividing line).<strong>The conditions of the command line can coincide with the conditions of the configuration file, and the conditions of the command line will override the conditions in the configuration file.</strong></p>
-
 <h2 id="use-scenario">Use scenario</h2>
-
 <h3 id="hook-plugin-scene-adaptation-scheme">Hook Plugin scene adaptation scheme</h3>
-
 <blockquote>
 <p>See the above and,[Byte Dart Hook Stake Coverage SDK Access Documentation]() 。</p>
 </blockquote>
-
 <p>The access scenario of the Hook Plugin is shown in the following code:</p>
-
 <pre><code>import 'package:hook_coverage/empty.dart'
     if (condition.hooked) 'package:hook_coverage/hook_coverage.dart';
 
@@ -208,16 +147,12 @@ void main() {
   runApp(MyApp());
 } 
 </code></pre>
-
 <p>In addition to the introduction of Conditional Import explained here, we also encountered the need<code>uploader.start(</code><code>Duration</code><code>(seconds: 30));</code>To register the statement of uploading Coverage regularly, here because there may be two import relationships:</p>
-
 <ol>
 <li>Empty files are introduced by default</li>
 <li>Hook open introduction<code>hook_coverage</code>File introduction</li>
 </ol>
-
 <p>Because the main function we include in<code>hook_coverage</code>Among, therefore<code>empty</code>We also saved an implementation for compatibility:</p>
-
 <pre><code>library empty;
 
 
@@ -235,13 +170,9 @@ class Any {
 
 final dynamic uploader = Any();
 </code></pre>
-
-<p>We use dynamic objects to call mechanisms that can call methods that do not exist at compile time, and overload the object&rsquo;s<code>noSuchMethod</code>The method allows us to<code>empty</code>On the premise of being introduced, it can also be introduced into the corresponding uploader object and call the corresponding method.</p>
-
+<p>We use dynamic objects to call mechanisms that can call methods that do not exist at compile time, and overload the object’s<code>noSuchMethod</code>The method allows us to<code>empty</code>On the premise of being introduced, it can also be introduced into the corresponding uploader object and call the corresponding method.</p>
 <h3 id="adaptation-of-ume-usage-scenarios">Adaptation of UME usage scenarios</h3>
-
 <p>UME is a debugger tool during Flutter operation. It provides rich functions such as network grab, exception collection, ruler, performance billboard, etc. When accessing, due to the need to display floating windows, FloatingWidgets need to be nested on the outermost Widget:</p>
-
 <pre><code>void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
@@ -251,13 +182,10 @@ final dynamic uploader = Any();
   });    
 }
 </code></pre>
-
 <blockquote>
 <p>FloatingWidgets are nested on top of the actual App Widget as above.</p>
 </blockquote>
-
 <p>However, UME is used by debug tools during debugging and should not be taken online. Therefore, we need to implement a method that can support deleting the corresponding import in the TFA process and prevent UME-related code from being included in the final packaging process. Therefore, we need to provide an empty FloatingWidget implementation to shield UME-related references:</p>
-
 <pre><code>
 
 class FloatingWidget extends StatelessWidget {
@@ -276,23 +204,17 @@ To return the child;
 }
 }
 </code></pre>
-
 <p>For example, as above, we simply wrote a nested widget to handle it and directly return the nested Child object. Even we can not introduce an additional class, for example, we modify the access method of the UME to a static method:</p>
-
 <pre><code>Widget addUMEWidget(Widget child, bool enable) {
     return FloatingWidget(child, enable: enable);
 }
 </code></pre>
-
 <p>It also provides an empty method implementation, assuming that it is stored in<code>'package:xg_ume/empty.dart</code>Among:</p>
-
 <pre><code>Widget addUMEWidget(Widget child, bool enable) {
     return child;
 }
 </code></pre>
-
 <p>Therefore, the scheme we introduced can be modified to:</p>
-
 <pre><code>import 'package:xg_ume/empty.dart'
     if (condition.open_ume) 'package:xg_ume/xg_ume.dart';
 
@@ -301,25 +223,16 @@ void main() {
    return runApp(addUMEWidget(App(), true));
 }
 </code></pre>
-
 <p>When you need to compile UME (debug mode):</p>
-
 <pre><code>flutter run --conditions condition.open_ume=true
 </code></pre>
-
 <p>When you need a release package:</p>
-
 <pre><code>Flutter build apk // default pass parameter is false, you can also manually specify false
 </code></pre>
-
-<p>Won&rsquo;t introduce<code>'package:xg_ume/xg_ume.dart'</code>The header file and related code will not enter the final product.</p>
-
+<p>Won’t introduce<code>'package:xg_ume/xg_ume.dart'</code>The header file and related code will not enter the final product.</p>
 <h3 id="multi-version-engine-usage-scenarios">Multi-version engine usage scenarios</h3>
-
 <p>From the above discussion, we can see that Conditional Import itself can be used as a syntax-supported ** precompilation macro in the Dart layer<strong>, so we can flexibly provide in Flutter Framework</strong>** Conditions of the current version to provide adaptation schemes for different scenarios and corresponding version control mechanisms.</p>
-
 <p>For example, in the 1.12.13 engine, we have these conditions</p>
-
 <pre><code class="language-dart">        final conditionsFile = FlutterProject.current().directory.childFile('build/conditions');
         String conditions;
         final List&lt;String&gt; allConditions = [
@@ -336,42 +249,31 @@ void main() {
         }
         conditions = allConditions.join(',');
 </code></pre>
-
 <p>_1= true is also a specific scenario of the 1.12.13 version of the engine. When our engine is upgraded to 1.20, there will be:</p>
-
 <pre><code>condition.1.12.13 = false
 condition.1.20 = true
 </code></pre>
-
 <p>The above conditions are provided by default in the engine, so we can provide version-specific behaviors in the engine. For example, we can use the same as above for ** UME culling scheme and Hook Plugin culling scheme **<code>1.12.13</code>Filter and develop specific versions as adaptation conditions for projects.</p>
-
 <h2 id="realization-principle">Realization principle</h2>
-
 <p>Understand the current scenarios that Conditional Import can use and has used, including but not limited to:</p>
-
 <ol>
 <li>Opening and closing of key modules</li>
 <li>Hook function switch</li>
 <li>Distinguish between different channel products and multi-flavor channel products for debug release channel products for debug release</li>
 <li>Control the adaptation of basic libraries and multi-version engines of business codes.</li>
 </ol>
-
-<p>In the following section, let&rsquo;s talk about how we implemented the Conditional Import scheme, including how the original functions are, and how we modified the Dart compiler in Flutter to support our above scheme.</p>
-
+<p>In the following section, let’s talk about how we implemented the Conditional Import scheme, including how the original functions are, and how we modified the Dart compiler in Flutter to support our above scheme.</p>
 <h3 id="original-logic">Original logic</h3>
-
 <p>According to the function of Conditional Import itself, it is in a compilation selection function scenario, that is, above Dart 2.x, it is only used to determine whether the current environment is the Dart default environment or the Web (because the libraries used will be different).</p>
-
 <p>Therefore, according to the familiar Dart Compiler itself, it can be determined that this part of the functional logic should exist in front_end part of the Dart Compiler, belonging to the front end of the compiler.</p>
-
 <pre><code>// pkg/front_end/lib/src/fasta/source/outline_builder.dart
 @override
 void endConditionalUri(Token ifKeyword, Token leftParen, Token equalSign) {
-  debugEvent(&quot;EndConditionalUri&quot;);
+  debugEvent("EndConditionalUri");
   int charOffset = popCharOffset();
   String uri = pop();
   if (equalSign != null) popCharOffset();
-  String condition = popIfNotNull(equalSign) ?? &quot;true&quot;;
+  String condition = popIfNotNull(equalSign) ?? "true";
   Object dottedName = pop();
   if (dottedName is ParserRecovery) {
     push(dottedName);
@@ -380,18 +282,14 @@ void endConditionalUri(Token ifKeyword, Token leftParen, Token equalSign) {
   }
 }
 </code></pre>
-
 <p>You can see that in this callback of fasta (the front end of the Dart compiler), you are actually analyzing the syntax of import if to build the AST:</p>
-
 <pre><code>import 'one.dart' if (condition) 'other.dart';
 </code></pre>
-
 <p>This syntax function, and if-condition is successfully collected, a Configuration configuration item will be generated, including the location, name, condition, and corresponding Uri. When the import element is finally processed, there will be such logic:</p>
-
 <pre><code>// pkg/front_end/lib/src/fasta/source/outline_builder.dart
 @override
 void endImport(Token importKeyword, Token semicolon) {
-  debugEvent(&quot;EndImport&quot;);
+  debugEvent("EndImport");
   List&lt;Combinator&gt; combinators = pop();
   bool isDeferred = pop();
   int prefixOffset = pop();
@@ -415,9 +313,7 @@ void endImport(Token importKeyword, Token semicolon) {
       importIndex++);
 }
 </code></pre>
-
 <p>And actually<code>addImport</code>We will find out how this Conditional Import is implemented in the logic of:</p>
-
 <pre><code class="language-dart">void addImport(
     List&lt;MetadataBuilder&gt; metadata,
     String uri,
@@ -444,69 +340,55 @@ void endImport(Token importKeyword, Token semicolon) {
       nativeImportPath: nativePath));
 }
 </code></pre>
-
 <p>We will find that the actual import logic, including the native method of dart-ext, is also uniformly implemented in this method, while our positive main Conditional Import is limited to execution as a compilation condition, because its execution logic will affect the compiler Load logic of the program library.</p>
-
 <p>Next we look at the actual<code>lookupImportCondition</code>The logic is as follows, very rough:</p>
-
 <pre><code>    String lookupImportCondition(String dottedName) {
-      const String prefix = &quot;dart.library.&quot;;
-      if (!dottedName.startsWith(prefix)) return &quot;&quot;;
+      const String prefix = "dart.library.";
+      if (!dottedName.startsWith(prefix)) return "";
       dottedName = dottedName.substring(prefix.length);
-      if (!loader.target.uriTranslator.isLibrarySupported(dottedName)) return &quot;&quot;;
+      if (!loader.target.uriTranslator.isLibrarySupported(dottedName)) return "";
 
 
       LibraryBuilder imported =
-          loader.builders[new Uri(scheme: &quot;dart&quot;, path: dottedName)];
+          loader.builders[new Uri(scheme: "dart", path: dottedName)];
 
 
       if (imported == null) {
         LibraryBuilder coreLibrary = loader.read(
             resolve(
-                this.uri, new Uri(scheme: &quot;dart&quot;, path: &quot;core&quot;).toString(), -1),
+                this.uri, new Uri(scheme: "dart", path: "core").toString(), -1),
             -1);
         imported = coreLibrary
             .loader.builders[new Uri(scheme: 'dart', path: dottedName)];
       }
-      return imported != null ? &quot;true&quot; : &quot;&quot;;
+      return imported != null ? "true" : "";
     }
 </code></pre>
-
 <p>First of all, because only to check the function load, all native conditions need to be used<code>dart.library</code>The prefixes are described, and there is a list of those libraries in the detection that support this way of introduction.</p>
-
 <pre><code>import '_binding_io.dart' if (dart.library.html) '_binding_web.dart' as binding;
 </code></pre>
-
-<p>Use immediately<code>LibraryBuilder</code>To determine whether the current Dart library (such as html library) has been introduced, use this method to determine whether the current environment is Web, because the web has html libraries that ordinary Dart programs do not have&hellip; (Magical thinking).</p>
-
+<p>Use immediately<code>LibraryBuilder</code>To determine whether the current Dart library (such as html library) has been introduced, use this method to determine whether the current environment is Web, because the web has html libraries that ordinary Dart programs do not have… (Magical thinking).</p>
 <p>So the result is to use it if not<code>_binding_web</code>From now on, according to the priority of import if, we can also write the case of n + condition superposition.</p>
-
 <h3 id="developing-customizable-conditional-import-features">Developing Customizable Conditional Import Features</h3>
-
 <h4 id="custom-conditional-judgment">Custom conditional judgment</h4>
-
-<p>From the principle of secondary development for Dart Compiler, we&rsquo;d better not modify the syntax logic of Dart itself, otherwise it will cause incompatibility of business-side code logic. Therefore, for us, Conditional Import itself supports the collection of this syntax, and we can completely reuse this syntax logic, so we can skip the collection function of Configuration and directly develop the if-condition judgment function:</p>
-
+<p>From the principle of secondary development for Dart Compiler, we’d better not modify the syntax logic of Dart itself, otherwise it will cause incompatibility of business-side code logic. Therefore, for us, Conditional Import itself supports the collection of this syntax, and we can completely reuse this syntax logic, so we can skip the collection function of Configuration and directly develop the if-condition judgment function:</p>
 <pre><code>    final Map&lt;String, String&gt; importedConditions = &lt;String, String&gt;{};
 
 
     String lookupUdfImportCondition(String dottedName) {
-      const String prefix = &quot;condition.&quot;;
-      if (!dottedName.startsWith(prefix)) return &quot;&quot;;
+      const String prefix = "condition.";
+      if (!dottedName.startsWith(prefix)) return "";
       final result = importedConditions[dottedName];
       if (result == null) {
-        return &quot;&quot;;
+        return "";
       }
 
 
       return result;
     }
 </code></pre>
-
-<p>Referring to the official implementation plan, we also implemented a User-Define lookup logic. We assume that some user-defined condition logic can be collected by passing in externally and stored in a<code>importedConditions</code>In the Map, when lookup, we look for whether these logic is true or false and return &ldquo;true&rdquo; or &ldquo;false.&rdquo;</p>
-
-<p>We then pass this part of the logic into the&rsquo;addImport &lsquo;to make calls, so that our conditional judgment will be searched and executed after the system&rsquo;s Panu single logic. If the running logic is true, the specific import Uri of the import statement will be replaced. The actual precompilation macro function is also imminent:</p>
-
+<p>Referring to the official implementation plan, we also implemented a User-Define lookup logic. We assume that some user-defined condition logic can be collected by passing in externally and stored in a<code>importedConditions</code>In the Map, when lookup, we look for whether these logic is true or false and return “true” or “false.”</p>
+<p>We then pass this part of the logic into the’addImport ‘to make calls, so that our conditional judgment will be searched and executed after the system’s Panu single logic. If the running logic is true, the specific import Uri of the import statement will be replaced. The actual precompilation macro function is also imminent:</p>
 <pre><code class="language-dart">void addImport(
     List&lt;MetadataBuilder&gt; metadata,
     String uri,
@@ -534,24 +416,17 @@ void endImport(Token importKeyword, Token semicolon) {
   }
 
 </code></pre>
-
 <h4 id="how-to-incoming-conditions">How to Incoming Conditions?</h4>
-
 <p>In the case that the logic of the Compiler processing imports can run smoothly, we have to solve a problem. What if we pass these Conditions from the outside world? Here we give two cases of passing custom Conditions as described in the above introduction:</p>
-
 <ul>
 <li>Use<code>pubspec.yaml</code>For persistent parameter configuration.</li>
 <li>Use command line<code>--conditions</code>Passing parameters on the command line is easier to configure on the CI.</li>
 </ul>
-
 <p>The implementation of these two schemes is not troublesome, we can explain them together.</p>
-
 <ol>
 <li><code>pubspec.yaml</code>Biography:</li>
 </ol>
-
-<p>Before that, we can add it to Dart&rsquo;s command line<code>pubspec</code>The specific location of the file is used for persistence and reading configuration parameters, so we just need to read it again:</p>
-
+<p>Before that, we can add it to Dart’s command line<code>pubspec</code>The specific location of the file is used for persistence and reading configuration parameters, so we just need to read it again:</p>
 <pre><code class="language-dart">    // yaml logic
     final pubspec = pOptions.pubspecFile;
     if (pubspec != null) {
@@ -566,15 +441,11 @@ void endImport(Token importKeyword, Token semicolon) {
       }
     }
 </code></pre>
-
 <p>We read the corresponding condition from the yaml file and put it into the importedConditions of the Compiler.</p>
-
 <ol>
 <li>Command line parameters:</li>
 </ol>
-
 <p>In the command line parameters, we directly added the multi-params parameter of conditions to the command line of the Dart program, so we read the corresponding parameters and read the conditions into the Compiler under decomposition 👌.</p>
-
 <pre><code>    // params logic
     if (pOptions.conditions.isNotEmpty) {
       pOptions.conditions.forEach((entity) {
@@ -584,19 +455,13 @@ void endImport(Token importKeyword, Token semicolon) {
       });
     }
 </code></pre>
-
 <h2 id="summary">Summary</h2>
-
-<p>Conditional Import gives a technical scheme of &ldquo;precompilation macro&rdquo; that is non-intrusive to syntax under Dart program. It has certain practice and use in dealing with compilation parameters to control the introduction of program compilation and the scene of multi-version engine adaptation. This article introduces how to use Conditional Import, the actual landing and the actual implementation principle analysis in Compiler. We can see that the implementation of Condition Import in the compiler is<strong>Very simple and elegant</strong>, this may give us a reminder of our daily development<strong>&ldquo;The modification function itself is not the point, the point is to know where to modify&rdquo;</strong>Therefore, it is still necessary to read and observe more other Compiler or large-scale programming schemes in daily life to exercise the ability to quickly sort out the structure and function of projects in brain topology.</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+<p>Conditional Import gives a technical scheme of “precompilation macro” that is non-intrusive to syntax under Dart program. It has certain practice and use in dealing with compilation parameters to control the introduction of program compilation and the scene of multi-version engine adaptation. This article introduces how to use Conditional Import, the actual landing and the actual implementation principle analysis in Compiler. We can see that the implementation of Condition Import in the compiler is<strong>Very simple and elegant</strong>, this may give us a reminder of our daily development<strong>“The modification function itself is not the point, the point is to know where to modify”</strong>Therefore, it is still necessary to read and observe more other Compiler or large-scale programming schemes in daily life to exercise the ability to quickly sort out the structure and function of projects in brain topology.</p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -609,22 +474,14 @@ void endImport(Token importKeyword, Token semicolon) {
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -634,6 +491,5 @@ void endImport(Token importKeyword, Token semicolon) {
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/androidtips1/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/androidtips1/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/androidtips1/" property="og:url"/>
+<link href="https://lfkdsk.github.io/androidtips1/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -42,58 +41,32 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
       "keywords" : [ "AndroidTips","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>从 View 源码学习点击事件的模拟 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="从 View 源码学习点击事件的模拟 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="作者：刘丰恺
+<title>从 View 源码学习点击事件的模拟 - lfkdsk's Blog</title>
+<meta content="从 View 源码学习点击事件的模拟 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="作者：刘丰恺
 作者博客：若梦浮生
 转载请注明文章来源
  我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() / onLongClick()事件是不能被响应的了。
 现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。
 模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
 Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
-int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -101,55 +74,40 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">从 View 源码学习点击事件的模拟</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2016-09-06 19:32:07 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">从 View 源码学习点击事件的模拟</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-09-06 19:32:07 UTC">
                   06 Sep 2016
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <blockquote>
 <p>作者：<a href="https://github.com/lfkdsk">刘丰恺</a></p>
-
 <p>作者博客：<a href="http://lfkdsk.github.io/">若梦浮生</a></p>
-
 <p>转载请注明文章来源</p>
 </blockquote>
-
 <p>我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写<code>onTouch(...)</code>函数，但是这样点击事件就被覆盖了，正常的 <code>onClick()</code>  /  <code>onLongClick()</code>事件是不能被响应的了。</p>
-
 <p>现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。</p>
-
 <p>模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的<code>callOnClick()</code>方法就可以了，这时View就可以正常的回调<code>onClickListener()</code>了。</p>
-
 <h3 id="bad-implemention">Bad Implemention</h3>
-
 <p>我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。</p>
-
 <pre><code class="language-java">int x,y; long time;
 public void onTouch(view,event){
   // 伪代码
@@ -177,13 +135,9 @@ public void onTouch(view,event){
   	}
 }
 </code></pre>
-
 <p>这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了<code>onTouch()</code>的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</p>
-
 <h3 id="system-source-implemention">System Source Implemention</h3>
-
 <p>下面这段代码是View源代码中onTouchEvent()中的ACTION_UP下的代码，我们发现和之前那种猜想一样，</p>
-
 <pre><code class="language-java">               case MotionEvent.ACTION_UP:
                     boolean prepressed = (mPrivateFlags &amp; PFLAG_PREPRESSED) != 0;
                     if ((mPrivateFlags &amp; PFLAG_PRESSED) != 0 || prepressed) {
@@ -236,11 +190,8 @@ public void onTouch(view,event){
                     }
                     break;
 </code></pre>
-
 <p>系统的源码考量更为复杂一点，其中有很多的状态的转换和Flag的修改，我们读源码的时候如果不是必须相关的可以先省略很多Flag的内容，这段源码中考虑了关于View是否有焦点，是否可点击等很多的情况，setPress()这个方法用于设定View的样式改变。这其中主要的一个函数调用是<code>performClick()</code>这个函数，这函数有别于<code>callOnClick()</code>函数不只是回调了click接口，还改变了View的界面状态。</p>
-
 <p>重点看其中的这段：</p>
-
 <pre><code class="language-java">                           if (!focusTaken) {
                                 // Use a Runnable and post this rather than calling
                                 // performClick directly. This lets other visual state
@@ -253,9 +204,7 @@ public void onTouch(view,event){
                                 }
                             }
 </code></pre>
-
 <p>里面的注释告诉我们，不直接的调用performClick()，而是使用一个Runnable运行，能够让View先更新视觉状态。这里面我们注意到了View源码中用到了一个PerformClick()的Runnable，这个Runnable的run()方法里只有一个函数调用就是performClick()。从这里我们发现系统在点击处理上会使用Runnable或是延时的Runnable去处理点击事件，View中还有几个Runnable。</p>
-
 <pre><code class="language-java">    private final class CheckForLongPress implements Runnable {
         private int mOriginalWindowAttachCount;
 
@@ -293,19 +242,14 @@ public void onTouch(view,event){
         }
     }
 </code></pre>
-
 <p>其中第一个CheckForLongPress就是对长按的检测，第二个CheckForTap在滑动控件中延迟响应。</p>
-
 <p>CheckForLongPress的实现很简单，检测了几项是否可以点击的状态之后只需要比较保存的mOriginalWindowAttachCount是否相等，如果相等就相应长按事件。</p>
-
 <pre><code class="language-java">    /**
      * Count of how many windows this view has been attached to.
      */
     int mWindowAttachCount;
 </code></pre>
-
 <p>在View的onTouchEvent中的ACTION_DOWN中：</p>
-
 <pre><code class="language-java">                case MotionEvent.ACTION_DOWN:
 					...
                     boolean isInScrollingContainer = isInScrollingContainer();
@@ -325,11 +269,8 @@ public void onTouch(view,event){
                         checkForLongClick(0);
                     }
 </code></pre>
-
 <p>在按下的事件中首先通过查看View树判断自己在不在一个滚动的空间里，而且如果停留一段时间的话就延迟响应，如果不是直接就相应长按事件。</p>
-
 <p>也就是说其实每次点下去的时候都会发送长按的判断Runnable，那我们要是已经响应了点击事件那该怎么办呢？取消队列中的长按Runnable就好了。</p>
-
 <pre><code class="language-java">// This is a tap, so remove the longpress check
 removeLongPressCallback();
     /**
@@ -342,11 +283,8 @@ removeLongPressCallback();
     }
 
 </code></pre>
-
 <p>刚才在UP的事件里，就已经移除了长按的回调。</p>
-
 <p>所以我们可以根据刚才的分析总结出View实现点击和长按的伪代码：</p>
-
 <pre><code class="language-java">switch(event.getAction()){
   case UP:
     post performClick Runnable
@@ -361,13 +299,9 @@ removeLongPressCallback();
   break;
 }
 </code></pre>
-
 <h3 id="how-to-use">How To Use?</h3>
-
 <p>首先模仿View一样定义一个用于长按检测的Runnable：</p>
-
 <p>我们这里通过点击位置来判断而不是attachCount。</p>
-
 <pre><code class="language-java"> /**
      * 模仿系统的 长按事件任务
      * 每次在 {@link #onTouch(View, MotionEvent)} 中 MotionEvent.ACTION_DOWN 的时候
@@ -432,9 +366,7 @@ removeLongPressCallback();
         }
     }
 </code></pre>
-
 <p>对它的调用也是同样，在ACTION_DOWN中发送判断：</p>
-
 <pre><code class="language-java">                /**
                  * ACTION_DOWN中做了三件事
                  * 1.拿到了按下时间
@@ -457,9 +389,7 @@ removeLongPressCallback();
                     touchEventHandler.postDelayed(press, ViewConfiguration.getLongPressTimeout());
                     break;
 </code></pre>
-
 <p>再判断你的点击区域：</p>
-
 <pre><code class="language-java">
     /**
      * 判断点击事件
@@ -479,21 +409,14 @@ removeLongPressCallback();
                 &amp;&amp; x &gt;= left &amp;&amp; x &lt; right &amp;&amp; y &gt;= top &amp;&amp; y &lt; bottom;
     }
 </code></pre>
-
 <p>当你的点击区域在控件矩形区域内即可响应长按或者点击的回调就可以了。</p>
-
 <h2 id="最后再说两句">最后再说两句</h2>
-
 <p>这篇文章中我们了解了View的点击和长按判断的方式，其实从这个知识点可以发散的去想，这种发送延时Runnable的方式还可以放在很多的条件下使用，比如在使用smoothScroll的时候，当我们手动的去控制多个方向的滚动时，我们就可以发送一个延时的判断条件来判断我们的平移是否停止。当然我们并没有一定要像View源码那样的去分着处理点击和长按事件，我们可以把它和在一个Runnable里面，仅仅通过时间来判断。</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -506,22 +429,14 @@ removeLongPressCallback();
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -531,6 +446,5 @@ removeLongPressCallback();
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

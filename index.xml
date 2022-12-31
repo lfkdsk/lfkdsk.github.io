@@ -1,46 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>lfkdsk&#39;s Blog</title>
-    <link>https://lfkdsk.github.io/</link>
-    <description>Recent content on lfkdsk&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>cn</language>
-    <lastBuildDate>Fri, 28 Oct 2022 16:34:49 +0800</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>技术分享：结合 C# IL 分析与 Dex IR 修改开发 Unity 修改器</title>
-      <link>https://lfkdsk.github.io/hack-unity-project/</link>
-      <pubDate>Fri, 28 Oct 2022 16:34:49 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/hack-unity-project/</guid>
-      <description>前言 在终端设备上，出于游戏的便携性与计算性能的考虑很多手机游戏经常以 PVE 本地计算为主 + 联网 sync 数据的模式组合的方式进行设计（例如本地的卡片、塔防、战斗计算 + 联网的抽卡、购买以及异步联机功能），其他本身就是单机游戏当然就全部由本地进行计算。而无论 PC 游戏还是 Mobile 游戏的修改器开发，也通常有以下的两种方案：
+<channel>
+<title>lfkdsk's Blog</title>
+<link>https://lfkdsk.github.io/</link>
+<description>Recent content on lfkdsk's Blog</description>
+<generator>Hugo -- gohugo.io</generator>
+<language>cn</language>
+<lastBuildDate>Thu, 29 Dec 2022 22:27:30 +0800</lastBuildDate>
+<atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>2022 年度总结 &amp; 回顾</title>
+<link>https://lfkdsk.github.io/summary-2022/</link>
+<pubDate>Thu, 29 Dec 2022 22:27:30 +0800</pubDate>
+<guid>https://lfkdsk.github.io/summary-2022/</guid>
+<description>今之视昔亦如昔之视今，历史会记住 又到了写年终总结的时候了，虽然我说了「又」但是其实我似乎好几年都没有写过所谓的年度总结了。尤其是最近几年每到年终岁末人总是特别的颓唐，总是打好了蛮多的腹稿，然后又在犹豫要不要写的状态下拖了过去。今年整体状态看起来好了一些，虽然前一阵不可避免的得新冠了还有些咳，但是精神状态上总觉得比前两年要好很多，再加上今年的一系列事件总觉得身处时代不保存记录是可耻的，所以就打算动一动笔做一下整体的回顾。
+说今年的际遇比前几年还要好，听起来其实有点过于离谱，因为众所周知今年发生的各种悲剧性事件太多了。不过这种反直觉的逻辑大概是这样的，其实在这个时代被拖进新冠的泥淖前，我是的精神压力和特别颓其实是蛮「后现代性」的。我在很多大事上运气不错，但是当真的毕业工作处于一个社会分工特别细节的岗位的时候尽管收入不错，但那种你一个人做不到很多事情的无力感是很明显的。从这个角度来说，我多多少少能感受到你马克思（真的那位，别和我谈苏联的二手货或者洼地的三手货）老师谈到的「异化」的原意，所谓的「自由而来的不自由」。你有一定的自由分工、自由迁徙的能力，但是正是由于深度的投入到了某个社会分工内而被困在了这个环境下的「不自由」。这个角度上说起来真的很矫情啊，另外一方面就是我感觉自己的水平底线对一份这种工作还是比较绰绰有余的，所以我大部分时间不太需要很多精力就能完成而且还能做的比较好。
+所以我的 18、19 年的状态基本是就是在工作和高强度游戏之中切换，可以说那两年不写这种年终总结是真的亏了，那两年我基本上每个季度的 3A 游戏我是一个没落的玩了，当然因为是感觉无力才想要把时间都投入到高强度游戏之中，当然旅游出行是完全没安排上的。那个时候真的是出国旅行最好的时候啊，现在想想都很后悔。到了 20 年的时候，或许是属于那种你越不让我干什么我就想干什么的反骨，再加上那个时候工作真的也挺让人烦躁的，反而是借助随心飞这种产品在国内飞了好几十次，去了好多国内没有去过的城市。其实回顾历史记忆是一个非常令人惊诧的事情，那个时候的出行管制完全没有今年这么严格，除了一个健康码的检查之外从来没听说过核酸检测这种东西（？），在杭州、上海、武汉、成都、重庆甚至武汉这些地方不戴口罩的人都比比皆是反而北京是控制最为严重的地方，但是当然如果你真的在事实上传播了病毒还是会被认为是群众里的坏人的。21 年明显开始管制就变得非常严格了，后半年似乎需要核酸检测证明才能出门包括回家，我年末因为这个太麻烦了都没有回家。
+到了今年，我们总算领教了控制措施的严格，今年四月为了进办公楼上班做了人生第一次核酸，怯生生的在核酸亭前把嘴张开为权力口交。当然抛开观点只从结果来看在北京的某些地区生活其实是三年内被实际严格管束最少得地方，让我想起茶馆的那句名言「要不是条狗也得托生在北京城呢」。这里面的原因当然颇为复杂，这里皇天贵胄多，哪怕是普通人不识你那茬的人也颇多，大量的老头老太太都处于三年连健康码都没有的状态中。某种程度上来说，这种非暴力不合作的环境，其实也给年轻人一些方便。比如在上海被执行的很严格的垃圾分类，在北京根本就没人叼的。19 年那时候社区的一个大爷让我签一个垃圾分类同意书，我还打算找个桌子好好签个字，大爷直接说：「小伙子别那么认真，我们也就随便搞搞别太当回事嗷」。所以在这种上行下效下，百京实际的控制状态也是不太严格的，我想喝过猫猫头狼奶的一代人的「斗争哲学」大概就是这种反权威吧，反到吞噬自己。在这种新封建环境下居然能令人受益，真是令人感叹。
+说了这么多其实是想说，20 年之前我的颓是「现代性」的颓，是资本社会高度分工带来的无所适从。而这之后的颓却恰恰是「前现代性」的颓，是出于生存本能的应激行为，感谢叔叔把我从现代性中解救出来拉回前现代之中，我谢谢叔叔八辈祖宗。在这种环境下这几年我大量阅读了很多回忆录，这使得我也在思考身处于特殊的历史阶段（当然哪一段历史阶段都很特殊）人们是有必要记录一些东西的，当然时代内的记录都会有时代的局限性但是依旧是一个非常重要的研究历史的视角。于是我下单「Day One」，偶尔想到、遇到一些事情就会在手机或者电脑写点什么权当做是日记。
+这么多可算写到今年了，回顾今年给人的感觉就是事情非常的多且繁杂。甚至几次和朋友聊天互相回忆的时候，都会诧异「这件事居然是今年发生，我还以为是去年的呢」。横亘数个月的上海的防疫灾难自不必说，作为你老钟最发达的城市自然是声量最大。其实我在三月爆发前夕的周末正打算去上海出差，是及时发售的艾尔登法环和懒惰救了我，如果我经历了那一切可能回忆的调子还要高几个八度。除此以外，我们来思考一下今年还有哪些事情呢？
+山西雨灾、郑州雨灾、河南村镇银行暴雷、南京银行暴雷、恒大暴雷、乌鲁木齐火灾、贵州大巴侧翻、东航飞机直挺挺坠机、降雨少导致的西南大断电、富士康逃荒 …… 以及各地产生的悲剧故事，这个列表还可以列的很长很长。是不是对很多人来说回忆起来已经有些应接不暇了？都快靠灾难搞出信息爆炸了，对很多人只能记住很多和疫情相关的事情，但是比如飞机坠毁这件事从性质到造成的影响明显都要更离谱一些、郑州的水灾在城市的地铁里出现遇难人群也给城市人口留下更多基于生活现实的恐惧……
+抚今追昔这是一种更不一样的无力感，而且你也不知道未来会怎么总结这段时间的故事写进历史，会以哪种叙事来撰写。
+活在时代中的人只能做到不要忘记。
+ 做了很多回忆，总结也要写一写，今年看了不少书、打了不少游戏、技术、个人状态都有很多的变化，可以写写流水账的，其中不乏有值得推荐的东西。
+ 大理出行 先从最开心的 part 开始吧，今年的严格管控下能出去的机会不多而且风险很高。因此能说的上出行的应该只有五月份北京防疫严格之后回家呆了一个半月、另外就是十一国庆去大理呆了一段时间。那除了回家今年能称得上算是旅游的可能就只有去大理了，不过我对大理这次出行本身还是颇为满意的。大理本身商业化了蛮多年，局限的范围还是相对窄的，洱海治理的也很好可以说本身风景的底子就很好，以纯欣赏风景的角度很值得一去。
+洱海 廊桥：
+夜景：
+古城 奇怪的色调滤镜，但是感觉还不错：
+Cat:
+骑行 除了在大理逛了蛮久之外，还有一个创举就是分了两天骑行了 130km+ 来环洱海骑行，然后回古城就发了一天烧 orz
+疯狂防晒的人：
+ 去了之后可算是知道为啥所谓 Web3 人在这扎堆了，这里真是个低成本的躺平、生存的好地方。之前讲过一个段子：搞 Web3 的人赚了钱的在美帝、在赚钱的人在新加坡、没赚到钱的人在大理。
+ 段子当然是段子了，不过对我来说在大理这段的时间确实是躺平放松的一段好时光，去的时候苍山还没有雪所以就没有去，希望之后有空可以去看雪。
+游戏 根据我的 Trello 表格统计，今年一共玩过四种平台（PS5、XSS、PC、Switch）的 19 款游戏。我对游戏「玩过」的定义基本要求是通关，优秀游戏的上限是拿白金杯。以以往几年打游戏的数量来说，今年玩的游戏其实不算很多，主要是过去几年大作雷过的 case 实在是比较多，虽然我基本没有踩坑（唯一的应该是 Epic 买了号称次时代的众神陨落）但是在入手的时候明显会更为审慎一些。今年 PS5 上的独占游戏又是基本落灰的节奏，不过对于只有 2060 PC 的我、面对众多次时代的游戏渣优化，PS5 还是拯救了我很多的。今年因为在家呆了一个半月，在家入手了一个不错的 4k 显示器和一个 XSS，买 XSS 主要是为了低成本玩 XGP 上面的游戏，当然主要是也是因为在 LinkedIn 打工的朋友送了他们公司每年发的 XGP 激活码（微软系公司真好呀！），所以在这方面的打游戏成本进一步被摊薄了，XSS 虽然性能一般但是够用就行了。</description>
+</item>
+<item>
+<title>技术分享：结合 C# IL 分析与 Dex IR 修改开发 Unity 修改器</title>
+<link>https://lfkdsk.github.io/hack-unity-project/</link>
+<pubDate>Fri, 28 Oct 2022 16:34:49 +0800</pubDate>
+<guid>https://lfkdsk.github.io/hack-unity-project/</guid>
+<description>前言 在终端设备上，出于游戏的便携性与计算性能的考虑很多手机游戏经常以 PVE 本地计算为主 + 联网 sync 数据的模式组合的方式进行设计（例如本地的卡片、塔防、战斗计算 + 联网的抽卡、购买以及异步联机功能），其他本身就是单机游戏当然就全部由本地进行计算。而无论 PC 游戏还是 Mobile 游戏的修改器开发，也通常有以下的两种方案：
  通过劫持网络连接进行修改 通过对指定内存数据进行修改  但是两种方案都有一些局限性和容易被发现的问题：
  劫持网络修改：开发商使用加密 websocket 的连接发送数据就很难被分析劫持，并且通过对发送数据包前后的数据进行本地校验很容易在本地发现问题。 指定内存数据修改：现在的游戏开发商都会有单独的守护线程对扫描修改内存的行为进行监控，并且笔者在尝试分析的过程中工具也很容易被分析出来、另外就是如果有本地的重计算校验也很容易被分析出来。  在最近一段时间的工作中笔者恰好对 Unity il2cpp 逻辑、C# 静态分析以及 Android 平台的 Dex IR 修改比较熟悉。因此在本文中笔者提出了一种能够应用我们已有知识的方案，通过对 Unity 应用的 il2cpp 产物进行分析、通过对 C# IL 与 Dex IR 的分析修改来直接修改游戏本体的方式来应用技术。
 这样的方案有以下几种好处：
  不修改网络数据能够避免 Web 数据校验 不通过监控内存实现避免干扰和扫描 相对于能实现同样功能的直接进行「二进制分析修改」来说，代码可读性更好容易进行持续迭代开发  效果展示 方案设计 上文中我们简述了方案的思路，包含几个方面：
  Unity il2cpp 二进制产物的分析：通过对 il2cpp 的各种分析获取指定函数的指针地址（？）。 编写针对指定指针的 Hook 函数：有指定的指针地址之后我们可以通过写类似 Hook 的方案来对指针指向的内容来进行修改。 通过修改 Dex IR 织入 Hook 模块：编写好指定的 Hook 函数之后我们还需要通过编写一些指定的 bytecode 来使得 Android 能够加载我们的 Hook 模块。  破题：函数指针分析 il2cpp 背景知识 il2cpp 是 Unity 自己开发的一套 C# 的 aot backend。从整体的数据流程上来看，用户编写的 C# 代码会先被 C# 的 compiler frontend 翻译成 CIL bytecode 格式，随后会通过 Linker 进行 strip code，再被 il2cpp 程序将 CIL 逐个文件翻译为 Cpp 文件，最终被 LLVM 程序编译为 native 程序。</description>
-    </item>
-    
-    <item>
-      <title>Compile Share：Unity il2cpp compilation</title>
-      <link>https://lfkdsk.github.io/unity-compile/</link>
-      <pubDate>Fri, 12 Aug 2022 17:11:40 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/unity-compile/</guid>
-      <description>Audio     Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-    <item>
-      <title>抖音 Android 包体积优化探索：基于 ReDex 的 DEX 优化落地实践</title>
-      <link>https://lfkdsk.github.io/redex-extra-blog/</link>
-      <pubDate>Sun, 12 Jun 2022 16:55:16 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-extra-blog/</guid>
-      <description>本文为作者工作内容外发文章的转载 本文作者：冯瑞；廖斌斌；刘丰恺
+</item>
+<item>
+<title>Compile Share：Unity il2cpp compilation</title>
+<link>https://lfkdsk.github.io/unity-compile/</link>
+<pubDate>Fri, 12 Aug 2022 17:11:40 +0800</pubDate>
+<guid>https://lfkdsk.github.io/unity-compile/</guid>
+<description>Audio     Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+</item>
+<item>
+<title>抖音 Android 包体积优化探索：基于 ReDex 的 DEX 优化落地实践</title>
+<link>https://lfkdsk.github.io/redex-extra-blog/</link>
+<pubDate>Sun, 12 Jun 2022 16:55:16 +0800</pubDate>
+<guid>https://lfkdsk.github.io/redex-extra-blog/</guid>
+<description>本文为作者工作内容外发文章的转载 原文链接
+本文作者：冯瑞；廖斌斌；刘丰恺
  前言 应用安装包的体积会显著影响应用的下载速度和安装速度，按照 Google 的经验数据，包体积每增加 1M 会造成 0.17%的新增折损。抖音的一些实验也证明了包体积会显著影响下载激活的转化率。
 Android 的安装包是 APK 格式的，在抖音的安装包中 DEX 的体积占比达到了 40%以上，所以针对 DEX 的体积优化是一种行之有效的包体积优化手段。
 DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对字节码进行业务无感的通用优化成为我们的一个探索方向。
@@ -49,148 +68,120 @@ DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对
 优化思路 在 android 应用的构建过程中，Java/Kotlin 代码会先被编译成 Class 字节码，在这个阶段 gradle 提供了 Transformer 可以进行字节码的自定义处理，很多插件都是在这个阶段处理字节码的。然后，Class 文件经过 dexBuilder/mergeDex 等任务的处理会生成 DEX 文件，并最终被打进安装包中。整个过程如下所示：
 所以，针对字节码的优化是有 2 个时机可以进行的:
  在 transformer 阶段对 Class 字节码进行优化 在 DEX 阶段对 DEX 文件进行优化  显然，对 DEX 进行优化是更理想的一种方式，因为在 DEX 文件中，除了字节码指令外，还存在跨 DEX 引用、字符串池这样的结构，针对这些 DEX 格式的优化是无法在 transformer 阶段进行的。</description>
-    </item>
-    
-    <item>
-      <title>Enhance RSSHub and Export RSS from XiaoYuZhou</title>
-      <link>https://lfkdsk.github.io/enhance-xyz/</link>
-      <pubDate>Fri, 22 Apr 2022 21:45:48 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/enhance-xyz/</guid>
-      <description>Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it&amp;rsquo;s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou&amp;rsquo;s backend editor, we could not subscribe to them except xiaoyuzhou.</description>
-    </item>
-    
-    <item>
-      <title>Redex: Use SExpr to embed IR code</title>
-      <link>https://lfkdsk.github.io/redex-sexpr/</link>
-      <pubDate>Mon, 29 Nov 2021 03:20:31 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-sexpr/</guid>
-      <description>A better way to write outline method or modify ir code in redex.
+</item>
+<item>
+<title>Enhance RSSHub and Export RSS from XiaoYuZhou</title>
+<link>https://lfkdsk.github.io/enhance-xyz/</link>
+<pubDate>Fri, 22 Apr 2022 21:45:48 +0800</pubDate>
+<guid>https://lfkdsk.github.io/enhance-xyz/</guid>
+<description>Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it&amp;rsquo;s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou&amp;rsquo;s backend editor, we could not subscribe to them except xiaoyuzhou.</description>
+</item>
+<item>
+<title>Redex: Use SExpr to embed IR code</title>
+<link>https://lfkdsk.github.io/redex-sexpr/</link>
+<pubDate>Mon, 29 Nov 2021 03:20:31 +0800</pubDate>
+<guid>https://lfkdsk.github.io/redex-sexpr/</guid>
+<description>A better way to write outline method or modify ir code in redex.
  Background In Redex, we may often modify/insert methods&amp;rsquo; ir code and redex actually supported some ways to write these. Such as :
 auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&amp;gt;set_type(DexType::make_type(&amp;quot;LFoo;&amp;quot;));  Or just us dasm api :
 auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&amp;quot;LFoo;&amp;quot;), {});  It&amp;rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.</description>
-    </item>
-    
-    <item>
-      <title>Redex new idea: Remapping Pure Exception String</title>
-      <link>https://lfkdsk.github.io/redex-remapping-pure-exception-string/</link>
-      <pubDate>Thu, 25 Nov 2021 20:38:02 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-remapping-pure-exception-string/</guid>
-      <description>Background This pass looks for analyzing all exceptions with pure string as constructors and re-mapping them using fewer characters. In java code, we will often see some exceptions with long strings as constructor. Such as: (Java code)
+</item>
+<item>
+<title>Redex new idea: Remapping Pure Exception String</title>
+<link>https://lfkdsk.github.io/redex-remapping-pure-exception-string/</link>
+<pubDate>Thu, 25 Nov 2021 20:38:02 +0000</pubDate>
+<guid>https://lfkdsk.github.io/redex-remapping-pure-exception-string/</guid>
+<description>Background This pass looks for analyzing all exceptions with pure string as constructors and re-mapping them using fewer characters. In java code, we will often see some exceptions with long strings as constructor. Such as: (Java code)
 throw new IllegalArgumentException(&amp;quot;tag must not be null or empty&amp;quot;);  const-string v1, &amp;quot;tag must not be null or empty&amp;quot; new-instance v0, Ljava/lang/IllegalArgumentException; invoke-direct {v0, v1}, Ljava/lang/IllegalArgumentException;-&amp;gt;&amp;lt;init&amp;gt;(Ljava/lang/String;)V throw v0  Also, in code what generated by Kotlin, we will see some exceptions generated by Kotlin compiler.</description>
-    </item>
-    
-    <item>
-      <title>Redex: PassReorder Pipeline</title>
-      <link>https://lfkdsk.github.io/redex-pass-reorder/</link>
-      <pubDate>Thu, 14 Oct 2021 18:30:14 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-pass-reorder/</guid>
-      <description>Implement in simple  Pre download universal.apk, mapping.txt, configuration.txt and save in this project. Read the original redex.config , and generate all passes full permutations. Filter out some passes with the wrong relationship (eq: InterDexPass before RegallocPass ) Generate tasks and run them in devbox server.  Result now Currently there are so few passes used in Tik Tok and most of them have relative relationships that there is currently no significant difference.</description>
-    </item>
-    
-    <item>
-      <title>Redex: ResolveRefs Pass</title>
-      <link>https://lfkdsk.github.io/redex-resolve-refs/</link>
-      <pubDate>Mon, 11 Oct 2021 18:17:31 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-resolve-refs/</guid>
-      <description>Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex&amp;rsquo;s optimizations. The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don&amp;rsquo;t have to deal with the distinction between a ref and a def.</description>
-    </item>
-    
-    <item>
-      <title>Redex: Rewrite Kotlin SingletonInstance Pass</title>
-      <link>https://lfkdsk.github.io/redex-rewrite-kotlin/</link>
-      <pubDate>Thu, 16 Sep 2021 18:24:14 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/redex-rewrite-kotlin/</guid>
-      <description>Introduction When Kotlin compile a class with lambda inline to JVM bytecode, kotlin compiler backend will generate a INSTANCE field in generated bytecode. Such as :
+</item>
+<item>
+<title>Redex: PassReorder Pipeline</title>
+<link>https://lfkdsk.github.io/redex-pass-reorder/</link>
+<pubDate>Thu, 14 Oct 2021 18:30:14 +0000</pubDate>
+<guid>https://lfkdsk.github.io/redex-pass-reorder/</guid>
+<description>Implement in simple  Pre download universal.apk, mapping.txt, configuration.txt and save in this project. Read the original redex.config , and generate all passes full permutations. Filter out some passes with the wrong relationship (eq: InterDexPass before RegallocPass ) Generate tasks and run them in devbox server.  Result now Currently there are so few passes used in Tik Tok and most of them have relative relationships that there is currently no significant difference.</description>
+</item>
+<item>
+<title>Redex: ResolveRefs Pass</title>
+<link>https://lfkdsk.github.io/redex-resolve-refs/</link>
+<pubDate>Mon, 11 Oct 2021 18:17:31 +0000</pubDate>
+<guid>https://lfkdsk.github.io/redex-resolve-refs/</guid>
+<description>Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex&amp;rsquo;s optimizations. The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don&amp;rsquo;t have to deal with the distinction between a ref and a def.</description>
+</item>
+<item>
+<title>Redex: Rewrite Kotlin SingletonInstance Pass</title>
+<link>https://lfkdsk.github.io/redex-rewrite-kotlin/</link>
+<pubDate>Thu, 16 Sep 2021 18:24:14 +0000</pubDate>
+<guid>https://lfkdsk.github.io/redex-rewrite-kotlin/</guid>
+<description>Introduction When Kotlin compile a class with lambda inline to JVM bytecode, kotlin compiler backend will generate a INSTANCE field in generated bytecode. Such as :
 import java.util.* import kotlinx.coroutines.* class KotlinLambdaInline { var sink: Long = 0 fun doCalc(addfn: (a: Long, b: Long) -&amp;gt; Long): Long { return addfn(123L, 456L) } fun foo() { sink = doCalc { a: Long, b: Long -&amp;gt; a + b } } }  Will generate bytecode like : https://gist.</description>
-    </item>
-    
-    <item>
-      <title>Dart Conditional Pub: Pub With Conditinal-Compliation</title>
-      <link>https://lfkdsk.github.io/dart-conditional-pub/</link>
-      <pubDate>Tue, 11 May 2021 10:14:14 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/dart-conditional-pub/</guid>
-      <description>Background Previously, for Dart&amp;rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:
+</item>
+<item>
+<title>Dart Conditional Pub: Pub With Conditinal-Compliation</title>
+<link>https://lfkdsk.github.io/dart-conditional-pub/</link>
+<pubDate>Tue, 11 May 2021 10:14:14 +0000</pubDate>
+<guid>https://lfkdsk.github.io/dart-conditional-pub/</guid>
+<description>Background Previously, for Dart&amp;rsquo;s own file conditional method, we made functional modifications to the Conditional Import mechanism of the Dart language to accept user-defined condition variables to control file dependencies at compile time:
  Previous Blog: https://lfkdsk.github.io/dart-conditional-import/
  However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch.</description>
-    </item>
-    
-    <item>
-      <title>My Resume 2021</title>
-      <link>https://lfkdsk.github.io/resume-2021/</link>
-      <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/resume-2021/</guid>
-      <description>#the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-    <item>
-      <title>CompilerDev: Bytecode error in Dart</title>
-      <link>https://lfkdsk.github.io/dart-error-asm/</link>
-      <pubDate>Thu, 10 Dec 2020 02:49:51 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/dart-error-asm/</guid>
-      <description>Problem: phenomenon that cannot be fully covered When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:
+</item>
+<item>
+<title>My Resume 2021</title>
+<link>https://lfkdsk.github.io/resume-2021/</link>
+<pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/resume-2021/</guid>
+<description>#the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+</item>
+<item>
+<title>CompilerDev: Bytecode error in Dart</title>
+<link>https://lfkdsk.github.io/dart-error-asm/</link>
+<pubDate>Thu, 10 Dec 2020 02:49:51 +0800</pubDate>
+<guid>https://lfkdsk.github.io/dart-error-asm/</guid>
+<description>Problem: phenomenon that cannot be fully covered When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:
  input keys [] [info]::Trans--2020-11-27 14:16:04.755980: Transformer Debug Open. [info]::Trans--2020-11-27 14:16:04.759208: Load Pass: hook [info]::Trans--2020-11-27 14:16:05.074541: print hook_coverage::HookAllMethod start [389]@[346] [346] #C2 @[358] [358] #C5 class HookAllMethod extends dart.</description>
-    </item>
-    
-    <item>
-      <title>CompilerDev: How to impl conditional-import in Dart ?</title>
-      <link>https://lfkdsk.github.io/dart-conditional-import/</link>
-      <pubDate>Tue, 27 Oct 2020 07:59:17 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/dart-conditional-import/</guid>
-      <description>Background  Dart Conditional Import official documentation:https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files
+</item>
+<item>
+<title>CompilerDev: How to impl conditional-import in Dart ?</title>
+<link>https://lfkdsk.github.io/dart-conditional-import/</link>
+<pubDate>Tue, 27 Oct 2020 07:59:17 +0000</pubDate>
+<guid>https://lfkdsk.github.io/dart-conditional-import/</guid>
+<description>Background  Dart Conditional Import official documentation:https://dart.dev/guides/libraries/create-library-packages#conditionally-importing-and-exporting-library-files
  Dart Conditional Import itself is a syntax element that exists in Dart 1 and 2. It used to support command line control on the Dart side. However, in the Compiler FrontEnd after Dart 2, this function is converged to only support the check scheme of dart.library, which is used for judging the Flutter web environment:
-export &#39;src/none.dart&#39; // Stub implementation if (dart.</description>
-    </item>
-    
-    <item>
-      <title>TransBridge: Flutter/Web/Native Cross Bridge Solution</title>
-      <link>https://lfkdsk.github.io/flutter-trans-bridge/</link>
-      <pubDate>Mon, 13 Apr 2020 18:53:33 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/flutter-trans-bridge/</guid>
-      <description>Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use.</description>
-    </item>
-    
-    <item>
-      <title>关于《十三机兵防卫圈》的一些真相</title>
-      <link>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</link>
-      <pubDate>Sun, 05 Apr 2020 17:58:07 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</guid>
-      <description>FBI WARNING ! ⚠️ 严重剧透警告
+export 'src/none.dart' // Stub implementation if (dart.</description>
+</item>
+<item>
+<title>TransBridge: Flutter/Web/Native Cross Bridge Solution</title>
+<link>https://lfkdsk.github.io/flutter-trans-bridge/</link>
+<pubDate>Mon, 13 Apr 2020 18:53:33 +0000</pubDate>
+<guid>https://lfkdsk.github.io/flutter-trans-bridge/</guid>
+<description>Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use.</description>
+</item>
+<item>
+<title>关于《十三机兵防卫圈》的一些真相</title>
+<link>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</link>
+<pubDate>Sun, 05 Apr 2020 17:58:07 +0800</pubDate>
+<guid>https://lfkdsk.github.io/thirteen-sentinels-aegis-rim-real-data/</guid>
+<description>FBI WARNING ! ⚠️ 严重剧透警告
  人物出场图
    年代 / 人物 和泉十郎 [大佐] 森村千寻 [博士] 三浦慎太郎 [设计师] 比治山隆俊 鞍部玉绪 [AI 专家] 鹰宫由贵 药师寺惠 关之原瑛 乡登莲也 南奈津乃 绪方稔二 如月兔美 井田铁也 冬云谅子 冲野司     1940 年代   三浦慎太郎 （昭和20 年三人是发小） 比治山隆俊 （军人） 鞍部玉绪          女装冲野司   1980 年代 鞍部十郎 冬坂五百里   鞍部玉绪 [婆婆状态] 鹰宫由贵[不良少女]     绪方稔二（敷岛富二代，不良少年，七岁见过森村）  网口愁     2020 年代            如月兔美（互联网歌姬） 井田铁也     2060 年代        关之原瑛 乡登莲也   因幡深雪  冬云谅子    2100 年代 （扇区 1） 和泉十郎 森村千寻（当前周期：冬坂五百里 来自扇区 1）   玉绪人形机器人       如月人形机器人   冲野司   2188 真实年代 大佐 纳米机械博士 工程师，南奈津乃恋人 军人，与冲野司是情侣 AI 博士，参与设计方舟计划 鹰宫教授，探测机繁殖研究 8 岁和泉大佐养女 敷岛集团(乡登莲也)雇佣杀手，杀害森村 敷岛 CEO 鹰宫的女儿，三浦的恋人 敷岛财阀少爷，引发枪战事件 地球化学者 研究员？ 被井田利用，触发 Dmonster 摧毁所有扇区 设计万物中枢的天才工程师    几个前置事实  真实历史：真实历史已经过去了 2000万年，故事的依赖来源于 15 个人类幸存者的克隆体，故事的大部分来自于虚拟现实体验 时空穿越：虚拟现实之中的各个年份同时存在五个区域，五个区域的时间分别为 1940 ~ 2100 年，每个扇区分别间隔 40 年。 人类毁灭的原因：森村博士的纳米机械技术被滥用。 D-Monster 在虚拟现实中干扰世界的原因：冬云谅子被井田铁也的利用，导致对人类失望，希望能够设计出完全没有人类的世界。  2188 年真实历史时间线 2187 年绪方宪吾去世，绪方宪吾生前利用利用森村千寻出售纳米机械是世界毁灭的元凶，绪方宪吾保存了自己的 AI 希望能够在方舟计划之后利用儿子的基因进行复活。三浦与南通讯期待下一个休息日见面，伦理委员会介入计划寸步难行。</description>
-    </item>
-    
-    <item>
-      <title>FlutterWeb 编译流程分析</title>
-      <link>https://lfkdsk.github.io/flutter-for-web-compile/</link>
-      <pubDate>Fri, 06 Mar 2020 15:09:37 +0800</pubDate>
-      
-      <guid>https://lfkdsk.github.io/flutter-for-web-compile/</guid>
-      <description>本篇文章你会学到
+</item>
+<item>
+<title>FlutterWeb 编译流程分析</title>
+<link>https://lfkdsk.github.io/flutter-for-web-compile/</link>
+<pubDate>Fri, 06 Mar 2020 15:09:37 +0800</pubDate>
+<guid>https://lfkdsk.github.io/flutter-for-web-compile/</guid>
+<description>本篇文章你会学到
  Flutter Web 的编译流程 dart compiler 使用方案 compiler 模块实现分析（next chapter）  前言 Flutter for Web 是 Flutter 框架在 Web 平台的支持方案，在很长一段时间一直是独立于 Flutter 主分支之外进行独立开发的，直到 19 年九月才合入主分支，目前仍在 Flutter 的 beta channel 之中（早期使用的案例可以我之前的调研报告、文章）。下图为 Flutter For Web 的实现方案，之前已经写过文章分析过了：
 与之前 preview 版本较为复杂的配置流程（flutter 所有库都要切到 web branch 之中）不同，目前版本的 FlutterWeb 可以被融入了 flutter_tools 处理流程之中了，并且 release 模式也能够提供完整的可独立运行的 dump 出的 web 程序。
  本篇文章我们就来分析 FlutterWeb 完整的编译处理流程，原本这篇文章也包含对 dart2js 部分的实现分析，但是由于篇幅过长不太容易在有一篇文章之中解释清楚。因此打算单独开一个关于 Dart 编译器设计的系列文章，从内部 kernel 出发到，前端的 front_end 的实现，compiler 模块的构成，包含从算法基础到实现引申的全部内容敬请期待。
  FlutterWeb 编译流程 整体结构 熟悉 flutter_tools 的读者应该对如何在编译流程之中插入 web 实现的方案并不陌生，flutter_tools 的命令利用对应的处理框架进行了比较有效的解耦。在 lib/src 文件夹下增加了 web 的 实现 。具体新增的文件列表如下图：</description>
-    </item>
-    
-    <item>
-      <title>Ti-Alloy：一次 TiDB Hackathon 摸鱼</title>
-      <link>https://lfkdsk.github.io/tidb-hackthon/</link>
-      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/tidb-hackthon/</guid>
-      <description>上个周末又是一次 PingCap 举办的 TiDB Hackathon，上一次某个拿了一等奖的老哥又拉我参赛。日常的对整个系统了解程度一般没什么预先准备，key-point 也不是特别出彩的东西，因此也难免 Hackathon 陪跑、Prize Skip （笑死🤣）。不过参加 Hackathon 本身就是件比较有意思的事情，因为在有限的时间内找出 key-point、对复杂的代码进行分析理解找出实现方案、写代码完成功能、做 Slide 给大家吹水，其实都是比较锻炼能力的。
+</item>
+<item>
+<title>Ti-Alloy：一次 TiDB Hackathon 摸鱼</title>
+<link>https://lfkdsk.github.io/tidb-hackthon/</link>
+<pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/tidb-hackthon/</guid>
+<description>上个周末又是一次 PingCap 举办的 TiDB Hackathon，上一次某个拿了一等奖的老哥又拉我参赛。日常的对整个系统了解程度一般没什么预先准备，key-point 也不是特别出彩的东西，因此也难免 Hackathon 陪跑、Prize Skip （笑死🤣）。不过参加 Hackathon 本身就是件比较有意思的事情，因为在有限的时间内找出 key-point、对复杂的代码进行分析理解找出实现方案、写代码完成功能、做 Slide 给大家吹水，其实都是比较锻炼能力的。
 在国内面试很多面试官都会对某些流行框架代码的实现方案有所要求，但是其实这方面固然重要但是只要你去看很少能有你看不懂的东西。从个人而言，可能会更看重快速了解一份陌生代码、陌生系统的设计逻辑，找出症结、获得经验方面的能力。所以可能推荐大家可以多摸摸 Hackathon 方面的鱼，还是有很多增长的。
  这次由于上周一直在感冒发烧，所以这次的 Hackathon 全程是在家云的，而且由于 key-point 比较小，代码写起来也很快，因此娱乐休息在家一个没落下，感冒发烧还好了，比较开心。
 “这也能云☁️？？”
@@ -198,75 +189,61 @@ export &#39;src/none.dart&#39; // Stub implementation if (dart.</description>
 （最后看了很多 dalao 的开发演示，深感在做 db 和分布式方面的能力还是有待加强，很多方案真的挺惊艳的）。
  本文目录
   User Defined Function 支持 Ti-Alloy Engine 替换 彩蛋：Where DSL 支持  User Defined Function 支持 方案 TiDB 一直是支持 MySQL Protocol 的，不过对于其中的一些特性也没有完全支持，其中 UDF （User Defined Function 用户自定义方法）就一直在 Github 上的 ReadMe 上写着不支持。其实从日常使用上来看 UDF 还是一个挺常见的功能一直不支持也是挺难受 orz。</description>
-    </item>
-    
-    <item>
-      <title>公开演讲：Flutter 编译器体系分享</title>
-      <link>https://lfkdsk.github.io/flutter-compiler/</link>
-      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/flutter-compiler/</guid>
-      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-    <item>
-      <title>公开演讲：Flutter Intro 通识分享</title>
-      <link>https://lfkdsk.github.io/flutter-intro/</link>
-      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/flutter-intro/</guid>
-      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-    <item>
-      <title>Backend Render Pre-Research</title>
-      <link>https://lfkdsk.github.io/render-backend-re/</link>
-      <pubDate>Thu, 25 Apr 2019 08:09:51 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/render-backend-re/</guid>
-      <description>The main performance bottleneck encountered by the Valkyrie poster system is the offline rendering problem of SVG. The rendering method currently used by Valkyrie is to use puppeteer to open Headless Chrome to take screenshots to obtain pictures. Headless Chrome can solve many compatibility problems, but its own efficiency is relatively low. A preliminary investigation of the technical solution of the rendering problem of SVG was carried out.
+</item>
+<item>
+<title>公开演讲：Flutter 编译器体系分享</title>
+<link>https://lfkdsk.github.io/flutter-compiler/</link>
+<pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/flutter-compiler/</guid>
+<description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+</item>
+<item>
+<title>公开演讲：Flutter Intro 通识分享</title>
+<link>https://lfkdsk.github.io/flutter-intro/</link>
+<pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/flutter-intro/</guid>
+<description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+</item>
+<item>
+<title>Backend Render Pre-Research</title>
+<link>https://lfkdsk.github.io/render-backend-re/</link>
+<pubDate>Thu, 25 Apr 2019 08:09:51 +0000</pubDate>
+<guid>https://lfkdsk.github.io/render-backend-re/</guid>
+<description>The main performance bottleneck encountered by the Valkyrie poster system is the offline rendering problem of SVG. The rendering method currently used by Valkyrie is to use puppeteer to open Headless Chrome to take screenshots to obtain pictures. Headless Chrome can solve many compatibility problems, but its own efficiency is relatively low. A preliminary investigation of the technical solution of the rendering problem of SVG was carried out.
 Headless Chrome (including backend optimizations) Continuing to use Headless Chrome also has some room for optimization.</description>
-    </item>
-    
-    <item>
-      <title>公开演讲：多源输入的富文本渲染实现分享</title>
-      <link>https://lfkdsk.github.io/flutter-render/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/flutter-render/</guid>
-      <description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-    <item>
-      <title>0x07：SICP 的魔法 - 元语言抽象</title>
-      <link>https://lfkdsk.github.io/learn-sicp-7/</link>
-      <pubDate>Mon, 18 Mar 2019 10:54:16 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-7/</guid>
-      <description>从这一篇文章开始就进入了 SICP 第四章的内容了，在前三章的内容之中我们接触了 数据抽象，过程抽象，模块化 三个，第四章的内容主要就是实现了一个元循环解释器 (meta-circular) 并对其进行不断地改造引申出别的问题。从篇幅内容来看这一章的主要内容反倒是对当时初读的我最为简单的，因为在学过编译原理的相关课程之后，笔者已经尝试使用了自举的方式实现了一些基于 JVM 的编程语言(这里也建议大家在学习理论的同时也要加强知识的运用，否则没有实际的使用过很多知识就不是那么立体)。本章我们对这个 Scheme 求值器的具体实现不会介绍的特别具体，毕竟书上已经把全部代码都贴上去了，这里更想关注一些引申的问题。
+</item>
+<item>
+<title>公开演讲：多源输入的富文本渲染实现分享</title>
+<link>https://lfkdsk.github.io/flutter-render/</link>
+<pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/flutter-render/</guid>
+<description>Audio   Slide   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+</item>
+<item>
+<title>0x07：SICP 的魔法 - 元语言抽象</title>
+<link>https://lfkdsk.github.io/learn-sicp-7/</link>
+<pubDate>Mon, 18 Mar 2019 10:54:16 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-7/</guid>
+<description>从这一篇文章开始就进入了 SICP 第四章的内容了，在前三章的内容之中我们接触了 数据抽象，过程抽象，模块化 三个，第四章的内容主要就是实现了一个元循环解释器 (meta-circular) 并对其进行不断地改造引申出别的问题。从篇幅内容来看这一章的主要内容反倒是对当时初读的我最为简单的，因为在学过编译原理的相关课程之后，笔者已经尝试使用了自举的方式实现了一些基于 JVM 的编程语言(这里也建议大家在学习理论的同时也要加强知识的运用，否则没有实际的使用过很多知识就不是那么立体)。本章我们对这个 Scheme 求值器的具体实现不会介绍的特别具体，毕竟书上已经把全部代码都贴上去了，这里更想关注一些引申的问题。
 在之前的篇幅之中我们讨论了很多和程序设计相关的内容，主要研究的三个内容是：
  数据抽象：如何组合程序的基本元素，构造更复杂的结构 过程抽象：如何将复杂的结构抽象出高层组件，提供更高维度的组合型 模块化，通过高抽象层次的组织方法，提高系统的模块性  通过这些手段已经足够我们设计大部分程序了，但是现实世界中遇到的问题可能更为复杂，或者可能类似的问题出现在同一个领域内。这时候我们可能就要在程序之中引入 DSL(领域内语言)了。本质上来讲我们引入 DSL 就是通过语言设计，为程序提供一种 语言层的抽象 ，来进一步提高我们程序的模块化。
 元语言抽象 这节之中我们会试着用 Scheme 来实现一个 Scheme 的解释器，用一种语言实现其自身的求值器，称为元循环（meta-circular）。这里我们可以复习一下 3.2 节之中出现的求值模型，其中的求值流程分成两步：
  求值组合式（非特殊形式）时  先求值组合式的各子表达式 把运算符子表达式的值作用于运算对象子表达式的值   把复合过程应用于实参，是在一个新环境里求值过程体  新环境：过程对象（里环境指针指向）的环境加一个新框架 新框架里是过程的形参与对应实参的约束   这两个步骤构成了 Scheme 求值的基本循环，这两个步骤也是能相互调用和递归 (自己递归或相互递归。求值的子表达式可能要应用复合过程，过程体本身通常又是组合式)，逐步规约到：
  符号 (从 env 里面取值） 基本过程（直接调用基本过程的代码） 值类型 (primary type 直接取值)  以上的两个步骤可以被抽象为过程 eval 和 apply ，其中 eval 负责表达式的求值，apply 把一个过程对象应用于一组实际参数，这两者相互递归调用，eval 还有自递归。eval 和 apply 就像下图的这个像是太极图一样的图里，两者相互调用相互生成。</description>
-    </item>
-    
-    <item>
-      <title>My  Resume 2017</title>
-      <link>https://lfkdsk.github.io/resume-2017/</link>
-      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/resume-2017/</guid>
-      <description>Resume</description>
-    </item>
-    
-    <item>
-      <title>0x06：SICP 的魔法 - 并发、时间与流模拟</title>
-      <link>https://lfkdsk.github.io/learn-sicp-6/</link>
-      <pubDate>Wed, 27 Sep 2017 10:16:16 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-6/</guid>
-      <description>在上一篇文章之中我们见识到了基于变动数据、内部状态的程序设计的能力，但是就像之前提及过多次的引用透明性的问题被打破，程序中引入了时间的概念，导致我们无论是求值顺序还是过程的运行都出现了一个时序性的问题，我们在 数字电路模拟 之中使用了一个 待处理表 的子过程，用来为我们的信号传播进行排序，通过模拟延时构造了程序的时序性。但是在现实世界中，我们不可能只通过一张表去排序构造顺序，现实系统中的对象都有更为复杂的同时的活动，为了构造这种更为现实的模拟系统，我们可能需要：
+</item>
+<item>
+<title>My  Resume 2017</title>
+<link>https://lfkdsk.github.io/resume-2017/</link>
+<pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/resume-2017/</guid>
+<description>Resume</description>
+</item>
+<item>
+<title>0x06：SICP 的魔法 - 并发、时间与流模拟</title>
+<link>https://lfkdsk.github.io/learn-sicp-6/</link>
+<pubDate>Wed, 27 Sep 2017 10:16:16 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-6/</guid>
+<description>在上一篇文章之中我们见识到了基于变动数据、内部状态的程序设计的能力，但是就像之前提及过多次的引用透明性的问题被打破，程序中引入了时间的概念，导致我们无论是求值顺序还是过程的运行都出现了一个时序性的问题，我们在 数字电路模拟 之中使用了一个 待处理表 的子过程，用来为我们的信号传播进行排序，通过模拟延时构造了程序的时序性。但是在现实世界中，我们不可能只通过一张表去排序构造顺序，现实系统中的对象都有更为复杂的同时的活动，为了构造这种更为现实的模拟系统，我们可能需要：
  使用一组系统进行对同时发生的事情进行模拟 分解我们使用的模型，增强内部状态的演化，就是更为 模块化 能够支持多个进程的硬件支持  在多内核处理器普及的今天，硬件支持已经渐渐不是并发编程的难题了。但是并发编程的复杂性让然没有因为这个原因而降低难度。首先我们要承认正确的运用并行编程是有利的，能提升我们程序的运行效率和对硬件的利用率。
 但是由于并发系统的时间的不确定性，两个同时运行并有所依赖的进程，我们并不能确定什么时候某个能运行完，而一个又不能对另一个的结果进行无限的等待。还有就是资源获取的问题，两个并行的程序如何对资源进行管理，比如第三章开始的那个例子，从银行取钱，如果无法控制程序对资源的有效管理就可能造成两个人同时使用一个账户同时取钱，都能取出来的情况出现。
 这一节会谈及和并发相关的内容，对于有编程理论经验的同学，这并不是什么复杂的理论内容，其中涉及到的时序控制、锁和信号量等等的知识都是能在各种 OS 相关的课程和书中了解到的知识。
@@ -281,15 +258,13 @@ Headless Chrome (including backend optimizations) Continuing to use Headless Chr
 通过对程序的分组的方式来禁止不正当的并发行为，并且可通过程序控制将某个方法设置为 串行化 的方法。
 我们引入一个内部方法 make-serializer 去提供这个是过程串行化的功能，make-serializer 接受一个过程作为参数返回同样行为的过程，参数与原过程保持一样，但保证其执行被串行化，我们可以继续使用之前的 make-account 的例子：
 (define (make-account balance) (define (withdraw amount) (if (&amp;gt;= balance amount) (begin (set!</description>
-    </item>
-    
-    <item>
-      <title>快速了解 SkipList</title>
-      <link>https://lfkdsk.github.io/quick-learn-skip-list/</link>
-      <pubDate>Mon, 11 Sep 2017 23:52:38 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/quick-learn-skip-list/</guid>
-      <description>快速的 SkipList 实现教程  在计算机科学领域，跳跃链表是一种数据结构，允许快速查询一个有序连续元素的数据链表。快速查询是通过维护一个多层次的链表，且每一层链表中的元素是前一层链表元素的子集。
+</item>
+<item>
+<title>快速了解 SkipList</title>
+<link>https://lfkdsk.github.io/quick-learn-skip-list/</link>
+<pubDate>Mon, 11 Sep 2017 23:52:38 +0000</pubDate>
+<guid>https://lfkdsk.github.io/quick-learn-skip-list/</guid>
+<description>快速的 SkipList 实现教程  在计算机科学领域，跳跃链表是一种数据结构，允许快速查询一个有序连续元素的数据链表。快速查询是通过维护一个多层次的链表，且每一层链表中的元素是前一层链表元素的子集。
 基于并联的链表，其效率可比拟于二叉查找树（对于大多数操作需要O(log n)平均时间）。
 基本上，跳跃列表是对有序的链表增加上附加的前进链接，增加是以随机化的方式进行的，所以在列表中的查找可以快速的跳过部分列表，因此得名。所有操作都以对数随机化的时间进行。 要查找一个目标元素，起步于头元素和顶层列表，并沿着每个链表搜索，直到到达小于或着等于目标的最后一个元素。通过跟踪起自目标直到到达在更高列表中出现的元素的反向查找路径，在每个链表中预期的步数显而易见是 1/*p*。所以查找的总体代价是 O((log1/p n) / p)，当p 是常数时是 O(log n)。通过选择不同 p 值，就可以在查找代价和存储代价之间作出权衡。
 插入和删除的实现非常像相应的链表操作，除了&amp;rdquo;高层&amp;rdquo;元素必须在多个链表中插入或删除之外。
@@ -298,43 +273,37 @@ Headless Chrome (including backend optimizations) Continuing to use Headless Chr
  以上就是 Wikipedia 中对 SkipList 的描述，从描述中和以往的了解我们可以得知，SkipList 是对 List 的一种加强，通过拔高某些 Node 的层次来达到快速搜索的目的，根据这个想法我们可以知道，这个有点类似于躺平的二叉搜索树，这套 快速实现教程 的目的，就是截取文章中讨论内容的重点部分，通过重点讨论其中的精要部分来达到快速实现的目的。
 搜索方法 我们知道 SkipList 的结构知道我们就知道应该怎么对这个东西进行搜索，首先是从最上层的开始搜索，根据 Key 的比较进行判断向哪个方向进行搜索：
 private SkipListNode&amp;lt;K, V&amp;gt; findNodeByKey(K key) { SkipListNode&amp;lt;K, V&amp;gt; head = headNode; while (true) { // 首先右侧节点不为空 并且当前节点比右侧节点大 ===&amp;gt; 我们可以往右侧进行查找 while (head.right.key != null &amp;amp;&amp;amp; key.compareTo(head.right.key) &amp;gt;= 0) { head = head.</description>
-    </item>
-    
-    <item>
-      <title>Retrofit 实现分析</title>
-      <link>https://lfkdsk.github.io/read-retrofit/</link>
-      <pubDate>Thu, 24 Aug 2017 19:50:32 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/read-retrofit/</guid>
-      <description>Retrofit 为我们提供了一种非常优雅的方式去书写 Restful 的请求的接口代码，和 OkHttp 、Rxjava 都能方便的无缝搭配，为我们在 Java 和 Android 提供了非常便捷的网络请求的编写方式。这篇文章中我们会从 Usage 出发，逐个步骤的分析 Retrofit 的实现方式。
+</item>
+<item>
+<title>Retrofit 实现分析</title>
+<link>https://lfkdsk.github.io/read-retrofit/</link>
+<pubDate>Thu, 24 Aug 2017 19:50:32 +0000</pubDate>
+<guid>https://lfkdsk.github.io/read-retrofit/</guid>
+<description>Retrofit 为我们提供了一种非常优雅的方式去书写 Restful 的请求的接口代码，和 OkHttp 、Rxjava 都能方便的无缝搭配，为我们在 Java 和 Android 提供了非常便捷的网络请求的编写方式。这篇文章中我们会从 Usage 出发，逐个步骤的分析 Retrofit 的实现方式。
 实现分析 我们可以定义这样的一个接口，代表一种 restful 请求：
 public interface GitHubService { @GET(&amp;quot;users/{user}/repos&amp;quot;) Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;quot;user&amp;quot;) String user); }  在使用 Retrofit 的时候：
 Retrofit retrofit = new Retrofit.Builder() .baseUrl(&amp;quot;https://api.github.com/&amp;quot;) .build(); GitHubService service = retrofit.create(GitHubService.class);  我们通过 Builder 模式拼好 baseUrl 等字串，通过 retrofit 对象可以创建我们的接口对应的实体类，我们通过对这个实体类的操作，就能对我们定义好的接口去请求对应的数据：
 Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot;octocat&amp;quot;);  创建请求类 @SuppressWarnings(&amp;quot;unchecked&amp;quot;) // Single-interface proxy creation guarded by parameter safety. public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { Utils.</description>
-    </item>
-    
-    <item>
-      <title>0x05：SICP 的魔法 - 实例:数字电路模拟</title>
-      <link>https://lfkdsk.github.io/learn-sicp-5/</link>
-      <pubDate>Tue, 08 Aug 2017 00:16:16 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-5/</guid>
-      <description>在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
+</item>
+<item>
+<title>0x05：SICP 的魔法 - 实例:数字电路模拟</title>
+<link>https://lfkdsk.github.io/learn-sicp-5/</link>
+<pubDate>Tue, 08 Aug 2017 00:16:16 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-5/</guid>
+<description>在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
  创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：
  在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
 共享和相等 我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：
-(define x (list &#39;a &#39;b)) (define z1 (cons x x))  我们定义了这样的一个结构，x 是&#39;a 和 &#39;b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 *z2*：
-(define z2 (cons (list &#39;a &#39;b) (list &#39;a &#39;b)))  这两个结构的定义起来，看起来的结构是一样的：
-这里我们能看到放置 &#39;a 和 &#39;b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：</description>
-    </item>
-    
-    <item>
-      <title>0x04：SICP 的魔法 - 模块化、状态、环境</title>
-      <link>https://lfkdsk.github.io/learn-sicp-4/</link>
-      <pubDate>Sun, 23 Apr 2017 15:37:48 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-4/</guid>
-      <description>现在我们终于到了 SICP 的第三章的内容了。就个人而言我觉得 SICP 的前三章都在着眼于构建各种层次的抽象系统，三章以后的内容才是 SICP 本身比较精髓和有趣的内容了。但是万丈高楼平地起，正是之前的这些和 “抽象”、“思想” 有关的东西构建了我们在后几章学到的解释器系统。
+(define x (list 'a 'b)) (define z1 (cons x x))  我们定义了这样的一个结构，x 是'a 和 'b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 *z2*：
+(define z2 (cons (list 'a 'b) (list 'a 'b)))  这两个结构的定义起来，看起来的结构是一样的：
+这里我们能看到放置 'a 和 'b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：</description>
+</item>
+<item>
+<title>0x04：SICP 的魔法 - 模块化、状态、环境</title>
+<link>https://lfkdsk.github.io/learn-sicp-4/</link>
+<pubDate>Sun, 23 Apr 2017 15:37:48 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-4/</guid>
+<description>现在我们终于到了 SICP 的第三章的内容了。就个人而言我觉得 SICP 的前三章都在着眼于构建各种层次的抽象系统，三章以后的内容才是 SICP 本身比较精髓和有趣的内容了。但是万丈高楼平地起，正是之前的这些和 “抽象”、“思想” 有关的东西构建了我们在后几章学到的解释器系统。
 前两章我们见识到了 Scheme 在两个主要方向上的抽象能力。我们在第一章中学到了和过程抽象有关系的知识，我们把他认定为 Scheme 系统的第一公民，看到了各种高阶函数组合起来的魅力。在第二章我们主要讨论的问题是如何进行数据抽象，从一个 “有理数” 的 Demo 入手，建立了抽象屏蔽的系统层次，我们还引入了符号数据，进一步提升了运算的抽象层次，求导等写起来很麻烦的程序都可以借助符号数据来轻松实现。之后我们还见到了通过 dispatch 使用过程保存了对象的状态，学到了使用消息传递的构建方式，等等很多的和 “抽象” 有关的知识。
 我们确实通过以上的知识，在上一节末构建了一个通用操作的复数系统。但是对于一个更为拟真、更为复杂的系统的时候，以上或是计算、或是对模型抽象的知识就显得远远不足了。我们还应该需要一系列模式或者是说原则去规定去构建这整个系统。换句话说，我们要学习如何去模拟这个世界。
  模拟真实世界？
@@ -349,30 +318,26 @@ Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot
  对象的世界 从 对象 的角度上来看，世界是什么样子的呢？对象的世界本质上是由一大堆对象组成的，对象有自己的属性和状态，随着时间的流逝，对象有一系列的状态的变迁。为此我们要通过一种方式去记录这个状态，通过这个被记录下的状态，我们能表现出这个对象的变化规程，而且还可以通过这个状态去继续计算对象的一系列后续的状态。
 通过以上的这一系列的对 对象的世界 的描述，我们可以很容易的发现，我们描述的这种模块化、对象化的设计方式，其实和我们曾经学过的 Cpp、Java、CSharp 的世界非常的相近。我们从上帝的视角，把整个计算系统分解成对每个对象的计算的上去， 用它们模拟真实系统中对象的行为。
 但是对上面我们提到的那个 状态的变化 我们会发现，我们缺少一个我们很熟悉的东西——赋值 ，下面对对象世界的展开讨论就要从 赋值 这个基本操作开始谈。</description>
-    </item>
-    
-    <item>
-      <title>0x03：SICP 的魔法 - 符号演算和数据表示方法</title>
-      <link>https://lfkdsk.github.io/learn-sicp-3/</link>
-      <pubDate>Mon, 20 Mar 2017 16:24:51 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-3/</guid>
-      <description>符号数据 有过CPP，Java等 OO 语言编程经验的人，肯定对基本类型和各种封箱的引用类型的区别有很大的感触。符号数据是什么，在这里的开始，我们可以先粗浅得把他理解成对象的引用，当然 Scheme 中的符号数据和这个还是有很大的区别的，理解这个符号我们可以先举一个这个例子：
+</item>
+<item>
+<title>0x03：SICP 的魔法 - 符号演算和数据表示方法</title>
+<link>https://lfkdsk.github.io/learn-sicp-3/</link>
+<pubDate>Mon, 20 Mar 2017 16:24:51 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-3/</guid>
+<description>符号数据 有过CPP，Java等 OO 语言编程经验的人，肯定对基本类型和各种封箱的引用类型的区别有很大的感触。符号数据是什么，在这里的开始，我们可以先粗浅得把他理解成对象的引用，当然 Scheme 中的符号数据和这个还是有很大的区别的，理解这个符号我们可以先举一个这个例子：
 两句话就能看明白 Symbol 和 Value 的区别，第一句话让我们说我们最喜欢的颜色，第二句是说“你最喜欢的颜色”。自然语言中能区分词语本身和词语的含义的不同，Scheme 中也有类似的机制。
 表示符号数据 在 Scheme 的解释器中，我们之前已经了解到了，解释器就是一个不断接收数据的 eval() 循环：
-每当我们输入表达式，就会接到表达式的返回值。同时我们还知道了，块级作用域的的实现本身是通过层层的 Map 来实现的，那我们只需要一个过程从对应的作用域表里面取出对应名字的引用就可以实现符号数据了。在 Sheme 中我们通常会使用 &#39; 符号代表这个值是一个符号类型而非基本类型：
-&amp;gt; (define A 10) &amp;gt; A &amp;gt; ; Value: 10 使用的是基础类型 &amp;gt; &#39;A &amp;gt; ; Value: a 使用的符号类型  但是直观上来看这个引号似乎破坏了 Scheme 中的语法，如果为了 &#39; 在解释器里单独实现一套机制难免得不偿失，而且是一种给解释器开洞的行为。但实际上在 Scheme 中这个问题被很轻松的解决了，&#39; 本身实际上是 (quote x) 的一种语法糖。
+每当我们输入表达式，就会接到表达式的返回值。同时我们还知道了，块级作用域的的实现本身是通过层层的 Map 来实现的，那我们只需要一个过程从对应的作用域表里面取出对应名字的引用就可以实现符号数据了。在 Sheme 中我们通常会使用 ' 符号代表这个值是一个符号类型而非基本类型：
+&amp;gt; (define A 10) &amp;gt; A &amp;gt; ; Value: 10 使用的是基础类型 &amp;gt; 'A &amp;gt; ; Value: a 使用的符号类型  但是直观上来看这个引号似乎破坏了 Scheme 中的语法，如果为了 ' 在解释器里单独实现一套机制难免得不偿失，而且是一种给解释器开洞的行为。但实际上在 Scheme 中这个问题被很轻松的解决了，' 本身实际上是 (quote x) 的一种语法糖。
  Tips : eq? 和 equal? 和 symbol?
  eq? 判断是不是一个引用 equal? 判断字面是否相等 symbol? 判断元素是不是符号   符号求导 书中讨论了简化版的求导函数，导函数完全由乘积和求和合成：</description>
-    </item>
-    
-    <item>
-      <title>0x02：SICP 的魔法 - 数据抽象、层次抽象</title>
-      <link>https://lfkdsk.github.io/learn-sicp-2/</link>
-      <pubDate>Sat, 11 Mar 2017 18:17:35 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-2/</guid>
-      <description>在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
+</item>
+<item>
+<title>0x02：SICP 的魔法 - 数据抽象、层次抽象</title>
+<link>https://lfkdsk.github.io/learn-sicp-2/</link>
+<pubDate>Sat, 11 Mar 2017 18:17:35 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-2/</guid>
+<description>在第一章里面，我们已经见识到了过程抽象的魔法，一个过程描述了一系列数据的计算过程，但本身又是一种元素可以出现在程序的任何部分，所以说过程是一种抽象，我们在使用的时候不需要知道任何和具体实现有关的东西，只需要调用我们已经定义好的过程就行了。
 与此相类，数据本身也可以作为一种抽象，我们在之前接触的数据都是一些简单的数据，所以可能没什么感受。但是数据也可以包含不止一种的信息，使用的时候隐藏具体的实现细节，具体使用的时候又能作为元素出现在程序任意的位置，因此数据也是一种抽象。
  有过 OO 语言经验的同学 可以借助类的概念理解一下以上的概念
 但是类的概念是无法完全概括的哦～
@@ -382,27 +347,23 @@ Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot
    Function Name Usage     ( cons p1 p2) 能把两个参数打包成一个对象   ( car x ) 能从 cons 打包出的对象 取出其中的第一个数据   ( cdr x ) 能从 cons 打包出的对象 取出其中的第二个数据    对于能非常方便构建 class 或是 struct 这样的数据结构的其他语言的使用者来看，这个序对的作用实在是微乎其微，但是大的抽象模式都是从最小的抽象方式开始的，我们这里使用序对也只是为了演示 Scheme 的抽象能力。
 如何定义有理数？ 这看起来似乎不是个问题，因为语言都会原生支持各种类型的浮点数，能轻松的用来表示有理数，但是请先忘了有关这方面的知识，单纯考虑当我们的系统只能支持整形数据的时候我们应该怎么表示有理数。
 从上一小节的序对的知识出发，我们很容易找到答案，我们可以把有理数的小数点前后的部分，分别用一个整形数据来表示，再把他们用 cons 打包，当进行计算的时候再拆开计算就可以了。</description>
-    </item>
-    
-    <item>
-      <title>0x01：SICP 的魔法 - 过程的求值计算和高阶过程</title>
-      <link>https://lfkdsk.github.io/learn-sicp-1/</link>
-      <pubDate>Mon, 27 Feb 2017 12:01:15 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-1/</guid>
-      <description>过程的求值计算 这里面我们先来介绍一种最为简单、通用的求值模型，代换模型并不能概括全部的求值方式，但是我们先从这个开始。
+</item>
+<item>
+<title>0x01：SICP 的魔法 - 过程的求值计算和高阶过程</title>
+<link>https://lfkdsk.github.io/learn-sicp-1/</link>
+<pubDate>Mon, 27 Feb 2017 12:01:15 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-1/</guid>
+<description>过程的求值计算 这里面我们先来介绍一种最为简单、通用的求值模型，代换模型并不能概括全部的求值方式，但是我们先从这个开始。
 代换模型 通用的表达式计算模式，描述起来其实非常简单，先求出各子表达式的值，找到要调用的过程的定义，用求出的实际参数代换过程体里的形式参数，再对过程体进行求值，本质上一种使用等价性的表达式的拆分机制，比如下例，是对一个平方和函数进行计算的详细步骤：
 (define (sum-of-squares x y) (+ (square x) (square y))) ; sum-of-squares 求两个数的平方和 (define (f x) (sum-of-squares (+ x 1) (+ x 2))) (f 5) (sum-of-squares (+ 5 1) (* 5 2)) ; 注意这两行，首先算出来形参 (+ (square 6) (square 10)) (+ (* 6 6) (* 10 10)) (+ 36 100) 136   Tips: 上面的代换方式又被称作应用序的计算方式，这也是 Scheme 解释器的计算方式，除此之外，还有一种被称作正则序的计算方式，正则性和上面不一样的地方在于，它不会先计算出调用过程的形参，反倒是一定要把整个表达式最小化到所有的东西都能直接计算的程序(摊开了的感觉):
 &amp;gt; (f 5) &amp;gt; (sum-of-squares (+ 5 1) (* 5 2)) &amp;gt; (+ (square (+ 5 1)) (square (* 5 2)) ); 注意这两行这里没往下计算形参 &amp;gt; (+ (* (+ 5 1) (+ 5 1)) (* (* 5 2) (* 5 2))) &amp;gt; (+ (* 6 6) (* 10 10)) ; 反倒是都摊开了才开始进行规约 &amp;gt; (+ 36 100) &amp;gt; 136 &amp;gt; ``` &amp;gt; &amp;gt; PS: 有个很简单的Demo能证明所用的解释器到底用了什么计算顺序: &amp;gt; &amp;gt; ```lisp &amp;gt; (define (p) (p)) &amp;gt; (define (test x y) &amp;gt; (if (= x 0) &amp;gt; 0 &amp;gt; y)) &amp;gt; ``` &amp;gt; &amp;gt; 大家可以想想`正则序`和`应用序`分别会有什么结果。 ### 迭代与递归 我们首先从两个简单例子开始： !</description>
-    </item>
-    
-    <item>
-      <title>Sketch 的过去现在和未来</title>
-      <link>https://lfkdsk.github.io/tanslate-sketch/</link>
-      <pubDate>Fri, 24 Feb 2017 21:43:32 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/tanslate-sketch/</guid>
-      <description>原文链接 : The Past, Present and Future of Sketch
+</item>
+<item>
+<title>Sketch 的过去现在和未来</title>
+<link>https://lfkdsk.github.io/tanslate-sketch/</link>
+<pubDate>Fri, 24 Feb 2017 21:43:32 +0000</pubDate>
+<guid>https://lfkdsk.github.io/tanslate-sketch/</guid>
+<description>原文链接 : The Past, Present and Future of Sketch
  原文作者 : Geoff Teehan
  译文出自 : 掘金翻译计划
  译者 : lfkdsk
@@ -411,28 +372,24 @@ Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot
 Sketch 和 Photoshop 已经成为产品设计者的首选工具，而且大部分我今天交流的设计者都已经从 Photoshop 切换到 Sketch 了。
 产品原型已经成为产品设计的一个重要组成部分，然而直到 Comet 出现之前， Adobe 在这个领域没有做出任何建树。 Adobe 也意识到类似于 Sketch 的简单而专注的设计工具会逐渐流行普及，变成产品设计者的首选工具，这可能对 Comet 的问世充当了重要的角色。
 我当时的想法是如果我是 Pieter ，我一定会吓得屁滚尿流。我周围的谈话都是关于 Pieter ， Comet 以及 Sketch 将如何反击的。当时，我非常严厉的跟 Pieter 说，如果他想避免公司破产，他就需要融资并发展 Sketch 。 David 和 Goliath ，也许现在角色要对换一下。</description>
-    </item>
-    
-    <item>
-      <title>选择使用正确的 Markdown Parser</title>
-      <link>https://lfkdsk.github.io/translate-md/</link>
-      <pubDate>Fri, 24 Feb 2017 21:40:55 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/translate-md/</guid>
-      <description>原文链接 : Choosing the Right Markdown Parser 原文作者 : CSS-TRICKS 译文出自 : 掘金翻译计划 译者 : lfkdsk 校对者: brucezz lekenny  以下客座文章由Ray Villalobos提供。在这篇文章中Ray将要去探索很多种不同的Markdown语法。所有的这些MarkDown变种均提供了不同的特性，都超越传统的Markdown语法，却又相互之间又各有不同。如果你正在挑选一门Markdown语言使用（或是提供给你的Web产品的用户使用），那你就值得的去了解它们，一旦选定就很难再切换到别的Markdown版本而且挑选的结果依赖于你需要哪些特性。Ray提供的一门关于MarkDown课程将会分享这些不同的版本都拥有哪些特性去帮助你做出明智的选择。
+</item>
+<item>
+<title>选择使用正确的 Markdown Parser</title>
+<link>https://lfkdsk.github.io/translate-md/</link>
+<pubDate>Fri, 24 Feb 2017 21:40:55 +0000</pubDate>
+<guid>https://lfkdsk.github.io/translate-md/</guid>
+<description>原文链接 : Choosing the Right Markdown Parser 原文作者 : CSS-TRICKS 译文出自 : 掘金翻译计划 译者 : lfkdsk 校对者: brucezz lekenny  以下客座文章由Ray Villalobos提供。在这篇文章中Ray将要去探索很多种不同的Markdown语法。所有的这些MarkDown变种均提供了不同的特性，都超越传统的Markdown语法，却又相互之间又各有不同。如果你正在挑选一门Markdown语言使用（或是提供给你的Web产品的用户使用），那你就值得的去了解它们，一旦选定就很难再切换到别的Markdown版本而且挑选的结果依赖于你需要哪些特性。Ray提供的一门关于MarkDown课程将会分享这些不同的版本都拥有哪些特性去帮助你做出明智的选择。
 Markdown改变了很多专业领域的书写方式。这种语言使用简单的文本和极少的标记就能够将其转换为越来越多的格式。然而不是所有的Markdown解析器被创造出来都是一样的。因为原来的规范没有与时俱进，替代版本像是 Multi-Markdown、GFM(Github Flavored Markdown)、Markdown Extra和其他的版本扩充了这门语言。
 Markdown的原始解析器是用Perl编写的。核心的特性包括解析块元素（例如段落，换行，标头，块引用，列表，代码块和水平线）和行内元素（链接，加重，代码段和图片）。从那以后，该解析器的作者John Gruber再也没有扩充过语法了，所以很多的新增和实现伴随着不同的他们认为合适的、或是支持解释某些元素的解析器支持浮出水面。
 选择一个版本 在一个程序里实现Markdown功能需要考虑很多，包括你将要使用的开发语言和你想要支持的特性。原始的版本是由Perl编写的，对于每一个项目来说，这并不是一个实用的选择。最流行的实现版本包括：PHP、Ruby和JavaScript。你选择了哪种语言将会间接影响你能支持哪些特性和能使用哪些库。让我们来看看一些选择：
    语言 库 (下载项目)     Perl Original version   JavaScript CommonMark、Marked、Markdown-it、Remarkable、Showdown   Ruby Github Flavored Markup、Kramdown、Maruku、Redcarpet   PHP Cebe Markdown、Ciconia、Parsedown、PHP Markdown Extended   Python Python Markdown    以防万一你想用别的语言去实现Markdown，这里还有许多额外的其他的语言实现的版本。</description>
-    </item>
-    
-    <item>
-      <title>0x00：SICP 的魔法 - Scheme 基础和黑盒抽象</title>
-      <link>https://lfkdsk.github.io/learn-sicp-0/</link>
-      <pubDate>Tue, 21 Feb 2017 22:22:14 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/learn-sicp-0/</guid>
-      <description>作者 ：刘丰恺
+</item>
+<item>
+<title>0x00：SICP 的魔法 - Scheme 基础和黑盒抽象</title>
+<link>https://lfkdsk.github.io/learn-sicp-0/</link>
+<pubDate>Tue, 21 Feb 2017 22:22:14 +0000</pubDate>
+<guid>https://lfkdsk.github.io/learn-sicp-0/</guid>
+<description>作者 ：刘丰恺
 作者博客：若梦浮生
 转载需征得作者本人同意
  计算机科学的内容包罗万象，其中的经典的课程也是不胜枚举。但是在这其中SICP(Structure and Interpretation of Computer Programs)绝对是其中的经典和翘楚，在2008年以前SICP的MIT6.001课程历来是CS相关专业必修入门课程。
@@ -446,26 +403,22 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
 但是如果要涉及怎么求平方根，我们就需要借助牛顿迭代法了，通过猜测一个数字，再根据求出商，两者相加求平均值作为下一次的平方根猜测量，这样逐步逼近到达一个最接近的数值就是x的平方根。
  如下求 2 的平方根
     猜测量 商 平均值     1 2&amp;frasl;1 = 2 (2 + 1) / 2 = 1.5   1.5 2 / 1.5 = 1.3333 (1.5 + 1.3333) / 2 = 1.</description>
-    </item>
-    
-    <item>
-      <title>学伴中 Tinker 简单配置</title>
-      <link>https://lfkdsk.github.io/tinker-simple-use/</link>
-      <pubDate>Mon, 13 Feb 2017 01:05:27 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/tinker-simple-use/</guid>
-      <description>学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。
+</item>
+<item>
+<title>学伴中 Tinker 简单配置</title>
+<link>https://lfkdsk.github.io/tinker-simple-use/</link>
+<pubDate>Mon, 13 Feb 2017 01:05:27 +0000</pubDate>
+<guid>https://lfkdsk.github.io/tinker-simple-use/</guid>
+<description>学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。
 这里记录一下使用Tinker第三方应用平台的简单配置，以飨后人。
-Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件 classpath &amp;quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&amp;quot; } }  Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用 provided(&amp;quot;com.tencent.tinker:tinker-android-anno:1.7.7&amp;quot;) compile(&amp;quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&amp;quot;) }  Tinker Gradle apply plugin: &#39;tinkerpatch-support&#39; /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&amp;quot;${buildDir}/bakApk/&amp;quot;) // 当前版本号 和 build.gradle 相同 def version = &amp;quot;3.0.4&amp;quot; // 具体的发布时间 def baseInfo = &amp;quot;app-&amp;quot; + version + &amp;quot;-0213-01-55-20&amp;quot; // 版本 def variantName = &amp;quot;release&amp;quot; /** * SDK 位置 * http://tinkerpatch.</description>
-    </item>
-    
-    <item>
-      <title>Effective CPP 学习笔记</title>
-      <link>https://lfkdsk.github.io/eff-cpp-tips/</link>
-      <pubDate>Mon, 12 Dec 2016 15:27:51 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/eff-cpp-tips/</guid>
-      <description>Effective CPP 学习笔记
+Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件 classpath &amp;quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&amp;quot; } }  Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用 provided(&amp;quot;com.tencent.tinker:tinker-android-anno:1.7.7&amp;quot;) compile(&amp;quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&amp;quot;) }  Tinker Gradle apply plugin: 'tinkerpatch-support' /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&amp;quot;${buildDir}/bakApk/&amp;quot;) // 当前版本号 和 build.gradle 相同 def version = &amp;quot;3.0.4&amp;quot; // 具体的发布时间 def baseInfo = &amp;quot;app-&amp;quot; + version + &amp;quot;-0213-01-55-20&amp;quot; // 版本 def variantName = &amp;quot;release&amp;quot; /** * SDK 位置 * http://tinkerpatch.</description>
+</item>
+<item>
+<title>Effective CPP 学习笔记</title>
+<link>https://lfkdsk.github.io/eff-cpp-tips/</link>
+<pubDate>Mon, 12 Dec 2016 15:27:51 +0000</pubDate>
+<guid>https://lfkdsk.github.io/eff-cpp-tips/</guid>
+<description>Effective CPP 学习笔记
  1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。
 3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)
 low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
@@ -477,24 +430,20 @@ char &amp;amp; operand[] (std::size_t position){ return const_cast&amp;lt;char&a
 FileSystem &amp;amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
 6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
 7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。</description>
-    </item>
-    
-    <item>
-      <title>写在学伴叁的边上</title>
-      <link>https://lfkdsk.github.io/the-end-ofx/</link>
-      <pubDate>Tue, 15 Nov 2016 12:19:15 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/the-end-ofx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>如何处理游戏中的碰撞事件</title>
-      <link>https://lfkdsk.github.io/how-to-solve-co/</link>
-      <pubDate>Thu, 08 Sep 2016 16:04:42 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/how-to-solve-co/</guid>
-      <description>作者 ：刘丰恺
+</item>
+<item>
+<title>写在学伴叁的边上</title>
+<link>https://lfkdsk.github.io/the-end-ofx/</link>
+<pubDate>Tue, 15 Nov 2016 12:19:15 +0000</pubDate>
+<guid>https://lfkdsk.github.io/the-end-ofx/</guid>
+<description/>
+</item>
+<item>
+<title>如何处理游戏中的碰撞事件</title>
+<link>https://lfkdsk.github.io/how-to-solve-co/</link>
+<pubDate>Thu, 08 Sep 2016 16:04:42 +0000</pubDate>
+<guid>https://lfkdsk.github.io/how-to-solve-co/</guid>
+<description>作者 ：刘丰恺
 作者博客：若梦浮生
 转载需征得作者本人同意
  之前试着在Android平台封装了一个轻量级的游戏开发框架JustWeEngine ,因为是轻量级的所以也没想太多，很多地方的处理都不太够，比如关于碰撞事件的处理，就是一个简单的On2的遍历，前一阵还被吐槽了233333。
@@ -504,15 +453,13 @@ FileSystem &amp;amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的�
 我在JustWeEngine里面就试着用了物体分组的方式
 public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围 protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; }  通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
 private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); }  然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。</description>
-    </item>
-    
-    <item>
-      <title>从 View 源码学习点击事件的模拟</title>
-      <link>https://lfkdsk.github.io/androidtips1/</link>
-      <pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/androidtips1/</guid>
-      <description>作者：刘丰恺
+</item>
+<item>
+<title>从 View 源码学习点击事件的模拟</title>
+<link>https://lfkdsk.github.io/androidtips1/</link>
+<pubDate>Tue, 06 Sep 2016 19:32:07 +0000</pubDate>
+<guid>https://lfkdsk.github.io/androidtips1/</guid>
+<description>作者：刘丰恺
 作者博客：若梦浮生
 转载请注明文章来源
  我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() / onLongClick()事件是不能被响应的了。
@@ -520,15 +467,13 @@ private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener
 模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
 Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
 int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &amp;gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;amp;&amp;amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</description>
-    </item>
-    
-    <item>
-      <title>MVP In Android</title>
-      <link>https://lfkdsk.github.io/mvpinandroid/</link>
-      <pubDate>Tue, 06 Sep 2016 07:57:49 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/mvpinandroid/</guid>
-      <description>众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
+</item>
+<item>
+<title>MVP In Android</title>
+<link>https://lfkdsk.github.io/mvpinandroid/</link>
+<pubDate>Tue, 06 Sep 2016 07:57:49 +0000</pubDate>
+<guid>https://lfkdsk.github.io/mvpinandroid/</guid>
+<description>众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
 所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
 What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。
 MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。
@@ -538,49 +483,41 @@ Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模�
 Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&amp;lt;Presenter&amp;gt; { void initialRecycler(List&amp;lt;ExamArrange&amp;gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
 Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
 Base Interface public interface BaseView&amp;lt;T&amp;gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</description>
-    </item>
-    
-    <item>
-      <title>使用DFA做文本编辑器的自动提示</title>
-      <link>https://lfkdsk.github.io/dfa-auto-suggestion/</link>
-      <pubDate>Mon, 11 Jul 2016 07:59:17 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/dfa-auto-suggestion/</guid>
-      <description>之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。
+</item>
+<item>
+<title>使用DFA做文本编辑器的自动提示</title>
+<link>https://lfkdsk.github.io/dfa-auto-suggestion/</link>
+<pubDate>Mon, 11 Jul 2016 07:59:17 +0000</pubDate>
+<guid>https://lfkdsk.github.io/dfa-auto-suggestion/</guid>
+<description>之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。
 DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; import java.util.Map; /** * Dfa 状态 * * @author liufengkai * Created by liufengkai on 16/7/10. */ public class DfaState implements Comparable&amp;lt;DfaState&amp;gt; { private static int DFA_ID_COUNT = 0; /** * state id */ private int stateId; /** * transition set * char / set of dfaState */ private Map&amp;lt;Integer, DfaState&amp;gt; transitionSet; private DfaState parentState; private Integer parentInput; /** * 构造方法 * * @param input 输入串 * @param parentState 父节点 */ public DfaState(Integer input, DfaState parentState) { this.</description>
-    </item>
-    
-    <item>
-      <title>学习制作一门有趣的编程语言－0x04</title>
-      <link>https://lfkdsk.github.io/make-new-language-4/</link>
-      <pubDate>Sat, 25 Jun 2016 22:33:35 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/make-new-language-4/</guid>
-      <description>几种常用算法 我们日常会用正则表达式的时候，我们会发现正则表达式用了非常精简的语法就能概括多种输入串的特征，</description>
-    </item>
-    
-    <item>
-      <title>我们来写一些魔法</title>
-      <link>https://lfkdsk.github.io/some-magic-things/</link>
-      <pubDate>Thu, 16 Jun 2016 21:30:29 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/some-magic-things/</guid>
-      <description>请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
+</item>
+<item>
+<title>学习制作一门有趣的编程语言－0x04</title>
+<link>https://lfkdsk.github.io/make-new-language-4/</link>
+<pubDate>Sat, 25 Jun 2016 22:33:35 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-new-language-4/</guid>
+<description>几种常用算法 我们日常会用正则表达式的时候，我们会发现正则表达式用了非常精简的语法就能概括多种输入串的特征，</description>
+</item>
+<item>
+<title>我们来写一些魔法</title>
+<link>https://lfkdsk.github.io/some-magic-things/</link>
+<pubDate>Thu, 16 Jun 2016 21:30:29 +0000</pubDate>
+<guid>https://lfkdsk.github.io/some-magic-things/</guid>
+<description>请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
 SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
 首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, &amp;quot;key&amp;quot;, 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
 同时在AndroidManifest文件中：
 &amp;lt;receiver android:name=&amp;quot;.SecretReceiver&amp;quot; android:enabled=&amp;quot;true&amp;quot; android:exported=&amp;quot;true&amp;quot;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;quot;android.provider.Telephony.SECRET_CODE&amp;quot; /&amp;gt; &amp;lt;data android:host=&amp;quot;12467&amp;quot; android:scheme=&amp;quot;android_secret_code&amp;quot; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/receiver&amp;gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
 host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
 添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.</description>
-    </item>
-    
-    <item>
-      <title>2014 =&gt; 2016 梦回吹角连营</title>
-      <link>https://lfkdsk.github.io/2014to2016/</link>
-      <pubDate>Thu, 09 Jun 2016 00:23:04 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/2014to2016/</guid>
-      <description>​ 今年的高考在今天结束了，这对我实在没什么实感，仔细一想高考都是两年前的事情了。两年过去了当年的高中同学也都风流云散了，保持联系的人也不是太多了。这都是无可避免的事情，活着不过是迎来送往。不过今天听妈提到她的一个同事的侄子，他比我小一届吧，之前他的事我高中的时候也有所耳闻，上一次考试失利，这次复读重考。听到这个消息才让我又想起来我的高考了。
+</item>
+<item>
+<title>2014 =&gt; 2016 梦回吹角连营</title>
+<link>https://lfkdsk.github.io/2014to2016/</link>
+<pubDate>Thu, 09 Jun 2016 00:23:04 +0000</pubDate>
+<guid>https://lfkdsk.github.io/2014to2016/</guid>
+<description>​ 今年的高考在今天结束了，这对我实在没什么实感，仔细一想高考都是两年前的事情了。两年过去了当年的高中同学也都风流云散了，保持联系的人也不是太多了。这都是无可避免的事情，活着不过是迎来送往。不过今天听妈提到她的一个同事的侄子，他比我小一届吧，之前他的事我高中的时候也有所耳闻，上一次考试失利，这次复读重考。听到这个消息才让我又想起来我的高考了。
 ​ “梦回吹角连营”，对于这个题目我觉得这句真是太恰当了，高考对于我来讲真的是一场战争，一生的梦魇。有的时候和朋友谈起高考，我都会选择一些轻松的语调去描述我的高考，说说自己那时候也贪玩，也不听课，也会和朋友去网吧。但说实话这描述虽是实情，但是要说我整个高三都处在这种状态下我都不信，这种说法可能是真的属于一个经历过的人的云淡风轻吧。要单纯讲出我高三的状态可能就是“晕”吧。其实我高一／高二也挺晕的，因为玩得多睡得少，而且不用太上心就能考出差强人意的成绩，可能我自己都不太在意吧。但是高三的晕是真的头晕眼花，每天的睡眠时间都小于5个小时，2，3点睡觉的时候也屡见不鲜，我甚至到了分不清当天是周几，分不清一件事是哪天发生的，早上上学过马路看不清车都被车擦到的情况出现。我记得中午可以午睡，但是只能睡十分钟，对于重度缺觉的人，这点时间几乎可以忽略不计了，因为我基本上头碰上手臂的时候就睡着了，然后醒的时候意识还停留在刚睡的时候，更不要提有的时候会在梦里梦到还在学习，结果醒了疲劳度不减反增。最有印象的是数学的，高三转来了一个讲得不错的数学老师，从某种意义上是挽救了我们全班的数学。数学课自然要好好听的，但是还困，所以我们基本上整堂课都自动的去后面站着。我还是挺佩服我自己的临考状态的，我虽然睡眠已经严重不足，甚至思路都不清楚了，但是还能坚持正确的做题。可能真的是所谓的“学习机器”的程度吧，困的已经干扰了正常生活了，却还能正常的做题，想来也是挺讽刺的。那时候我们产生了一个很奇怪的兴趣，就是总想去买练习册去做，总想多做题，但是不幸的是对于我精神上还是能坚持的住的，但是身体的疲劳已经撑不住了，就是脑子想着“我还能打一年”，但实际已经趴着就起不来了。我高考时候的状态就大抵如此。
 ​ 说了这么多，其实不是想诉苦，或者标榜什么的。说起来都是两年前的事了，吹嘘什么的一点意思都没有，而且有种钱钟书所说的“兄弟我在英国的时候”的感觉。但是高考真的是对学生一次很痛苦的经历，好坏众说纷纭，但是我想我还不至于变成斯达哥尔摩综合症，经历过就去跪舔这个痛苦的经历，即使我或许也算高考的某种既得利益者（？）。其实我倒是认识很多的学霸，他们的作息方式和我有很大区别的，听起来似乎没我拼命，但是我想或许他们也有他们自己的努力，毕竟世上还是没有真正的不劳而获。我辛苦到如上所说或许是我真的很笨吧！
 ​ 有人说我有被害妄想症，可能是因为我天天想着会饿死街头（不会？）。但是说真的这种惨烈的经历没办法不让我不去想。我甚至都不敢想如果高考落榜现在会在做什么，是再来一次，还是从根本上就放弃治疗的颓废的一败涂地。我不知道。我虽然经常写鸡汤，但也就是给自己洗个脑什么的，估计别人看到都不信，但是真实的生活是热血杀出来的道路，是不相信鸡汤的。所以我非常反感给高考盲灌鸡汤的人，说什么不是唯一的出路之类的，这些人看起来都是悲天悯人的普世情怀，其实都是一群看热闹不嫌事大的帮闲。什么叫还有其他出路啊，你跟我提出路什么的先别把我其他的路堵上啊。一个普通的工薪阶层的家庭出来的孩子，你还能给我提出一个除了读书立命的之外的出路么？从商做生意？问一下本金谁出啊？从军入伍？看起来不错，但是想提干，军校的经历不才是最重要的？所以很多人说千军万马过独木桥，谁不想更好的活着啊，就像你说国家的就业为什么这么困难，还不是都要留在好城市，西部大开发倒是职位过剩，说得就跟你愿意去似的。我这个人看起来感性，但是考虑这些问题的时候我真的会变得很现实的，因为这确实是很现实的问题啊！
@@ -588,15 +525,13 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
 ​ 谈了我很多的忧虑和要去做到和完成的事情啊，很多人会说我想多了，但是“人无远虑，必有近忧”，难道你做事还指望船到桥头自然直么？这些事情怎么处理呢？我也想不到什么好方法，只有持续不断的努力吧，努力的做好手头的事情再为之后的事情做好准备吧。写到这里才发现我写的东西真是跑题严重啊，从高考居然跳着跳着跑到了对未来的讨论了。但是我想从某种角度说也不算跑题吧，高考的重要性真的是已经到了事关人生的程度了。或许我真的有一些宿命论和被害妄想吧，我总是要很努力才能和周围的人不拉开太大的差距。不过生活总得继续，把痛苦说出来只会缓解不会消灭，今天谈完当年的高考，还是要继续期末复习，总是要向前看的啊。
 ​ 我估计大家都不会看到这篇文章吧，毕竟夜已经深了，我也快要去睡了，祝大家都有一个前程似锦的前程吧。
 P,S:我很的挺感谢现在的这个大学的，虽然某工不是我能考上的最好的大学，当年华科，华南皇家理工，武大什么的我也都是能考上的，但是某工开发区这个地方真是平时除了学习之外找不到什么其它能做的，果然是硬点的学在某工啊。x</description>
-    </item>
-    
-    <item>
-      <title>学习制作一门有趣的编程语言－0x03</title>
-      <link>https://lfkdsk.github.io/make-new-language-3/</link>
-      <pubDate>Wed, 01 Jun 2016 22:28:06 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/make-new-language-3/</guid>
-      <description>分析一个C语言的Lex &amp;amp; Yacc 程序 博客地址： http://lfkdsk.github.io
+</item>
+<item>
+<title>学习制作一门有趣的编程语言－0x03</title>
+<link>https://lfkdsk.github.io/make-new-language-3/</link>
+<pubDate>Wed, 01 Jun 2016 22:28:06 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-new-language-3/</guid>
+<description>分析一个C语言的Lex &amp;amp; Yacc 程序 博客地址： http://lfkdsk.github.io
 代码地址： https://github.com/lfkdsk/CodeParse
 本节我们来分析一个能匹配C语言的Lex &amp;amp; Yacc 程序
  Lex文件:http://www.lysator.liu.se/c/ANSI-C-grammar-l.html
@@ -604,29 +539,25 @@ Yacc文件:http://www.lysator.liu.se/c/ANSI-C-grammar-y.html
  也可以直接在我的github代码地址中进行下载。
 先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)*  首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
 &amp;quot;/*&amp;quot;	{ comment(); }  第16行匹配了C语言的注释开始，并且调用了comment()函数。
-comment() { char c, c1; loop: while ((c = input()) != &#39;*&#39; &amp;amp;&amp;amp; c != 0) putchar(c); if ((c1 = input()) != &#39;/&#39; &amp;amp;&amp;amp; c != 0) { unput(c1); goto loop; } if (c !</description>
-    </item>
-    
-    <item>
-      <title>学习制作一门有趣的编程语言－0x02</title>
-      <link>https://lfkdsk.github.io/make-new-language-2/</link>
-      <pubDate>Wed, 01 Jun 2016 12:13:17 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/make-new-language-2/</guid>
-      <description>博客地址： http://lfkdsk.github.io
+comment() { char c, c1; loop: while ((c = input()) != '*' &amp;amp;&amp;amp; c != 0) putchar(c); if ((c1 = input()) != '/' &amp;amp;&amp;amp; c != 0) { unput(c1); goto loop; } if (c !</description>
+</item>
+<item>
+<title>学习制作一门有趣的编程语言－0x02</title>
+<link>https://lfkdsk.github.io/make-new-language-2/</link>
+<pubDate>Wed, 01 Jun 2016 12:13:17 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-new-language-2/</guid>
+<description>博客地址： http://lfkdsk.github.io
 代码地址： https://github.com/lfkdsk/CodeParse
  为计算器添加一些新功能  本节代码：CalcWithTable
  上次我们使用Lex &amp;amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
 先看Lex文件 %{ #include &amp;quot;y.tab.h&amp;quot; #include &amp;lt;math.h&amp;gt; #include &amp;quot;link_list.h&amp;quot; %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf(&amp;quot;number : %s \n&amp;quot;, yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } &amp;quot;$&amp;quot; { return 0; } \n | .</description>
-    </item>
-    
-    <item>
-      <title>学习制作一门有趣的编程语言－0x01</title>
-      <link>https://lfkdsk.github.io/make-new-language-1/</link>
-      <pubDate>Fri, 27 May 2016 08:37:20 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/make-new-language-1/</guid>
-      <description>熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
+</item>
+<item>
+<title>学习制作一门有趣的编程语言－0x01</title>
+<link>https://lfkdsk.github.io/make-new-language-1/</link>
+<pubDate>Fri, 27 May 2016 08:37:20 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-new-language-1/</guid>
+<description>熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
 tips：阅读此篇需要一定的C语言基础和正则表达式的知识
  首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp;amp; Yacc 的用法，Lex &amp;amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp;amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 词法记号流， 而 Yacc 负责语法分析，将词法记号流处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种三地址代码的形式，经过优化器的优化生成机器指令就可以运行在机器中了。
  词法记号：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token
@@ -637,17 +568,14 @@ tips：阅读此篇需要一定的C语言基础和正则表达式的知识
  Lex: Lex的使用方法如图所示，分为三个区域：
  定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&amp;rdquo;%%&amp;ldquo;符号，终止于&amp;rdquo;%%&amp;ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。
 1.首先是定义区：</description>
-    </item>
-    
-    <item>
-      <title>情怀向：仙剑Dos版攻略</title>
-      <link>https://lfkdsk.github.io/xianjian10/</link>
-      <pubDate>Sat, 10 Feb 2007 22:36:42 +0000</pubDate>
-      
-      <guid>https://lfkdsk.github.io/xianjian10/</guid>
-      <description>初中时候的中二之作。
+</item>
+<item>
+<title>情怀向：仙剑Dos版攻略</title>
+<link>https://lfkdsk.github.io/xianjian10/</link>
+<pubDate>Sat, 10 Feb 2007 22:36:42 +0000</pubDate>
+<guid>https://lfkdsk.github.io/xianjian10/</guid>
+<description>初中时候的中二之作。
  --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
-    </item>
-    
-  </channel>
+</item>
+</channel>
 </rss>

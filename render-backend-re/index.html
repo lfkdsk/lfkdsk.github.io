@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/render-backend-re/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/render-backend-re/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/render-backend-re/" property="og:url"/>
+<link href="https://lfkdsk.github.io/render-backend-re/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -36,52 +35,26 @@ Headless Chrome (including backend optimizations) Continuing to use Headless Chr
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>Backend Render Pre-Research - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Backend Render Pre-Research - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="The main performance bottleneck encountered by the Valkyrie poster system is the offline rendering problem of SVG. The rendering method currently used by Valkyrie is to use puppeteer to open Headless Chrome to take screenshots to obtain pictures. Headless Chrome can solve many compatibility problems, but its own efficiency is relatively low. A preliminary investigation of the technical solution of the rendering problem of SVG was carried out.
-Headless Chrome (including backend optimizations) Continuing to use Headless Chrome also has some room for optimization." />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+<title>Backend Render Pre-Research - lfkdsk's Blog</title>
+<meta content="Backend Render Pre-Research - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="The main performance bottleneck encountered by the Valkyrie poster system is the offline rendering problem of SVG. The rendering method currently used by Valkyrie is to use puppeteer to open Headless Chrome to take screenshots to obtain pictures. Headless Chrome can solve many compatibility problems, but its own efficiency is relatively low. A preliminary investigation of the technical solution of the rendering problem of SVG was carried out.
+Headless Chrome (including backend optimizations) Continuing to use Headless Chrome also has some room for optimization." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -89,89 +62,62 @@ Headless Chrome (including backend optimizations) Continuing to use Headless Chr
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Backend Render Pre-Research</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2019-04-25 08:09:51 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Backend Render Pre-Research</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2019-04-25 08:09:51 UTC">
                   25 Apr 2019
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <p>The main performance bottleneck encountered by the Valkyrie poster system is the offline rendering problem of SVG. The rendering method currently used by Valkyrie is to use puppeteer to open Headless Chrome to take screenshots to obtain pictures. Headless Chrome can solve many compatibility problems, but its own efficiency is relatively low. A preliminary investigation of the technical solution of the rendering problem of SVG was carried out.</p>
-
 <h2 id="headless-chrome-including-backend-optimizations">Headless Chrome (including backend optimizations)</h2>
-
 <p>Continuing to use Headless Chrome also has some room for optimization. The current usage plan is to spell out an SVG file through the SVG template and throw it into the Chrome for rendering.</p>
-
 <h3 id="question">Question:</h3>
-
 <p>The rendering time itself is relatively long, and when processing multiple concurrent requests, it relies on the resource pool to wait for implementation, so each core can only process one at the same time , and four ten-core machines have 40 QPS. Every time you want to make a new request to render, you have to replace the picture and then take a screenshot. This replacement process is also a waste of time.</p>
-
 <h3 id="solutions-for-optimization">Solutions for optimization:</h3>
-
 <p>You can refer to the Sprite Graph used when making the game, use each Headless as a resource pool, and each page can render a certain number of pictures. When calling the screenshot API, use the Meta-Data to store the location of the specific page under a certain namespace. Take screenshots, so that the configurable resource pool expands a large part, and the number of concurrency processed can also be increased.</p>
-
-<p><img src="progress.png" alt="" /></p>
-
+<p><img alt="" src="progress.png"/></p>
 <ul>
 <li><p>PS: Another optimization point is the expansion of the content of the meta-data of the Master node. If we know that a specific Page has currently rendered a certain template, we can directly modify the parameters of the rendered DOM. Take a screenshot after the parameter.</p>
-
 <h2 id="resvg-solution">RESVG solution</h2>
-
 <p><a href="https://github.com/RazrFalcon/resvg">https://github.com/RazrFalcon/resvg</a>
 The implementation of resvg has a relatively complete implementation of SVG 1.1, but resvg still lacks some SVG solutions that may be needed in the future.
 <a href="https://github.com/RazrFalcon/resvg/blob/master/docs/unsupported.md">https://github.com/RazrFalcon/resvg/blob/master/docs/unsupported.md</a>
 <a href="https://razrfalcon.github.io/resvg-test-suite/svg-support-table.html">https://razrfalcon.github.io/resvg-test-suite/svg-support-table.html</a>
 The link above shows a list of features that resvg does not currently support.</p></li>
 </ul>
-
-<p><img src="vs.png" alt="" /></p>
-
+<p><img alt="" src="vs.png"/></p>
 <p>Resvg itself uses cairo as the underlying drawing engine, which is efficient enough to be used as a direction for future implementation. At present, the syntax range we use the svg syntax itself is relatively biased, and most of the syntax is style support implemented using CSS.</p>
-
 <ul>
 <li>We should try more CSS support</li>
 <li>Or avoid using CSS in SVG and implement these functions through the default text, path, pattern</li>
 </ul>
-
 <h2 id="skia-program">Skia Program</h2>
-
-<p>Skia&rsquo;s scheme is similar to resvg&rsquo;s scheme. There is not much SVG syntax supported by Skia itself, and currently only mono&rsquo;s SkiaSharp is available for bindings other than Cpp <a href="https://github.com/mono/SkiaSharp.Extended">https://github.com/mono/SkiaSharp.Extended</a>
-Skia&rsquo;s drawing efficiency is very high, and it is the underlying framework for graphics processing such as Android and Chrome. SVG pictures of about 8000h can be drawn in only about 200~ 300 ms.</p>
-
-<p>However, SkiaSharp&rsquo;s expansion package has less support for SVG. I still add the image tag to load the network image (the network io will also increase a lot of rendering time). Therefore, if you want to use Skia&rsquo;s solution, you need to have more knowledge of Skia&rsquo;s SVG., and then modify Skia&rsquo;s Binding.</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+<p>Skia’s scheme is similar to resvg’s scheme. There is not much SVG syntax supported by Skia itself, and currently only mono’s SkiaSharp is available for bindings other than Cpp <a href="https://github.com/mono/SkiaSharp.Extended">https://github.com/mono/SkiaSharp.Extended</a>
+Skia’s drawing efficiency is very high, and it is the underlying framework for graphics processing such as Android and Chrome. SVG pictures of about 8000h can be drawn in only about 200~ 300 ms.</p>
+<p>However, SkiaSharp’s expansion package has less support for SVG. I still add the image tag to load the network image (the network io will also increase a lot of rendering time). Therefore, if you want to use Skia’s solution, you need to have more knowledge of Skia’s SVG., and then modify Skia’s Binding.</p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -184,22 +130,14 @@ Skia&rsquo;s drawing efficiency is very high, and it is the underlying framework
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -209,6 +147,5 @@ Skia&rsquo;s drawing efficiency is very high, and it is the underlying framework
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

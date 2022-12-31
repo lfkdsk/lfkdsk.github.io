@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/make-new-language-0/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/make-new-language-0/" />
-
-  <script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/make-new-language-0/" property="og:url"/>
+<link href="https://lfkdsk.github.io/make-new-language-0/" rel="canonical"/>
+<script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -42,114 +40,75 @@ Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富�
       "keywords" : [ "编程语言","Blog", "Joway's Blog", "Joway" ]
   }
 </script>
-
-  <title>学习制作一门有趣的编程语言 － 序 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="学习制作一门有趣的编程语言 － 序 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="你的问题在于读书太少，想的太多 —— 杨绛
+<title>学习制作一门有趣的编程语言 － 序 - lfkdsk's Blog</title>
+<meta content="学习制作一门有趣的编程语言 － 序 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="你的问题在于读书太少，想的太多 —— 杨绛
  昨天惊闻杨绛先生去世，突然想到了几年前看到的杨绛先生的这句话。我觉得在计算机领域理论知识更是尤为重要，现在某乎上盛行的计算机理论知识（尤指算法）无用论当真特别可悲。在这里我觉得讨论科班非科班的人都是别有用心的，重要的问题在于这些基础的训练，而不是科班非科班，我们知道很多大神都不是计算机相关专业的，但是他们的基础的深厚程度，确是很多科班出身的人无法能及的，所以说一切的问题还是要积累知识。
 这学期一直在学编译原理的课程，我实实在在的感觉到了这个课程和相关内容的有趣。尤其是我在学习之前试着自己不借助任何的理论去写一个解释器，竟然也命中了不少的知识，这让我感到很欣喜。所以呢就斗胆开了这个题目来试图逐步的实现一个自己的实验性语言，说了是实验性语言就是说并不能完成目前语言的工程性工作，但是在自己这个语言方面能够形成闭环。这门语言或许残缺，或许会遇到很多问题，而且很长时间都会依赖C语言，但是这是一个完整的、成型的、和朋友商议好的计划，一定会逐步的实现的。
 目前的计划:
  使用Lex和Yacc去实现逐步实现语言的雏形
 Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富，简洁易懂，在编译器前端的实现上有很大优势。与此同时在编译器的后端比较复杂，我会先把代码转换成C，然后使用C的成型的编译链进行。 更换前端，采取手动构建的方式
 有一些我想实现的功能如果使用Lex和Yacc可能不是那么方便，而且在知识性还有效率上，手动实现都是一个很有趣的工程。 希望能够实现一个编译器后端，可能是转机器码，可能写栈式虚拟机
-这个目前还没有想好，也只是希望去做的。  愿杨绛先生一路走好。" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+这个目前还没有想好，也只是希望去做的。  愿杨绛先生一路走好。" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">学习制作一门有趣的编程语言 － 序</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2016-05-26 20:29:00 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">学习制作一门有趣的编程语言 － 序</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-05-26 20:29:00 UTC">
                   26 May 2016
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            <blockquote>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<blockquote>
 <p>你的问题在于读书太少，想的太多 —— 杨绛</p>
 </blockquote>
-
 <p>昨天惊闻杨绛先生去世，突然想到了几年前看到的杨绛先生的这句话。我觉得在计算机领域理论知识更是尤为重要，现在某乎上盛行的计算机理论知识（尤指算法）无用论当真特别可悲。在这里我觉得讨论科班非科班的人都是别有用心的，重要的问题在于这些基础的训练，而不是科班非科班，我们知道很多大神都不是计算机相关专业的，但是他们的基础的深厚程度，确是很多科班出身的人无法能及的，所以说一切的问题还是要积累知识。</p>
-
 <p>这学期一直在学编译原理的课程，我实实在在的感觉到了这个课程和相关内容的有趣。尤其是我在学习之前试着自己不借助任何的理论去写一个解释器，竟然也命中了不少的知识，这让我感到很欣喜。所以呢就斗胆开了这个题目来试图逐步的实现一个自己的<code>实验性</code>语言，说了是<code>实验性语言</code>就是说并不能完成目前语言的工程性工作，但是在自己这个语言方面能够形成闭环。这门语言或许残缺，或许会遇到很多问题，而且很长时间都会依赖C语言，但是这是一个完整的、成型的、和朋友商议好的计划，一定会逐步的实现的。</p>
-
 <p>目前的计划:</p>
-
 <ol>
-<li>使用Lex和Yacc去实现逐步实现语言的雏形<br />
+<li>使用Lex和Yacc去实现逐步实现语言的雏形<br/>
 Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富，简洁易懂，在编译器前端的实现上有很大优势。与此同时在编译器的后端比较复杂，我会先把代码转换成C，然后使用C的成型的编译链进行。</li>
-<li>更换前端，采取手动构建的方式<br />
+<li>更换前端，采取手动构建的方式<br/>
 有一些我想实现的功能如果使用Lex和Yacc可能不是那么方便，而且在知识性还有效率上，手动实现都是一个很有趣的工程。</li>
-<li>希望能够实现一个编译器后端，可能是转机器码，可能写栈式虚拟机<br />
+<li>希望能够实现一个编译器后端，可能是转机器码，可能写栈式虚拟机<br/>
 这个目前还没有想好，也只是希望去做的。</li>
 </ol>
-
 <p>愿杨绛先生一路走好。</p>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -162,22 +121,14 @@ Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富�
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -187,6 +138,5 @@ Lex和Yacc是久经市场考验的工具，虽然有点陈旧但是资料丰富�
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

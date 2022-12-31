@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="lfkdsk" />
-  <meta property="og:url" content="https://lfkdsk.github.io/learn-ios-with-swift-1/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/learn-ios-with-swift-1/" />
-
-  <script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="lfkdsk" name="author"/>
+<meta content="https://lfkdsk.github.io/learn-ios-with-swift-1/" property="og:url"/>
+<link href="https://lfkdsk.github.io/learn-ios-with-swift-1/" rel="canonical"/>
+<script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -50,11 +48,10 @@
       "keywords" : [ "iOS-Swift","Blog", "Joway's Blog", "Joway" ]
   }
 </script>
-
-  <title>Learn iOS With Swift 1 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Learn iOS With Swift 1 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="The Basics  常量 let ／ 变量 var
+<title>Learn iOS With Swift 1 - lfkdsk's Blog</title>
+<meta content="Learn iOS With Swift 1 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='The Basics  常量 let ／ 变量 var
  注释：
   单行 //
 多行 /* */ 且可以嵌套
@@ -69,143 +66,94 @@
  可选类型：
   很多的现代语言都使用了可选类型的设计，可选类型中的nil并非传统意义的空指针，而是指这个字段可能为空，为空就是nil。
 !表示可以强制解析，此时需要通过非空判定。
- 可选绑定：  if let firstNumber = Int(&quot;4&quot;) { if let secondNumber = Int(&quot;42&quot;) { if firstNumber &lt; secondNumber &amp;&amp; secondNumber &lt; 100 { print(&quot;\(firstNumber) &lt; \(secondNumber) &lt; 100&quot;) } } } // Prints &quot;4 &lt; 42 &lt; 100”   隐式解析的可选类型：  可通过如var lfkdsk:String!" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <script>
+ 可选绑定：  if let firstNumber = Int("4") { if let secondNumber = Int("42") { if firstNumber &lt; secondNumber &amp;&amp; secondNumber &lt; 100 { print("\(firstNumber) &lt; \(secondNumber) &lt; 100") } } } // Prints "4 &lt; 42 &lt; 100”   隐式解析的可选类型：  可通过如var lfkdsk:String!' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Learn iOS With Swift 1</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2017-01-10 14:14:48 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Learn iOS With Swift 1</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2017-01-10 14:14:48 UTC">
                   10 Jan 2017
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@lfkdsk</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          <div class="to-left">
-            <a href="javascript:history.back()" class="paper-btn">&lt;</a>
-          </div>
-          <div class="to-top">
-            <a href="#top" class="paper-btn margin">^</a>
-          </div> 
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@lfkdsk</a>
+</div>
+</div>
+</div>
+</header>
+<div class="to-left">
+<a class="paper-btn" href="javascript:history.back()">&lt;</a>
+</div>
+<div class="to-top">
+<a class="paper-btn margin" href="#top">^</a>
+</div>
+<div class="post-content markdown-body">
 <h2 id="the-basics">The Basics</h2>
-
 <ul>
 <li><p>常量 let ／ 变量 var</p></li>
-
 <li><p>注释：</p></li>
 </ul>
-
 <p>单行 //</p>
-
 <p>多行 /* */ 且可以嵌套</p>
-
 <ul>
 <li><p>分号可用在多行语句写在一行的情况下</p></li>
-
 <li><p>整型：uint8，16，32，int照旧</p></li>
-
 <li><p>浮点型：Float , Double 分别是6位和15位</p></li>
-
 <li><p>字面量类型推断：浮点数优先推断Double</p></li>
-
 <li><p>整数字面量可以被写作：</p></li>
 </ul>
-
 <p>一个十进制数，没有前缀
   一个二进制数，前缀是0b
   一个八进制数，前缀是0o
   一个十六进制数，前缀是0x</p>
-
 <ul>
 <li><p><code>typealias</code>类型别名</p></li>
-
 <li><p>使用<code>(...,...)</code>包装元组，可以进行分解，作为返回值。</p></li>
-
 <li><p>可选类型：</p></li>
 </ul>
-
 <p>很多的现代语言都使用了可选类型的设计，可选类型中的<code>nil</code>并非传统意义的空指针，而是指这个字段可能为空，为空就是<code>nil</code>。</p>
-
 <p><code>!</code>表示可以强制解析，此时需要通过非空判定。</p>
-
 <ul>
 <li>可选绑定：</li>
 </ul>
-
-<pre><code class="language-swift">  if let firstNumber = Int(&quot;4&quot;) {
-      if let secondNumber = Int(&quot;42&quot;) {
+<pre><code class="language-swift">  if let firstNumber = Int("4") {
+      if let secondNumber = Int("42") {
           if firstNumber &lt; secondNumber &amp;&amp; secondNumber &lt; 100 {
-              print(&quot;\(firstNumber) &lt; \(secondNumber) &lt; 100&quot;)
+              print("\(firstNumber) &lt; \(secondNumber) &lt; 100")
           }
       }
   }
-  // Prints &quot;4 &lt; 42 &lt; 100”
+  // Prints "4 &lt; 42 &lt; 100”
 </code></pre>
-
 <ul>
 <li>隐式解析的可选类型：</li>
 </ul>
-
 <p>可通过如<code>var lfkdsk:String!</code>来声明，具有可选类型的特点，但在第一次赋值之后，可正常解析</p>
-
 <ul>
 <li>错误处理：</li>
 </ul>
-
 <p>使用<code>throws</code>在func尾缀中表示可以抛出错误。</p>
-
 <pre><code class="language-swift">  func lfkdsk() throws {
   }
   do {
@@ -222,61 +170,45 @@
       buyGroceries(ingredients)
   }
 </code></pre>
-
 <ul>
 <li>断言式：使用assert函数</li>
 </ul>
-
 <h2 id="basic-operators">Basic Operators</h2>
-
 <ul>
 <li>比较运算符:<code>===</code> <code>!==</code> 恒等和不恒等用来判断是否因用同一个对象。</li>
 </ul>
-
 <p>元组比较，从左到右，逐值比较。</p>
-
 <ul>
 <li>区间运算符： 1…5 1..&lt;5</li>
 </ul>
-
 <h2 id="strings-characters">Strings &amp; Characters</h2>
-
 <ul>
 <li>迭代字符串：</li>
 </ul>
-
-<pre><code class="language-swift">  for character in &quot;Dog!🐶&quot;.characters {
+<pre><code class="language-swift">  for character in "Dog!🐶".characters {
       print(character)
   }
 </code></pre>
-
 <ul>
 <li>String Interporation:</li>
 </ul>
-
 <pre><code class="language-swift">  let multiplier = 3
-  let message = &quot;\(multiplier) times 2.5 is \(Double(multiplier)&quot;
+  let message = "\(multiplier) times 2.5 is \(Double(multiplier)"
 </code></pre>
-
 <ul>
 <li>insert &amp; delete:</li>
 </ul>
-
 <pre><code class="language-swift">  let range = welcome.index(welcome.endIndex, offsetBy: -6)..&lt;welcome.endIndex
   welcome.removeSubrange(range)
   // welcome 现在等于 hello
 </code></pre>
-
 <ul>
 <li>相等判断：</li>
 </ul>
-
 <p>前缀／后缀</p>
-
 <ul>
 <li>集合类型：Arrays | Sets | Dictionaries</li>
 </ul>
-
 <pre><code class="language-swift">  // 创建空数组
   var lfkdsk = [] 
   var lfkdsk = Array(repeating: 0.0, count: 3)
@@ -284,95 +216,74 @@
   var xxxx = lfkdsk + fffff // 都是数组
   xxxx.append(...) // 等价于 +=
 </code></pre>
-
 <p><code>Set</code> 需要提供Hashable和Equalable的协议支持。</p>
-
 <pre><code class="language-swift">  var letters = Set&lt;Character&gt;()
-  print(&quot;letters is of type Set&lt;Character&gt; with \(letters.count) items.&quot;)
+  print("letters is of type Set&lt;Character&gt; with \(letters.count) items.")
 </code></pre>
-
 <p>可以通过<code>sorted</code>来实现排序：</p>
-
 <pre><code class="language-swift">  for genre in favorite.sorted() {
-      print(&quot;(genre)&quot;)
+      print("(genre)")
   }
 </code></pre>
-
 <p>集合的基本操作：</p>
-
 <pre><code class="language-swift">  intersection 交集
   symmetricDifference 交集的补集
   union 并集
   subtracting a 相对于 ab交集 的布局
 </code></pre>
-
 <p>集合的相关操作：</p>
-
 <pre><code class="language-swift">  使用“是否相等”运算符(==)来判断两个集合是否包含全部相同的值。
   使用isSubset(of:)方法来判断一个集合中的值是否也被包含在另外一个集合中。
   使用isSuperset(of:)方法来判断一个集合中包含另一个集合中所有的值。
   使用isStrictSubset(of:)或者isStrictSuperset(of:)方法来判断一个集合是否是另外一个集合的子集合或者父集合并且两个集合并不相等。
   使用isDisjoint(with:)方法来判断两个集合是否不含有相同的值(是否没有交集)。
 </code></pre>
-
 <p>字典（KV）：</p>
-
 <pre><code class="language-swift">  // 空的 [int : String] 字典
   var namesOfIntegers = Int : String 
-  if let oldValue = airports.updateValue(&quot;Dublin Airport&quot;, forKey: &quot;DUB&quot;) {
-      print(&quot;The old value for DUB was (oldValue).&quot;)
+  if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+      print("The old value for DUB was (oldValue).")
   }
-  // 输出 &quot;The old value for DUB was Dublin.”
+  // 输出 "The old value for DUB was Dublin.”
 </code></pre>
-
 <p>字典的遍历 可以分别对键值进行遍历：</p>
-
 <pre><code class="language-swift">  for airportCode in airports.values {
-    	print(&quot;Airport code: (airportCode)&quot;)
+    	print("Airport code: (airportCode)")
   } 
 </code></pre>
-
 <p>## Control Flow</p>
-
 <pre><code class="language-swift">  repeat {
     steatements
   } while condition
 </code></pre>
-
 <p>swift 去除了隐式贯穿：</p>
-
 <pre><code class="language-swift">  let integerToDescribe = 5
-  var description = &quot;The number \(integerToDescribe) is&quot;
+  var description = "The number \(integerToDescribe) is"
   switch integerToDescribe {
   case 2, 3, 5, 7, 11, 13, 17, 19:
-      description += &quot; a prime number, and also&quot;
+      description += " a prime number, and also"
       fallthrough
       // 可以使用类似这样的语句进行显示贯穿
   default:
-      description += &quot; an integer.&quot;
+      description += " an integer."
   }
   print(description)
-  // 输出 &quot;The number 5 is a prime number, and also an integer.”
+  // 输出 "The number 5 is a prime number, and also an integer.”
 </code></pre>
-
 <p>switch的匹配对象还包括元组：</p>
-
 <pre><code class="language-swift">  let anotherPoint = (2, 0)
   switch anotherPoint {
   case (let x, 0): // 值绑定
-      print(&quot;on the x-axis with an x value of \(x)&quot;)
+      print("on the x-axis with an x value of \(x)")
   case (0, let y):
-      print(&quot;on the y-axis with a y value of \(y)&quot;)
+      print("on the y-axis with a y value of \(y)")
   case let (x, y):
-      print(&quot;somewhere else at (\(x), \(y))&quot;)
+      print("somewhere else at (\(x), \(y))")
   }
-  // 输出 &quot;on the x-axis with an x value of 2&quot;
+  // 输出 "on the x-axis with an x value of 2"
 </code></pre>
-
 <p>case 的分支可以使用where子句进行额外的条件判断。</p>
-
 <p>通过对循环打上标签，<code>continue</code>和<code>break</code>的时候可以选择对应的循环跳出和继续。</p>
-
 <pre><code class="language-swift">  gameLoop: while square != finalSquare {
       diceRoll += 1
       if diceRoll == 7 { diceRoll = 1 }
@@ -389,28 +300,20 @@
           square += board[square]
       }
   }
-  print(&quot;Game over!&quot;)
+  print("Game over!")
 </code></pre>
-
 <p><code>guard</code> 接受一个布尔值，必须包含else结构，else分支必须转移控制以退出guard出现的代码段，可以使用return,break,continue,throw.</p>
-
 <h2 id="function">Function</h2>
-
 <p>支持多返回值</p>
-
 <pre><code class="language-swift">func minMax(array: [Int]) -&gt; (min: Int, max: Int) {}
 </code></pre>
-
 <p>参数标签和参数名可以不同:</p>
-
 <pre><code class="language-swift">func greet(person: String, from hometown: String) -&gt; String {
-    return &quot;Hello \(person)!  Glad you could visit from \(hometown).&quot;
+    return "Hello \(person)!  Glad you could visit from \(hometown)."
 }
-print(greet(person: &quot;Bill&quot;, from: &quot;Cupertino&quot;))
+print(greet(person: "Bill", from: "Cupertino"))
 </code></pre>
-
 <p>可变参数<code>...</code></p>
-
 <pre><code class="language-swift">func arithmeticMean(_ numbers: Double...) -&gt; Double {
     var total: Double = 0
     for number in numbers {
@@ -424,20 +327,15 @@ arithmeticMean(3, 8.25, 18.75)
 // returns 10.0, which is the arithmetic mean of these three numbers
 // 注意 一个函数最多只能拥有一个可变参数。
 </code></pre>
-
 <p><code>inout</code> 参数，可以理解为传引用，不能使用字面量和常量。</p>
-
 <p>函数可以当成参数来用：</p>
-
 <pre><code class="language-swift">func printMathResult(_ mathFunction: (Int, Int) -&gt; Int, _ a: Int, _ b: Int) {
-    print(&quot;Result: \(mathFunction(a, b))&quot;)
+    print("Result: \(mathFunction(a, b))")
 }
 printMathResult(addTwoInts, 3, 5)
-// 打印 &quot;Result: 8&quot;
+// 打印 "Result: 8"
 </code></pre>
-
 <p>当然也可以当成返回值来用:</p>
-
 <pre><code class="language-swift">func stepForward(_ input: Int) -&gt; Int {
     return input + 1
 }
@@ -448,64 +346,47 @@ func chooseStepFunction(backward: Bool) -&gt; (Int) -&gt; Int {
     return backward ? stepBackward : stepForward
 }
 </code></pre>
-
 <p>嵌套函数：</p>
-
 <pre><code class="language-swift">func chooseStepFunction(backward: Bool) -&gt; (Int) -&gt; Int {
     func stepForward(input: Int) -&gt; Int { return input + 1 }
     func stepBackward(input: Int) -&gt; Int { return input - 1 }
     return backward ? stepBackward : stepForward
 }
 </code></pre>
-
 <h2 id="closures">Closures</h2>
-
 <pre><code class="language-swift">{
   (params) -&gt; returnType in statements
 }
 </code></pre>
-
 <p>example:</p>
-
 <pre><code class="language-swift">reversedNames = names.sorted(by: { (s1: String, s2: String) -&gt; Bool in
     return s1 &gt; s2
 })
 </code></pre>
-
 <p>上下文类型推断：</p>
-
 <pre><code class="language-swift">reversedNames = names.sorted(by: { s1, s2 in return s1 &gt; s2 } )
 // 个人倾向于提供更全的类型信息
 </code></pre>
-
 <p>隐式返回：</p>
-
 <pre><code class="language-swift">reversedNames = names.sorted(by: { s1, s2 in s1 &gt; s2 } )
 </code></pre>
-
 <p>参数名称缩写(这玩意和yacc好像啊) ：</p>
-
 <pre><code class="language-swift">reversedNames = names.sorted(by: { $0 &gt; $1 } )
 </code></pre>
-
 <p>通过运算符方法：</p>
-
 <pre><code class="language-swift">reversedNames = names.sorted(by: &gt; )
 </code></pre>
-
 <p>尾随闭包：</p>
-
 <pre><code class="language-swift">func takeAColsure(closure: () -&gt; Void) {
   // 函数体部分
 }
 takeAColsure(closure:{ ... })
 takeAColsure(){ ... } // 这就是尾随闭包
 </code></pre>
-
 <pre><code class="language-swift">let strings = numbers.map {
     (number) -&gt; String in
     var number = number
-    var output = &quot;&quot;
+    var output = ""
     repeat {
         output = digitNames[number % 10]! + output
         number /= 10
@@ -513,38 +394,29 @@ takeAColsure(){ ... } // 这就是尾随闭包
     return output
 }
 </code></pre>
-
 <p>闭包的捕获参数，就是一个作用于的问题。</p>
-
 <p>闭包是引用类型。</p>
-
 <p>闭包逃逸，让闭包脱离函数作用域，出了保存在全局容器里面，还要用<code>@escaping</code>对参数做标记。</p>
-
 <p>自动闭包，延迟求值：</p>
-
-<pre><code class="language-swift">var customersInLine = [&quot;Chris&quot;, &quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]
+<pre><code class="language-swift">var customersInLine = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
 print(customersInLine.count)
-// 打印出 &quot;5&quot;
+// 打印出 "5"
  
 let customerProvider = { customersInLine.remove(at: 0) }
 print(customersInLine.count)
-// 打印出 &quot;5&quot;
+// 打印出 "5"
  
-print(&quot;Now serving \(customerProvider())!&quot;)
-// Prints &quot;Now serving Chris!&quot;
+print("Now serving \(customerProvider())!")
+// Prints "Now serving Chris!"
 print(customersInLine.count)
 </code></pre>
-
 <pre><code class="language-swift">func serve(customer:@autoclosure()-&gt;String){}
 // 接受一段被标记为自动闭包的字符串
 </code></pre>
-
 <h2 id="enumerations">Enumerations</h2>
-
-          </div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -557,22 +429,14 @@ print(customersInLine.count)
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -582,6 +446,5 @@ print(customersInLine.count)
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>

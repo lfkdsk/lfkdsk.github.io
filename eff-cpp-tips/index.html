@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.53" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Intra-Mind Traveler" />
-  <meta property="og:url" content="https://lfkdsk.github.io/eff-cpp-tips/" />
-  <link rel="canonical" href="https://lfkdsk.github.io/eff-cpp-tips/" /><link rel="apple-touch-icon" href="./img/favicon.ico" />
-  <link rel="icon" href="./img/favicon.ico" />
-  <link rel="shortcut" href="./img/favicon.ico" /><script type="application/ld+json">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.53" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/eff-cpp-tips/" property="og:url"/>
+<link href="https://lfkdsk.github.io/eff-cpp-tips/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
   {
       "@context" : "http://schema.org",
       "@type" : "BlogPosting",
@@ -46,11 +45,10 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
       "keywords" : [ "cpp","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
-
-  <title>Effective CPP 学习笔记 - lfkdsk&#39;s Blog</title>
-  <meta property="og:title" content="Effective CPP 学习笔记 - lfkdsk&#39;s Blog" />
-  <meta property="og:type" content="article" />
-  <meta name="description" content="Effective CPP 学习笔记
+<title>Effective CPP 学习笔记 - lfkdsk's Blog</title>
+<meta content="Effective CPP 学习笔记 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="Effective CPP 学习笔记
  1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。
 3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)
 low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
@@ -61,47 +59,22 @@ char &amp; operand[] (std::size_t position){ return const_cast&lt;char&amp;&gt;(
 跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。
 FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
 6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
-7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。" />
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"
-  />
-
-  <link
-  rel="stylesheet"
-  href="/css/paper.css"
-  />
-
-  <link rel="stylesheet" href="/css/index.css">
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="lfkdsk&#39;s Blog">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
-  
-  
-  <script>
+7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
     
 
     (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
   </script>
-
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -109,57 +82,41 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
 
   gtag('config', 'G-8TMSDJG47Q');
 </script>
-
 </head>
-
-
-  <body>
-    <article class="post Chinese" id="article">
-      <div class="row">
-        <div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <a href="/">
-            <div class="head-line"></div>
-          </a>
-          <header class="post-header">     
-            <h1 class="post-title">Effective CPP 学习笔记</h1>
-            <div class="row">
-              <div class="col-xs-6">
-                <time class="post-date" datetime="2016-12-12 15:27:51 UTC">
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Effective CPP 学习笔记</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-12-12 15:27:51 UTC">
                   12 Dec 2016
                 </time>
-              </div>
-              <div class="col-xs-6">
-                <div class="post-author">
-                  <a target="_blank" href="https://lfkdsk.github.io/">@Intra-Mind Traveler</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          
-          
-          <div class="post-content markdown-body">
-            
-
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
 <blockquote>
 <p>Effective CPP 学习笔记</p>
 </blockquote>
-
 <h3 id="1-cpp-是一个语言联邦">1.Cpp 是一个语言联邦</h3>
-
 <h3 id="2-以const-enum-inline替换-define">2.以const，enum，inline替换  #define</h3>
-
 <p>预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。</p>
-
 <h3 id="3-尽可能使用const">3.尽可能使用const</h3>
-
 <p>high-level const ：从右至左的第一个const (* 右边 指针自身是const)</p>
-
 <p>low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)</p>
-
 <p>const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。</p>
-
 <p>使用const成员函数调用重载的non-const函数:</p>
-
 <pre><code class="language-c++">char &amp; operand[] (std::size_t position){
   return const_cast&lt;char&amp;&gt;(
     static_cast&lt;const TextBlock&amp;&gt;(*this)
@@ -167,66 +124,41 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
   )
 }
 </code></pre>
-
 <h3 id="4-保证使用前初始化">4.保证使用前初始化</h3>
-
 <p>对inner type 和object都要在使用前初始化。</p>
-
 <p>使用initializer-list对类进行初始化，而不是适用赋值操作。</p>
-
 <p>跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。</p>
-
 <pre><code class="language-c++">FileSystem &amp; tfs(){
   static FileSystem fs;
   return fs;
 }
 </code></pre>
-
 <h3 id="5-编译器的自动构造">5.编译器的自动构造</h3>
-
 <p>default-constructor | copy-constructor | copy assignment</p>
-
 <h3 id="6-明确拒绝不需要的自动构造">6.明确拒绝不需要的自动构造</h3>
-
 <p>将不需要的函数private化，或者使用一个private的base class</p>
-
 <h3 id="7-virtual-析构函数">7.virtual 析构函数</h3>
-
 <blockquote>
 <p>这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。</p>
 </blockquote>
-
 <p>virtual 析构函数意味着Class需要支持多态，并作为base class.</p>
-
 <p>virtual 的执行是从子到父的，一个non-virual析构函数的base class可能会因为未实现而产生错误。</p>
-
 <p>基本上STL库的东西都没有non-virtual 析构函数，所以也都不能继承。</p>
-
 <p>pure-virtual析构函数使之成为抽象类。</p>
-
 <h3 id="8-不建议在析构函数抛出异常">8.不建议在析构函数抛出异常</h3>
-
 <p>使用<code>try {...} catch {...}</code>进行捕获，然后使用<code>std::abort();</code>提前结束，或者是吞掉异常，当然，重新设计接口会更好。</p>
-
 <h3 id="9-不在构造和析构过程中调用virtual函数">9.不在构造和析构过程中调用virtual函数</h3>
-
 <p>构造和析构函数期间derived class尚未形成，会被当成是base class这样子调用一个p virtual 或是一个 imp virtual函数都是会发生错误的。可以靠更改接口，便成一个non-virtual 函数，然后靠传入数据去修改。</p>
-
 <h3 id="10-operator-返回-this">10.operator= 返回&amp; *this</h3>
-
 <pre><code class="language-cpp">ClassName &amp; operator= (const ClassName &amp; rhs){
   ...
   return *this;
 }
 </code></pre>
-
 <h3 id="11-operator-中处理自我赋值">11.operator= 中处理自我赋值</h3>
-
 <p>=的重载可能会遇到不小心出现的给自己赋值的情况，这里就会发生重复删除的错误。</p>
-
 <pre><code class="language-cpp">if (this == &amp;pointer) { return this;} //  认同测试
 </code></pre>
-
 <pre><code class="language-cpp">// CAS 操作 copy and swap
 XXX &amp; operator= (XXX llll) // 注意是pass by value
 XXX &amp; operator= (XXX &amp; llll)   {
@@ -235,85 +167,50 @@ XXX &amp; operator= (XXX &amp; llll)   {
   return *this;
 }
 </code></pre>
-
 <h3 id="12-拷贝构造函数要包含所有的值">12.拷贝构造函数要包含所有的值</h3>
-
 <h3 id="13-以对象管理资源">13.以对象管理资源</h3>
-
 <p>不推荐零散的delete方法，使用包括但不限于shared_ptr &amp; auto_ptr 其中后者不支持多份拷贝(null)，对于数组建议使用STL的vector等容器，以上的ptr不支持数组的delete []，注意不会报错的问题。</p>
-
 <h3 id="14-资源管理类的copying">14.资源管理类的Copying</h3>
-
 <p>资源管理类的对象的拷贝，要复制所有的资源，抑制拷贝，施行引用计数。</p>
-
 <p>shared_ptr接受删除器设定函数。</p>
-
 <h3 id="15-为资源管理类提供原始类型的转换">15.为资源管理类提供原始类型的转换</h3>
-
 <p>类似shared_ptr.get()的是显示转换。</p>
-
 <pre><code class="language-cpp">operator xxx() const {
   return f;
 }
 </code></pre>
-
 <p>是隐式转换。推荐第一种。</p>
-
 <h3 id="16-new-和delete-配对">16.new ([]) 和delete([])配对</h3>
-
 <h3 id="17-独立语句将newd对象放入智能指针">17.独立语句将newd对象放入智能指针</h3>
-
 <pre><code class="language-cpp">std::shared_ptr&lt;Widget&gt; pw(new Widget);
 processWidget(pw, priority());
 </code></pre>
-
 <p>都写在一起，语句调用顺序可能有问题。</p>
-
 <h3 id="18-接口更易被使用-更难被调用">18.接口更易被使用，更难被调用</h3>
-
 <p>促进正确使用：接口一致性，内置类型的行为兼容</p>
-
 <p>阻止误用：建立新内置类型，限制类型上的操作，束缚对象值。</p>
-
 <h3 id="19-class是类型系统的扩充">19.Class是类型系统的扩充</h3>
-
 <p>1.如何创建和销毁 #16</p>
-
 <p>2.初始化和赋值 #4</p>
-
 <p>3.值传递 copy-constructor</p>
-
 <p>4.数值合法 setter进行检查</p>
-
 <p>5.继承</p>
-
 <p>6.类型转换 operator</p>
-
 <p>7.操作符和函数的合理性</p>
-
 <p>8.标准函数的权限？pub/pri/pro</p>
-
 <p>9.undeclared-interface</p>
-
 <p>10.一般化 你可能需要一个模版</p>
-
 <p>11.需要这个类？ 添加字段和方法可能是好办法</p>
-
 <h3 id="20-pass-by-reference-to-const-to-pass-by-value">20. pass-by-reference-to-const to pass-by-value</h3>
-
 <p>降低无谓的拷贝构造开销。</p>
-
 <p>不适用于STL迭代器／函数对象／内置类型。</p>
-
 <h3 id="21-如果一定要返回对象-不要返回引用">21.如果一定要返回对象，不要返回引用</h3>
-
 <pre><code class="language-cpp">const XXX &amp; operator * (...){
   XXX xxx();
   return xxx;
 }
 // local-object 已经被回收掉了
 </code></pre>
-
 <pre><code class="language-cpp">const XXX * operator * (){
   XXX * xxx = new XXX(...);
   return xxx;
@@ -325,7 +222,6 @@ XXX x(1) ,y(2),z(3);
 
 x * y * z; // 中间生成的指针没办法被回收
 </code></pre>
-
 <pre><code class="language-cpp">const XXX operator * (...){
   Static XXX xxx;
   ...
@@ -335,15 +231,10 @@ x * y * z; // 中间生成的指针没办法被回收
 // 但是如果 x * y * z XXX会被进行反复覆盖
 // 而且如果我们用一个static-array就好了
 </code></pre>
-
 <p>在这种尴尬的时候，就尽量进行 pass-by-value吧</p>
-
 <h3 id="22-将成员变量声明为private">22.将成员变量声明为private</h3>
-
 <p>protect的封装性和public是一样的。</p>
-
 <h3 id="23-以non-member-non-friend函数替换member函数">23.以non-member non-friend函数替换member函数</h3>
-
 <pre><code class="language-cpp">class WebBrowser {
   void clearEverything();
 }
@@ -353,18 +244,13 @@ void clearEverything(const WebBrowser &amp; browser){
   browser.clearCache();
 }
 </code></pre>
-
 <p>后者拥有更好的封装性。</p>
-
 <h3 id="24-如果某个函数的所有参数都要进行隐式转换那就写成non-member-function比较好">24.如果某个函数的所有参数都要进行隐式转换那就写成non-member function比较好</h3>
-
 <pre><code class="language-cpp">Retional temp(2);
 result = 2 * temp;// 试图调用2.operator*(temp) 不可能啊
 result = temp * 2;// 需要对2 进行隐式转换
 </code></pre>
-
 <p>最好写成。</p>
-
 <pre><code class="language-cpp">class Rational {
   ...
 }
@@ -373,19 +259,13 @@ const Rational operator*(const Rational &amp; lhs,... rhs){
   return Rational(...);
 }
 </code></pre>
-
 <h3 id="25-考虑写出一个不抛异常的swap函数">25.考虑写出一个不抛异常的Swap函数</h3>
-
 <p>STL默认实现的swap函数是一个拷贝，但是我们日常中有很多的类实现是通过携带一个私有指针来实现一些功能的。</p>
-
 <blockquote>
 <p>pointer to implementation</p>
-
 <p>存储一个指针指向真实数据，我们在swap的时候只需要进行交换指针的操作就好了。</p>
 </blockquote>
-
 <p>1.类提供交换的函数，毕竟是private的指针</p>
-
 <pre><code class="language-cpp">class Widget {
   void swap (Widget &amp; other){
     using std::swap; // 通过声明通知编译器去找swap函数 （STL &amp; local-namespace）.
@@ -393,7 +273,6 @@ const Rational operator*(const Rational &amp; lhs,... rhs){
   }
 }
 </code></pre>
-
 <pre><code class="language-cpp">namespace std{
   template&lt;&gt;
   void swap&lt;Widget&gt;(Widget &amp; a, Widget &amp; b){
@@ -401,21 +280,15 @@ const Rational operator*(const Rational &amp; lhs,... rhs){
   }
 }
 </code></pre>
-
 <p>再写这样的一个全特化就好了。</p>
-
 <p>刚才的那个是class没有范型，如果有泛型的话就会麻烦一点，毕竟STL库可是不能做偏特化，因为std是STL的命名空间你不能再往里注入了。</p>
-
 <p>而且CPP只支持对于模版类的偏特化而不支持对模版函数的偏特化，所以写的时候需要注意一下。</p>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
 void swap&lt;Widget&lt;T&gt;&gt;(Widget&lt;T&gt; &amp; a, Widget&lt;T&gt; &amp; b){
   ...
 }// 这样就明显是错误的
 </code></pre>
-
 <p>正确的写法，并且写在了一个和class相同的namespace里面：</p>
-
 <pre><code class="language-cpp">namespace Fuck {
     template&lt;typename T&gt;
     void swap(Widget&lt;T&gt; &amp;a, Widget&lt;T&gt; &amp;b){
@@ -423,27 +296,17 @@ void swap&lt;Widget&lt;T&gt;&gt;(Widget&lt;T&gt; &amp; a, Widget&lt;T&gt; &amp; 
     }
 }
 </code></pre>
-
 <p>这样子在<code>using std::swap;</code>的时候就会搜索到local-namespace的偏特化函数。</p>
-
 <h3 id="26-延后定义式出现的位置">26.延后定义式出现的位置</h3>
-
 <p>构造／析构函数都有一定的使用的消耗，所以说一个变量的定义应该拖延到开始使用它的时候（另一种角度讲，是我们能给他一个确定的初值用俩初始化的时候）。</p>
-
 <h3 id="27-减少使用类型转换">27.减少使用类型转换</h3>
-
 <blockquote>
 <p>C++ style-cast</p>
-
 <p>const_cast / static_cast / dynamic_cast / reinterpret_cast 低级转型</p>
 </blockquote>
-
 <p>C style-cast =&gt; C++ style-cast</p>
-
 <p>dynamic_cast =&gt; virtual interface</p>
-
 <h3 id="28-避免返回handle指向class的内部成分">28.避免返回Handle指向class的内部成分</h3>
-
 <pre><code class="language-cpp">struct RectData {
   	Point ulhc;
   	Point lrhc;
@@ -458,7 +321,6 @@ class Rectangle {
   	std::shared_ptr&lt;RectData&gt; pData;
 }
 </code></pre>
-
 <pre><code class="language-cpp">class Rectangle {
   public:
   	const Point &amp; upperLeft() const{
@@ -469,19 +331,12 @@ class Rectangle {
   	std::shared_ptr&lt;RectData&gt; pData;
 }
 </code></pre>
-
 <p>避免返回handles，通过*/&amp;指向程序的内部，handle可能回比对象的生命周期更长，如果一定要的话，返回值const。</p>
-
 <h3 id="29-为异常安全努力是值得的">29.为异常安全努力是值得的</h3>
-
 <p>当异常被抛出的时候，带有异常安全性的函数：</p>
-
 <p>1.不泄露任何资源</p>
-
 <p>2.不允许数据败坏</p>
-
 <p>example:</p>
-
 <pre><code class="language-cpp">void changeBackground(){
   lock(&amp;mutex);
   delete bgImage;
@@ -490,33 +345,24 @@ class Rectangle {
   unlock(&amp;mutex);
 }
 </code></pre>
-
 <ul>
 <li>只要Image抛出异常，以上两者就都被违反了。</li>
 </ul>
-
 <pre><code class="language-cpp">// Lock ml(&amp;mutex);
 // 改成这个就能保证互斥器被及时释放
 </code></pre>
-
 <ul>
 <li><p>异常安全函数提供一下三个保证之一：</p>
-
 <ul>
 <li>基本承诺：异常被抛出，程序内的任何事物仍然保持在有效状态下。（</li>
 </ul>
-
 <p>状态也是不可以预料</p>
-
 <p>）</p>
-
 <ul>
 <li><p>强烈保证：调用成功就成功，不成功就退回到调用之前的状态。</p></li>
-
 <li><p>不抛掷保证：承诺不抛掷异常。</p></li>
 </ul></li>
 </ul>
-
 <pre><code class="language-cpp">class PrettyMenu {
   std::shared_ptr&lt;Image&gt; bgImage;
 }
@@ -529,11 +375,9 @@ void PrettyMenu::changeBackground(std::istream&amp; imgSrc){
   ++imageChanges;
 }
 </code></pre>
-
 <ul>
 <li>CAS 策略 + pimpl idiom：</li>
 </ul>
-
 <pre><code class="language-cpp">struct PMImpl {
   shared_ptr&lt;Image&gt; bgImage;
   int imageChanges;
@@ -554,73 +398,48 @@ void PrettyMenu::changeBackground(std::istream &amp; imgSrc){
   swap(pImpl, pNew); // 交换指针
 }
 </code></pre>
-
 <p>CAS由于可能造成不必要的开销，所以说不一定对所有的情况都成立。</p>
-
 <p>选择对我们整个系统都最为强烈的异常安全等级。</p>
-
 <h3 id="30-不要轻率的使用inline">30.不要轻率的使用inline</h3>
-
 <p>inline 的整体观念，对于每一个inline的函数调用都以函数本体替换，会增加目标码的大小。当然如果比较简单也会相应减小。</p>
-
 <p>inline只是对编译器的申请而非强制调用，可以显示申请，也可以隐式申请，可以通过写在函数中进行申请。</p>
-
 <ul>
 <li>inline 适合小型的直接调用型的函数，以便于二进制升级（binary upgrade）</li>
 <li>function template 不要因为它们是写在h文件里就inline</li>
 <li>构造函数不要轻率的使用inline 构造函数经过编译器的填充会增加很多我们无法控制的内容，如果日后需要进行修改，会造成所有创建对象的地方全都会被重新编译</li>
 </ul>
-
 <h3 id="31-将文件间的编译依存关系降到最低">31.将文件间的编译依存关系降到最低</h3>
-
 <p>依存关系会造成依赖某个类的改变会造成依赖的所有类被重新编译。</p>
-
 <ul>
 <li>pimpl idiom （ pointer to impletment ）接口与实现分离</li>
 <li>使用object references | object pointers 可以就不要使用 objects</li>
 <li>如果能够尽量以class 声明式替换class 定义式</li>
 </ul>
-
 <pre><code class="language-cpp">class Data;
 Data today();
 void clearAppointments(Data data);
 </code></pre>
-
 <p>分开提供包含定义式和声明式的头文件。</p>
-
 <ul>
 <li>使用interface的方式去实现接口分离（包含虚析构函数和纯虚的实现函数）</li>
 </ul>
-
 <blockquote>
 <p>这个地方我的理解是这样的，如果有一个类的实现变了，依赖他的类就会进行重新编译，但是如果我们把接口和实现分离，那includes的可能就只有框而没有具体实现，那么如果实现真的变了，也只是实现类引发的接口类重新</p>
-
 <p>编译，而不是将这个继续传递下去。</p>
 </blockquote>
-
 <h3 id="32-确定你的public继承塑造出is-a关系">32.确定你的public继承塑造出is-a关系</h3>
-
 <p><em>is-a</em></p>
-
 <p>其实是在说正确的继承关系。</p>
-
 <h3 id="33-避免遮掩继承而来的名称">33.避免遮掩继承而来的名称</h3>
-
 <p>继承添加函数会遮掩父类的同名函数，为了解决遮掩问题，可以使用<code>using Base::xxx();</code>或者使用forward functions，通过一层转接调用之前的函数。</p>
-
 <p>不过如果是virtual 函数的话，为什么不使用override关键字呢？</p>
-
 <h3 id="34-区分接口继承和实现继承">34.区分接口继承和实现继承</h3>
-
-<p>pure virtual functions&rsquo; feature:</p>
-
+<p>pure virtual functions’ feature:</p>
 <ul>
 <li>drived class must redefine them.</li>
 <li>non-definition in base class.</li>
 </ul>
-
 <p>声明impure virtual functions的目的：让derived classes 继承该函数的接口和缺省实现。</p>
-
 <pre><code class="language-cpp">class Airplane {
   public:
   	virtual void fly(...);
@@ -637,7 +456,6 @@ virtual void ModelA::fly(...){
       
 }
 </code></pre>
-
 <pre><code class="language-cpp">class Airplane {
   public:
   	virtual void fly(...) = 0;
@@ -657,7 +475,6 @@ virtual void ModelA::fly(...){
       Airplane::defaultFly(...);
 }
 </code></pre>
-
 <pre><code class="language-cpp">class Airplane {
   public:
   	virtual void fly(...) = 0;
@@ -675,21 +492,16 @@ virtual void ModelA::fly(...){
       Airplane::fly(...);
 }
 </code></pre>
-
 <p>最后一种相比于第二种，当然是为了怕多加一个函数发生变量名污染的情况。其实在现代cpp中使用<code>override</code>和<code>final</code>可以解决这些问题的。</p>
-
 <ul>
 <li>纯虚函数只继承接口；</li>
 <li>虚函数既继承接口，也提供了一份默认实现；</li>
 <li>普通函数既继承接口，也强制继承实现。</li>
 </ul>
-
 <h3 id="35-考虑virtual函数以外的其他选择">35.考虑virtual函数以外的其他选择</h3>
-
 <ul>
 <li>Non-Virtual Interface实现的Template Method模式</li>
 </ul>
-
 <pre><code class="language-cpp">class GameCharater {
   public: 
   	int healthValue() const {
@@ -705,13 +517,10 @@ virtual void ModelA::fly(...){
   	}
 }
 </code></pre>
-
 <p>Wrapper 重点在于first／later，driven class 会调用新的类所复写的函数体。</p>
-
 <ul>
 <li>std::function / Function Point 实现Strategy模式</li>
 </ul>
-
 <pre><code class="language-cpp">class GameCharacter;
 
 int defaultHealthCalc(const GameCharacter &amp; gc);
@@ -728,23 +537,14 @@ class GameCharacter {
   	HealthCalcFunc healthFunc;
 }
 </code></pre>
-
 <p>策略模式，类似的想法就是替换执行方法。</p>
-
 <h3 id="36-绝不重新定义继承而来的non-virtual函数">36.绝不重新定义继承而来的non-virtual函数</h3>
-
 <p>破坏<code>is-a</code></p>
-
 <h3 id="37-绝不重新定义继承而来的缺省参数值">37.绝不重新定义继承而来的缺省参数值</h3>
-
 <p>dynamic type / static type 的概念</p>
-
 <p>virtual-method depend on dynamic type</p>
-
 <p>default-params —&gt; static binding</p>
-
 <p>但是直接写两次virtual函数（base &amp; driven）是很不合理的还带着依赖，所以说那个NVI解决这个问题：</p>
-
 <pre><code class="language-cpp">class Shape {
   public:
   	enum ShapeColor { Red, Green, Blue };
@@ -763,11 +563,8 @@ class RectShape : public Shape {
   	virtual void doDraw(ShapeColor color) const;
 }
 </code></pre>
-
 <p>这样defalut就依靠一个non-virtual function保护了。</p>
-
 <h3 id="38-通过复合塑造出-has-a">38.通过复合塑造出<code>has-a</code></h3>
-
 <pre><code class="language-cpp">class Address { ...}
 class PhoneNumber { ... }
 class Person {
@@ -780,34 +577,24 @@ class Person {
   	PhoneNumber faxNumber;
 }
 </code></pre>
-
 <p>复合的含义<code>has a</code></p>
-
 <h3 id="39-明智而审慎的使用-private-继承">39.明智而审慎的使用<code>private</code>继承</h3>
-
 <p>private继承不意味着<code>is-a</code>结构，而意味着<code>implemented-in-terms-of</code>(根据某物具象出)。</p>
-
 <p>为了采用base class的某些实现了的特性（所谓实现部分被继承，接口部分被省略）。</p>
-
 <p>尽量使用复合，必要时才使用private继承（所谓必要时：virtual &amp; protected方法被牵扯进来的时候）。</p>
-
 <p>还有就是组合模式无法重新定义继承的virtual函数这个问题。</p>
-
 <pre><code class="language-cpp">class Timer {
   public:
   	explicit Timer(int tickFrequency);
   	virtual void onTick() const;
 }
 </code></pre>
-
 <pre><code class="language-cpp">class Widget: private Timer {
   private:
   	virtual void onTick() const;
 }
 </code></pre>
-
 <p>bad implement~</p>
-
 <pre><code class="language-cpp">class Widget {
   private:
   	class WidgetTimer : public Timer {
@@ -817,17 +604,13 @@ class Person {
   WidgetTimer timer;
 }
 </code></pre>
-
 <h3 id="40-明智而审慎的使用多继承">40.明智而审慎的使用多继承</h3>
-
 <p>virtual-base-class:</p>
-
 <ul>
 <li>非必要不使用virtual bases</li>
 <li>如果要使用不要包含成员变量（类比interface）</li>
 <li>可用来处理钻石型继承的模式</li>
 </ul>
-
 <pre><code class="language-cpp">class IPerson {
   public:
   	virtual ~IPerson();
@@ -835,10 +618,8 @@ class Person {
   	virtual std::string birthDate() const = 0;
 }
 </code></pre>
-
 <pre><code class="language-cpp">class DatabaseID { ....}
 </code></pre>
-
 <pre><code class="language-cpp">class PersonInfo {
   public:
   	explicit PersonInfo (DatabaseID pid);
@@ -849,7 +630,6 @@ class Person {
   	virtual const char* vauleDelimOpen() const;
 }
 </code></pre>
-
 <pre><code class="language-cpp">class CPerson : public IPerson , private PersonInfo {
   public:
   	explicit CPerson(Database pid) : PersonInfo(pid) { }
@@ -860,23 +640,18 @@ class Person {
       return PersonInfo::theBirthDate();
   	}
   private:
-  	const char* valueDelimOpen() const { return &quot;&quot;; }
-  	const char* vauleDelimClose() const { return &quot;&quot;; }
+  	const char* valueDelimOpen() const { return ""; }
+  	const char* vauleDelimClose() const { return ""; }
 }
 </code></pre>
-
 <p>组合模式，IPerson类似Interface实现必须实现的接口，PersonInfo提供有用的virtual-method，使用多重继承的一个优势。</p>
-
 <h3 id="41-了解隐式接口和编译期多态">41.了解隐式接口和编译期多态</h3>
-
 <ul>
 <li>class 和 template 都支持接口和多态</li>
 <li>对classes而言接口是显式的，以函数签名为中心，多态通过virtual函数发生在运行期</li>
 <li>对template参数而言接口式隐式的，奠基于有效表达式。多态则是通过template具现化和函数冲在解析发生于编译期</li>
 </ul>
-
 <h3 id="42-了解-typename-的双重含义">42.了解<code>typename</code>的双重含义</h3>
-
 <pre><code class="language-cpp">template&lt;typename T&gt; class Widget;
 template&lt;class T&gt; class Widget; // 其中的 class 和 typename 没有任何区别
 template&lt;typename C&gt;
@@ -889,11 +664,8 @@ void print2nd(const C &amp; container) { // 这段cpp代码是有错的
   }
 }
 </code></pre>
-
 <p>编译器没办法分析出<code>C::const_iterator</code>是一个类型，所以说要让我们通过手动置顶的方式去给compiler提供这个消息。</p>
-
 <p>正确的写法：</p>
-
 <pre><code class="language-cpp">if(container.size() &gt; 2) {
   typename C::const_container iter(container.begin());
 }
@@ -902,9 +674,7 @@ template&lt;typename C&gt;
  // 提供类型信息 （不允许使用typename ，并非从属类型）      （允许使用typename）
 void print2nd(const C container , const typename C::const_container iter);
 </code></pre>
-
 <p>另外：</p>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
 class Derived : public Base&lt;T&gt; :: Nested { // base class list 中不允许typename
   public:
@@ -914,9 +684,7 @@ class Derived : public Base&lt;T&gt; :: Nested { // base class list 中不允许
       }
 }
 </code></pre>
-
 <p>typedef的例子：</p>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
   void workWithInterator(IterT iter) {
   	// iterator 的item类型
@@ -924,11 +692,8 @@ class Derived : public Base&lt;T&gt; :: Nested { // base class list 中不允许
   	value_type temp(*iter);
   }
 </code></pre>
-
 <h3 id="43-学习处理模版化基类内的名称">43.学习处理模版化基类内的名称</h3>
-
 <p>example:</p>
-
 <pre><code class="language-cpp">class CompanyA {
   public:
   	void sendClearText(... );
@@ -958,7 +723,6 @@ class MsgSender {
   	}
 }
 </code></pre>
-
 <pre><code class="language-cpp">template&lt;typename Company&gt;
 class LoggingMegSender  : public MsgSender&lt;Company&gt; {
   public:
@@ -969,24 +733,17 @@ class LoggingMegSender  : public MsgSender&lt;Company&gt; {
   	}
 }
 </code></pre>
-
 <p>因为泛型类有可能被以某种形式特化，所以compiler 没办法确定是不是真的可以调用这个方法。</p>
-
 <p>对于这个问题有三种解决问题的方法：</p>
-
 <pre><code class="language-cpp">this-&gt;sendClear(info);// 1
 using MsgSender&lt;Company&gt;::sendClear;// 通知compile假设可以使用这个方法 2
 MsgSender&lt;Company&gt;::sendClear(info);// 假设这个方法被继承下来了 3
 </code></pre>
-
 <p>3对virtual-method很不利。</p>
-
 <h3 id="44-将参数无关代码迁出模版">44.将参数无关代码迁出模版</h3>
-
 <blockquote>
 <p>核心就是防止无谓重复的编译期特化</p>
 </blockquote>
-
 <pre><code class="language-cpp"> template&lt;typename T, std::size_t n&gt;//T为数据类型，n为矩阵大小
     class SquareMatrix{
     public:
@@ -998,9 +755,7 @@ MsgSender&lt;Company&gt;::sendClear(info);// 假设这个方法被继承下来�
     SquareMatrix&lt;double,10&gt; sm2;
     sm2.invert();//调用SquareMatrix&lt;double,10&gt;::invert
 </code></pre>
-
 <p>对多个size_t都进行了泛化。</p>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
     class SquareMatrixBase{
     protected:
@@ -1022,15 +777,10 @@ MsgSender&lt;Company&gt;::sendClear(info);// 假设这个方法被继承下来�
         T data[n*n];
     };
 </code></pre>
-
 <p>这么改动之后，就会有多个类型基于一个Base类的泛化类型。</p>
-
 <h3 id="45-运用成员函数模版接受所有兼容类型">45.运用成员函数模版接受所有兼容类型</h3>
-
 <p>模版的泛化类型，base &amp; driver 之间并不存在继承关系，例如原生被shared_ptr包装之后就很难办。</p>
-
 <p>使用泛化的转化函数:</p>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
 class SmartPtr {
   public:
@@ -1041,17 +791,12 @@ class SmartPtr {
   	T* heldPtr;
 }
 </code></pre>
-
 <p>支持从T-&gt;U的类型转换，并且通过<code>heldPtr(other.get())</code> 的隐式类型转换保证了不会乱转换。</p>
-
 <p>模版泛化的拷贝构造和赋值和原生的没有关系。</p>
-
 <h3 id="46-需要类型转换时请为模版定义非成员函数">46.需要类型转换时请为模版定义非成员函数</h3>
-
 <blockquote>
 <p>首先参考T24</p>
 </blockquote>
-
 <pre><code class="language-cpp">template&lt;typename T&gt;
 class Rational {
   public:
@@ -1063,19 +808,13 @@ class Rational {
     }
 }
 </code></pre>
-
-<p>通过友元函数进行类型推倒，当Rational<int>被声明的时候就已经被泛化了，所以对应的重定义已经被创建出来了。</p>
-
+<p>通过友元函数进行类型推倒，当Rational<int>被声明的时候就已经被泛化了，所以对应的重定义已经被创建出来了。</int></p>
 <p>这里友元函数的意义就不是访问私有变量了，而是为了提前被特化出来。</p>
-
 <h3 id="47-请使用-traits-class-表现类型信息">47.请使用<code>traits class</code>表现类型信息</h3>
-
 <blockquote>
 <p>主要含义是编译期的类型检查</p>
 </blockquote>
-
 <p>针对于类型信息在编译时的类型检查，靠的是模版的详细特化。</p>
-
 <pre><code class="language-cpp">template&lt;typename IterT, typename DisT&gt;
     void doAdvance(IterT&amp; iter, Dist d, std::random_access_iterator_tag)
     {
@@ -1093,7 +832,7 @@ class Rational {
     void doAdvance(IterT&amp; iter, Dist d, std::input_iterator_tag)
     {
         if(d&lt;0)
-        throw std::out_of_range(&quot;Negative distance&quot;);
+        throw std::out_of_range("Negative distance");
         while(d++) --iter;
     }
 
@@ -1103,17 +842,12 @@ class Rational {
         doAdvance(iter,d,typename::std::iterator_traits&lt;IterT&gt;::iterator_category();
     }
 </code></pre>
-
 <h3 id="未完待续">未完待续</h3>
-
-          </div>
-          
-          <p>Subscribe：<a target='_blank' href='https://lfkdsk.github.io/index.xml'>lfkdsk's Blog</a></p>
-
-          <div style="height:50px"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
 <script>
   window.addEventListener("load", () => {
     (function() {
@@ -1126,22 +860,14 @@ class Rational {
     })();
   });
 </script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        </div>
-      </div>
-    </article>
-
-    <script src="/js/highlight.pack.js"></script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
 <script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
-
 <script>
   hljs.initHighlightingOnLoad();
   
@@ -1151,6 +877,5 @@ class Rational {
     priority: true,
   });
 </script>
-
-  </body>
+</body>
 </html>
