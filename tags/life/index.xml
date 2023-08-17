@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life on lfkdsk&#39;s Blog</title>
+    <link>https://lfkdsk.github.io/tags/life/</link>
+    <description>Recent content in Life on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Thu, 17 Aug 2023 17:16:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/life/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>封神杂谈</title>
+      <link>https://lfkdsk.github.io/talk-about-fengshen/</link>
+      <pubDate>Thu, 17 Aug 2023 17:16:44 +0800</pubDate>
+      
+      <guid>https://lfkdsk.github.io/talk-about-fengshen/</guid>
+      <description>   文章的部分内容被密码保护：
+  --- DON&#39;T MODIFY THIS LINE --- A   </description>
+    </item>
+    
+  </channel>
+</rss>
