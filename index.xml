@@ -9,6 +9,20 @@
 <lastBuildDate>Thu, 17 Aug 2023 17:16:44 +0800</lastBuildDate>
 <atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <item>
+<title>MYGallery: 拍照、选图、上传部署一站式方案</title>
+<link>https://lfkdsk.github.io/make-gallery-myself/</link>
+<pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-gallery-myself/</guid>
+<description>出于对网络平台的数据焦虑，以及对内容的可控性，我的 Blog、Podcast 以及对一些喜欢的内容都希望能在 Github 来进行定期抓取和部署。很多方案的实现都是通过一个简单的胶水脚本 + Hexo or Hugo 这种 codegen 框架来实现，比如对 podcast 每天的 CI 自动部署就是对 RSS 内容的监听，并且根据返回值来生成 Hexo 需要的内容，然后再驱动 Hexo 来进行部署。
+不过我发现很多静态网站的生成框架对 Gallery 的支持都不是很好，一来是与图片相关的 feature 需要更多的动态性，还有就是其实大多数框架还是针对于各种文档来实现的（也可能是针对 Gallery 的需求也不是很多）。之前发现了这点就有点想放弃了，不过前段时间入手了一台富士 X-S20，拍了很多照片所以对 Gallery 的需求又增长了起来。我们来看下最终的效果吧：
+首页：
+内容页：
+其实这里面所做的事情都很简单，大多数都是对现有方案的整合，不过最后的实现对我来说已经足够方便了。每次拍照上传图片的 Routine 大概是：
+ 从相机导出到 SSD 的 photos library，选一些图片 打开一个 UI 的编辑器，选择图片上传 如果需要一个新的相册就在配置文件里写一下文件夹名字和选一个封面图  没了。因此这篇文章只打算对每个步骤的流程随便谈谈，技术上可说之处不多算是一种方案整合。
+日常拍照流程 1.拍照、SSD 沉库 这里选择了 Mac 上的 Photos Library，之前听一个朋友分享过，Mac 的图册不是只和 iCloud 紧密相连的，也可以自己创建离线的整个图库（注意而非相册）。因此我们可以直接在 Mac 的应用菜单使用 Option + 鼠标点击 的方式打开照片应用：
+在这里可以选取或者是新建一个独立于系统相册的新建 photoslibrary，这里我把这个 photoslibrary 放到了 SSD 移动硬盘里面去，然后按按照年度来创建 library 以及按照主题来创建相簿分类：</description>
+</item>
+<item>
 <title>封神闲谈：也谈封神之中的历史影射</title>
 <link>https://lfkdsk.github.io/talk-about-fengshen/</link>
 <pubDate>Thu, 17 Aug 2023 17:16:44 +0800</pubDate>
