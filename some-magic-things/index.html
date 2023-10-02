@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,18 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "我们来写一些魔法",
       "headline" : "我们来写一些魔法",
-      "description" : "请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
-SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
-首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, &quot;key&quot;, 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
-同时在AndroidManifest文件中：
-&lt;receiver android:name=&quot;.SecretReceiver&quot; android:enabled=&quot;true&quot; android:exported=&quot;true&quot;&gt; &lt;intent-filter&gt; &lt;action android:name=&quot;android.provider.Telephony.SECRET_CODE&quot; /&gt; &lt;data android:host=&quot;12467&quot; android:scheme=&quot;android_secret_code&quot; /&gt; &lt;/intent-filter&gt; &lt;/receiver&gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
-host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
-添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.",
+      "description" : "请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。\nSecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。\n首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, \u0026#34;key\u0026#34;, 1); } } 这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。\n同时在AndroidManifest文件中：\n\u0026lt;receiver android:name=\u0026#34;.SecretReceiver\u0026#34; android:enabled=\u0026#34;true\u0026#34; android:exported=\u0026#34;true\u0026#34;\u0026gt; \u0026lt;intent-filter\u0026gt; \u0026lt;action android:name=\u0026#34;android.provider.Telephony.SECRET_CODE\u0026#34; \/\u0026gt; \u0026lt;data android:host=\u0026#34;12467\u0026#34; android:scheme=\u0026#34;android_secret_code\u0026#34; \/\u0026gt; \u0026lt;\/intent-filter\u0026gt; \u0026lt;\/receiver\u0026gt; 添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。\nhost代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：\n添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -34,9 +28,9 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
-      "datePublished": "2016-06-16 21:30:29 &#43;0000 UTC",
-      "dateModified" : "2016-06-16 21:30:29 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/some-magic-things/",
+      "datePublished": "2016-06-16 21:30:29 \u002b0000 UTC",
+      "dateModified" : "2016-06-16 21:30:29 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/some-magic-things\/",
       "keywords" : [ "Interesting!","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -45,9 +39,9 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
 <meta content="article" property="og:type"/>
 <meta content='请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
 SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
-首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, "key", 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
+首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, "key", 1); } } 这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
 同时在AndroidManifest文件中：
-&lt;receiver android:name=".SecretReceiver" android:enabled="true" android:exported="true"&gt; &lt;intent-filter&gt; &lt;action android:name="android.provider.Telephony.SECRET_CODE" /&gt; &lt;data android:host="12467" android:scheme="android_secret_code" /&gt; &lt;/intent-filter&gt; &lt;/receiver&gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
+&lt;receiver android:name=".SecretReceiver" android:enabled="true" android:exported="true"&gt; &lt;intent-filter&gt; &lt;action android:name="android.provider.Telephony.SECRET_CODE" /&gt; &lt;data android:host="12467" android:scheme="android_secret_code" /&gt; &lt;/intent-filter&gt; &lt;/receiver&gt; 添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
 host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
 添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.' name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
@@ -100,71 +94,68 @@ host代表了匹配什么符号进行触发，虽然写的时候是12467但是�
 <p>但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。</p>
 <p>SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。</p>
 <h3 id="首先定义一个广播接收器">首先定义一个广播接收器</h3>
-<pre><code class="language-java">package com.lfk.myapplication;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.lfk.myapplication<span style="color:#f92672">;</span>
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+<span style="color:#f92672">import</span> android.content.BroadcastReceiver<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.content.Context<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.content.Intent<span style="color:#f92672">;</span>
 
-public class SecretReceiver extends BroadcastReceiver {
-    public SecretReceiver() {
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecretReceiver</span> <span style="color:#66d9ef">extends</span> BroadcastReceiver <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SecretReceiver</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
 
-    }
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        SpUtils.put(context, "key", 1);
-    }
-}
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onReceive</span><span style="color:#f92672">(</span>Context context<span style="color:#f92672">,</span> Intent intent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        SpUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> <span style="color:#e6db74">"key"</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-</code></pre>
-<p>这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。</p>
+</code></pre></div><p>这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。</p>
 <p>同时在AndroidManifest文件中：</p>
-<pre><code class="language-xml">        &lt;receiver
-            android:name=".SecretReceiver"
-            android:enabled="true"
-            android:exported="true"&gt;
-            &lt;intent-filter&gt;
-                &lt;action android:name="android.provider.Telephony.SECRET_CODE" /&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-xml" data-lang="xml">        <span style="color:#f92672">&lt;receiver</span>
+            <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">".SecretReceiver"</span>
+            <span style="color:#a6e22e">android:enabled=</span><span style="color:#e6db74">"true"</span>
+            <span style="color:#a6e22e">android:exported=</span><span style="color:#e6db74">"true"</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;intent-filter&gt;</span>
+                <span style="color:#f92672">&lt;action</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">"android.provider.Telephony.SECRET_CODE"</span> <span style="color:#f92672">/&gt;</span>
 
-                &lt;data
-                    android:host="12467"
-                    android:scheme="android_secret_code" /&gt;
-            &lt;/intent-filter&gt;
-        &lt;/receiver&gt;
-</code></pre>
-<p>添加对应的静态注册的广播接收器的过滤器，选择<code>SECRET_CODE</code>选项并且加入host和scheme值。</p>
+                <span style="color:#f92672">&lt;data</span>
+                    <span style="color:#a6e22e">android:host=</span><span style="color:#e6db74">"12467"</span>
+                    <span style="color:#a6e22e">android:scheme=</span><span style="color:#e6db74">"android_secret_code"</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;/intent-filter&gt;</span>
+        <span style="color:#f92672">&lt;/receiver&gt;</span>
+</code></pre></div><p>添加对应的静态注册的广播接收器的过滤器，选择<code>SECRET_CODE</code>选项并且加入host和scheme值。</p>
 <p>host代表了匹配什么符号进行触发，虽然写的时候是<code>12467</code>但是输入的时候要输入<code>*#*#12467#*#*</code> 才能正确的响应：</p>
 <p><img alt="input" src="input.png"/></p>
 <h3 id="添加处理逻辑">添加处理逻辑</h3>
-<pre><code class="language-java">package com.lfk.myapplication;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.lfk.myapplication<span style="color:#f92672">;</span>
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+<span style="color:#f92672">import</span> android.os.Bundle<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.support.v7.app.AppCompatActivity<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.widget.TextView<span style="color:#f92672">;</span>
 
-public class MainActivity extends AppCompatActivity {
-    private TextView textView;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> TextView textView<span style="color:#f92672">;</span>
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SpUtils.put(this, "key", 0);
-        textView = (TextView) findViewById(R.id.text_view);
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">);</span>
+        setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_main</span><span style="color:#f92672">);</span>
+        SpUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"key"</span><span style="color:#f92672">,</span> 0<span style="color:#f92672">);</span>
+        textView <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TextView<span style="color:#f92672">)</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_view</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if ((int) SpUtils.get(this, "key", 0) != 0) {
-            textView.setText("HAHAHA");
-        }
-    }
-}
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResume</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onResume</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> SpUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"key"</span><span style="color:#f92672">,</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            textView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span><span style="color:#e6db74">"HAHAHA"</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-</code></pre>
-<p>这里只定义了简单的一个显示逻辑，当检测到key值变化的时候修改文字的显示，但实际上SecretCode可以作为一个你应用里的一个彩蛋或是隐藏开关(你可以借由这个功能完成你奇怪内容的隐藏）。</p>
+</code></pre></div><p>这里只定义了简单的一个显示逻辑，当检测到key值变化的时候修改文字的显示，但实际上SecretCode可以作为一个你应用里的一个彩蛋或是隐藏开关(你可以借由这个功能完成你奇怪内容的隐藏）。</p>
 <h3 id="显示效果">显示效果</h3>
 <p><img alt="close" src="close.png"/></p>
 <p><img alt="open" src="open.png"/></p>

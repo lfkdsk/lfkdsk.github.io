@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,12 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "Enhance RSSHub and Export RSS from XiaoYuZhou",
       "headline" : "Enhance RSSHub and Export RSS from XiaoYuZhou",
-      "description" : "Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it&rsquo;s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou&rsquo;s backend editor, we could not subscribe to them except xiaoyuzhou.",
+      "description" : "![] (logo.png)\nIntro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it\u0026rsquo;s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou\u0026rsquo;s backend editor, we could not subscribe to them except xiaoyuzhou.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -28,16 +28,17 @@
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2022",
-      "datePublished": "2022-04-22 21:45:48 &#43;0800 CST",
-      "dateModified" : "2022-04-22 21:45:48 &#43;0800 CST",
-      "url" : "https://lfkdsk.github.io/enhance-xyz/",
+      "datePublished": "2022-04-22 21:45:48 \u002b0800 CST",
+      "dateModified" : "2022-04-22 21:45:48 \u002b0800 CST",
+      "url" : "https:\/\/lfkdsk.github.io\/enhance-xyz\/",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
 <title>Enhance RSSHub and Export RSS from XiaoYuZhou - lfkdsk's Blog</title>
 <meta content="Enhance RSSHub and Export RSS from XiaoYuZhou - lfkdsk's Blog" property="og:title"/>
 <meta content="article" property="og:type"/>
-<meta content="Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it’s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou’s backend editor, we could not subscribe to them except xiaoyuzhou." name="description"/>
+<meta content="![] (logo.png)
+Intro As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it’s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou’s backend editor, we could not subscribe to them except xiaoyuzhou." name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -84,11 +85,11 @@
 </div>
 </header>
 <div class="post-content markdown-body">
-<p><img alt="" src="logo.png"/></p>
+<p>![] (logo.png)</p>
 <h2 id="intro">Intro</h2>
 <p>As we all know, xiaoyuzhou is a new shining star in Chinese podcast sphere. It is known for its beautiful design and convenient functions. But due to it’s a close-circle community, we could use rss link to register podcast channel in it but could not re-generate rss link from it. Especially for the podcast which is created in xiaoyuzhou’s backend editor, we could not subscribe to them except xiaoyuzhou. So I will try to enhance its features and support export rss from it.</p>
 <h2 id="exist-features-in-rsshub">Exist features in RSSHub</h2>
-<p>With RSSHub, we could follow lots of platfroms’ rss sources and create a lot of rss by ourselves. RSSHub already supports two features of <code>xiaoyuzhou</code>.</p>
+<p>With RSSHub, we could follow lots of platfroms' rss sources and create a lot of rss by ourselves. RSSHub already supports two features of <code>xiaoyuzhou</code>.</p>
 <ul>
 <li><code>host/xiaoyuzhou</code> url will return today’s recommended list podcasts. (You should deploy your own domain and support you <code>xiaoyuzhou</code>’s token in backend. )</li>
 <li><code>host/xiaoyuzhou/podcast/&lt;id&gt;</code> url will return a list of podcast items which corresponds to the id we provided.</li>
@@ -110,9 +111,9 @@
 <p><code>https://moyutime-hub.vercel.app/xiaoyuzhou/podcast/5e280fb0418a84a0461fc251?limit=X</code></p>
 <p>Rule : <code>host/xiaoyuzhou/podcast/&lt;pid&gt;</code>?limt=X</p>
 <p>Especially<code>X</code> could be<code>all</code>, you can use this query flag to get all items back. <strong>But I don’t recommend using this flag for a very long podcast that the server will use a very long time to merge response and return back.</strong></p>
-<h3 id="rel-next">Rel=next ? ? ?</h3>
+<h3 id="relnext---">Rel=next ? ? ?</h3>
 <p><code>xiaoyuzhou</code>’s api is kind of <code>load-more</code> types. So if we wanted to get all items from it, we could only request and merge response. But I looked into the RFC doc that RSS support <code>rel=next</code> and <code>rel=previcous</code> tag to link to next page. <a href="https://www.rfc-editor.org/rfc/rfc5005#section-3">RFC 5005: Feed Paging and Archiving</a></p>
-<pre><code>   &lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre tabindex="0"><code>   &lt;?xml version="1.0" encoding="utf-8"?&gt;
    &lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
     &lt;title&gt;Example Feed&lt;/title&gt;
     &lt;link href="http://example.org/"/&gt;
@@ -130,11 +131,9 @@
       &lt;summary&gt;Some text.&lt;/summary&gt;
     &lt;/entry&gt;
    &lt;/feed&gt;
-</code></pre>
-<p>Thus, I support this in my folk repository. Every request to my server will return a next link ref back, such like <code>https://moyutime-hub.vercel.app/xiaoyuzhou/podcast/5e280fb0418a84a0461fc251</code> return</p>
-<pre><code>&lt;atom:link href="https://moyutime-hub.vercel.app/xiaoyuzhou/podcast/5e280fb0418a84a0461fc251/N4IgDgrgRgIghgFwKYgFwgEwAYMYLRYAsBhAKgIwCsqWWNWAdLVgFogA0IAlgCZogA2DISiVCGAGZIAnFiQCqPKEmxQsAYygcQPLgCck6hFwD2AO34A5AKIANUiAC+QA" rel="next" type="application/rss+xml"/&gt;
-</code></pre>
-<p>It’s a url which combines the base url and base64 string to point to next request. <strong>But is there really a RSS client in the world that supports this</strong> <strong>RFC</strong> <strong>doc ? I have tried several clients that do not recognize it, so I turn to support</strong> <code>limit</code> <strong>query phase later.</strong></p>
+</code></pre><p>Thus, I support this in my folk repository. Every request to my server will return a next link ref back, such like <code>https://moyutime-hub.vercel.app/xiaoyuzhou/podcast/5e280fb0418a84a0461fc251</code> return</p>
+<pre tabindex="0"><code>&lt;atom:link href="https://moyutime-hub.vercel.app/xiaoyuzhou/podcast/5e280fb0418a84a0461fc251/N4IgDgrgRgIghgFwKYgFwgEwAYMYLRYAsBhAKgIwCsqWWNWAdLVgFogA0IAlgCZogA2DISiVCGAGZIAnFiQCqPKEmxQsAYygcQPLgCck6hFwD2AO34A5AKIANUiAC+QA" rel="next" type="application/rss+xml"/&gt;
+</code></pre><p>It’s a url which combines the base url and base64 string to point to next request. <strong>But is there really a RSS client in the world that supports this</strong> <strong>RFC</strong> <strong>doc ? I have tried several clients that do not recognize it, so I turn to support</strong> <code>limit</code> <strong>query phase later.</strong></p>
 <h2 id="for-more-implement-detail">For more implement detail</h2>
 <p>Supporting this feature is pretty easy for me, so I don’t want to go into too many details about the implementation. If you are also interested in this feature, you can get more from =&gt;</p>
 <ul>

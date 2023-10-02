@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,18 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "0x05：SICP 的魔法 - 实例:数字电路模拟",
       "headline" : "0x05：SICP 的魔法 - 实例:数字电路模拟",
-      "description" : "在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
- 创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：
- 在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
-共享和相等 我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：
-(define x (list 'a 'b)) (define z1 (cons x x))  我们定义了这样的一个结构，x 是'a 和 'b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 *z2*：
-(define z2 (cons (list 'a 'b) (list 'a 'b)))  这两个结构的定义起来，看起来的结构是一样的：
-这里我们能看到放置 'a 和 'b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：",
+      "description" : "在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：\n 创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：\n在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。\n共享和相等 我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：\n(define x (list \u0026#39;a \u0026#39;b)) (define z1 (cons x x)) 我们定义了这样的一个结构，x 是\u0027a 和 \u0027b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 z2：\n(define z2 (cons (list \u0026#39;a \u0026#39;b) (list \u0026#39;a \u0026#39;b))) 这两个结构的定义起来，看起来的结构是一样的：\n这里我们能看到放置 \u0027a 和 \u0027b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：\n(eq? z1 z2) 的结果肯定是不相等的，这意味着我们每次使用 cons 方法结成一个新的序对都是生成了一个新的对象并返回的是可操作该对象的 指针\/引用 （虽然 Scheme 中没有显示的这种概念）。",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -34,9 +28,9 @@
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2017",
-      "datePublished": "2017-08-08 00:16:16 &#43;0000 UTC",
-      "dateModified" : "2017-08-08 00:16:16 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/learn-sicp-5/",
+      "datePublished": "2017-08-08 00:16:16 \u002b0000 UTC",
+      "dateModified" : "2017-08-08 00:16:16 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/learn-sicp-5\/",
       "keywords" : [ "SICP","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -45,11 +39,12 @@
 <meta content="article" property="og:type"/>
 <meta content="在第二章我们学到的和 数据抽象 相关的知识指出，如果想构造数据抽象，我们需要两个部分：
  创建构造函数包含数据 创建选择函数 分派 数据  但是在经过了解了第三章相关的 模块化、状态、环境 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：
- 在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
+在系统中我们带状态的数据抽象 创建 改变函数(mutator) 去对数据进行重新修改  基于变动的模拟 在构建复杂的系统之中，我们最先面对的部分就是关于 同一性 的知识，这部分知识我们已经在上一章的 同一性发生了变化 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 共享和相等 的知识。
 共享和相等 我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：
-(define x (list 'a 'b)) (define z1 (cons x x))  我们定义了这样的一个结构，x 是'a 和 'b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 *z2*：
-(define z2 (cons (list 'a 'b) (list 'a 'b)))  这两个结构的定义起来，看起来的结构是一样的：
-这里我们能看到放置 'a 和 'b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：" name="description"/>
+(define x (list 'a 'b)) (define z1 (cons x x)) 我们定义了这样的一个结构，x 是'a 和 'b 组成的序对，然后 z1 是由两个 x 的组成的序对，我们还要在另外定义一个 z2：
+(define z2 (cons (list 'a 'b) (list 'a 'b))) 这两个结构的定义起来，看起来的结构是一样的：
+这里我们能看到放置 'a 和 'b 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 符号引用 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：
+(eq? z1 z2) 的结果肯定是不相等的，这意味着我们每次使用 cons 方法结成一个新的序对都是生成了一个新的对象并返回的是可操作该对象的 指针/引用 （虽然 Scheme 中没有显示的这种概念）。" name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -102,7 +97,7 @@
 <li>创建选择函数 <strong>分派</strong> 数据</li>
 </ol>
 <p>但是在经过了解了第三章相关的 <em>模块化、状态、环境</em> 的知识之后，我们认识到了新的问题，在实际编程之中，需要依赖程序的状态进行编程，那么程序中就要根据我们的环境求值的方式进行计算，那我们在重新设计和模拟系统大的时候就要多考虑几点了：</p>
-<ol>
+<ol start="3">
 <li>在系统中我们带状态的数据抽象</li>
 <li>创建 <strong>改变函数(mutator)</strong> 去对数据进行重新修改</li>
 </ol>
@@ -110,18 +105,15 @@
 <p>在构建复杂的系统之中，我们最先面对的部分就是关于 <em>同一性</em> 的知识，这部分知识我们已经在上一章的 <strong>同一性发生了变化</strong> 的那个小节中简单的讨论过一次，我们可以在这个再重新讨论一下 <strong>共享和相等</strong> 的知识。</p>
 <h3 id="共享和相等">共享和相等</h3>
 <p>我们通过引入赋值的方式为系统引入了状态，但是造成了引用透明的危机，我们没办法再通过相同的结构来判断对象西相同，两个相同结构的对象并不能确定两个对象是否相同：</p>
-<pre><code class="language-lisp">(define x (list 'a 'b))
-(define z1 (cons x x))
-</code></pre>
-<p>我们定义了这样的一个结构，<em>x</em> 是<code>'a</code> 和 <code>'b</code> 组成的序对，然后 <em>z1</em> 是由两个 <em>x</em> 的组成的序对，我们还要在另外定义一个 *z2*：</p>
-<pre><code class="language-lisp">(define z2 (cons (list 'a 'b) (list 'a 'b)))
-</code></pre>
-<p>这两个结构的定义起来，看起来的结构是一样的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define x (<span style="color:#a6e22e">list</span> <span style="color:#e6db74">'a</span> <span style="color:#e6db74">'b</span>))
+(define z1 (<span style="color:#a6e22e">cons</span> x x))
+</code></pre></div><p>我们定义了这样的一个结构，<em>x</em> 是<code>'a</code> 和 <code>'b</code> 组成的序对，然后 <em>z1</em> 是由两个 <em>x</em> 的组成的序对，我们还要在另外定义一个 <em>z2</em>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define z2 (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">list</span> <span style="color:#e6db74">'a</span> <span style="color:#e6db74">'b</span>) (<span style="color:#a6e22e">list</span> <span style="color:#e6db74">'a</span> <span style="color:#e6db74">'b</span>)))
+</code></pre></div><p>这两个结构的定义起来，看起来的结构是一样的：</p>
 <p><img alt="struct" src="struct.png"/></p>
 <p>这里我们能看到放置 <code>'a</code> 和 <code>'b</code> 两个序对中的节点都指向了同一个节点，这是因为在 Scheme 中符号引用是共享的，因而他们都指向了同一个节点。但是很明显虽然 <strong>符号引用</strong> 都指向了同一个节点，但是整体的结构是两个结构指向了两个结构，直接使用：</p>
-<pre><code class="language-lisp">(eq? z1 z2)
-</code></pre>
-<p>的结果肯定是不相等的，这意味着我们每次使用 <code>cons</code> 方法结成一个新的序对都是生成了一个新的对象并返回的是可操作该对象的 <em>指针/引用</em> （虽然 Scheme 中没有显示的这种概念）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(eq? z1 z2)
+</code></pre></div><p>的结果肯定是不相等的，这意味着我们每次使用 <code>cons</code> 方法结成一个新的序对都是生成了一个新的对象并返回的是可操作该对象的 <em>指针/引用</em> （虽然 Scheme 中没有显示的这种概念）。</p>
 <p>这时候我们需要考虑另一个问题，就是在整个 <em>数据抽象</em> 都是不可变的情况下，我们对于数据结构是否使用了同样的引用是不可知的，但是当我们引入 <em>赋值</em> 我们共享的数据因为使用了同一个贡献的结构而变得复杂起来，修改其中的一个会导致另一个收到影响。</p>
 <p>比如我们上文中提到的 <em>z1</em> 和 <em>z2</em> 就是这样结构，z1 的两个子结构全都是 x ，如果我们修改一个另一个肯定会受到影响，但是 z2 序对中的两个元素是两个不同的序对，并不会有这个的问题。</p>
 <p>引入共享结构会带来一些好处：</p>
@@ -139,34 +131,32 @@
 </ul>
 </blockquote>
 <p>在之前我们使用该通过过程来存储数据和模拟序对的表示，当时我们通过 $0,1$ 作为 Tag 模拟了序对的分派，这里我们可以对这个程序略作修改：</p>
-<pre><code class="language-lisp">(define (cons x y)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (<span style="color:#a6e22e">cons</span> x y)
   (define (dispatch m)
-    (cond ((eq? m 'car) x)
-          ((eq? m 'cdr) y)
-          (else (error "Undefined operation -- cons" m))))
+    (cond ((eq? m <span style="color:#e6db74">'car</span>) x)
+          ((eq? m <span style="color:#e6db74">'cdr</span>) y)
+          (else (<span style="color:#66d9ef">error</span> <span style="color:#e6db74">"Undefined operation -- cons"</span> m))))
   dispatch)
 
-(define (car z) (z 'car))
-(define (cdr z) (z 'cdr))
-</code></pre>
-<p>这个程序的变化其实不大，我们这是利用了 Scheme 中的符号引用的唯一性的这点，本质上和用 <strong>0 1</strong> 没有什么区别。我们再跟着这个改造的理念可以为这个程序进行扩充，添加我们之前提到的 <code>set-car!</code> 和 <code>set-cdr!</code> 函数：</p>
-<pre><code class="language-lisp">(define (cons x y)
+(define (<span style="color:#a6e22e">car</span> z) (z <span style="color:#e6db74">'car</span>))
+(define (<span style="color:#a6e22e">cdr</span> z) (z <span style="color:#e6db74">'cdr</span>))
+</code></pre></div><p>这个程序的变化其实不大，我们这是利用了 Scheme 中的符号引用的唯一性的这点，本质上和用 <strong>0 1</strong> 没有什么区别。我们再跟着这个改造的理念可以为这个程序进行扩充，添加我们之前提到的 <code>set-car!</code> 和 <code>set-cdr!</code> 函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (<span style="color:#a6e22e">cons</span> x y)
   (define (set-x! v) (set! x v))
   (define (set-y! v) (set! y v))
   (define (dispatch m)
-    (cond ((eq? m 'car) x)
-          ((eq? m 'cdr) y)
-          ((eq? m 'set-car!) set-x!)
-          ((eq? m 'set-cdr!) set-y!)
-          (else (error "Undefined operation -- cons" m))))
+    (cond ((eq? m <span style="color:#e6db74">'car</span>) x)
+          ((eq? m <span style="color:#e6db74">'cdr</span>) y)
+          ((eq? m <span style="color:#e6db74">'set-car!</span>) set-x!)
+          ((eq? m <span style="color:#e6db74">'set-cdr!</span>) set-y!)
+          (else (<span style="color:#66d9ef">error</span> <span style="color:#e6db74">"Undefined operation -- cons"</span> m))))
   dispatch)
 
-(define (car z) (z 'car))
-(define (cdr z) (z 'cdr))
-(define (set-car! z new-value) ((z 'set-car!) new-value) z)
-(define (set-cdr! z new-value) ((z 'set-cdr!) new-value) z)
-</code></pre>
-<p>这里面我们通过增加了程序的内部状态，并且增加了两个内部方法来搞定了这个问题。</p>
+(define (<span style="color:#a6e22e">car</span> z) (z <span style="color:#e6db74">'car</span>))
+(define (<span style="color:#a6e22e">cdr</span> z) (z <span style="color:#e6db74">'cdr</span>))
+(define (set-car! z new-value) ((z <span style="color:#e6db74">'set-car!</span>) new-value) z)
+(define (set-cdr! z new-value) ((z <span style="color:#e6db74">'set-cdr!</span>) new-value) z)
+</code></pre></div><p>这里面我们通过增加了程序的内部状态，并且增加了两个内部方法来搞定了这个问题。</p>
 <p>接下来部分是几个非常有趣的实例学习，包括对表格，队列和数字电路的模拟。这里面前面的表格、队列的知识都比较的简单，这里我们主要关注这个 <em>数字电路模拟</em> 的学习。</p>
 <h2 id="数字电路模拟">数字电路模拟</h2>
 <blockquote>
@@ -198,10 +188,10 @@
 <h3 id="连线">连线</h3>
 <blockquote>
 <p>Tips 半加器：</p>
-<p>半加器的功能是将两个一位二进制数相加。它具有两个输入和两个输出（分别是和、进位）。输出的进位信号代表了输入两个数相加溢出的高一位数值。因此，这两2个一位二级制数的和等于2<em>C</em> + *S*。根据两个一位二进制数相加的结果，可以通过真值表、<a href="https://zh.wikipedia.org/wiki/%E5%8D%A1%E8%AF%BA%E5%9B%BE">卡诺图</a>得到右图所描绘的简易半加器设计。它使用了一个<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96%E9%97%A8">异或门</a>来产生和*S*，并使用了一个<a href="https://zh.wikipedia.org/wiki/%E4%B8%8E%E9%97%A8">与门</a>来产生进位信号*C*。如果再添加一个<a href="https://zh.wikipedia.org/wiki/%E6%88%96%E9%97%A8">或门</a>来接收低位的进位输出信号，则两个半加器就构成了一个全加器。</p>
+<p>半加器的功能是将两个一位二进制数相加。它具有两个输入和两个输出（分别是和、进位）。输出的进位信号代表了输入两个数相加溢出的高一位数值。因此，这两2个一位二级制数的和等于2<em>C</em> + <em>S</em>。根据两个一位二进制数相加的结果，可以通过真值表、<a href="https://zh.wikipedia.org/wiki/%E5%8D%A1%E8%AF%BA%E5%9B%BE">卡诺图</a>得到右图所描绘的简易半加器设计。它使用了一个<a href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%88%96%E9%97%A8">异或门</a>来产生和<em>S</em>，并使用了一个<a href="https://zh.wikipedia.org/wiki/%E4%B8%8E%E9%97%A8">与门</a>来产生进位信号<em>C</em>。如果再添加一个<a href="https://zh.wikipedia.org/wiki/%E6%88%96%E9%97%A8">或门</a>来接收低位的进位输出信号，则两个半加器就构成了一个全加器。</p>
 </blockquote>
 <p>电路需要由连线来连接我们的基础功能块，由基础的功能块组成更大的功能块，我们这里先使用一个定义生成基础连线的方法 <em>(make-wire)</em> 生成一条连线，我们可以通过这个方法生成连线，然后把各个部件绑定在一起：</p>
-<pre><code class="language-lisp">; 生成六根连线
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 生成六根连线</span>
 (define a (make-wire))
 (define b (make-wire))
 (define c (make-wire))
@@ -209,316 +199,292 @@
 (define e (make-wire))
 (define s (make-wire))
 
-; 使用与或非门构建半加器 参考之前的半加器图片
+<span style="color:#75715e">; 使用与或非门构建半加器 参考之前的半加器图片</span>
 (or-gate a b d)
 (and-gate a b c)
 (inverter c e)
 (and-gate d e s)
-</code></pre>
-<p>这里面的 A 和 B 是数据输入，S 和 C 是数据输出，其中S 是和，C 是进位，我们能看到抽象出来连接线、和与、或、非门之后我们对电路的的描述能被抽象到非常简洁形式，我们还可以把这几个过程结合成一个流程生成出一个 半加器的过程：</p>
-<pre><code class="language-lisp">(define (half-adder a b s c)
-  (let ((d (make-wire))
+</code></pre></div><p>这里面的 A 和 B 是数据输入，S 和 C 是数据输出，其中S 是和，C 是进位，我们能看到抽象出来连接线、和与、或、非门之后我们对电路的的描述能被抽象到非常简洁形式，我们还可以把这几个过程结合成一个流程生成出一个 半加器的过程：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (half-adder a b s c)
+  (<span style="color:#66d9ef">let</span> ((d (make-wire))
         (e (make-wire)))
     (or-gate a b d)
     (and-gate a b c)
     (inverter c e)
     (and-gate d e s)
-    'ok))
-</code></pre>
-<p>两个半加器和一个或门能够成一个全加器：</p>
+    <span style="color:#e6db74">'ok</span>))
+</code></pre></div><p>两个半加器和一个或门能够成一个全加器：</p>
 <p><img alt="full-adder" src="adder.png"/></p>
-<pre><code class="language-lisp">(define (full-adder a b c-in sum c-out)
-  (let ((s (make-wire))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (full-adder a b c-in sum c-out)
+  (<span style="color:#66d9ef">let</span> ((s (make-wire))
         (c1 (make-wire))
         (c2 (make-wire)))
     (half-adder b c-in s c1)
     (half-adder a s sum c2)
     (or-gate c1 c2 c-out)
-    'ok))
-</code></pre>
-<p>这就是像是我们之前提到的，使用抽象机制将全加器、半加器这些复杂组件封装成构建过程。</p>
+    <span style="color:#e6db74">'ok</span>))
+</code></pre></div><p>这就是像是我们之前提到的，使用抽象机制将全加器、半加器这些复杂组件封装成构建过程。</p>
 <p>我们在这里还可以给出连线上的发送信号的基本操作：</p>
-<pre><code class="language-lisp">(get-signal &lt;wire&gt;) ; 返回当前线上的信号值
-(set-signal! &lt;wire&gt; &lt;new-value&gt;) ; 重设线上的信号值
-(add-action! &lt;wire&gt; &lt;procedure of no arguments&gt;) ; 在线上的信号改变的时候运行过程
-(after-delay &lt;time&gt; &lt;procedure&gt; ; 设定一个时间延迟和对应的过程，时间过后触发过程
-</code></pre>
-<p>这就能试着写出 <code>make-wire</code> 的定义，肯定是包含上面三个函数的 dispatch 的 <strong>分发器</strong>，还要有针对多个属性的 <strong>修改器</strong>。</p>
-<pre><code class="language-lisp">; 创建一条连线
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(get-signal &lt;wire&gt;) <span style="color:#75715e">; 返回当前线上的信号值</span>
+(set-signal! &lt;wire&gt; &lt;new-value&gt;) <span style="color:#75715e">; 重设线上的信号值</span>
+(add-action! &lt;wire&gt; &lt;procedure of no arguments&gt;) <span style="color:#75715e">; 在线上的信号改变的时候运行过程</span>
+(after-delay &lt;time&gt; &lt;procedure&gt; <span style="color:#75715e">; 设定一个时间延迟和对应的过程，时间过后触发过程</span>
+</code></pre></div><p>这就能试着写出 <code>make-wire</code> 的定义，肯定是包含上面三个函数的 dispatch 的 <strong>分发器</strong>，还要有针对多个属性的 <strong>修改器</strong>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 创建一条连线</span>
 (define (make-wire)
-  (let ((signal-value 0)
-        (action-procedures '()))
-    ; set new value and call procedures
+  (<span style="color:#66d9ef">let</span> ((signal-value <span style="color:#ae81ff">0</span>)
+        (action-procedures <span style="color:#f92672">'</span>()))
+    <span style="color:#75715e">; set new value and call procedures</span>
     (define (set-my-signal! new-value)
-      (if (not (= signal-value new-value))
+      (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">not</span> (<span style="color:#a6e22e">=</span> signal-value new-value))
           (begin (set! signal-value new-value)
                  (call-each action-procedures))
-          'done))
+          <span style="color:#e6db74">'done</span>))
     
     (define (accept-action-procedure! proc)
       (set! action-procedures
-            (cons proc action-procedures))
+            (<span style="color:#a6e22e">cons</span> proc action-procedures))
       (proc))
     
     (define (dispatch m)
-      (cond ((eq? m 'get-signal) signal-value)
-            ((eq? m 'set-signal!) set-my-signal!)
-            ((eq? m 'add-action!) accept-action-procedure!)
-            (else (error "Unknown operation -- WIRE" m))))
+      (cond ((eq? m <span style="color:#e6db74">'get-signal</span>) signal-value)
+            ((eq? m <span style="color:#e6db74">'set-signal!</span>) set-my-signal!)
+            ((eq? m <span style="color:#e6db74">'add-action!</span>) accept-action-procedure!)
+            (else (<span style="color:#66d9ef">error</span> <span style="color:#e6db74">"Unknown operation -- WIRE"</span> m))))
     
     dispatch))
-</code></pre>
-<p>我们注意到刚才提到的东西我们几乎都有，并且通过过程 <code>accept-action-proceduer</code> 能知道每条线包含的过程不只有一个，是一个列表的形式，而且 <code>set-my-signal!</code> 中我们看到，每当有一个线上的数据修改，我们会重新调用所有监听这条线上的过程。</p>
+</code></pre></div><p>我们注意到刚才提到的东西我们几乎都有，并且通过过程 <code>accept-action-proceduer</code> 能知道每条线包含的过程不只有一个，是一个列表的形式，而且 <code>set-my-signal!</code> 中我们看到，每当有一个线上的数据修改，我们会重新调用所有监听这条线上的过程。</p>
 <p>其中还有一些其他的方法：</p>
-<pre><code class="language-lisp">; 遍历调用
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 遍历调用</span>
 (define (call-each procedures)
-  (if (null? procedures)
-      'done
+  (<span style="color:#66d9ef">if</span> (null? procedures)
+      <span style="color:#e6db74">'done</span>
       (begin
-        ((car procedures))
-        (call-each (cdr procedures)))))
+        ((<span style="color:#a6e22e">car</span> procedures))
+        (call-each (<span style="color:#a6e22e">cdr</span> procedures)))))
 
 (define (get-signal wire)
-    (wire 'get-signal))
+    (wire <span style="color:#e6db74">'get-signal</span>))
 
 (define (set-signal! wire new-value)
-    ((wire 'set-signal!) new-value))
+    ((wire <span style="color:#e6db74">'set-signal!</span>) new-value))
 
 (define (add-action! wire action-procedure)
-    ((wire 'add-action!) action-procedure))
-</code></pre>
-<p>执行一些 dispatch 方法而已。</p>
+    ((wire <span style="color:#e6db74">'add-action!</span>) action-procedure))
+</code></pre></div><p>执行一些 dispatch 方法而已。</p>
 <blockquote>
 <p>Tips 书中的一到课后题也提到了，例如：</p>
-<pre><code class="language-lisp">&gt;     (define (accept-action-proceduer! proc)
-&gt;       (set! action-proceduers
-&gt;             (cons proc action-proceduers))
-&gt;       (proc))
-&gt; ```
-&gt;
-&gt; 这个方法，为什么要把 proc 在最后返回，其实这里就是为了让 proc 在那个返回的位置展开，在后面会调用 `after-delay` ，`after-delay` 会调用 `add-to-agenda!` ，将指定的动作添加到模拟器的待处理列表中，当调用 `(propagate)` 时，这个指定的动作会被执行。
-
-### 逻辑电路门
-
-``` lisp
-
-; 算数逻辑非
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">    (define (accept-action-proceduer! proc)
+      (set! action-proceduers
+            (<span style="color:#a6e22e">cons</span> proc action-proceduers))
+      (proc))
+</code></pre></div><p>这个方法，为什么要把 proc 在最后返回，其实这里就是为了让 proc 在那个返回的位置展开，在后面会调用 <code>after-delay</code> ，<code>after-delay</code> 会调用 <code>add-to-agenda!</code> ，将指定的动作添加到模拟器的待处理列表中，当调用 <code>(propagate)</code> 时，这个指定的动作会被执行。</p>
+</blockquote>
+<h3 id="逻辑电路门">逻辑电路门</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">
+<span style="color:#75715e">; 算数逻辑非</span>
 (define (logical-not s)
-  (cond ((= s 0) 1)
-        ((= s 1) 0)
-        (else (error " Invalid signal " s))))
+  (cond ((<span style="color:#a6e22e">=</span> s <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">1</span>)
+        ((<span style="color:#a6e22e">=</span> s <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">0</span>)
+        (else (<span style="color:#66d9ef">error</span> <span style="color:#e6db74">" Invalid signal "</span> s))))
 
-; 算数逻辑与
+<span style="color:#75715e">; 算数逻辑与</span>
 (define (logical-and a b)
-  (if (and (= a 1) (b = 1))
-      1
-      0))
+  (<span style="color:#66d9ef">if</span> (and (<span style="color:#a6e22e">=</span> a <span style="color:#ae81ff">1</span>) (b <span style="color:#a6e22e">=</span> <span style="color:#ae81ff">1</span>))
+      <span style="color:#ae81ff">1</span>
+      <span style="color:#ae81ff">0</span>))
       
 
-; 逻辑或
+<span style="color:#75715e">; 逻辑或</span>
 (define (logical-or a b)
-  (if (or (= a 1) (= b 1))
-      1
-      0))
+  (<span style="color:#66d9ef">if</span> (or (<span style="color:#a6e22e">=</span> a <span style="color:#ae81ff">1</span>) (<span style="color:#a6e22e">=</span> b <span style="color:#ae81ff">1</span>))
+      <span style="color:#ae81ff">1</span>
+      <span style="color:#ae81ff">0</span>))
 
-; 与门 给两个线路都绑上一个监控器
-; 当某个值变化的时候 会重新计算 new-value 设置到输出端口
+<span style="color:#75715e">; 与门 给两个线路都绑上一个监控器</span>
+<span style="color:#75715e">; 当某个值变化的时候 会重新计算 new-value 设置到输出端口</span>
 (define (and-gate a1 a2 output)
   (define (and-action-procedure)
-    (let ((new-value
+    (<span style="color:#66d9ef">let</span> ((new-value
            (logical-and (get-signal a1) (get-signal a2))))
       (after-delay and-gate-delay
                    (lambda ()
                      (set-signal! output new-value)))))
   (add-action! a1 and-action-procedure)
   (add-action! a2 and-action-procedure)
-  'ok)
+  <span style="color:#e6db74">'ok</span>)
 
-; 或门 
+<span style="color:#75715e">; 或门 </span>
 (define (or-gate input-1 input-2 output)
   (define (or-action-procedure)
-    (let ((new-value
+    (<span style="color:#66d9ef">let</span> ((new-value
            (logical-or (get-signal input-1) (get-signal input-2))))
       (after-delay or-gate-delay
                    (lambda ()
                      (set-sign! output new-new-value)))))
     (add-action! input-1 or-action-procedure)
     (add-action! input-2 or-action-procedure)
-    'ok)
+    <span style="color:#e6db74">'ok</span>)
 
-; 反门
+<span style="color:#75715e">; 反门</span>
 (define (inverter-gate input output)
   (define (invert-input)
-    (let ((new-value (logical-not (get-signal input))))
+    (<span style="color:#66d9ef">let</span> ((new-value (logical-not (get-signal input))))
       (after-delay inverter-delay
                    (lambda () (set-signal! output new-value)))))
   (add-action! input invert-input)
-  'ok)         
-</code></pre>
-</blockquote>
-<p>如果我们理清了前面的给连线添加信号的内容，那逻辑电路门部分的代码就很简单了，甚至有点冗余。与或非门的唯一区别在于如何生成 <code>new-value</code> ，每个过程都包含一个内部过程，负责生成新的值，把这个过程绑定到输入线上，这里面我们的输入值一旦改变，就会重新进行计算，然后重设当前线路中的数值。</p>
+  <span style="color:#e6db74">'ok</span>)         
+</code></pre></div><p>如果我们理清了前面的给连线添加信号的内容，那逻辑电路门部分的代码就很简单了，甚至有点冗余。与或非门的唯一区别在于如何生成 <code>new-value</code> ，每个过程都包含一个内部过程，负责生成新的值，把这个过程绑定到输入线上，这里面我们的输入值一旦改变，就会重新进行计算，然后重设当前线路中的数值。</p>
 <h3 id="待处理表">待处理表</h3>
 <p>待处理表的问题主要是我们之前在程序中的使用 <code>after-delay</code> 操作控制程序在某个时间段之后执行一个过程，能控制一定的操作的时序性，这个功能本质上就是在维护一张 <em>待处理表</em> ，使用队列的结构控制我们执行过程，先给出各个 API 的内容：</p>
-<pre><code class="language-lisp">; 返回新建的空待处理表
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 返回新建的空待处理表</span>
 (make-agenda) 
-; 判断待处理表是否为空
+<span style="color:#75715e">; 判断待处理表是否为空</span>
 (empty-agenda? &lt;agenda&gt;) 
-; 返回待处理表中第一个项
+<span style="color:#75715e">; 返回待处理表中第一个项</span>
 (first-agenda-item &lt;agenda&gt;) 
-; 删除待处理表里的第一项
+<span style="color:#75715e">; 删除待处理表里的第一项</span>
 (remove-first-agenda-item! &lt;agenda&gt;) 
-; 向待处理表中加入一 项，其意义是要求在给定时间运行的过程
+<span style="color:#75715e">; 向待处理表中加入一 项，其意义是要求在给定时间运行的过程</span>
 (add-to-agenda! &lt;time&gt; &lt;action&gt; &lt;agenda&gt;) 
-; 返回当前时间
+<span style="color:#75715e">; 返回当前时间</span>
 (current-time &lt;agenda&gt;) 
-</code></pre>
-<p>这些 API 的实现都很容易，我们可以逐个的来讲解一下：</p>
-<pre><code class="language-lisp">; segment
+</code></pre></div><p>这些 API 的实现都很容易，我们可以逐个的来讲解一下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; segment</span>
 
 (define (make-time-segment time queue)
-  (cons time queue))
+  (<span style="color:#a6e22e">cons</span> time queue))
 
-(define (segment-time s) (car s))
+(define (segment-time s) (<span style="color:#a6e22e">car</span> s))
 
-(define (segment-queue s) (cdr s))
+(define (segment-queue s) (<span style="color:#a6e22e">cdr</span> s))
 
-; agenda
+<span style="color:#75715e">; agenda</span>
 
-(define (make-agenda) (list 0))
+(define (make-agenda) (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">0</span>))
 
-; 当前时间
-(define (current-time agenda) (car agenda))
+<span style="color:#75715e">; 当前时间</span>
+(define (current-time agenda) (<span style="color:#a6e22e">car</span> agenda))
 
 (define (set-current-time! agenda time)
   (set-car! agenda time))
 
-(define (segments agenda) (cdr agenda))
+(define (segments agenda) (<span style="color:#a6e22e">cdr</span> agenda))
 
 (define (set-segments! agenda segments)
     (set-cdr! agenda segments))
 
-(define (first-segment agenda) (car (segments agenda)))
+(define (first-segment agenda) (<span style="color:#a6e22e">car</span> (segments agenda)))
 
-(define (rest-segments agenda) (cdr (segments agenda)))
+(define (rest-segments agenda) (<span style="color:#a6e22e">cdr</span> (segments agenda)))
 
 (define (empty-agenda? agenda)
   (null? (segments agenda)))
 
-</code></pre>
-<p>关于<code>segment</code> 这个几个过程式构建 <em>时间</em> 和 <em>队列</em> 的绑定关系，待处理表中的每一项是由时间和时间队列的一个绑定，<code>agenda</code> 本身是一个关于时间的一维表格，在表头存储当前的时间，表头之后存储的是 <code>segments</code> 的段落，还提供了几个 API 做存取。</p>
+</code></pre></div><p>关于<code>segment</code> 这个几个过程式构建 <em>时间</em> 和 <em>队列</em> 的绑定关系，待处理表中的每一项是由时间和时间队列的一个绑定，<code>agenda</code> 本身是一个关于时间的一维表格，在表头存储当前的时间，表头之后存储的是 <code>segments</code> 的段落，还提供了几个 API 做存取。</p>
 <p>还有就是如何插入处理表，通过时间片加队列的形式进行查找管理：</p>
-<pre><code class="language-lisp">; 向待处理表中添加一项
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 向待处理表中添加一项</span>
 (define (add-to-agenda! time action agenda)
-  ; 检查是否为空 或者当前时间小于 segment 的时间
+  <span style="color:#75715e">; 检查是否为空 或者当前时间小于 segment 的时间</span>
     (define (belongs-before? segments)
         (or (null? segments)
-            (&lt; time (segment-time (car segments)))))
-  ; 创建一个新的时间片 生成新的队列 插入过程
+            (<span style="color:#a6e22e">&lt;</span> time (segment-time (<span style="color:#a6e22e">car</span> segments)))))
+  <span style="color:#75715e">; 创建一个新的时间片 生成新的队列 插入过程</span>
     (define (make-new-time-segment time action)
-        (let ((q (make-queue)))
+        (<span style="color:#66d9ef">let</span> ((q (make-queue)))
               (insert-queue! q action)
               (make-time-segment time q)))
-  ; 添加时间片
+  <span style="color:#75715e">; 添加时间片</span>
     (define (add-to-segments! segments)
-        ; 找到合适的时间插进去
-        (if (= (segment-time (car segments)) time)
-            (insert-queue! (segment-queue (car segments))
+        <span style="color:#75715e">; 找到合适的时间插进去</span>
+        (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> (segment-time (<span style="color:#a6e22e">car</span> segments)) time)
+            (insert-queue! (segment-queue (<span style="color:#a6e22e">car</span> segments))
                            action)
-            (let ((rest (cdr segments)))
-                (if (belongs-before? rest)
+            (<span style="color:#66d9ef">let</span> ((<span style="color:#a6e22e">rest</span> (<span style="color:#a6e22e">cdr</span> segments)))
+                (<span style="color:#66d9ef">if</span> (belongs-before? <span style="color:#a6e22e">rest</span>)
                     (set-cdr!
                         segments
-                        (cons (make-new-time-segment time action)
-                              (cdr segments)))
-                        (add-to-segments! rest)))))
-  	; 遍历时间片 找到合适的时间插进去
-        (let ((segments (segments agenda)))
-            (if (belongs-before? segments)
+                        (<span style="color:#a6e22e">cons</span> (make-new-time-segment time action)
+                              (<span style="color:#a6e22e">cdr</span> segments)))
+                        (add-to-segments! <span style="color:#a6e22e">rest</span>)))))
+  	<span style="color:#75715e">; 遍历时间片 找到合适的时间插进去</span>
+        (<span style="color:#66d9ef">let</span> ((segments (segments agenda)))
+            (<span style="color:#66d9ef">if</span> (belongs-before? segments)
                 (set-segments!
                     agenda
-                    (cons (make-new-time-segment time action)
+                    (<span style="color:#a6e22e">cons</span> (make-new-time-segment time action)
                           segments))
                     (add-to-segments! segments))))
-</code></pre>
-<p>上面的注释应该是介绍的已经很详细的了，还提供了一些方法去对处理表进行一些管理，无非就是如何消耗处理事件之类的：</p>
-<pre><code class="language-lisp">(define (remove-first-agenda-item! agenda)
-    (let ((q (segment-queue (first-segment agenda))))
+</code></pre></div><p>上面的注释应该是介绍的已经很详细的了，还提供了一些方法去对处理表进行一些管理，无非就是如何消耗处理事件之类的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (remove-first-agenda-item! agenda)
+    (<span style="color:#66d9ef">let</span> ((q (segment-queue (first-segment agenda))))
         (delete-queue! q)
-        (if (empty-queue? q)
+        (<span style="color:#66d9ef">if</span> (empty-queue? q)
             (set-segments! agenda (rest-segments agenda)))))
 
 (define (first-agenda-item agenda)
-    (if (empty-agenda? agenda)
-        (error "Agenda is empty -- FIRST-AGENDA-ITEM")
-        (let ((first-seg (first-segment agenda)))
+    (<span style="color:#66d9ef">if</span> (empty-agenda? agenda)
+        (<span style="color:#66d9ef">error</span> <span style="color:#e6db74">"Agenda is empty -- FIRST-AGENDA-ITEM"</span>)
+        (<span style="color:#66d9ef">let</span> ((first-seg (first-segment agenda)))
             (set-current-time! agenda (segment-time first-seg))
             (front-queue (segment-queue first-seg)))))
-</code></pre>
-<p>最红我们终于要说到 <code>after-delay</code> 的实现定义了：</p>
-<pre><code class="language-lisp">(define (after-delay delay action)
-    (add-to-agenda! (+ delay (current-time the-agenda))
+</code></pre></div><p>最红我们终于要说到 <code>after-delay</code> 的实现定义了：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (after-delay delay action)
+    (add-to-agenda! (<span style="color:#a6e22e">+</span> delay (current-time the-agenda))
                     action
                     the-agenda))
-</code></pre>
-<p>可见我们为让某个事件延迟执行的本质就是给某个处理表添加一条处理事件，通过获取当前时间增加一定的延迟的把事件放进对应的序列。</p>
+</code></pre></div><p>可见我们为让某个事件延迟执行的本质就是给某个处理表添加一条处理事件，通过获取当前时间增加一定的延迟的把事件放进对应的序列。</p>
 <p>我们还需要一个过程去模拟驱动整个表的执行过程，<code>propagate</code> 对整个待处理表进行操作，不断地处理其中的项目进行处理：</p>
-<pre><code class="language-lisp">(define (propagate)
-    (if (empty-agenda? the-agenda)
-        'done
-        (let ((first-item (first-agenda-item the-agenda)))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (propagate)
+    (<span style="color:#66d9ef">if</span> (empty-agenda? the-agenda)
+        <span style="color:#e6db74">'done</span>
+        (<span style="color:#66d9ef">let</span> ((first-item (first-agenda-item the-agenda)))
             (first-item)
             (remove-first-agenda-item! the-agenda)
             (propagate))))
-</code></pre>
-<h3 id="简单的模拟实例">简单的模拟实例</h3>
+</code></pre></div><h3 id="简单的模拟实例">简单的模拟实例</h3>
 <p>Github 仓库中提供了相应的代码，只需要 load 其中的 <code>simular.rkt</code> 就可以进行编写模拟实例的操作。这里面我们添加一个监控器过程放到线路上面，用来监听数字电路模拟中的数字电路模拟的运行情况：</p>
-<pre><code class="language-lisp">(define (probe name wire)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (probe name wire)
     (add-action! wire
                  (lambda ()        
                     (newline)
                     (display name)
-                    (display " ")
+                    (display <span style="color:#e6db74">" "</span>)
                     (display (current-time the-agenda))
-                    (display "  New-value = ")
+                    (display <span style="color:#e6db74">"  New-value = "</span>)
                     (display (get-signal wire)))))
-</code></pre>
-<p>这段代码很简单，就是给某根线注册名字和一个相应的回调，当数据发生变化的时候打印出目前的消息。</p>
+</code></pre></div><p>这段代码很简单，就是给某根线注册名字和一个相应的回调，当数据发生变化的时候打印出目前的消息。</p>
 <p>接下来的模拟是为了模拟一个半加器的运行情况：</p>
 <ol>
 <li>初始化待处理表，定义延迟相关的常量：</li>
 </ol>
-<pre><code class="language-lisp">(define the-agenda (make-agenda)) (define inverter-delay 2)
-(define and-gate-delay 3)
-(define or-gate-delay 5)
-</code></pre>
-<ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define the-agenda (make-agenda)) (define inverter-delay <span style="color:#ae81ff">2</span>)
+(define and-gate-delay <span style="color:#ae81ff">3</span>)
+(define or-gate-delay <span style="color:#ae81ff">5</span>)
+</code></pre></div><ol start="2">
 <li>定义四条线路，安装监控器：</li>
 </ol>
-<pre><code class="language-lisp">(define input-1 (make-wire)) 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define input-1 (make-wire)) 
 (define input-2 (make-wire)) 
 (define sum (make-wire)) 
 (define carry (make-wire)) 
-(probe 'sum sum)
-(probe 'carry carry)
-</code></pre>
-<p>运行一次的效果是：</p>
+(probe <span style="color:#e6db74">'sum</span> sum)
+(probe <span style="color:#e6db74">'carry</span> carry)
+</code></pre></div><p>运行一次的效果是：</p>
 <p><img alt="s-1" src="s-1.png"/></p>
-<ol>
+<ol start="3">
 <li>接着我们把线路连接到半加器上，测试半加器的输入：</li>
 </ol>
-<pre><code class="language-lisp">(half-adder input-1 input-2 sum carry)
-</code></pre>
-<p><img alt="s-2" src="s-2.png"/></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(half-adder input-1 input-2 sum carry)
+</code></pre></div><p><img alt="s-2" src="s-2.png"/></p>
 <p>测试输入，即将 <code>input-1</code> 设置为 1 ，然后将 <code>input-2</code> 设置为 1 ：</p>
-<pre><code class="language-lisp">(set-signal! input-1 1)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(set-signal! input-1 <span style="color:#ae81ff">1</span>)
 (propagate)
-</code></pre>
-<p><img alt="s-3" src="s-3.png"/></p>
+</code></pre></div><p><img alt="s-3" src="s-3.png"/></p>
 <p>这时候时间片为 8 ，设定值为 1。</p>
-<pre><code class="language-lisp">(set-signal! input-2 2)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(set-signal! input-2 <span style="color:#ae81ff">2</span>)
 (propagate)
-</code></pre>
-<p><img alt="s-4" src="s-4.png"/></p>
+</code></pre></div><p><img alt="s-4" src="s-4.png"/></p>
 <p>时间片为 11 时，carry 被设置为 1，之后 sum 被设置为 0，这表明我们在这的模拟是有效的。</p>
 <h2 id="小结">小结</h2>
 <p>这篇文章的内容并没有特别多的复杂的理论知识内容没有特别多，主要是进行介绍了书中出现的第一个比较复杂的程序实例，但是这个稍有一些复杂的程序实例中包含了从本书开始就介绍的很多和抽象、模拟相关的知识，也算是用某种实例程序去又温习了之前的知识。</p>

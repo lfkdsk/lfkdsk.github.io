@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Movie on lfkdsk&#39;s Blog</title>
+    <title>movie on lfkdsk&#39;s Blog</title>
     <link>https://lfkdsk.github.io/tags/movie/</link>
-    <description>Recent content in Movie on lfkdsk&#39;s Blog</description>
+    <description>Recent content in movie on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Thu, 17 Aug 2023 17:16:44 +0800</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/movie/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 17 Aug 2023 17:16:44 +0800</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/movie/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>封神闲谈：也谈封神之中的历史影射</title>
       <link>https://lfkdsk.github.io/talk-about-fengshen/</link>

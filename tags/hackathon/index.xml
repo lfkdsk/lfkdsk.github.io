@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hackathon on lfkdsk&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Hackathon on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/hackathon/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/hackathon/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ti-Alloy：一次 TiDB Hackathon 摸鱼</title>
       <link>https://lfkdsk.github.io/tidb-hackthon/</link>
@@ -24,7 +20,7 @@
  这次做出的最后的结果，其实是一个 TiDB 上比较容易的拓展方案集（包括换 UDF 支持、给 TiDB 换 Store Engine、DSL 支持）。其实开始做的时候打算的内容还挺多的，不过时间太短也没都做完就选了几个点来完成了，这里简单做下记录。
 （最后看了很多 dalao 的开发演示，深感在做 db 和分布式方面的能力还是有待加强，很多方案真的挺惊艳的）。
  本文目录
-  User Defined Function 支持 Ti-Alloy Engine 替换 彩蛋：Where DSL 支持  User Defined Function 支持 方案 TiDB 一直是支持 MySQL Protocol 的，不过对于其中的一些特性也没有完全支持，其中 UDF （User Defined Function 用户自定义方法）就一直在 Github 上的 ReadMe 上写着不支持。其实从日常使用上来看 UDF 还是一个挺常见的功能一直不支持也是挺难受 orz。</description>
+  [User Defined Function 支持](##User Defined Function 支持) [Ti-Alloy Engine 替换](##Ti-Alloy Engine 替换) [彩蛋：Where DSL 支持](##彩蛋：Where DSL 支持)  User Defined Function 支持 方案 TiDB 一直是支持 MySQL Protocol 的，不过对于其中的一些特性也没有完全支持，其中 UDF （User Defined Function 用户自定义方法）就一直在 Github 上的 ReadMe 上写着不支持。其实从日常使用上来看 UDF 还是一个挺常见的功能一直不支持也是挺难受 orz。</description>
     </item>
     
   </channel>

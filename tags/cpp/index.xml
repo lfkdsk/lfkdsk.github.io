@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cpp on lfkdsk&#39;s Blog</title>
+    <title>cpp on lfkdsk&#39;s Blog</title>
     <link>https://lfkdsk.github.io/tags/cpp/</link>
-    <description>Recent content in Cpp on lfkdsk&#39;s Blog</description>
+    <description>Recent content in cpp on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 12 Dec 2016 15:27:51 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 12 Dec 2016 15:27:51 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Effective CPP 学习笔记</title>
       <link>https://lfkdsk.github.io/eff-cpp-tips/</link>
@@ -23,10 +19,10 @@
 low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
 const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。
 使用const成员函数调用重载的non-const函数:
-char &amp;amp; operand[] (std::size_t position){ return const_cast&amp;lt;char&amp;amp;&amp;gt;( static_cast&amp;lt;const TextBlock&amp;amp;&amp;gt;(*this) [position]; ) }  4.保证使用前初始化 对inner type 和object都要在使用前初始化。
+char &amp;amp; operand[] (std::size_t position){ return const_cast&amp;lt;char&amp;amp;&amp;gt;( static_cast&amp;lt;const TextBlock&amp;amp;&amp;gt;(*this) [position]; ) } 4.保证使用前初始化 对inner type 和object都要在使用前初始化。
 使用initializer-list对类进行初始化，而不是适用赋值操作。
 跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。
-FileSystem &amp;amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
+FileSystem &amp;amp; tfs(){ static FileSystem fs; return fs; } 5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
 6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
 7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。</description>
     </item>

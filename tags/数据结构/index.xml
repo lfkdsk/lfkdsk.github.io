@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据结构 on lfkdsk&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 数据结构 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Mon, 11 Sep 2017 23:52:38 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 11 Sep 2017 23:52:38 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>快速了解 SkipList</title>
       <link>https://lfkdsk.github.io/quick-learn-skip-list/</link>
@@ -19,13 +15,13 @@
       <guid>https://lfkdsk.github.io/quick-learn-skip-list/</guid>
       <description>快速的 SkipList 实现教程  在计算机科学领域，跳跃链表是一种数据结构，允许快速查询一个有序连续元素的数据链表。快速查询是通过维护一个多层次的链表，且每一层链表中的元素是前一层链表元素的子集。
 基于并联的链表，其效率可比拟于二叉查找树（对于大多数操作需要O(log n)平均时间）。
-基本上，跳跃列表是对有序的链表增加上附加的前进链接，增加是以随机化的方式进行的，所以在列表中的查找可以快速的跳过部分列表，因此得名。所有操作都以对数随机化的时间进行。 要查找一个目标元素，起步于头元素和顶层列表，并沿着每个链表搜索，直到到达小于或着等于目标的最后一个元素。通过跟踪起自目标直到到达在更高列表中出现的元素的反向查找路径，在每个链表中预期的步数显而易见是 1/*p*。所以查找的总体代价是 O((log1/p n) / p)，当p 是常数时是 O(log n)。通过选择不同 p 值，就可以在查找代价和存储代价之间作出权衡。
-插入和删除的实现非常像相应的链表操作，除了&amp;rdquo;高层&amp;rdquo;元素必须在多个链表中插入或删除之外。
+基本上，跳跃列表是对有序的链表增加上附加的前进链接，增加是以随机化的方式进行的，所以在列表中的查找可以快速的跳过部分列表，因此得名。所有操作都以对数随机化的时间进行。 要查找一个目标元素，起步于头元素和顶层列表，并沿着每个链表搜索，直到到达小于或着等于目标的最后一个元素。通过跟踪起自目标直到到达在更高列表中出现的元素的反向查找路径，在每个链表中预期的步数显而易见是 1/p。所以查找的总体代价是 O((log1/p n) / p)，当p 是常数时是 O(log n)。通过选择不同 p 值，就可以在查找代价和存储代价之间作出权衡。
+插入和删除的实现非常像相应的链表操作，除了&amp;quot;高层&amp;quot;元素必须在多个链表中插入或删除之外。
 跳跃列表不像某些传统平衡树数据结构那样提供绝对的最坏情况性能保证，因为用来建造跳跃列表的扔硬币方法总有可能（尽管概率很小）生成一个糟糕的不平衡结构。但是在实际中它工作的很好，随机化平衡方案比在平衡二叉查找树中用的确定性平衡方案容易实现。跳跃列表在并行计算中也很有用，这里的插入可以在跳跃列表不同的部分并行的进行，而不用全局的数据结构重新平衡。
-​ —— Wikipedia
+​	—— Wikipedia
  以上就是 Wikipedia 中对 SkipList 的描述，从描述中和以往的了解我们可以得知，SkipList 是对 List 的一种加强，通过拔高某些 Node 的层次来达到快速搜索的目的，根据这个想法我们可以知道，这个有点类似于躺平的二叉搜索树，这套 快速实现教程 的目的，就是截取文章中讨论内容的重点部分，通过重点讨论其中的精要部分来达到快速实现的目的。
 搜索方法 我们知道 SkipList 的结构知道我们就知道应该怎么对这个东西进行搜索，首先是从最上层的开始搜索，根据 Key 的比较进行判断向哪个方向进行搜索：
-private SkipListNode&amp;lt;K, V&amp;gt; findNodeByKey(K key) { SkipListNode&amp;lt;K, V&amp;gt; head = headNode; while (true) { // 首先右侧节点不为空 并且当前节点比右侧节点大 ===&amp;gt; 我们可以往右侧进行查找 while (head.right.key != null &amp;amp;&amp;amp; key.compareTo(head.right.key) &amp;gt;= 0) { head = head.</description>
+private SkipListNode&amp;lt;K, V&amp;gt; findNodeByKey(K key) { SkipListNode&amp;lt;K, V&amp;gt; head = headNode; while (true) { // 首先右侧节点不为空 并且当前节点比右侧节点大 ===&amp;gt; 我们可以往右侧进行查找  while (head.right.key != null &amp;amp;&amp;amp; key.compareTo(head.right.key) &amp;gt;= 0) { head = head.</description>
     </item>
     
   </channel>

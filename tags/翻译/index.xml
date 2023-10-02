@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>翻译 on lfkdsk&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 翻译 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Fri, 24 Feb 2017 21:43:32 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 24 Feb 2017 21:43:32 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sketch 的过去现在和未来</title>
       <link>https://lfkdsk.github.io/tanslate-sketch/</link>
@@ -18,10 +14,10 @@
       
       <guid>https://lfkdsk.github.io/tanslate-sketch/</guid>
       <description>原文链接 : The Past, Present and Future of Sketch
- 原文作者 : Geoff Teehan
- 译文出自 : 掘金翻译计划
- 译者 : lfkdsk
- 校对者:邵辉Vista, lihenair
+  原文作者 : Geoff Teehan
+  译文出自 : 掘金翻译计划
+  译者 : lfkdsk
+  校对者:邵辉Vista, lihenair
   Sketch的过去现在和未来 在一次 Adobe 的活动上有人问我对 Comet 有什么看法。这让我想起了 Comet 对 Sketch 意味着什么。
 Sketch 和 Photoshop 已经成为产品设计者的首选工具，而且大部分我今天交流的设计者都已经从 Photoshop 切换到 Sketch 了。
 产品原型已经成为产品设计的一个重要组成部分，然而直到 Comet 出现之前， Adobe 在这个领域没有做出任何建树。 Adobe 也意识到类似于 Sketch 的简单而专注的设计工具会逐渐流行普及，变成产品设计者的首选工具，这可能对 Comet 的问世充当了重要的角色。

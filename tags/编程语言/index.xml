@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>编程语言 on lfkdsk&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 编程语言 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Sat, 25 Jun 2016 22:33:35 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 25 Jun 2016 22:33:35 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>学习制作一门有趣的编程语言－0x04</title>
       <link>https://lfkdsk.github.io/make-new-language-4/</link>
@@ -32,9 +28,9 @@
  Lex文件:http://www.lysator.liu.se/c/ANSI-C-grammar-l.html
 Yacc文件:http://www.lysator.liu.se/c/ANSI-C-grammar-y.html
  也可以直接在我的github代码地址中进行下载。
-先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)*  首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
-&amp;quot;/*&amp;quot;	{ comment(); }  第16行匹配了C语言的注释开始，并且调用了comment()函数。
-comment() { char c, c1; loop: while ((c = input()) != &#39;*&#39; &amp;amp;&amp;amp; c != 0) putchar(c); if ((c1 = input()) != &#39;/&#39; &amp;amp;&amp;amp; c != 0) { unput(c1); goto loop; } if (c !</description>
+先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)* 首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
+&amp;#34;/*&amp;#34;	{ comment(); } 第16行匹配了C语言的注释开始，并且调用了comment()函数。
+comment() { char c, c1; loop: while ((c = input()) != &amp;#39;*&amp;#39; &amp;amp;&amp;amp; c != 0) putchar(c); if ((c1 = input()) != &amp;#39;/&amp;#39; &amp;amp;&amp;amp; c != 0) { unput(c1); goto loop; } if (c !</description>
     </item>
     
     <item>
@@ -47,7 +43,7 @@ comment() { char c, c1; loop: while ((c = input()) != &#39;*&#39; &amp;amp;&amp;
 代码地址： https://github.com/lfkdsk/CodeParse
  为计算器添加一些新功能  本节代码：CalcWithTable
  上次我们使用Lex &amp;amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
-先看Lex文件 %{ #include &amp;quot;y.tab.h&amp;quot; #include &amp;lt;math.h&amp;gt; #include &amp;quot;link_list.h&amp;quot; %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf(&amp;quot;number : %s \n&amp;quot;, yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } &amp;quot;$&amp;quot; { return 0; } \n | .</description>
+先看Lex文件 %{ #include &amp;#34;y.tab.h&amp;#34;#include &amp;lt;math.h&amp;gt;#include &amp;#34;link_list.h&amp;#34; %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf(&amp;#34;number : %s \n&amp;#34;, yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } &amp;#34;$&amp;#34; { return 0; } \n | .</description>
     </item>
     
     <item>
@@ -57,16 +53,15 @@ comment() { char c, c1; loop: while ((c = input()) != &#39;*&#39; &amp;amp;&amp;
       
       <guid>https://lfkdsk.github.io/make-new-language-1/</guid>
       <description>熟悉一下Lex 和 Yacc的用法  博客地址： http://lfkdsk.github.io 代码地址： https://github.com/lfkdsk/CodeParse
-tips：阅读此篇需要一定的C语言基础和正则表达式的知识
+  tips：阅读此篇需要一定的C语言基础和正则表达式的知识
  首先上一篇提到了第一步的工作是要使用 Lex 和 Yacc 进行编写，所以说第一步首先简单的学习一下 Lex &amp;amp; Yacc 的用法，Lex &amp;amp; Yacc 是一套很古老的编译生成套件，大约在上个世纪80年代就有了。但是并不过时，我们今天生成编译程序仍然能够用得上。Lex &amp;amp; Yacc 如果简单的概括来说，Lex 负责词法分析，就是把输入串的纯字符转化为 词法记号流， 而 Yacc 负责语法分析，将词法记号流处理成一种树形结构，叫做语法分析树的数据结构中。至此简单来讲的前端工作就基本完成了，代码就有机会被转换成一种三地址代码的形式，经过优化器的优化生成机器指令就可以运行在机器中了。
  词法记号：一般被称作Token，是指对于输入串的内容进行词素分类，比如说数字、字符串、保留字（关键字）、保留字之间还有不同的 Token
-三地址代码：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。
+  三地址代码：一些语言转换机制的中间形式，每行代码只有三个对象（两个运算分量、一个操作符组成），转换这种形式能够便于机器指令的生成。
  刚才说了这么多那Lex &amp;amp; Yacc帮我们做了什么呢？答案是在我们代码的辅助下几乎都做了，首先在前端方面，根据Lex &amp;amp; Yacc 进行了词法和语法分析，在后端代码被直接生成了C语言代码，借助C语言优秀的编译链可以轻松的生成的程序。
 具体使用 上面我们介绍了Lex &amp;amp; Yacc的功能，毫无疑问Lex &amp;amp; Yacc是非常完美的编译生成程序，接下来我们来介绍一下Lex &amp;amp; Yacc的用法。
  推荐书籍:O&amp;rsquo;Relly出版的 Lex &amp;amp; Yacc 是一本介绍 Lex 和 Yacc功能非常好的书，1994年出版，我在图书馆淘到了2002年的第二版。
  Lex: Lex的使用方法如图所示，分为三个区域：
- 定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&amp;rdquo;%%&amp;ldquo;符号，终止于&amp;rdquo;%%&amp;ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。
-1.首先是定义区：</description>
+ 定义部分：和普通的C语言程序区别不大，存放定义，和在接下来Lex生成的程序中使用的变量和方法的导入。 规则部分：规则部分起始于&amp;quot;%%&amp;ldquo;符号，终止于&amp;rdquo;%%&amp;ldquo;符号，通过书写正规式匹配文法符号，其中使用C程序处理匹配内容，接收到的符号保存在yytext[]中。 子程序部分：最后一个%%后面的内容是用户子程序部分，可以包含用C语言编写的子程序，而这些子 程序可以用在前面的动作中，这样就可以达到简化编程的目的。这里需要注意的是，当编译时不带-ll选项时，是必须加入main函数和yywrap（见后文）。  只说概念不太直观，我们来写一段程序来试验一下，这个程序我们只用到了Lex。</description>
     </item>
     
   </channel>

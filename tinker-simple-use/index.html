@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,14 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "学伴中 Tinker 简单配置",
       "headline" : "学伴中 Tinker 简单配置",
-      "description" : "学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。
-这里记录一下使用Tinker第三方应用平台的简单配置，以飨后人。
-Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件 classpath &quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&quot; } }  Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用 provided(&quot;com.tencent.tinker:tinker-android-anno:1.7.7&quot;) compile(&quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&quot;) }  Tinker Gradle apply plugin: 'tinkerpatch-support' /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&quot;${buildDir}/bakApk/&quot;) // 当前版本号 和 build.gradle 相同 def version = &quot;3.0.4&quot; // 具体的发布时间 def baseInfo = &quot;app-&quot; + version + &quot;-0213-01-55-20&quot; // 版本 def variantName = &quot;release&quot; /** * SDK 位置 * http://tinkerpatch.",
+      "description" : "学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。\n这里记录一下使用Tinker第三方应用平台的简单配置，以飨后人。\nProject Gradle buildscript { repositories { jcenter() } dependencies { \/\/ TinkerPatch 插件  classpath \u0026#34;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3\u0026#34; } } Module Gradle dependencies { \/\/ 若使用annotation需要单独引用,对于tinker的其他库都无需再引用  provided(\u0026#34;com.tencent.tinker:tinker-android-anno:1.7.7\u0026#34;) compile(\u0026#34;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3\u0026#34;) } Tinker Gradle apply plugin: \u0026#39;tinkerpatch-support\u0026#39; \/** * TODO: 请按自己的需求修改为适应自己工程的参数 *\/ def bakPath = file(\u0026#34;${buildDir}\/bakApk\/\u0026#34;) \/\/ 当前版本号 和 build.gradle 相同 def version = \u0026#34;3.0.4\u0026#34; \/\/ 具体的发布时间 def baseInfo = \u0026#34;app-\u0026#34; \u002b version \u002b \u0026#34;-0213-01-55-20\u0026#34; \/\/ 版本 def variantName = \u0026#34;release\u0026#34; \/** * SDK 位置 * http:\/\/tinkerpatch.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -30,9 +28,9 @@ Project Gradle buildscript { repositories { jcenter() } dependencies { // Tinker
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2017",
-      "datePublished": "2017-02-13 01:05:27 &#43;0000 UTC",
-      "dateModified" : "2017-02-13 01:05:27 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/tinker-simple-use/",
+      "datePublished": "2017-02-13 01:05:27 \u002b0000 UTC",
+      "dateModified" : "2017-02-13 01:05:27 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/tinker-simple-use\/",
       "keywords" : [ "tinker","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -41,7 +39,7 @@ Project Gradle buildscript { repositories { jcenter() } dependencies { // Tinker
 <meta content="article" property="og:type"/>
 <meta content="学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了Tinker作为程序热修复的工具库。
 这里记录一下使用Tinker第三方应用平台的简单配置，以飨后人。
-Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件 classpath &quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&quot; } }  Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用 provided(&quot;com.tencent.tinker:tinker-android-anno:1.7.7&quot;) compile(&quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&quot;) }  Tinker Gradle apply plugin: 'tinkerpatch-support' /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&quot;${buildDir}/bakApk/&quot;) // 当前版本号 和 build.gradle 相同 def version = &quot;3.0.4&quot; // 具体的发布时间 def baseInfo = &quot;app-&quot; + version + &quot;-0213-01-55-20&quot; // 版本 def variantName = &quot;release&quot; /** * SDK 位置 * http://tinkerpatch." name="description"/>
+Project Gradle buildscript { repositories { jcenter() } dependencies { // TinkerPatch 插件  classpath &quot;com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3&quot; } } Module Gradle dependencies { // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用  provided(&quot;com.tencent.tinker:tinker-android-anno:1.7.7&quot;) compile(&quot;com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3&quot;) } Tinker Gradle apply plugin: 'tinkerpatch-support' /** * TODO: 请按自己的需求修改为适应自己工程的参数 */ def bakPath = file(&quot;${buildDir}/bakApk/&quot;) // 当前版本号 和 build.gradle 相同 def version = &quot;3.0.4&quot; // 具体的发布时间 def baseInfo = &quot;app-&quot; + version + &quot;-0213-01-55-20&quot; // 版本 def variantName = &quot;release&quot; /** * SDK 位置 * http://tinkerpatch." name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -91,142 +89,137 @@ Project Gradle buildscript { repositories { jcenter() } dependencies { // Tinker
 <p>学伴的最新版中为了减少因为Bug导致的应用崩溃，也跟随潮流使用了<code>Tinker</code>作为程序热修复的工具库。</p>
 <p>这里记录一下使用<a href="http://www.tinkerpatch.com/">Tinker第三方应用平台</a>的简单配置，以飨后人。</p>
 <h3 id="project-gradle">Project Gradle</h3>
-<pre><code class="language-groovy">buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        // TinkerPatch 插件
-        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3"
-    }
-}
-</code></pre>
-<h3 id="module-gradle">Module Gradle</h3>
-<pre><code class="language-groovy">dependencies {
-    // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用
-    provided("com.tencent.tinker:tinker-android-anno:1.7.7")
-    compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3")
-}
-</code></pre>
-<h3 id="tinker-gradle">Tinker Gradle</h3>
-<pre><code class="language-groovy">apply plugin: 'tinkerpatch-support'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-groovy" data-lang="groovy">buildscript <span style="color:#f92672">{</span>
+    repositories <span style="color:#f92672">{</span>
+        jcenter<span style="color:#f92672">()</span>
+    <span style="color:#f92672">}</span>
+    dependencies <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// TinkerPatch 插件
+</span><span style="color:#75715e"></span>        classpath <span style="color:#e6db74">"com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.3"</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="module-gradle">Module Gradle</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-groovy" data-lang="groovy">dependencies <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 若使用annotation需要单独引用,对于tinker的其他库都无需再引用
+</span><span style="color:#75715e"></span>    provided<span style="color:#f92672">(</span><span style="color:#e6db74">"com.tencent.tinker:tinker-android-anno:1.7.7"</span><span style="color:#f92672">)</span>
+    compile<span style="color:#f92672">(</span><span style="color:#e6db74">"com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.3"</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="tinker-gradle">Tinker Gradle</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-groovy" data-lang="groovy">apply plugin: <span style="color:#e6db74">'tinkerpatch-support'</span>
 
-/**
- * TODO: 请按自己的需求修改为适应自己工程的参数
- */
-def bakPath = file("${buildDir}/bakApk/")
-// 当前版本号 和 build.gradle 相同
-def version = "3.0.4"
-// 具体的发布时间
-def baseInfo = "app-" + version + "-0213-01-55-20"
-// 版本
-def variantName = "release"
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * TODO: 请按自己的需求修改为适应自己工程的参数
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">def</span> bakPath <span style="color:#f92672">=</span> file<span style="color:#f92672">(</span><span style="color:#e6db74">"${buildDir}/bakApk/"</span><span style="color:#f92672">)</span>
+<span style="color:#75715e">// 当前版本号 和 build.gradle 相同
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> version <span style="color:#f92672">=</span> <span style="color:#e6db74">"3.0.4"</span>
+<span style="color:#75715e">// 具体的发布时间
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> baseInfo <span style="color:#f92672">=</span> <span style="color:#e6db74">"app-"</span> <span style="color:#f92672">+</span> version <span style="color:#f92672">+</span> <span style="color:#e6db74">"-0213-01-55-20"</span>
+<span style="color:#75715e">// 版本
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> variantName <span style="color:#f92672">=</span> <span style="color:#e6db74">"release"</span>
 
-/**
- * SDK 位置
- * http://tinkerpatch.com/Docs/SDK
- */
-tinkerpatchSupport {
-    /** 可以在debug的时候关闭 tinkerPatch **/
-    tinkerEnable = true
-    reflectApplication = true
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * SDK 位置
+</span><span style="color:#75715e"> * http://tinkerpatch.com/Docs/SDK
+</span><span style="color:#75715e"> */</span>
+tinkerpatchSupport <span style="color:#f92672">{</span>
+    <span style="color:#75715e">/** 可以在debug的时候关闭 tinkerPatch **/</span>
+    tinkerEnable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+    reflectApplication <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
 
-    autoBackupApkPath = "${bakPath}"
+    autoBackupApkPath <span style="color:#f92672">=</span> <span style="color:#e6db74">"${bakPath}"</span>
 
-    appKey = "***"
-    appVersion = version
+    appKey <span style="color:#f92672">=</span> <span style="color:#e6db74">"***"</span>
+    appVersion <span style="color:#f92672">=</span> version
 
-    def pathPrefix = "${bakPath}/${baseInfo}/${variantName}"
-    def name = "${project.name}-${variantName}"
+    <span style="color:#66d9ef">def</span> pathPrefix <span style="color:#f92672">=</span> <span style="color:#e6db74">"${bakPath}/${baseInfo}/${variantName}"</span>
+    <span style="color:#66d9ef">def</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">"${project.name}-${variantName}"</span>
 
-    baseApkFile = "${pathPrefix}/${name}.apk"
-    baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
-    baseResourceRFile = "${pathPrefix}/${name}-R.txt"
+    baseApkFile <span style="color:#f92672">=</span> <span style="color:#e6db74">"${pathPrefix}/${name}.apk"</span>
+    baseProguardMappingFile <span style="color:#f92672">=</span> <span style="color:#e6db74">"${pathPrefix}/${name}-mapping.txt"</span>
+    baseResourceRFile <span style="color:#f92672">=</span> <span style="color:#e6db74">"${pathPrefix}/${name}-R.txt"</span>
 
-    /** 若有编译多flavors需求,可在flavors中覆盖以下参数
-     *  你也可以直接通过tinkerPatchAllFlavorDebug/tinkerPatchAllFlavorRelease, 一次编译所有的flavor补丁包
-     *  注意的是:除非你不同的flavor代码是不一样的,不然建议采用zip comment或者文件方式生成渠道信息
-     **/
-//    productFlavors {
-//        flavor {
-//            flavorName = "flavor1"
-//            appVersion = "${tinkerpatchSupport.appVersion}_${flavorName}"
-//
-//            pathPrefix = "${bakPath}/${baseInfo}/${flavorName}${variantName}/"
-//            name = "${project.name}-${flavorName}${variantName}"
-//
-//            baseApkFile = "${pathPrefix}/${name}.apk"
-//            baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
-//            baseResourceRFile = "${pathPrefix}/${name}-R.txt"
-//        }
-//
-//        flavor {
-//            flavorName = "flavor2"
-//            appVersion = "${tinkerpatchSupport.appVersion}_${flavorName}"
-//
-//            pathPrefix = "${bakPath}/${baseInfo}/${flavorName}${variantName}/"
-//            name = "${project.name}-${flavorName}${variantName}"
-//
-//            baseApkFile = "${pathPrefix}/${name}.apk"
-//            baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
-//            baseResourceRFile = "${pathPrefix}/${name}-R.txt"
-//        }
-//    }
-}
+    <span style="color:#75715e">/** 若有编译多flavors需求,可在flavors中覆盖以下参数
+</span><span style="color:#75715e">     *  你也可以直接通过tinkerPatchAllFlavorDebug/tinkerPatchAllFlavorRelease, 一次编译所有的flavor补丁包
+</span><span style="color:#75715e">     *  注意的是:除非你不同的flavor代码是不一样的,不然建议采用zip comment或者文件方式生成渠道信息
+</span><span style="color:#75715e">     **/</span>
+<span style="color:#75715e">//    productFlavors {
+</span><span style="color:#75715e">//        flavor {
+</span><span style="color:#75715e">//            flavorName = "flavor1"
+</span><span style="color:#75715e">//            appVersion = "${tinkerpatchSupport.appVersion}_${flavorName}"
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">//            pathPrefix = "${bakPath}/${baseInfo}/${flavorName}${variantName}/"
+</span><span style="color:#75715e">//            name = "${project.name}-${flavorName}${variantName}"
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">//            baseApkFile = "${pathPrefix}/${name}.apk"
+</span><span style="color:#75715e">//            baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
+</span><span style="color:#75715e">//            baseResourceRFile = "${pathPrefix}/${name}-R.txt"
+</span><span style="color:#75715e">//        }
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">//        flavor {
+</span><span style="color:#75715e">//            flavorName = "flavor2"
+</span><span style="color:#75715e">//            appVersion = "${tinkerpatchSupport.appVersion}_${flavorName}"
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">//            pathPrefix = "${bakPath}/${baseInfo}/${flavorName}${variantName}/"
+</span><span style="color:#75715e">//            name = "${project.name}-${flavorName}${variantName}"
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">//            baseApkFile = "${pathPrefix}/${name}.apk"
+</span><span style="color:#75715e">//            baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
+</span><span style="color:#75715e">//            baseResourceRFile = "${pathPrefix}/${name}-R.txt"
+</span><span style="color:#75715e">//        }
+</span><span style="color:#75715e">//    }
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 
-/**
- * 用于用户在代码中判断tinkerPatch是否被使能
- */
-android {
-    defaultConfig {
-        buildConfigField "boolean", "TINKER_ENABLE", "${tinkerpatchSupport.tinkerEnable}"
-    }
-}
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 用于用户在代码中判断tinkerPatch是否被使能
+</span><span style="color:#75715e"> */</span>
+android <span style="color:#f92672">{</span>
+    defaultConfig <span style="color:#f92672">{</span>
+        buildConfigField <span style="color:#e6db74">"boolean"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"TINKER_ENABLE"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"${tinkerpatchSupport.tinkerEnable}"</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-/**
- * 一般来说,我们无需对下面的参数做任何的修改
- * 对于各参数的详细介绍请参考:
- * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
- */
-tinkerPatch {
-    ignoreWarning = false
-    useSign = true
-    dex {
-        dexMode = "jar"
-        pattern = ["classes*.dex"]
-        loader = []
-    }
-    lib {
-        pattern = ["lib/*/*.so"]
-    }
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 一般来说,我们无需对下面的参数做任何的修改
+</span><span style="color:#75715e"> * 对于各参数的详细介绍请参考:
+</span><span style="color:#75715e"> * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
+</span><span style="color:#75715e"> */</span>
+tinkerPatch <span style="color:#f92672">{</span>
+    ignoreWarning <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+    useSign <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+    dex <span style="color:#f92672">{</span>
+        dexMode <span style="color:#f92672">=</span> <span style="color:#e6db74">"jar"</span>
+        pattern <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">"classes*.dex"</span><span style="color:#f92672">]</span>
+        loader <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+    <span style="color:#f92672">}</span>
+    lib <span style="color:#f92672">{</span>
+        pattern <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">"lib/*/*.so"</span><span style="color:#f92672">]</span>
+    <span style="color:#f92672">}</span>
 
-    res {
-        pattern = ["res/*", "r/*", "assets/*", "resources.arsc", "AndroidManifest.xml"]
-        ignoreChange = []
-        largeModSize = 100
-    }
+    res <span style="color:#f92672">{</span>
+        pattern <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">"res/*"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"r/*"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"assets/*"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"resources.arsc"</span><span style="color:#f92672">,</span> <span style="color:#e6db74">"AndroidManifest.xml"</span><span style="color:#f92672">]</span>
+        ignoreChange <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+        largeModSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+    <span style="color:#f92672">}</span>
 
-    packageConfig {
-    }
-    sevenZip {
-        zipArtifact = "com.tencent.mm:SevenZip:1.1.10"
-//        path = "/usr/local/bin/7za"
-    }
-    buildConfig {
-        keepDexApply = false
-    }
-}
-</code></pre>
-<p>在<code>Module Gradle</code>里面引入:</p>
-<pre><code class="language-groovy">apply from: 'tinkerpatch.gradle'
-</code></pre>
-<h3 id="build">Build</h3>
+    packageConfig <span style="color:#f92672">{</span>
+    <span style="color:#f92672">}</span>
+    sevenZip <span style="color:#f92672">{</span>
+        zipArtifact <span style="color:#f92672">=</span> <span style="color:#e6db74">"com.tencent.mm:SevenZip:1.1.10"</span>
+<span style="color:#75715e">//        path = "/usr/local/bin/7za"
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+    buildConfig <span style="color:#f92672">{</span>
+        keepDexApply <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>在<code>Module Gradle</code>里面引入:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-groovy" data-lang="groovy">apply from: <span style="color:#e6db74">'tinkerpatch.gradle'</span>
+</code></pre></div><h3 id="build">Build</h3>
 <ul>
 <li>在命令行中使用：</li>
 </ul>
-<pre><code class="language-fuck">$ gradle assembleRelease
-</code></pre>
-<p>或者是:</p>
+<pre tabindex="0"><code class="language-fuck" data-lang="fuck">$ gradle assembleRelease
+</code></pre><p>或者是:</p>
 <p><img alt="ff1" src="ff1.png"/></p>
 <p>之后在<code>moduleName/build/baKApk</code>中就会生成对应的Release版的apk/map/R文件，用来做差分比较。</p>
 <ul>
@@ -234,9 +227,8 @@ tinkerPatch {
 </ul>
 <p>在<code>tinkerpatch.gradle</code>先填写要比较的版本号和时间，拼出完整路径。</p>
 <p>再使用：</p>
-<pre><code class="language-fuck">$ gradle tinkerPatchRelease
-</code></pre>
-<p>会生成一份新的Release，<code>moduleName/build/outputs/tinkerpatch</code>˙中就会生成两份新的release并且生成差分包，上传平台就行了。</p>
+<pre tabindex="0"><code class="language-fuck" data-lang="fuck">$ gradle tinkerPatchRelease
+</code></pre><p>会生成一份新的Release，<code>moduleName/build/outputs/tinkerpatch</code>˙中就会生成两份新的release并且生成差分包，上传平台就行了。</p>
 <h3 id="其他">其他</h3>
 <p>tinkerpatch平台还要钱，对于我这种用户量没有10w的人当然没问题了，但是如果想自己掌控也没有问题，差分包的原理文章都有了，自己写一个平台也不过是时间的问题了。</p>
 <p>当然我们也可以使用现成的东西：</p>

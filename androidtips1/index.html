@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,19 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "从 View 源码学习点击事件的模拟",
       "headline" : "从 View 源码学习点击事件的模拟",
-      "description" : "作者：刘丰恺
-作者博客：若梦浮生
-转载请注明文章来源
- 我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() / onLongClick()事件是不能被响应的了。
-现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。
-模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
-Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
-int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。",
+      "description" : "作者：刘丰恺\n作者博客：若梦浮生\n转载请注明文章来源\n 我们在开发自定义控件的时候经常会有这样的需求，一个控件既需要能够被拖拽，也需要能够被点击。其实这个需求有个矛盾之处，需要被拖拽就要复写onTouch(...)函数，但是这样点击事件就被覆盖了，正常的 onClick() \/ onLongClick()事件是不能被响应的了。\n现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。\n模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。\nBad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。\nint x,y; long time; public void onTouch(view,event){ \/\/ 伪代码  switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: \/\/ 超过一段较短时间 响应点击事件  \/\/ 超过一段长时间 响应长按时间  if(getTime() - time \u0026gt; 4 \/\/ 判断x,y 移动的位置不超过一个阀值  \u0026amp;\u0026amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: \/\/ 处理拖动事件  break; } } 这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -35,9 +28,9 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-06 19:32:07 &#43;0000 UTC",
-      "dateModified" : "2016-09-06 19:32:07 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/androidtips1/",
+      "datePublished": "2016-09-06 19:32:07 \u002b0000 UTC",
+      "dateModified" : "2016-09-06 19:32:07 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/androidtips1\/",
       "keywords" : [ "AndroidTips","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -51,7 +44,7 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
 现在面对这种情况GestureDetector，ViewDragHelper能为我们的开发提供一些便利，但是有的情况下这些封装的工具类没办法很好的满足我们的需求，这时候我们就需要自己来模拟View的点击事件。
 模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的callOnClick()方法就可以了，这时View就可以正常的回调onClickListener()了。
 Bad Implemention 我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。
-int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件 // 超过一段长时间 响应长按时间 if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值 &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件 break; } }  这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。" name="description"/>
+int x,y; long time; public void onTouch(view,event){ // 伪代码  switch(event.getAction()){ case DOWN: x = event.getX(); y = event.getY(); time = getTime(); break; case UP: // 超过一段较短时间 响应点击事件  // 超过一段长时间 响应长按时间  if(getTime() - time &gt; 4 // 判断x,y 移动的位置不超过一个阀值  &amp;&amp; event.getX() - x... event.getY() - y ...){ view.callOnClick(); or view.performOnLongClick() } case MOVE处理: // 处理拖动事件  break; } } 这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了onTouch()的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。" name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -108,308 +101,297 @@ int x,y; long time; public void onTouch(view,event){ // 伪代码 switch(event.g
 <p>模拟View点击事件说起来也很简单，说白了就是获取当前的点击未知的坐标值，和控件所在的矩形框的相对位置，并且保持了一段时间，这样我们就可以认为用户成功的进行了一次点击，调用View的<code>callOnClick()</code>方法就可以了，这时View就可以正常的回调<code>onClickListener()</code>了。</p>
 <h3 id="bad-implemention">Bad Implemention</h3>
 <p>我看过一些项目的不完美的实现方式，大概类似于这样的伪代码。</p>
-<pre><code class="language-java">int x,y; long time;
-public void onTouch(view,event){
-  // 伪代码
-  	switch(event.getAction()){
-      case DOWN:
-        x = event.getX();
-        y = event.getY();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span>y<span style="color:#f92672">;</span> <span style="color:#66d9ef">long</span> time<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onTouch</span><span style="color:#f92672">(</span>view<span style="color:#f92672">,</span>event<span style="color:#f92672">){</span>
+  <span style="color:#75715e">// 伪代码
+</span><span style="color:#75715e"></span>  	<span style="color:#66d9ef">switch</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getAction</span><span style="color:#f92672">()){</span>
+      <span style="color:#66d9ef">case</span> DOWN<span style="color:#f92672">:</span>
+        x <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">();</span>
+        y <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">();</span>
         
-        time = getTime();
+        time <span style="color:#f92672">=</span> getTime<span style="color:#f92672">();</span>
         
-        break;
-      case UP:
-        // 超过一段较短时间 响应点击事件
-        // 超过一段长时间 响应长按时间
-        if(getTime() - time &gt; 4
-           // 判断x,y 移动的位置不超过一个阀值
-          &amp;&amp; event.getX() - x...
-          event.getY() - y ...){
-        	view.callOnClick();
-          or view.performOnLongClick()
-        }
-      case MOVE处理:
-        // 处理拖动事件
-        break;
-  	}
-}
-</code></pre>
-<p>这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了<code>onTouch()</code>的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</p>
+        <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">case</span> UP<span style="color:#f92672">:</span>
+        <span style="color:#75715e">// 超过一段较短时间 响应点击事件
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 超过一段长时间 响应长按时间
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>getTime<span style="color:#f92672">()</span> <span style="color:#f92672">-</span> time <span style="color:#f92672">&gt;</span> 4
+           <span style="color:#75715e">// 判断x,y 移动的位置不超过一个阀值
+</span><span style="color:#75715e"></span>          <span style="color:#f92672">&amp;&amp;</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> x<span style="color:#f92672">...</span>
+          event<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> y <span style="color:#f92672">...){</span>
+        	view<span style="color:#f92672">.</span><span style="color:#a6e22e">callOnClick</span><span style="color:#f92672">();</span>
+          or view<span style="color:#f92672">.</span><span style="color:#a6e22e">performOnLongClick</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#66d9ef">case</span> MOVE处理<span style="color:#f92672">:</span>
+        <span style="color:#75715e">// 处理拖动事件
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+  	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>这份代码从原理上讲起时没什么问题，完全注意到了时间和位置，但是把对点击的判定完全的放在了<code>onTouch()</code>的触点抬起的UP判定里，这就造成了你的点击必须在你抬手之后才能响应，正常的点按似乎问题，但是长按的话（只加长判定时间）就会造成需要抬起来才能判定长按。</p>
 <h3 id="system-source-implemention">System Source Implemention</h3>
 <p>下面这段代码是View源代码中onTouchEvent()中的ACTION_UP下的代码，我们发现和之前那种猜想一样，</p>
-<pre><code class="language-java">               case MotionEvent.ACTION_UP:
-                    boolean prepressed = (mPrivateFlags &amp; PFLAG_PREPRESSED) != 0;
-                    if ((mPrivateFlags &amp; PFLAG_PRESSED) != 0 || prepressed) {
-                        // take focus if we don't have it already and we should in
-                        // touch mode.
-                        boolean focusTaken = false;
-                        if (isFocusable() &amp;&amp; isFocusableInTouchMode() &amp;&amp; !isFocused()) {
-                            focusTaken = requestFocus();
-                        }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">               <span style="color:#66d9ef">case</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_UP</span><span style="color:#f92672">:</span>
+                    <span style="color:#66d9ef">boolean</span> prepressed <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>mPrivateFlags <span style="color:#f92672">&amp;</span> PFLAG_PREPRESSED<span style="color:#f92672">)</span> <span style="color:#f92672">!=</span> 0<span style="color:#f92672">;</span>
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>mPrivateFlags <span style="color:#f92672">&amp;</span> PFLAG_PRESSED<span style="color:#f92672">)</span> <span style="color:#f92672">!=</span> 0 <span style="color:#f92672">||</span> prepressed<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        <span style="color:#75715e">// take focus if we don't have it already and we should in
+</span><span style="color:#75715e"></span>                        <span style="color:#75715e">// touch mode.
+</span><span style="color:#75715e"></span>                        <span style="color:#66d9ef">boolean</span> focusTaken <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isFocusable<span style="color:#f92672">()</span> <span style="color:#f92672">&amp;&amp;</span> isFocusableInTouchMode<span style="color:#f92672">()</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>isFocused<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                            focusTaken <span style="color:#f92672">=</span> requestFocus<span style="color:#f92672">();</span>
+                        <span style="color:#f92672">}</span>
 
-                        if (prepressed) {
-                            // The button is being released before we actually
-                            // showed it as pressed.  Make it show the pressed
-                            // state now (before scheduling the click) to ensure
-                            // the user sees it.
-                            setPressed(true, x, y);
-                       }
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>prepressed<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                            <span style="color:#75715e">// The button is being released before we actually
+</span><span style="color:#75715e"></span>                            <span style="color:#75715e">// showed it as pressed.  Make it show the pressed
+</span><span style="color:#75715e"></span>                            <span style="color:#75715e">// state now (before scheduling the click) to ensure
+</span><span style="color:#75715e"></span>                            <span style="color:#75715e">// the user sees it.
+</span><span style="color:#75715e"></span>                            setPressed<span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> x<span style="color:#f92672">,</span> y<span style="color:#f92672">);</span>
+                       <span style="color:#f92672">}</span>
 
-                        if (!mHasPerformedLongPress) {
-                            // This is a tap, so remove the longpress check
-                            removeLongPressCallback();
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>mHasPerformedLongPress<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                            <span style="color:#75715e">// This is a tap, so remove the longpress check
+</span><span style="color:#75715e"></span>                            removeLongPressCallback<span style="color:#f92672">();</span>
 
-                            // Only perform take click actions if we were in the pressed state
-                            if (!focusTaken) {
-                                // Use a Runnable and post this rather than calling
-                                // performClick directly. This lets other visual state
-                                // of the view update before click actions start.
-                                if (mPerformClick == null) {
-                                    mPerformClick = new PerformClick();
-                                }
-                                if (!post(mPerformClick)) {
-                                    performClick();
-                                }
-                            }
-                        }
+                            <span style="color:#75715e">// Only perform take click actions if we were in the pressed state
+</span><span style="color:#75715e"></span>                            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>focusTaken<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                                <span style="color:#75715e">// Use a Runnable and post this rather than calling
+</span><span style="color:#75715e"></span>                                <span style="color:#75715e">// performClick directly. This lets other visual state
+</span><span style="color:#75715e"></span>                                <span style="color:#75715e">// of the view update before click actions start.
+</span><span style="color:#75715e"></span>                                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mPerformClick <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                                    mPerformClick <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PerformClick<span style="color:#f92672">();</span>
+                                <span style="color:#f92672">}</span>
+                                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>post<span style="color:#f92672">(</span>mPerformClick<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                                    performClick<span style="color:#f92672">();</span>
+                                <span style="color:#f92672">}</span>
+                            <span style="color:#f92672">}</span>
+                        <span style="color:#f92672">}</span>
 
-                        if (mUnsetPressedState == null) {
-                            mUnsetPressedState = new UnsetPressedState();
-                        }
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mUnsetPressedState <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                            mUnsetPressedState <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UnsetPressedState<span style="color:#f92672">();</span>
+                        <span style="color:#f92672">}</span>
 
-                        if (prepressed) {
-                            postDelayed(mUnsetPressedState,
-                                    ViewConfiguration.getPressedStateDuration());
-                        } else if (!post(mUnsetPressedState)) {
-                            // If the post failed, unpress right now
-                            mUnsetPressedState.run();
-                        }
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>prepressed<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                            postDelayed<span style="color:#f92672">(</span>mUnsetPressedState<span style="color:#f92672">,</span>
+                                    ViewConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">getPressedStateDuration</span><span style="color:#f92672">());</span>
+                        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>post<span style="color:#f92672">(</span>mUnsetPressedState<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                            <span style="color:#75715e">// If the post failed, unpress right now
+</span><span style="color:#75715e"></span>                            mUnsetPressedState<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">();</span>
+                        <span style="color:#f92672">}</span>
 
-                        removeTapCallback();
-                    }
-                    break;
-</code></pre>
-<p>系统的源码考量更为复杂一点，其中有很多的状态的转换和Flag的修改，我们读源码的时候如果不是必须相关的可以先省略很多Flag的内容，这段源码中考虑了关于View是否有焦点，是否可点击等很多的情况，setPress()这个方法用于设定View的样式改变。这其中主要的一个函数调用是<code>performClick()</code>这个函数，这函数有别于<code>callOnClick()</code>函数不只是回调了click接口，还改变了View的界面状态。</p>
+                        removeTapCallback<span style="color:#f92672">();</span>
+                    <span style="color:#f92672">}</span>
+                    <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</code></pre></div><p>系统的源码考量更为复杂一点，其中有很多的状态的转换和Flag的修改，我们读源码的时候如果不是必须相关的可以先省略很多Flag的内容，这段源码中考虑了关于View是否有焦点，是否可点击等很多的情况，setPress()这个方法用于设定View的样式改变。这其中主要的一个函数调用是<code>performClick()</code>这个函数，这函数有别于<code>callOnClick()</code>函数不只是回调了click接口，还改变了View的界面状态。</p>
 <p>重点看其中的这段：</p>
-<pre><code class="language-java">                           if (!focusTaken) {
-                                // Use a Runnable and post this rather than calling
-                                // performClick directly. This lets other visual state
-                                // of the view update before click actions start.
-                                if (mPerformClick == null) {
-                                    mPerformClick = new PerformClick();
-                                }
-                                if (!post(mPerformClick)) {
-                                    performClick();
-                                }
-                            }
-</code></pre>
-<p>里面的注释告诉我们，不直接的调用performClick()，而是使用一个Runnable运行，能够让View先更新视觉状态。这里面我们注意到了View源码中用到了一个PerformClick()的Runnable，这个Runnable的run()方法里只有一个函数调用就是performClick()。从这里我们发现系统在点击处理上会使用Runnable或是延时的Runnable去处理点击事件，View中还有几个Runnable。</p>
-<pre><code class="language-java">    private final class CheckForLongPress implements Runnable {
-        private int mOriginalWindowAttachCount;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">                           <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>focusTaken<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                                <span style="color:#75715e">// Use a Runnable and post this rather than calling
+</span><span style="color:#75715e"></span>                                <span style="color:#75715e">// performClick directly. This lets other visual state
+</span><span style="color:#75715e"></span>                                <span style="color:#75715e">// of the view update before click actions start.
+</span><span style="color:#75715e"></span>                                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mPerformClick <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                                    mPerformClick <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PerformClick<span style="color:#f92672">();</span>
+                                <span style="color:#f92672">}</span>
+                                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>post<span style="color:#f92672">(</span>mPerformClick<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                                    performClick<span style="color:#f92672">();</span>
+                                <span style="color:#f92672">}</span>
+                            <span style="color:#f92672">}</span>
+</code></pre></div><p>里面的注释告诉我们，不直接的调用performClick()，而是使用一个Runnable运行，能够让View先更新视觉状态。这里面我们注意到了View源码中用到了一个PerformClick()的Runnable，这个Runnable的run()方法里只有一个函数调用就是performClick()。从这里我们发现系统在点击处理上会使用Runnable或是延时的Runnable去处理点击事件，View中还有几个Runnable。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CheckForLongPress</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> mOriginalWindowAttachCount<span style="color:#f92672">;</span>
 
-        @Override
-        public void run() {
-            if (isPressed() &amp;&amp; (mParent != null)
-                    &amp;&amp; mOriginalWindowAttachCount == mWindowAttachCount) {
-                if (performLongClick()) {
-                    mHasPerformedLongPress = true;
-                }
-            }
-        }
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isPressed<span style="color:#f92672">()</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">(</span>mParent <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">&amp;&amp;</span> mOriginalWindowAttachCount <span style="color:#f92672">==</span> mWindowAttachCount<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>performLongClick<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                    mHasPerformedLongPress <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
 
-        public void rememberWindowAttachCount() {
-            mOriginalWindowAttachCount = mWindowAttachCount;
-        }
-    }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rememberWindowAttachCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            mOriginalWindowAttachCount <span style="color:#f92672">=</span> mWindowAttachCount<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 
-    private final class CheckForTap implements Runnable {
-        public float x;
-        public float y;
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CheckForTap</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">float</span> x<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">float</span> y<span style="color:#f92672">;</span>
 
-        @Override
-        public void run() {
-            mPrivateFlags &amp;= ~PFLAG_PREPRESSED;
-            setPressed(true, x, y);
-            checkForLongClick(ViewConfiguration.getTapTimeout());
-        }
-    }
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            mPrivateFlags <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>PFLAG_PREPRESSED<span style="color:#f92672">;</span>
+            setPressed<span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> x<span style="color:#f92672">,</span> y<span style="color:#f92672">);</span>
+            checkForLongClick<span style="color:#f92672">(</span>ViewConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">getTapTimeout</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 
-    private final class PerformClick implements Runnable {
-        @Override
-        public void run() {
-            performClick();
-        }
-    }
-</code></pre>
-<p>其中第一个CheckForLongPress就是对长按的检测，第二个CheckForTap在滑动控件中延迟响应。</p>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PerformClick</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            performClick<span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>其中第一个CheckForLongPress就是对长按的检测，第二个CheckForTap在滑动控件中延迟响应。</p>
 <p>CheckForLongPress的实现很简单，检测了几项是否可以点击的状态之后只需要比较保存的mOriginalWindowAttachCount是否相等，如果相等就相应长按事件。</p>
-<pre><code class="language-java">    /**
-     * Count of how many windows this view has been attached to.
-     */
-    int mWindowAttachCount;
-</code></pre>
-<p>在View的onTouchEvent中的ACTION_DOWN中：</p>
-<pre><code class="language-java">                case MotionEvent.ACTION_DOWN:
-					...
-                    boolean isInScrollingContainer = isInScrollingContainer();
-                    // For views inside a scrolling container, delay the pressed feedback for
-                    // a short period in case this is a scroll.
-                    if (isInScrollingContainer) {
-                        mPrivateFlags |= PFLAG_PREPRESSED;
-                        if (mPendingCheckForTap == null) {
-                            mPendingCheckForTap = new CheckForTap();
-                        }
-                        mPendingCheckForTap.x = event.getX();
-                        mPendingCheckForTap.y = event.getY();
-                        postDelayed(mPendingCheckForTap, ViewConfiguration.getTapTimeout());
-                    } else {
-                        // Not inside a scrolling container, so show the feedback right away
-                        setPressed(true, x, y);
-                        checkForLongClick(0);
-                    }
-</code></pre>
-<p>在按下的事件中首先通过查看View树判断自己在不在一个滚动的空间里，而且如果停留一段时间的话就延迟响应，如果不是直接就相应长按事件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Count of how many windows this view has been attached to.
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">int</span> mWindowAttachCount<span style="color:#f92672">;</span>
+</code></pre></div><p>在View的onTouchEvent中的ACTION_DOWN中：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">                <span style="color:#66d9ef">case</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_DOWN</span><span style="color:#f92672">:</span>
+					<span style="color:#f92672">...</span>
+                    <span style="color:#66d9ef">boolean</span> isInScrollingContainer <span style="color:#f92672">=</span> isInScrollingContainer<span style="color:#f92672">();</span>
+                    <span style="color:#75715e">// For views inside a scrolling container, delay the pressed feedback for
+</span><span style="color:#75715e"></span>                    <span style="color:#75715e">// a short period in case this is a scroll.
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isInScrollingContainer<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        mPrivateFlags <span style="color:#f92672">|=</span> PFLAG_PREPRESSED<span style="color:#f92672">;</span>
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mPendingCheckForTap <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                            mPendingCheckForTap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CheckForTap<span style="color:#f92672">();</span>
+                        <span style="color:#f92672">}</span>
+                        mPendingCheckForTap<span style="color:#f92672">.</span><span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">();</span>
+                        mPendingCheckForTap<span style="color:#f92672">.</span><span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">();</span>
+                        postDelayed<span style="color:#f92672">(</span>mPendingCheckForTap<span style="color:#f92672">,</span> ViewConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">getTapTimeout</span><span style="color:#f92672">());</span>
+                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                        <span style="color:#75715e">// Not inside a scrolling container, so show the feedback right away
+</span><span style="color:#75715e"></span>                        setPressed<span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> x<span style="color:#f92672">,</span> y<span style="color:#f92672">);</span>
+                        checkForLongClick<span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span>
+</code></pre></div><p>在按下的事件中首先通过查看View树判断自己在不在一个滚动的空间里，而且如果停留一段时间的话就延迟响应，如果不是直接就相应长按事件。</p>
 <p>也就是说其实每次点下去的时候都会发送长按的判断Runnable，那我们要是已经响应了点击事件那该怎么办呢？取消队列中的长按Runnable就好了。</p>
-<pre><code class="language-java">// This is a tap, so remove the longpress check
-removeLongPressCallback();
-    /**
-     * Remove the longpress detection timer.
-     */
-    private void removeLongPressCallback() {
-        if (mPendingCheckForLongPress != null) {
-          removeCallbacks(mPendingCheckForLongPress);
-        }
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#75715e">// This is a tap, so remove the longpress check
+</span><span style="color:#75715e"></span>removeLongPressCallback<span style="color:#f92672">();</span>
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Remove the longpress detection timer.
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeLongPressCallback</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mPendingCheckForLongPress <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          removeCallbacks<span style="color:#f92672">(</span>mPendingCheckForLongPress<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 
-</code></pre>
-<p>刚才在UP的事件里，就已经移除了长按的回调。</p>
+</code></pre></div><p>刚才在UP的事件里，就已经移除了长按的回调。</p>
 <p>所以我们可以根据刚才的分析总结出View实现点击和长按的伪代码：</p>
-<pre><code class="language-java">switch(event.getAction()){
-  case UP:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">switch</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getAction</span><span style="color:#f92672">()){</span>
+  <span style="color:#66d9ef">case</span> UP<span style="color:#f92672">:</span>
     post performClick Runnable
     remove checkForTap CallBack
-  break;
-  case DOWN:
-    if (in scroll layout){
+  <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">case</span> DOWN<span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>in scroll layout<span style="color:#f92672">){</span>
       post checkForTap Runnable
-    } else {
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
       post checkForLong Runnable
-    }
-  break;
-}
-</code></pre>
-<h3 id="how-to-use">How To Use?</h3>
+    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="how-to-use">How To Use?</h3>
 <p>首先模仿View一样定义一个用于长按检测的Runnable：</p>
 <p>我们这里通过点击位置来判断而不是attachCount。</p>
-<pre><code class="language-java"> /**
-     * 模仿系统的 长按事件任务
-     * 每次在 {@link #onTouch(View, MotionEvent)} 中 MotionEvent.ACTION_DOWN 的时候
-     * 向 {@link #touchEventHandler} 传递一个 {@link #CheckForLongPress(float, float)} 的延时事件
-     * 延时时间为 ViewConfiguration.getLongPressTimeout()
-     * 是用于检测是不是长按的时间，默认为500毫秒
-     */
-    private class CheckForLongPress implements Runnable {
-        /**
-         * 注意这里的x/y 是触摸值而不是 触摸值+偏移
-         * 偏移在长按事件运行的时候再拿去
-         */
-        float x, y;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"> <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 模仿系统的 长按事件任务
+</span><span style="color:#75715e">     * 每次在 {@link #onTouch(View, MotionEvent)} 中 MotionEvent.ACTION_DOWN 的时候
+</span><span style="color:#75715e">     * 向 {@link #touchEventHandler} 传递一个 {@link #CheckForLongPress(float, float)} 的延时事件
+</span><span style="color:#75715e">     * 延时时间为 ViewConfiguration.getLongPressTimeout()
+</span><span style="color:#75715e">     * 是用于检测是不是长按的时间，默认为500毫秒
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CheckForLongPress</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+        <span style="color:#75715e">/**
+</span><span style="color:#75715e">         * 注意这里的x/y 是触摸值而不是 触摸值+偏移
+</span><span style="color:#75715e">         * 偏移在长按事件运行的时候再拿去
+</span><span style="color:#75715e">         */</span>
+        <span style="color:#66d9ef">float</span> x<span style="color:#f92672">,</span> y<span style="color:#f92672">;</span>
 
-        public CheckForLongPress(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">CheckForLongPress</span><span style="color:#f92672">(</span><span style="color:#66d9ef">float</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">float</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> y<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
 
-        /**
-         * 为了让任务保持复用 不创建新的事件 而选择复用之前的事件
-         *
-         * @param x newX
-         * @param y newY
-         */
-        public void setXY(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
+        <span style="color:#75715e">/**
+</span><span style="color:#75715e">         * 为了让任务保持复用 不创建新的事件 而选择复用之前的事件
+</span><span style="color:#75715e">         *
+</span><span style="color:#75715e">         * @param x newX
+</span><span style="color:#75715e">         * @param y newY
+</span><span style="color:#75715e">         */</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setXY</span><span style="color:#f92672">(</span><span style="color:#66d9ef">float</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">float</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> y<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
 
-        /**
-         * &lt;p&gt;
-         * 在 500ms 之后事件运行
-         * 这里的 {@link #lastEvent} 在 {@link #onTouch(View, MotionEvent)} 中进行修改
-         * 每次处理 MotionEvent 事件之后都会对其进行更新
-         * &lt;/p&gt;
-         * 长按条件判定:
-         * &lt;ol&gt;
-         * &lt;li&gt;上一次的点击事件还是 MotionEvent.ACTION_DOWN
-         * (多半不可能,总是会发生 MotionEvent.ACTION_MOVE)&lt;/li&gt;
-         * &lt;li&gt;
-         * 上一次的点击事件是 MotionEvent.ACTION_MOVE
-         * (但是之前的点击位置和当前的位置不超过十个像素值)
-         * &lt;/li&gt;
-         * &lt;/ol&gt;
-         */
-        public void run() {
-            if (lastEvent == MotionEvent.ACTION_DOWN
-                    || (lastEvent == MotionEvent.ACTION_MOVE
-                    &amp;&amp; (Math.abs(globalX - x) &lt; 4)
-                    &amp;&amp; Math.abs(globalY - y) &lt; 4)) {
-              	// 处理长按事件
-                setCourseOnClick(globalX + scrollX, globalY + scrollY, TouchMode.LongClick);
-                /**
-                 * 不允许多个时间同时响应 在测试中发现经常会因为误差
-                 * 导致一次长按出现两个连续的响应事件
-                 * 因此当一个开始响应之后 把当前的任务都从
-                 * {@link #touchEventHandler}的任务队列中移除
-                 */
-                touchEventHandler.removeCallbacks(press);
-            }
-        }
-    }
-</code></pre>
-<p>对它的调用也是同样，在ACTION_DOWN中发送判断：</p>
-<pre><code class="language-java">                /**
-                 * ACTION_DOWN中做了三件事
-                 * 1.拿到了按下时间
-                 * 2.发送了长按事件
-                 * 3.记录了按下的点
-                 */
-                case MotionEvent.ACTION_DOWN:
+        <span style="color:#75715e">/**
+</span><span style="color:#75715e">         * &lt;p&gt;
+</span><span style="color:#75715e">         * 在 500ms 之后事件运行
+</span><span style="color:#75715e">         * 这里的 {@link #lastEvent} 在 {@link #onTouch(View, MotionEvent)} 中进行修改
+</span><span style="color:#75715e">         * 每次处理 MotionEvent 事件之后都会对其进行更新
+</span><span style="color:#75715e">         * &lt;/p&gt;
+</span><span style="color:#75715e">         * 长按条件判定:
+</span><span style="color:#75715e">         * &lt;ol&gt;
+</span><span style="color:#75715e">         * &lt;li&gt;上一次的点击事件还是 MotionEvent.ACTION_DOWN
+</span><span style="color:#75715e">         * (多半不可能,总是会发生 MotionEvent.ACTION_MOVE)&lt;/li&gt;
+</span><span style="color:#75715e">         * &lt;li&gt;
+</span><span style="color:#75715e">         * 上一次的点击事件是 MotionEvent.ACTION_MOVE
+</span><span style="color:#75715e">         * (但是之前的点击位置和当前的位置不超过十个像素值)
+</span><span style="color:#75715e">         * &lt;/li&gt;
+</span><span style="color:#75715e">         * &lt;/ol&gt;
+</span><span style="color:#75715e">         */</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastEvent <span style="color:#f92672">==</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_DOWN</span>
+                    <span style="color:#f92672">||</span> <span style="color:#f92672">(</span>lastEvent <span style="color:#f92672">==</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_MOVE</span>
+                    <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">(</span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">abs</span><span style="color:#f92672">(</span>globalX <span style="color:#f92672">-</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">&lt;</span> 4<span style="color:#f92672">)</span>
+                    <span style="color:#f92672">&amp;&amp;</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">abs</span><span style="color:#f92672">(</span>globalY <span style="color:#f92672">-</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">&lt;</span> 4<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+              	<span style="color:#75715e">// 处理长按事件
+</span><span style="color:#75715e"></span>                setCourseOnClick<span style="color:#f92672">(</span>globalX <span style="color:#f92672">+</span> scrollX<span style="color:#f92672">,</span> globalY <span style="color:#f92672">+</span> scrollY<span style="color:#f92672">,</span> TouchMode<span style="color:#f92672">.</span><span style="color:#a6e22e">LongClick</span><span style="color:#f92672">);</span>
+                <span style="color:#75715e">/**
+</span><span style="color:#75715e">                 * 不允许多个时间同时响应 在测试中发现经常会因为误差
+</span><span style="color:#75715e">                 * 导致一次长按出现两个连续的响应事件
+</span><span style="color:#75715e">                 * 因此当一个开始响应之后 把当前的任务都从
+</span><span style="color:#75715e">                 * {@link #touchEventHandler}的任务队列中移除
+</span><span style="color:#75715e">                 */</span>
+                touchEventHandler<span style="color:#f92672">.</span><span style="color:#a6e22e">removeCallbacks</span><span style="color:#f92672">(</span>press<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>对它的调用也是同样，在ACTION_DOWN中发送判断：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">                <span style="color:#75715e">/**
+</span><span style="color:#75715e">                 * ACTION_DOWN中做了三件事
+</span><span style="color:#75715e">                 * 1.拿到了按下时间
+</span><span style="color:#75715e">                 * 2.发送了长按事件
+</span><span style="color:#75715e">                 * 3.记录了按下的点
+</span><span style="color:#75715e">                 */</span>
+                <span style="color:#66d9ef">case</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_DOWN</span><span style="color:#f92672">:</span>
 
-                    downTime = System.currentTimeMillis();
+                    downTime <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
 
-                    x_temp1 = x;
+                    x_temp1 <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
 
-                    lastEvent = MotionEvent.ACTION_DOWN;
+                    lastEvent <span style="color:#f92672">=</span> MotionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">ACTION_DOWN</span><span style="color:#f92672">;</span>
 
-                    if (press == null)
-                        press = new CheckForLongPress(x, y);
-                    else
-                        press.setXY(x, y);
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>press <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+                        press <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CheckForLongPress<span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> y<span style="color:#f92672">);</span>
+                    <span style="color:#66d9ef">else</span>
+                        press<span style="color:#f92672">.</span><span style="color:#a6e22e">setXY</span><span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> y<span style="color:#f92672">);</span>
 
-                    touchEventHandler.postDelayed(press, ViewConfiguration.getLongPressTimeout());
-                    break;
-</code></pre>
-<p>再判断你的点击区域：</p>
-<pre><code class="language-java">
-    /**
-     * 判断点击事件
-     *
-     * @param button 拿到按钮
-     * @param x      点击的X
-     * @param y      点击的Y
-     * @return 是否成功点击
-     */
-    private boolean contains(Button button, int x, int y) {
-        int offset = ClassTableDefaultInfo.timeLineWidth;
-        int left = button.getLeft() + offset;
-        int right = left + button.getWidth();
-        int top = button.getTop();
-        int bottom = top + button.getHeight();
-        return left &lt; right &amp;&amp; top &lt; bottom  // check for empty first
-                &amp;&amp; x &gt;= left &amp;&amp; x &lt; right &amp;&amp; y &gt;= top &amp;&amp; y &lt; bottom;
-    }
-</code></pre>
-<p>当你的点击区域在控件矩形区域内即可响应长按或者点击的回调就可以了。</p>
+                    touchEventHandler<span style="color:#f92672">.</span><span style="color:#a6e22e">postDelayed</span><span style="color:#f92672">(</span>press<span style="color:#f92672">,</span> ViewConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">getLongPressTimeout</span><span style="color:#f92672">());</span>
+                    <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</code></pre></div><p>再判断你的点击区域：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 判断点击事件
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @param button 拿到按钮
+</span><span style="color:#75715e">     * @param x      点击的X
+</span><span style="color:#75715e">     * @param y      点击的Y
+</span><span style="color:#75715e">     * @return 是否成功点击
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>Button button<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> offset <span style="color:#f92672">=</span> ClassTableDefaultInfo<span style="color:#f92672">.</span><span style="color:#a6e22e">timeLineWidth</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> button<span style="color:#f92672">.</span><span style="color:#a6e22e">getLeft</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> offset<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> button<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">int</span> top <span style="color:#f92672">=</span> button<span style="color:#f92672">.</span><span style="color:#a6e22e">getTop</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">int</span> bottom <span style="color:#f92672">=</span> top <span style="color:#f92672">+</span> button<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeight</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">return</span> left <span style="color:#f92672">&lt;</span> right <span style="color:#f92672">&amp;&amp;</span> top <span style="color:#f92672">&lt;</span> bottom  <span style="color:#75715e">// check for empty first
+</span><span style="color:#75715e"></span>                <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&gt;=</span> left <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> right <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&gt;=</span> top <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&lt;</span> bottom<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>当你的点击区域在控件矩形区域内即可响应长按或者点击的回调就可以了。</p>
 <h2 id="最后再说两句">最后再说两句</h2>
 <p>这篇文章中我们了解了View的点击和长按判断的方式，其实从这个知识点可以发散的去想，这种发送延时Runnable的方式还可以放在很多的条件下使用，比如在使用smoothScroll的时候，当我们手动的去控制多个方向的滚动时，我们就可以发送一个延时的判断条件来判断我们的平移是否停止。当然我们并没有一定要像View源码那样的去分着处理点击和长按事件，我们可以把它和在一个Runnable里面，仅仅通过时间来判断。</p>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,23 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "Effective CPP 学习笔记",
       "headline" : "Effective CPP 学习笔记",
-      "description" : "Effective CPP 学习笔记
- 1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。
-3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)
-low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
-const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。
-使用const成员函数调用重载的non-const函数:
-char &amp; operand[] (std::size_t position){ return const_cast&lt;char&amp;&gt;( static_cast&lt;const TextBlock&amp;&gt;(*this) [position]; ) }  4.保证使用前初始化 对inner type 和object都要在使用前初始化。
-使用initializer-list对类进行初始化，而不是适用赋值操作。
-跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。
-FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
-6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
-7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。",
+      "description" : "Effective CPP 学习笔记\n 1.Cpp 是一个语言联邦 2.以const，enum，inline替换 #define 预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。\n3.尽可能使用const high-level const ：从右至左的第一个const (* 右边 指针自身是const)\nlow-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)\nconst成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。\n使用const成员函数调用重载的non-const函数:\nchar \u0026amp; operand[] (std::size_t position){ return const_cast\u0026lt;char\u0026amp;\u0026gt;( static_cast\u0026lt;const TextBlock\u0026amp;\u0026gt;(*this) [position]; ) } 4.保证使用前初始化 对inner type 和object都要在使用前初始化。\n使用initializer-list对类进行初始化，而不是适用赋值操作。\n跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。\nFileSystem \u0026amp; tfs(){ static FileSystem fs; return fs; } 5.编译器的自动构造 default-constructor | copy-constructor | copy assignment\n6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class\n7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -39,9 +28,9 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
-      "datePublished": "2016-12-12 15:27:51 &#43;0000 UTC",
-      "dateModified" : "2016-12-12 15:27:51 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/eff-cpp-tips/",
+      "datePublished": "2016-12-12 15:27:51 \u002b0000 UTC",
+      "dateModified" : "2016-12-12 15:27:51 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/eff-cpp-tips\/",
       "keywords" : [ "cpp","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -54,10 +43,10 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
 low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)
 const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。
 使用const成员函数调用重载的non-const函数:
-char &amp; operand[] (std::size_t position){ return const_cast&lt;char&amp;&gt;( static_cast&lt;const TextBlock&amp;&gt;(*this) [position]; ) }  4.保证使用前初始化 对inner type 和object都要在使用前初始化。
+char &amp; operand[] (std::size_t position){ return const_cast&lt;char&amp;&gt;( static_cast&lt;const TextBlock&amp;&gt;(*this) [position]; ) } 4.保证使用前初始化 对inner type 和object都要在使用前初始化。
 使用initializer-list对类进行初始化，而不是适用赋值操作。
 跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。
-FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
+FileSystem &amp; tfs(){ static FileSystem fs; return fs; } 5.编译器的自动构造 default-constructor | copy-constructor | copy assignment
 6.明确拒绝不需要的自动构造 将不需要的函数private化，或者使用一个private的base class
 7.virtual 析构函数  这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。" name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
@@ -109,35 +98,33 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
 <blockquote>
 <p>Effective CPP 学习笔记</p>
 </blockquote>
-<h3 id="1-cpp-是一个语言联邦">1.Cpp 是一个语言联邦</h3>
-<h3 id="2-以const-enum-inline替换-define">2.以const，enum，inline替换  #define</h3>
+<h3 id="1cpp-是一个语言联邦">1.Cpp 是一个语言联邦</h3>
+<h3 id="2以constenuminline替换--define">2.以const，enum，inline替换  #define</h3>
 <p>预处理器会带来诸多问题，但还是有很大的用途，所以这条仅适用于能用以上三种的情况。</p>
-<h3 id="3-尽可能使用const">3.尽可能使用const</h3>
+<h3 id="3尽可能使用const">3.尽可能使用const</h3>
 <p>high-level const ：从右至左的第一个const (* 右边 指针自身是const)</p>
 <p>low-level const ：从右向左看的第二个const(* 左边 指针所指对象是const)</p>
 <p>const成员函数：const的成员函数中是不能对类本身进行改变的所以说是bitwish的，mutable可解决这个问题。</p>
 <p>使用const成员函数调用重载的non-const函数:</p>
-<pre><code class="language-c++">char &amp; operand[] (std::size_t position){
-  return const_cast&lt;char&amp;&gt;(
-    static_cast&lt;const TextBlock&amp;&gt;(*this)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">char</span> <span style="color:#f92672">&amp;</span> operand[] (std<span style="color:#f92672">::</span>size_t position){
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">const_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&amp;&gt;</span>(
+    <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">const</span> TextBlock<span style="color:#f92672">&amp;&gt;</span>(<span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>)
     [position];
   )
 }
-</code></pre>
-<h3 id="4-保证使用前初始化">4.保证使用前初始化</h3>
+</code></pre></div><h3 id="4保证使用前初始化">4.保证使用前初始化</h3>
 <p>对inner type 和object都要在使用前初始化。</p>
 <p>使用initializer-list对类进行初始化，而不是适用赋值操作。</p>
 <p>跨单元编译的时候应该使用local static 替换 non-local static否则会出现初始化次序的问题。</p>
-<pre><code class="language-c++">FileSystem &amp; tfs(){
-  static FileSystem fs;
-  return fs;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c++" data-lang="c++">FileSystem <span style="color:#f92672">&amp;</span> tfs(){
+  <span style="color:#66d9ef">static</span> FileSystem fs;
+  <span style="color:#66d9ef">return</span> fs;
 }
-</code></pre>
-<h3 id="5-编译器的自动构造">5.编译器的自动构造</h3>
+</code></pre></div><h3 id="5编译器的自动构造">5.编译器的自动构造</h3>
 <p>default-constructor | copy-constructor | copy assignment</p>
-<h3 id="6-明确拒绝不需要的自动构造">6.明确拒绝不需要的自动构造</h3>
+<h3 id="6明确拒绝不需要的自动构造">6.明确拒绝不需要的自动构造</h3>
 <p>将不需要的函数private化，或者使用一个private的base class</p>
-<h3 id="7-virtual-析构函数">7.virtual 析构函数</h3>
+<h3 id="7virtual-析构函数">7.virtual 析构函数</h3>
 <blockquote>
 <p>这节的说法有点奇怪，其实重点在于通过base class 的指针删除derived class object 时如果base class存在non-virtual 析构函数，就会导致derived data 删除错误，就是这个原因而已。</p>
 </blockquote>
@@ -145,51 +132,46 @@ FileSystem &amp; tfs(){ static FileSystem fs; return fs; }  5.编译器的自动
 <p>virtual 的执行是从子到父的，一个non-virual析构函数的base class可能会因为未实现而产生错误。</p>
 <p>基本上STL库的东西都没有non-virtual 析构函数，所以也都不能继承。</p>
 <p>pure-virtual析构函数使之成为抽象类。</p>
-<h3 id="8-不建议在析构函数抛出异常">8.不建议在析构函数抛出异常</h3>
+<h3 id="8不建议在析构函数抛出异常">8.不建议在析构函数抛出异常</h3>
 <p>使用<code>try {...} catch {...}</code>进行捕获，然后使用<code>std::abort();</code>提前结束，或者是吞掉异常，当然，重新设计接口会更好。</p>
-<h3 id="9-不在构造和析构过程中调用virtual函数">9.不在构造和析构过程中调用virtual函数</h3>
+<h3 id="9不在构造和析构过程中调用virtual函数">9.不在构造和析构过程中调用virtual函数</h3>
 <p>构造和析构函数期间derived class尚未形成，会被当成是base class这样子调用一个p virtual 或是一个 imp virtual函数都是会发生错误的。可以靠更改接口，便成一个non-virtual 函数，然后靠传入数据去修改。</p>
-<h3 id="10-operator-返回-this">10.operator= 返回&amp; *this</h3>
-<pre><code class="language-cpp">ClassName &amp; operator= (const ClassName &amp; rhs){
+<h3 id="10operator-返回-this">10.operator= 返回&amp; *this</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp">ClassName <span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span> (<span style="color:#66d9ef">const</span> ClassName <span style="color:#f92672">&amp;</span> rhs){
   ...
-  return *this;
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
 }
-</code></pre>
-<h3 id="11-operator-中处理自我赋值">11.operator= 中处理自我赋值</h3>
+</code></pre></div><h3 id="11operator-中处理自我赋值">11.operator= 中处理自我赋值</h3>
 <p>=的重载可能会遇到不小心出现的给自己赋值的情况，这里就会发生重复删除的错误。</p>
-<pre><code class="language-cpp">if (this == &amp;pointer) { return this;} //  认同测试
-</code></pre>
-<pre><code class="language-cpp">// CAS 操作 copy and swap
-XXX &amp; operator= (XXX llll) // 注意是pass by value
-XXX &amp; operator= (XXX &amp; llll)   {
-  XXX temp(llll);// copy 
-  swap(llll);// swap
-  return *this;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span> <span style="color:#f92672">==</span> <span style="color:#f92672">&amp;</span>pointer) { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;} <span style="color:#75715e">//  认同测试
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// CAS 操作 copy and swap
+</span><span style="color:#75715e"></span>XXX <span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span> (XXX llll) <span style="color:#75715e">// 注意是pass by value
+</span><span style="color:#75715e"></span>XXX <span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span> (XXX <span style="color:#f92672">&amp;</span> llll)   {
+  XXX <span style="color:#a6e22e">temp</span>(llll);<span style="color:#75715e">// copy 
+</span><span style="color:#75715e"></span>  swap(llll);<span style="color:#75715e">// swap
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
 }
-</code></pre>
-<h3 id="12-拷贝构造函数要包含所有的值">12.拷贝构造函数要包含所有的值</h3>
-<h3 id="13-以对象管理资源">13.以对象管理资源</h3>
+</code></pre></div><h3 id="12拷贝构造函数要包含所有的值">12.拷贝构造函数要包含所有的值</h3>
+<h3 id="13以对象管理资源">13.以对象管理资源</h3>
 <p>不推荐零散的delete方法，使用包括但不限于shared_ptr &amp; auto_ptr 其中后者不支持多份拷贝(null)，对于数组建议使用STL的vector等容器，以上的ptr不支持数组的delete []，注意不会报错的问题。</p>
-<h3 id="14-资源管理类的copying">14.资源管理类的Copying</h3>
+<h3 id="14资源管理类的copying">14.资源管理类的Copying</h3>
 <p>资源管理类的对象的拷贝，要复制所有的资源，抑制拷贝，施行引用计数。</p>
 <p>shared_ptr接受删除器设定函数。</p>
-<h3 id="15-为资源管理类提供原始类型的转换">15.为资源管理类提供原始类型的转换</h3>
+<h3 id="15为资源管理类提供原始类型的转换">15.为资源管理类提供原始类型的转换</h3>
 <p>类似shared_ptr.get()的是显示转换。</p>
-<pre><code class="language-cpp">operator xxx() const {
-  return f;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">operator</span> <span style="color:#a6e22e">xxx</span>() <span style="color:#66d9ef">const</span> {
+  <span style="color:#66d9ef">return</span> f;
 }
-</code></pre>
-<p>是隐式转换。推荐第一种。</p>
-<h3 id="16-new-和delete-配对">16.new ([]) 和delete([])配对</h3>
-<h3 id="17-独立语句将newd对象放入智能指针">17.独立语句将newd对象放入智能指针</h3>
-<pre><code class="language-cpp">std::shared_ptr&lt;Widget&gt; pw(new Widget);
+</code></pre></div><p>是隐式转换。推荐第一种。</p>
+<h3 id="16new--和delete配对">16.new ([]) 和delete([])配对</h3>
+<h3 id="17独立语句将newd对象放入智能指针">17.独立语句将newd对象放入智能指针</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> pw(<span style="color:#66d9ef">new</span> Widget);
 processWidget(pw, priority());
-</code></pre>
-<p>都写在一起，语句调用顺序可能有问题。</p>
-<h3 id="18-接口更易被使用-更难被调用">18.接口更易被使用，更难被调用</h3>
+</code></pre></div><p>都写在一起，语句调用顺序可能有问题。</p>
+<h3 id="18接口更易被使用更难被调用">18.接口更易被使用，更难被调用</h3>
 <p>促进正确使用：接口一致性，内置类型的行为兼容</p>
 <p>阻止误用：建立新内置类型，限制类型上的操作，束缚对象值。</p>
-<h3 id="19-class是类型系统的扩充">19.Class是类型系统的扩充</h3>
+<h3 id="19class是类型系统的扩充">19.Class是类型系统的扩充</h3>
 <p>1.如何创建和销毁 #16</p>
 <p>2.初始化和赋值 #4</p>
 <p>3.值传递 copy-constructor</p>
@@ -204,203 +186,193 @@ processWidget(pw, priority());
 <h3 id="20-pass-by-reference-to-const-to-pass-by-value">20. pass-by-reference-to-const to pass-by-value</h3>
 <p>降低无谓的拷贝构造开销。</p>
 <p>不适用于STL迭代器／函数对象／内置类型。</p>
-<h3 id="21-如果一定要返回对象-不要返回引用">21.如果一定要返回对象，不要返回引用</h3>
-<pre><code class="language-cpp">const XXX &amp; operator * (...){
-  XXX xxx();
-  return xxx;
+<h3 id="21如果一定要返回对象不要返回引用">21.如果一定要返回对象，不要返回引用</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> XXX <span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">*</span> (...){
+  XXX <span style="color:#a6e22e">xxx</span>();
+  <span style="color:#66d9ef">return</span> xxx;
 }
-// local-object 已经被回收掉了
-</code></pre>
-<pre><code class="language-cpp">const XXX * operator * (){
-  XXX * xxx = new XXX(...);
-  return xxx;
+<span style="color:#75715e">// local-object 已经被回收掉了
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> XXX <span style="color:#f92672">*</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">*</span> (){
+  XXX <span style="color:#f92672">*</span> xxx <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> XXX(...);
+  <span style="color:#66d9ef">return</span> xxx;
 }
 
-// 看起来可以 但是不方便调用者析构
+<span style="color:#75715e">// 看起来可以 但是不方便调用者析构
+</span><span style="color:#75715e"></span>
+XXX <span style="color:#a6e22e">x</span>(<span style="color:#ae81ff">1</span>) ,y(<span style="color:#ae81ff">2</span>),z(<span style="color:#ae81ff">3</span>);
 
-XXX x(1) ,y(2),z(3);
-
-x * y * z; // 中间生成的指针没办法被回收
-</code></pre>
-<pre><code class="language-cpp">const XXX operator * (...){
+x <span style="color:#f92672">*</span> y <span style="color:#f92672">*</span> z; <span style="color:#75715e">// 中间生成的指针没办法被回收
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> XXX <span style="color:#66d9ef">operator</span> <span style="color:#f92672">*</span> (...){
   Static XXX xxx;
   ...
-  return xxx;
+  <span style="color:#66d9ef">return</span> xxx;
 }
-// 如果这个函数只用一次，或者说是分开用的当然没问题 
-// 但是如果 x * y * z XXX会被进行反复覆盖
-// 而且如果我们用一个static-array就好了
-</code></pre>
-<p>在这种尴尬的时候，就尽量进行 pass-by-value吧</p>
-<h3 id="22-将成员变量声明为private">22.将成员变量声明为private</h3>
+<span style="color:#75715e">// 如果这个函数只用一次，或者说是分开用的当然没问题 
+</span><span style="color:#75715e">// 但是如果 x * y * z XXX会被进行反复覆盖
+</span><span style="color:#75715e">// 而且如果我们用一个static-array就好了
+</span></code></pre></div><p>在这种尴尬的时候，就尽量进行 pass-by-value吧</p>
+<h3 id="22将成员变量声明为private">22.将成员变量声明为private</h3>
 <p>protect的封装性和public是一样的。</p>
-<h3 id="23-以non-member-non-friend函数替换member函数">23.以non-member non-friend函数替换member函数</h3>
-<pre><code class="language-cpp">class WebBrowser {
-  void clearEverything();
+<h3 id="23以non-member-non-friend函数替换member函数">23.以non-member non-friend函数替换member函数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebBrowser</span> {
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearEverything</span>();
 }
 
-void clearEverything(const WebBrowser &amp; browser){
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearEverything</span>(<span style="color:#66d9ef">const</span> WebBrowser <span style="color:#f92672">&amp;</span> browser){
   ...
   browser.clearCache();
 }
-</code></pre>
-<p>后者拥有更好的封装性。</p>
-<h3 id="24-如果某个函数的所有参数都要进行隐式转换那就写成non-member-function比较好">24.如果某个函数的所有参数都要进行隐式转换那就写成non-member function比较好</h3>
-<pre><code class="language-cpp">Retional temp(2);
-result = 2 * temp;// 试图调用2.operator*(temp) 不可能啊
-result = temp * 2;// 需要对2 进行隐式转换
-</code></pre>
-<p>最好写成。</p>
-<pre><code class="language-cpp">class Rational {
+</code></pre></div><p>后者拥有更好的封装性。</p>
+<h3 id="24如果某个函数的所有参数都要进行隐式转换那就写成non-member-function比较好">24.如果某个函数的所有参数都要进行隐式转换那就写成non-member function比较好</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp">Retional <span style="color:#a6e22e">temp</span>(<span style="color:#ae81ff">2</span>);
+result <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> temp;<span style="color:#75715e">// 试图调用2.operator*(temp) 不可能啊
+</span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> temp <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;<span style="color:#75715e">// 需要对2 进行隐式转换
+</span></code></pre></div><p>最好写成。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rational</span> {
   ...
 }
-// 写在类外作为一个独立的函数
-const Rational operator*(const Rational &amp; lhs,... rhs){
-  return Rational(...);
+<span style="color:#75715e">// 写在类外作为一个独立的函数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> Rational <span style="color:#66d9ef">operator</span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">const</span> Rational <span style="color:#f92672">&amp;</span> lhs,... rhs){
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Rational</span>(...);
 }
-</code></pre>
-<h3 id="25-考虑写出一个不抛异常的swap函数">25.考虑写出一个不抛异常的Swap函数</h3>
+</code></pre></div><h3 id="25考虑写出一个不抛异常的swap函数">25.考虑写出一个不抛异常的Swap函数</h3>
 <p>STL默认实现的swap函数是一个拷贝，但是我们日常中有很多的类实现是通过携带一个私有指针来实现一些功能的。</p>
 <blockquote>
 <p>pointer to implementation</p>
 <p>存储一个指针指向真实数据，我们在swap的时候只需要进行交换指针的操作就好了。</p>
 </blockquote>
 <p>1.类提供交换的函数，毕竟是private的指针</p>
-<pre><code class="language-cpp">class Widget {
-  void swap (Widget &amp; other){
-    using std::swap; // 通过声明通知编译器去找swap函数 （STL &amp; local-namespace）.
-    swap(this.pImpl, other.pImpl);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span> {
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span> (Widget <span style="color:#f92672">&amp;</span> other){
+    <span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>swap; <span style="color:#75715e">// 通过声明通知编译器去找swap函数 （STL &amp; local-namespace）.
+</span><span style="color:#75715e"></span>    swap(<span style="color:#66d9ef">this</span>.pImpl, other.pImpl);
   }
 }
-</code></pre>
-<pre><code class="language-cpp">namespace std{
-  template&lt;&gt;
-  void swap&lt;Widget&gt;(Widget &amp; a, Widget &amp; b){
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> std{
+  <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;&gt;</span>
+  <span style="color:#66d9ef">void</span> swap<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>(Widget <span style="color:#f92672">&amp;</span> a, Widget <span style="color:#f92672">&amp;</span> b){
     a.swap(b);
   }
 }
-</code></pre>
-<p>再写这样的一个全特化就好了。</p>
+</code></pre></div><p>再写这样的一个全特化就好了。</p>
 <p>刚才的那个是class没有范型，如果有泛型的话就会麻烦一点，毕竟STL库可是不能做偏特化，因为std是STL的命名空间你不能再往里注入了。</p>
 <p>而且CPP只支持对于模版类的偏特化而不支持对模版函数的偏特化，所以写的时候需要注意一下。</p>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-void swap&lt;Widget&lt;T&gt;&gt;(Widget&lt;T&gt; &amp; a, Widget&lt;T&gt; &amp; b){
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> swap<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>(Widget<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span> a, Widget<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span> b){
   ...
-}// 这样就明显是错误的
-</code></pre>
-<p>正确的写法，并且写在了一个和class相同的namespace里面：</p>
-<pre><code class="language-cpp">namespace Fuck {
-    template&lt;typename T&gt;
-    void swap(Widget&lt;T&gt; &amp;a, Widget&lt;T&gt; &amp;b){
+}<span style="color:#75715e">// 这样就明显是错误的
+</span></code></pre></div><p>正确的写法，并且写在了一个和class相同的namespace里面：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> Fuck {
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> swap(Widget<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>a, Widget<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>b){
       a.swap(b);	    
     }
 }
-</code></pre>
-<p>这样子在<code>using std::swap;</code>的时候就会搜索到local-namespace的偏特化函数。</p>
-<h3 id="26-延后定义式出现的位置">26.延后定义式出现的位置</h3>
+</code></pre></div><p>这样子在<code>using std::swap;</code>的时候就会搜索到local-namespace的偏特化函数。</p>
+<h3 id="26延后定义式出现的位置">26.延后定义式出现的位置</h3>
 <p>构造／析构函数都有一定的使用的消耗，所以说一个变量的定义应该拖延到开始使用它的时候（另一种角度讲，是我们能给他一个确定的初值用俩初始化的时候）。</p>
-<h3 id="27-减少使用类型转换">27.减少使用类型转换</h3>
+<h3 id="27减少使用类型转换">27.减少使用类型转换</h3>
 <blockquote>
 <p>C++ style-cast</p>
 <p>const_cast / static_cast / dynamic_cast / reinterpret_cast 低级转型</p>
 </blockquote>
 <p>C style-cast =&gt; C++ style-cast</p>
 <p>dynamic_cast =&gt; virtual interface</p>
-<h3 id="28-避免返回handle指向class的内部成分">28.避免返回Handle指向class的内部成分</h3>
-<pre><code class="language-cpp">struct RectData {
+<h3 id="28避免返回handle指向class的内部成分">28.避免返回Handle指向class的内部成分</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">RectData</span> {
   	Point ulhc;
   	Point lrhc;
 }
-class Rectangle {
-  public:
-  	Point &amp; upperLeft() const {
-      return pData-&gt;ulhc;
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rectangle</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	Point <span style="color:#f92672">&amp;</span> upperLeft() <span style="color:#66d9ef">const</span> {
+      <span style="color:#66d9ef">return</span> pData<span style="color:#f92672">-&gt;</span>ulhc;
   	}
-  	Point &amp; lowerRight() const {};
-  private:
-  	std::shared_ptr&lt;RectData&gt; pData;
+  	Point <span style="color:#f92672">&amp;</span> lowerRight() <span style="color:#66d9ef">const</span> {};
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>RectData<span style="color:#f92672">&gt;</span> pData;
 }
-</code></pre>
-<pre><code class="language-cpp">class Rectangle {
-  public:
-  	const Point &amp; upperLeft() const{
-      return pData-&gt;ulhc;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rectangle</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">const</span> Point <span style="color:#f92672">&amp;</span> upperLeft() <span style="color:#66d9ef">const</span>{
+      <span style="color:#66d9ef">return</span> pData<span style="color:#f92672">-&gt;</span>ulhc;
   	}
-  	const Point &amp; lowerRight() const { };
-  private:
-  	std::shared_ptr&lt;RectData&gt; pData;
+  	<span style="color:#66d9ef">const</span> Point <span style="color:#f92672">&amp;</span> lowerRight() <span style="color:#66d9ef">const</span> { };
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>RectData<span style="color:#f92672">&gt;</span> pData;
 }
-</code></pre>
-<p>避免返回handles，通过*/&amp;指向程序的内部，handle可能回比对象的生命周期更长，如果一定要的话，返回值const。</p>
-<h3 id="29-为异常安全努力是值得的">29.为异常安全努力是值得的</h3>
+</code></pre></div><p>避免返回handles，通过*/&amp;指向程序的内部，handle可能回比对象的生命周期更长，如果一定要的话，返回值const。</p>
+<h3 id="29为异常安全努力是值得的">29.为异常安全努力是值得的</h3>
 <p>当异常被抛出的时候，带有异常安全性的函数：</p>
 <p>1.不泄露任何资源</p>
 <p>2.不允许数据败坏</p>
 <p>example:</p>
-<pre><code class="language-cpp">void changeBackground(){
-  lock(&amp;mutex);
-  delete bgImage;
-  ++imageChanges;
-  bgImage = new Image(imgSrc);
-  unlock(&amp;mutex);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">changeBackground</span>(){
+  lock(<span style="color:#f92672">&amp;</span>mutex);
+  <span style="color:#66d9ef">delete</span> bgImage;
+  <span style="color:#f92672">++</span>imageChanges;
+  bgImage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Image(imgSrc);
+  unlock(<span style="color:#f92672">&amp;</span>mutex);
 }
-</code></pre>
-<ul>
+</code></pre></div><ul>
 <li>只要Image抛出异常，以上两者就都被违反了。</li>
 </ul>
-<pre><code class="language-cpp">// Lock ml(&amp;mutex);
-// 改成这个就能保证互斥器被及时释放
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Lock ml(&amp;mutex);
+</span><span style="color:#75715e">// 改成这个就能保证互斥器被及时释放
+</span></code></pre></div><ul>
+<li>
+<p>异常安全函数提供一下三个保证之一：</p>
 <ul>
-<li><p>异常安全函数提供一下三个保证之一：</p>
-<ul>
-<li>基本承诺：异常被抛出，程序内的任何事物仍然保持在有效状态下。（</li>
-</ul>
+<li>
+<p>基本承诺：异常被抛出，程序内的任何事物仍然保持在有效状态下。（</p>
 <p>状态也是不可以预料</p>
 <p>）</p>
-<ul>
-<li><p>强烈保证：调用成功就成功，不成功就退回到调用之前的状态。</p></li>
-<li><p>不抛掷保证：承诺不抛掷异常。</p></li>
-</ul></li>
+</li>
+<li>
+<p>强烈保证：调用成功就成功，不成功就退回到调用之前的状态。</p>
+</li>
+<li>
+<p>不抛掷保证：承诺不抛掷异常。</p>
+</li>
 </ul>
-<pre><code class="language-cpp">class PrettyMenu {
-  std::shared_ptr&lt;Image&gt; bgImage;
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrettyMenu</span> {
+  std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Image<span style="color:#f92672">&gt;</span> bgImage;
 }
 
-void PrettyMenu::changeBackground(std::istream&amp; imgSrc){
-  Lock ml(&amp;mutex);
-  bgImage.reset(new Image(imgSrc)); 
-  // 取消了delete 通过 shared_ptr来实现
-  // ++ 操作 在成功绑定了之后 再增加
-  ++imageChanges;
+<span style="color:#66d9ef">void</span> PrettyMenu<span style="color:#f92672">::</span>changeBackground(std<span style="color:#f92672">::</span>istream<span style="color:#f92672">&amp;</span> imgSrc){
+  Lock <span style="color:#a6e22e">ml</span>(<span style="color:#f92672">&amp;</span>mutex);
+  bgImage.reset(<span style="color:#66d9ef">new</span> Image(imgSrc)); 
+  <span style="color:#75715e">// 取消了delete 通过 shared_ptr来实现
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ++ 操作 在成功绑定了之后 再增加
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">++</span>imageChanges;
 }
-</code></pre>
-<ul>
+</code></pre></div><ul>
 <li>CAS 策略 + pimpl idiom：</li>
 </ul>
-<pre><code class="language-cpp">struct PMImpl {
-  shared_ptr&lt;Image&gt; bgImage;
-  int imageChanges;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PMImpl</span> {
+  shared_ptr<span style="color:#f92672">&lt;</span>Image<span style="color:#f92672">&gt;</span> bgImage;
+  <span style="color:#66d9ef">int</span> imageChanges;
 }
 
-class PrettyMenu {
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrettyMenu</span> {
   ...
-  private:
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
   	Mutex mutex;
-  	shared_ptr&lt;PMImpl&gt; pImpl; // 将数据放进指针中，类中存储指针
-}
+  	shared_ptr<span style="color:#f92672">&lt;</span>PMImpl<span style="color:#f92672">&gt;</span> pImpl; <span style="color:#75715e">// 将数据放进指针中，类中存储指针
+</span><span style="color:#75715e"></span>}
 
-void PrettyMenu::changeBackground(std::istream &amp; imgSrc){
-  using std::swap;
-  Lock ml(&amp;mutex);
-  shared_ptr&lt;PMImpl&gt; pNew(new PMImpl(*pImpl));
-  pNew-&gt;bgImage.reset(new Image(imgSrc));
-  swap(pImpl, pNew); // 交换指针
-}
-</code></pre>
-<p>CAS由于可能造成不必要的开销，所以说不一定对所有的情况都成立。</p>
+<span style="color:#66d9ef">void</span> PrettyMenu<span style="color:#f92672">::</span>changeBackground(std<span style="color:#f92672">::</span>istream <span style="color:#f92672">&amp;</span> imgSrc){
+  <span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>swap;
+  Lock <span style="color:#a6e22e">ml</span>(<span style="color:#f92672">&amp;</span>mutex);
+  shared_ptr<span style="color:#f92672">&lt;</span>PMImpl<span style="color:#f92672">&gt;</span> pNew(<span style="color:#66d9ef">new</span> PMImpl(<span style="color:#f92672">*</span>pImpl));
+  pNew<span style="color:#f92672">-&gt;</span>bgImage.reset(<span style="color:#66d9ef">new</span> Image(imgSrc));
+  swap(pImpl, pNew); <span style="color:#75715e">// 交换指针
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>CAS由于可能造成不必要的开销，所以说不一定对所有的情况都成立。</p>
 <p>选择对我们整个系统都最为强烈的异常安全等级。</p>
-<h3 id="30-不要轻率的使用inline">30.不要轻率的使用inline</h3>
+<h3 id="30不要轻率的使用inline">30.不要轻率的使用inline</h3>
 <p>inline 的整体观念，对于每一个inline的函数调用都以函数本体替换，会增加目标码的大小。当然如果比较简单也会相应减小。</p>
 <p>inline只是对编译器的申请而非强制调用，可以显示申请，也可以隐式申请，可以通过写在函数中进行申请。</p>
 <ul>
@@ -408,18 +380,17 @@ void PrettyMenu::changeBackground(std::istream &amp; imgSrc){
 <li>function template 不要因为它们是写在h文件里就inline</li>
 <li>构造函数不要轻率的使用inline 构造函数经过编译器的填充会增加很多我们无法控制的内容，如果日后需要进行修改，会造成所有创建对象的地方全都会被重新编译</li>
 </ul>
-<h3 id="31-将文件间的编译依存关系降到最低">31.将文件间的编译依存关系降到最低</h3>
+<h3 id="31将文件间的编译依存关系降到最低">31.将文件间的编译依存关系降到最低</h3>
 <p>依存关系会造成依赖某个类的改变会造成依赖的所有类被重新编译。</p>
 <ul>
 <li>pimpl idiom （ pointer to impletment ）接口与实现分离</li>
 <li>使用object references | object pointers 可以就不要使用 objects</li>
 <li>如果能够尽量以class 声明式替换class 定义式</li>
 </ul>
-<pre><code class="language-cpp">class Data;
-Data today();
-void clearAppointments(Data data);
-</code></pre>
-<p>分开提供包含定义式和声明式的头文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Data</span>;
+Data <span style="color:#a6e22e">today</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearAppointments</span>(Data data);
+</code></pre></div><p>分开提供包含定义式和声明式的头文件。</p>
 <ul>
 <li>使用interface的方式去实现接口分离（包含虚析构函数和纯虚的实现函数）</li>
 </ul>
@@ -427,422 +398,396 @@ void clearAppointments(Data data);
 <p>这个地方我的理解是这样的，如果有一个类的实现变了，依赖他的类就会进行重新编译，但是如果我们把接口和实现分离，那includes的可能就只有框而没有具体实现，那么如果实现真的变了，也只是实现类引发的接口类重新</p>
 <p>编译，而不是将这个继续传递下去。</p>
 </blockquote>
-<h3 id="32-确定你的public继承塑造出is-a关系">32.确定你的public继承塑造出is-a关系</h3>
+<h3 id="32确定你的public继承塑造出is-a关系">32.确定你的public继承塑造出is-a关系</h3>
 <p><em>is-a</em></p>
 <p>其实是在说正确的继承关系。</p>
-<h3 id="33-避免遮掩继承而来的名称">33.避免遮掩继承而来的名称</h3>
+<h3 id="33避免遮掩继承而来的名称">33.避免遮掩继承而来的名称</h3>
 <p>继承添加函数会遮掩父类的同名函数，为了解决遮掩问题，可以使用<code>using Base::xxx();</code>或者使用forward functions，通过一层转接调用之前的函数。</p>
 <p>不过如果是virtual 函数的话，为什么不使用override关键字呢？</p>
-<h3 id="34-区分接口继承和实现继承">34.区分接口继承和实现继承</h3>
-<p>pure virtual functions’ feature:</p>
+<h3 id="34区分接口继承和实现继承">34.区分接口继承和实现继承</h3>
+<p>pure virtual functions' feature:</p>
 <ul>
 <li>drived class must redefine them.</li>
 <li>non-definition in base class.</li>
 </ul>
 <p>声明impure virtual functions的目的：让derived classes 继承该函数的接口和缺省实现。</p>
-<pre><code class="language-cpp">class Airplane {
-  public:
-  	virtual void fly(...);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Airplane</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> fly(...);
 }
 
-virtual void Airplane::fly(){
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> Airplane<span style="color:#f92672">::</span>fly(){
   
 }
 
-class ModelA : public Airplane {
-  public:
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelA</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Airplane {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 }
-virtual void ModelA::fly(...){
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> ModelA<span style="color:#f92672">::</span>fly(...){
       
 }
-</code></pre>
-<pre><code class="language-cpp">class Airplane {
-  public:
-  	virtual void fly(...) = 0;
-  protected:
-  	void defaultFly(...);
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Airplane</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> fly(...) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">void</span> defaultFly(...);
 }
 
-virtual void Airplane::defaultFly(...){
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> Airplane<span style="color:#f92672">::</span>defaultFly(...){
   
 }
 
-class ModelA : public Airplane {
-  public:
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelA</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Airplane {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 }
 
-virtual void ModelA::fly(...){
-      Airplane::defaultFly(...);
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> ModelA<span style="color:#f92672">::</span>fly(...){
+      Airplane<span style="color:#f92672">::</span>defaultFly(...);
 }
-</code></pre>
-<pre><code class="language-cpp">class Airplane {
-  public:
-  	virtual void fly(...) = 0;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Airplane</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> fly(...) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 }
 
-virtual void Airplane::fly(...){
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> Airplane<span style="color:#f92672">::</span>fly(...){
   
 }
 
-class ModelA : public Airplane {
-  public:
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelA</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Airplane {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 }
 
-virtual void ModelA::fly(...){
-      Airplane::fly(...);
+<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> ModelA<span style="color:#f92672">::</span>fly(...){
+      Airplane<span style="color:#f92672">::</span>fly(...);
 }
-</code></pre>
-<p>最后一种相比于第二种，当然是为了怕多加一个函数发生变量名污染的情况。其实在现代cpp中使用<code>override</code>和<code>final</code>可以解决这些问题的。</p>
+</code></pre></div><p>最后一种相比于第二种，当然是为了怕多加一个函数发生变量名污染的情况。其实在现代cpp中使用<code>override</code>和<code>final</code>可以解决这些问题的。</p>
 <ul>
 <li>纯虚函数只继承接口；</li>
 <li>虚函数既继承接口，也提供了一份默认实现；</li>
 <li>普通函数既继承接口，也强制继承实现。</li>
 </ul>
-<h3 id="35-考虑virtual函数以外的其他选择">35.考虑virtual函数以外的其他选择</h3>
+<h3 id="35考虑virtual函数以外的其他选择">35.考虑virtual函数以外的其他选择</h3>
 <ul>
 <li>Non-Virtual Interface实现的Template Method模式</li>
 </ul>
-<pre><code class="language-cpp">class GameCharater {
-  public: 
-  	int healthValue() const {
-        ... // do something first
-        int retVal = doHealthValue();
-        ... // do something later
-      	return retVal;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameCharater</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
+  	<span style="color:#66d9ef">int</span> healthValue() <span style="color:#66d9ef">const</span> {
+        ... <span style="color:#75715e">// do something first
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> retVal <span style="color:#f92672">=</span> doHealthValue();
+        ... <span style="color:#75715e">// do something later
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">return</span> retVal;
   	}
   
-  private:
-  	virtual int doHealthValue() const {
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> doHealthValue() <span style="color:#66d9ef">const</span> {
       	...
   	}
 }
-</code></pre>
-<p>Wrapper 重点在于first／later，driven class 会调用新的类所复写的函数体。</p>
+</code></pre></div><p>Wrapper 重点在于first／later，driven class 会调用新的类所复写的函数体。</p>
 <ul>
 <li>std::function / Function Point 实现Strategy模式</li>
 </ul>
-<pre><code class="language-cpp">class GameCharacter;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameCharacter</span>;
 
-int defaultHealthCalc(const GameCharacter &amp; gc);
-class GameCharacter {
-  public:
-  	typedef std::function&lt;int(const GameCharacter&amp;)&gt; HealthCalcFunc;
-  // typedef int (*HealthCalcFunc)(const GameCharacter&amp;);
-  	explicit GameCharacter(HealthCalcFunc hcf = defaultHealthClac) 
-      : hearthFunc(hcf) { }
-  	int healthValue() const {
-      return healthFunc(*this);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">defaultHealthCalc</span>(<span style="color:#66d9ef">const</span> GameCharacter <span style="color:#f92672">&amp;</span> gc);
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameCharacter</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">typedef</span> std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>(<span style="color:#66d9ef">const</span> GameCharacter<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">&gt;</span> HealthCalcFunc;
+  <span style="color:#75715e">// typedef int (*HealthCalcFunc)(const GameCharacter&amp;);
+</span><span style="color:#75715e"></span>  	<span style="color:#66d9ef">explicit</span> <span style="color:#a6e22e">GameCharacter</span>(HealthCalcFunc hcf <span style="color:#f92672">=</span> defaultHealthClac) 
+      <span style="color:#f92672">:</span> hearthFunc(hcf) { }
+  	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">healthValue</span>() <span style="color:#66d9ef">const</span> {
+      <span style="color:#66d9ef">return</span> healthFunc(<span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>);
   	}
- private:
+ <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
   	HealthCalcFunc healthFunc;
 }
-</code></pre>
-<p>策略模式，类似的想法就是替换执行方法。</p>
-<h3 id="36-绝不重新定义继承而来的non-virtual函数">36.绝不重新定义继承而来的non-virtual函数</h3>
+</code></pre></div><p>策略模式，类似的想法就是替换执行方法。</p>
+<h3 id="36绝不重新定义继承而来的non-virtual函数">36.绝不重新定义继承而来的non-virtual函数</h3>
 <p>破坏<code>is-a</code></p>
-<h3 id="37-绝不重新定义继承而来的缺省参数值">37.绝不重新定义继承而来的缺省参数值</h3>
+<h3 id="37绝不重新定义继承而来的缺省参数值">37.绝不重新定义继承而来的缺省参数值</h3>
 <p>dynamic type / static type 的概念</p>
 <p>virtual-method depend on dynamic type</p>
 <p>default-params —&gt; static binding</p>
 <p>但是直接写两次virtual函数（base &amp; driven）是很不合理的还带着依赖，所以说那个NVI解决这个问题：</p>
-<pre><code class="language-cpp">class Shape {
-  public:
-  	enum ShapeColor { Red, Green, Blue };
-  	void draw (ShapeColor color = Red) const {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shape</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">ShapeColor</span> { Red, Green, Blue };
+  	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">draw</span> (ShapeColor color <span style="color:#f92672">=</span> Red) <span style="color:#66d9ef">const</span> {
       doDraw(color);
   	}
   
-  private:
-  	virtual void doDraw(ShapeColor color) const = 0;
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> doDraw(ShapeColor color) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 }
 
-class RectShape : public Shape {
-  public:
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RectShape</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Shape {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
   ...
-  private:
-  	virtual void doDraw(ShapeColor color) const;
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> doDraw(ShapeColor color) <span style="color:#66d9ef">const</span>;
 }
-</code></pre>
-<p>这样defalut就依靠一个non-virtual function保护了。</p>
-<h3 id="38-通过复合塑造出-has-a">38.通过复合塑造出<code>has-a</code></h3>
-<pre><code class="language-cpp">class Address { ...}
-class PhoneNumber { ... }
-class Person {
-  public:
+</code></pre></div><p>这样defalut就依靠一个non-virtual function保护了。</p>
+<h3 id="38通过复合塑造出has-a">38.通过复合塑造出<code>has-a</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span> { ...}
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PhoneNumber</span> { ... }
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
   	...
-  private:
-  	std::string name;
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	std<span style="color:#f92672">::</span>string name;
   	Address address;
   	PhoneNumber voiceNumber;
   	PhoneNumber faxNumber;
 }
-</code></pre>
-<p>复合的含义<code>has a</code></p>
-<h3 id="39-明智而审慎的使用-private-继承">39.明智而审慎的使用<code>private</code>继承</h3>
-<p>private继承不意味着<code>is-a</code>结构，而意味着<code>implemented-in-terms-of</code>(根据某物具象出)。</p>
+</code></pre></div><p>复合的含义<code>has a</code></p>
+<h3 id="39明智而审慎的使用private继承">39.明智而审慎的使用<code>private</code>继承</h3>
+<p>private继承不意味着<code>is-a</code>结构，而意味着<code>implemented-in-terms-of </code>(根据某物具象出)。</p>
 <p>为了采用base class的某些实现了的特性（所谓实现部分被继承，接口部分被省略）。</p>
 <p>尽量使用复合，必要时才使用private继承（所谓必要时：virtual &amp; protected方法被牵扯进来的时候）。</p>
 <p>还有就是组合模式无法重新定义继承的virtual函数这个问题。</p>
-<pre><code class="language-cpp">class Timer {
-  public:
-  	explicit Timer(int tickFrequency);
-  	virtual void onTick() const;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Timer</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">explicit</span> Timer(<span style="color:#66d9ef">int</span> tickFrequency);
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onTick</span>() <span style="color:#66d9ef">const</span>;
 }
-</code></pre>
-<pre><code class="language-cpp">class Widget: private Timer {
-  private:
-  	virtual void onTick() const;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> Timer {
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> onTick() <span style="color:#66d9ef">const</span>;
 }
-</code></pre>
-<p>bad implement~</p>
-<pre><code class="language-cpp">class Widget {
-  private:
-  	class WidgetTimer : public Timer {
-      public:
-      	virtual void onTick() const;
+</code></pre></div><p>bad implement~</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span> {
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetTimer</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Timer {
+      <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+      	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> onTick() <span style="color:#66d9ef">const</span>;
   	}
   WidgetTimer timer;
 }
-</code></pre>
-<h3 id="40-明智而审慎的使用多继承">40.明智而审慎的使用多继承</h3>
+</code></pre></div><h3 id="40明智而审慎的使用多继承">40.明智而审慎的使用多继承</h3>
 <p>virtual-base-class:</p>
 <ul>
 <li>非必要不使用virtual bases</li>
 <li>如果要使用不要包含成员变量（类比interface）</li>
 <li>可用来处理钻石型继承的模式</li>
 </ul>
-<pre><code class="language-cpp">class IPerson {
-  public:
-  	virtual ~IPerson();
-  	virtual std::string name() const = 0;
-  	virtual std::string birthDate() const = 0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IPerson</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>IPerson();
+  	<span style="color:#66d9ef">virtual</span> std<span style="color:#f92672">::</span>string name() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  	<span style="color:#66d9ef">virtual</span> std<span style="color:#f92672">::</span>string birthDate() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-<pre><code class="language-cpp">class DatabaseID { ....}
-</code></pre>
-<pre><code class="language-cpp">class PersonInfo {
-  public:
-  	explicit PersonInfo (DatabaseID pid);
-  	virtual ~PersonInfo();
-  	virtual const char* theName() const;
-  	virtual const char* theBirthDate() const;
-  	virtual const char* valueDelimOpen() const;
-  	virtual const char* vauleDelimOpen() const;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DatabaseID</span> { ....}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PersonInfo</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">explicit</span> PersonInfo (DatabaseID pid);
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>PersonInfo();
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">theName</span>() <span style="color:#66d9ef">const</span>;
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">theBirthDate</span>() <span style="color:#66d9ef">const</span>;
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">valueDelimOpen</span>() <span style="color:#66d9ef">const</span>;
+  	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">vauleDelimOpen</span>() <span style="color:#66d9ef">const</span>;
 }
-</code></pre>
-<pre><code class="language-cpp">class CPerson : public IPerson , private PersonInfo {
-  public:
-  	explicit CPerson(Database pid) : PersonInfo(pid) { }
-  	virtual std::string name() const {
-      return PersonInfo::theName();
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CPerson</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> IPerson , <span style="color:#66d9ef">private</span> PersonInfo {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">explicit</span> CPerson(Database pid) <span style="color:#f92672">:</span> PersonInfo(pid) { }
+  	<span style="color:#66d9ef">virtual</span> std<span style="color:#f92672">::</span>string name() <span style="color:#66d9ef">const</span> {
+      <span style="color:#66d9ef">return</span> PersonInfo<span style="color:#f92672">::</span>theName();
   	}
-  	virtual std::string birthDate() const {
-      return PersonInfo::theBirthDate();
+  	<span style="color:#66d9ef">virtual</span> std<span style="color:#f92672">::</span>string birthDate() <span style="color:#66d9ef">const</span> {
+      <span style="color:#66d9ef">return</span> PersonInfo<span style="color:#f92672">::</span>theBirthDate();
   	}
-  private:
-  	const char* valueDelimOpen() const { return ""; }
-  	const char* vauleDelimClose() const { return ""; }
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> valueDelimOpen() <span style="color:#66d9ef">const</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">""</span>; }
+  	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">vauleDelimClose</span>() <span style="color:#66d9ef">const</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">""</span>; }
 }
-</code></pre>
-<p>组合模式，IPerson类似Interface实现必须实现的接口，PersonInfo提供有用的virtual-method，使用多重继承的一个优势。</p>
-<h3 id="41-了解隐式接口和编译期多态">41.了解隐式接口和编译期多态</h3>
+</code></pre></div><p>组合模式，IPerson类似Interface实现必须实现的接口，PersonInfo提供有用的virtual-method，使用多重继承的一个优势。</p>
+<h3 id="41了解隐式接口和编译期多态">41.了解隐式接口和编译期多态</h3>
 <ul>
 <li>class 和 template 都支持接口和多态</li>
 <li>对classes而言接口是显式的，以函数签名为中心，多态通过virtual函数发生在运行期</li>
 <li>对template参数而言接口式隐式的，奠基于有效表达式。多态则是通过template具现化和函数冲在解析发生于编译期</li>
 </ul>
-<h3 id="42-了解-typename-的双重含义">42.了解<code>typename</code>的双重含义</h3>
-<pre><code class="language-cpp">template&lt;typename T&gt; class Widget;
-template&lt;class T&gt; class Widget; // 其中的 class 和 typename 没有任何区别
-template&lt;typename C&gt;
-void print2nd(const C &amp; container) { // 这段cpp代码是有错的
-  if(container.size() &gt;= 2) {
-    C::const_iterator iter(container.begin()); // C:const_iterator 从属性类型（依赖C）
-    ++iter;
-    int value = *iter; // int 非从属性类型 （不依赖C）
-    std::cout &lt;&lt; value;
+<h3 id="42了解typename的双重含义">42.了解<code>typename</code>的双重含义</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span>;
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span>; <span style="color:#75715e">// 其中的 class 和 typename 没有任何区别
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> C<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> print2nd(<span style="color:#66d9ef">const</span> C <span style="color:#f92672">&amp;</span> container) { <span style="color:#75715e">// 这段cpp代码是有错的
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span>(container.size() <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) {
+    C<span style="color:#f92672">::</span>const_iterator iter(container.begin()); <span style="color:#75715e">// C:const_iterator 从属性类型（依赖C）
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">++</span>iter;
+    <span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>iter; <span style="color:#75715e">// int 非从属性类型 （不依赖C）
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> value;
   }
 }
-</code></pre>
-<p>编译器没办法分析出<code>C::const_iterator</code>是一个类型，所以说要让我们通过手动置顶的方式去给compiler提供这个消息。</p>
+</code></pre></div><p>编译器没办法分析出<code>C::const_iterator</code>是一个类型，所以说要让我们通过手动置顶的方式去给compiler提供这个消息。</p>
 <p>正确的写法：</p>
-<pre><code class="language-cpp">if(container.size() &gt; 2) {
-  typename C::const_container iter(container.begin());
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span>(container.size() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
+  <span style="color:#66d9ef">typename</span> C<span style="color:#f92672">::</span>const_container iter(container.begin());
 }
-//////////
-template&lt;typename C&gt;
- // 提供类型信息 （不允许使用typename ，并非从属类型）      （允许使用typename）
-void print2nd(const C container , const typename C::const_container iter);
-</code></pre>
-<p>另外：</p>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-class Derived : public Base&lt;T&gt; :: Nested { // base class list 中不允许typename
-  public:
-  	explicit Derived(int x) 
-      : Base&lt;T&gt; :: Nested(x) { // mem.init.list 中不允许 typename
-        typename Base&lt;T&gt;::Nested temp; // 作为一个base class的修饰符加上typename
-      }
+<span style="color:#75715e">//////////
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> C<span style="color:#f92672">&gt;</span>
+ <span style="color:#75715e">// 提供类型信息 （不允许使用typename ，并非从属类型）      （允许使用typename）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> print2nd(<span style="color:#66d9ef">const</span> C container , <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">typename</span> C<span style="color:#f92672">::</span>const_container iter);
+</code></pre></div><p>另外：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">::</span> Nested { <span style="color:#75715e">// base class list 中不允许typename
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">explicit</span> Derived(<span style="color:#66d9ef">int</span> x) 
+      <span style="color:#f92672">:</span> Base<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">::</span> Nested(x) { <span style="color:#75715e">// mem.init.list 中不允许 typename
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">typename</span> Base<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>Nested temp; <span style="color:#75715e">// 作为一个base class的修饰符加上typename
+</span><span style="color:#75715e"></span>      }
 }
-</code></pre>
-<p>typedef的例子：</p>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-  void workWithInterator(IterT iter) {
-  	// iterator 的item类型
-    typedef typename std::iterator_traits&lt;IterT&gt;:: value_type value_type;
-  	value_type temp(*iter);
+</code></pre></div><p>typedef的例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">void</span> workWithInterator(IterT iter) {
+  	<span style="color:#75715e">// iterator 的item类型
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>IterT<span style="color:#f92672">&gt;::</span> value_type value_type;
+  	value_type <span style="color:#a6e22e">temp</span>(<span style="color:#f92672">*</span>iter);
   }
-</code></pre>
-<h3 id="43-学习处理模版化基类内的名称">43.学习处理模版化基类内的名称</h3>
+</code></pre></div><h3 id="43学习处理模版化基类内的名称">43.学习处理模版化基类内的名称</h3>
 <p>example:</p>
-<pre><code class="language-cpp">class CompanyA {
-  public:
-  	void sendClearText(... );
-  	void sendEncrypted(... );
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CompanyA</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">void</span> sendClearText(... );
+  	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendEncrypted</span>(... );
 }
 
-class CompanyB {
-  public:
-  	void sendClearText(... );
-  	void sendEncrypted(... );
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CompanyB</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">void</span> sendClearText(... );
+  	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendEncrypted</span>(... );
 }
 
-class MsgInfo { ... };
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MsgInfo</span> { ... };
 
-template&lt;typename Company&gt; 
-class MsgSender {
-  public:
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Company<span style="color:#f92672">&gt;</span> 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MsgSender</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
   	...
-  	void sendClear(const MsgInfo &amp; info) {
-      std::string msg;
-      // info ===&gt; message
-      Company c;
+  	<span style="color:#66d9ef">void</span> sendClear(<span style="color:#66d9ef">const</span> MsgInfo <span style="color:#f92672">&amp;</span> info) {
+      std<span style="color:#f92672">::</span>string msg;
+      <span style="color:#75715e">// info ===&gt; message
+</span><span style="color:#75715e"></span>      Company c;
       s.sendClearText(msg);
   	}
-  	void sendSecret(const MesgInfo &amp; info) {
+  	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendSecret</span>(<span style="color:#66d9ef">const</span> MesgInfo <span style="color:#f92672">&amp;</span> info) {
       ...
   	}
 }
-</code></pre>
-<pre><code class="language-cpp">template&lt;typename Company&gt;
-class LoggingMegSender  : public MsgSender&lt;Company&gt; {
-  public:
-  	void sendClearMsg(const MsgInfo &amp; info) {
-      /// msg to log
-      sendClear(info); // 调用base 函数无法编译通过
-      /// msg to log
-  	}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Company<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoggingMegSender</span>  <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> MsgSender<span style="color:#f92672">&lt;</span>Company<span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">void</span> sendClearMsg(<span style="color:#66d9ef">const</span> MsgInfo <span style="color:#f92672">&amp;</span> info) {
+      <span style="color:#75715e">/// msg to log
+</span><span style="color:#75715e"></span>      sendClear(info); <span style="color:#75715e">// 调用base 函数无法编译通过
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">/// msg to log
+</span><span style="color:#75715e"></span>  	}
 }
-</code></pre>
-<p>因为泛型类有可能被以某种形式特化，所以compiler 没办法确定是不是真的可以调用这个方法。</p>
+</code></pre></div><p>因为泛型类有可能被以某种形式特化，所以compiler 没办法确定是不是真的可以调用这个方法。</p>
 <p>对于这个问题有三种解决问题的方法：</p>
-<pre><code class="language-cpp">this-&gt;sendClear(info);// 1
-using MsgSender&lt;Company&gt;::sendClear;// 通知compile假设可以使用这个方法 2
-MsgSender&lt;Company&gt;::sendClear(info);// 假设这个方法被继承下来了 3
-</code></pre>
-<p>3对virtual-method很不利。</p>
-<h3 id="44-将参数无关代码迁出模版">44.将参数无关代码迁出模版</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>sendClear(info);<span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> MsgSender<span style="color:#f92672">&lt;</span>Company<span style="color:#f92672">&gt;::</span>sendClear;<span style="color:#75715e">// 通知compile假设可以使用这个方法 2
+</span><span style="color:#75715e"></span>MsgSender<span style="color:#f92672">&lt;</span>Company<span style="color:#f92672">&gt;::</span>sendClear(info);<span style="color:#75715e">// 假设这个方法被继承下来了 3
+</span></code></pre></div><p>3对virtual-method很不利。</p>
+<h3 id="44将参数无关代码迁出模版">44.将参数无关代码迁出模版</h3>
 <blockquote>
 <p>核心就是防止无谓重复的编译期特化</p>
 </blockquote>
-<pre><code class="language-cpp"> template&lt;typename T, std::size_t n&gt;//T为数据类型，n为矩阵大小
-    class SquareMatrix{
-    public:
-        ……
-        void invert();//求逆运算
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"> <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T, std<span style="color:#f92672">::</span>size_t n<span style="color:#f92672">&gt;</span><span style="color:#75715e">//T为数据类型，n为矩阵大小
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SquareMatrix</span>{
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        <span style="color:#960050;background-color:#1e0010">……</span>
+        <span style="color:#66d9ef">void</span> invert();<span style="color:#75715e">//求逆运算
+</span><span style="color:#75715e"></span>    };
+    SquareMatrix<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">&gt;</span> sm1;
+    sm1.invert();<span style="color:#75715e">//调用SquareMatrix&lt;double,5&gt;::invert
+</span><span style="color:#75715e"></span>    SquareMatrix<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#ae81ff">10</span><span style="color:#f92672">&gt;</span> sm2;
+    sm2.invert();<span style="color:#75715e">//调用SquareMatrix&lt;double,10&gt;::invert
+</span></code></pre></div><p>对多个size_t都进行了泛化。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SquareMatrixBase</span>{
+    <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+        SquareMatirxBase(std<span style="color:#f92672">::</span>size_t n,T<span style="color:#f92672">*</span> pMem)
+        <span style="color:#f92672">:</span>size(n), pData(pMem){}
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setDataPtr</span>(T<span style="color:#f92672">*</span> ptr) {pData<span style="color:#f92672">=</span>ptr;}
+        <span style="color:#960050;background-color:#1e0010">……</span>
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+        std<span style="color:#f92672">::</span>size_t size;
+        T<span style="color:#f92672">*</span> pData;
     };
-    SquareMatrix&lt;double,5&gt; sm1;
-    sm1.invert();//调用SquareMatrix&lt;double,5&gt;::invert
-    SquareMatrix&lt;double,10&gt; sm2;
-    sm2.invert();//调用SquareMatrix&lt;double,10&gt;::invert
-</code></pre>
-<p>对多个size_t都进行了泛化。</p>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-    class SquareMatrixBase{
-    protected:
-        SquareMatirxBase(std::size_t n,T* pMem)
-        :size(n), pData(pMem){}
-        void setDataPtr(T* ptr) {pData=ptr;}
-        ……
-    private:
-        std::size_t size;
-        T* pData;
-    };
-    template&lt;typename T, std::size_t n&gt;
-    class SquareMatrix: private SquareMatrixBase&lt;T&gt;{
-    public:
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T, std<span style="color:#f92672">::</span>size_t n<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SquareMatrix</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> SquareMatrixBase<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>{
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
         SquareMatrix()
-        :SquareMatrixBase&lt;T&gt;(n, data){}
-        ……
-    private:
-        T data[n*n];
+        <span style="color:#f92672">:</span>SquareMatrixBase<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>(n, data){}
+        <span style="color:#960050;background-color:#1e0010">……</span>
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+        T data[n<span style="color:#f92672">*</span>n];
     };
-</code></pre>
-<p>这么改动之后，就会有多个类型基于一个Base类的泛化类型。</p>
-<h3 id="45-运用成员函数模版接受所有兼容类型">45.运用成员函数模版接受所有兼容类型</h3>
+</code></pre></div><p>这么改动之后，就会有多个类型基于一个Base类的泛化类型。</p>
+<h3 id="45运用成员函数模版接受所有兼容类型">45.运用成员函数模版接受所有兼容类型</h3>
 <p>模版的泛化类型，base &amp; driver 之间并不存在继承关系，例如原生被shared_ptr包装之后就很难办。</p>
 <p>使用泛化的转化函数:</p>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-class SmartPtr {
-  public:
-  	template&lt;typename U&gt;
-    SmartPtr(const SmartPtr&lt;U&gt; &amp; other) : heldPtr(other.get()) { ... }
-  	T* get() const { return heldPtr; }
-  private:
-  	T* heldPtr;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SmartPtr</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  	<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> U<span style="color:#f92672">&gt;</span>
+    SmartPtr(<span style="color:#66d9ef">const</span> SmartPtr<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span> other) <span style="color:#f92672">:</span> heldPtr(other.get()) { ... }
+  	T<span style="color:#f92672">*</span> <span style="color:#a6e22e">get</span>() <span style="color:#66d9ef">const</span> { <span style="color:#66d9ef">return</span> heldPtr; }
+  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  	T<span style="color:#f92672">*</span> heldPtr;
 }
-</code></pre>
-<p>支持从T-&gt;U的类型转换，并且通过<code>heldPtr(other.get())</code> 的隐式类型转换保证了不会乱转换。</p>
+</code></pre></div><p>支持从T-&gt;U的类型转换，并且通过<code>heldPtr(other.get())</code> 的隐式类型转换保证了不会乱转换。</p>
 <p>模版泛化的拷贝构造和赋值和原生的没有关系。</p>
-<h3 id="46-需要类型转换时请为模版定义非成员函数">46.需要类型转换时请为模版定义非成员函数</h3>
+<h3 id="46需要类型转换时请为模版定义非成员函数">46.需要类型转换时请为模版定义非成员函数</h3>
 <blockquote>
 <p>首先参考T24</p>
 </blockquote>
-<pre><code class="language-cpp">template&lt;typename T&gt;
-class Rational {
-  public:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rational</span> {
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
   	...
-    friend const Rational operator* (const Rational &amp; lhs,
-                                    const Rational &amp; rhs) {
-    	return Rational(lhs.numerator() * rhs.numerator(),
-                       lhs.denominator() * rhs.denominator());                                  
+    <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">const</span> Rational <span style="color:#66d9ef">operator</span><span style="color:#f92672">*</span> (<span style="color:#66d9ef">const</span> Rational <span style="color:#f92672">&amp;</span> lhs,
+                                    <span style="color:#66d9ef">const</span> Rational <span style="color:#f92672">&amp;</span> rhs) {
+    	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Rational</span>(lhs.numerator() <span style="color:#f92672">*</span> rhs.numerator(),
+                       lhs.denominator() <span style="color:#f92672">*</span> rhs.denominator());                                  
     }
 }
-</code></pre>
-<p>通过友元函数进行类型推倒，当Rational<int>被声明的时候就已经被泛化了，所以对应的重定义已经被创建出来了。</int></p>
+</code></pre></div><p>通过友元函数进行类型推倒，当Rational<!-- raw HTML omitted -->被声明的时候就已经被泛化了，所以对应的重定义已经被创建出来了。</p>
 <p>这里友元函数的意义就不是访问私有变量了，而是为了提前被特化出来。</p>
-<h3 id="47-请使用-traits-class-表现类型信息">47.请使用<code>traits class</code>表现类型信息</h3>
+<h3 id="47请使用traits-class表现类型信息">47.请使用<code>traits class</code>表现类型信息</h3>
 <blockquote>
 <p>主要含义是编译期的类型检查</p>
 </blockquote>
 <p>针对于类型信息在编译时的类型检查，靠的是模版的详细特化。</p>
-<pre><code class="language-cpp">template&lt;typename IterT, typename DisT&gt;
-    void doAdvance(IterT&amp; iter, Dist d, std::random_access_iterator_tag)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> IterT, <span style="color:#66d9ef">typename</span> DisT<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> doAdvance(IterT<span style="color:#f92672">&amp;</span> iter, Dist d, std<span style="color:#f92672">::</span>random_access_iterator_tag)
     {
-        iter+=d;
+        iter<span style="color:#f92672">+=</span>d;
     }
-    template&lt;typename IterT, typename DisT&gt;
-    void doAdvance(IterT&amp; iter, Dist d, std::bidirectional_iterator_tag)
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> IterT, <span style="color:#66d9ef">typename</span> DisT<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> doAdvance(IterT<span style="color:#f92672">&amp;</span> iter, Dist d, std<span style="color:#f92672">::</span>bidirectional_iterator_tag)
     {
-        if(d&gt;=0)
-        while(d--) ++iter;
-    else 
-        while(d++) --iter;
+        <span style="color:#66d9ef">if</span>(d<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">while</span>(d<span style="color:#f92672">--</span>) <span style="color:#f92672">++</span>iter;
+    <span style="color:#66d9ef">else</span> 
+        <span style="color:#a6e22e">while</span>(d<span style="color:#f92672">++</span>) <span style="color:#f92672">--</span>iter;
     }
-    template&lt;typename IterT, typename DisT&gt;
-    void doAdvance(IterT&amp; iter, Dist d, std::input_iterator_tag)
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> IterT, <span style="color:#66d9ef">typename</span> DisT<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> doAdvance(IterT<span style="color:#f92672">&amp;</span> iter, Dist d, std<span style="color:#f92672">::</span>input_iterator_tag)
     {
-        if(d&lt;0)
-        throw std::out_of_range("Negative distance");
-        while(d++) --iter;
+        <span style="color:#66d9ef">if</span>(d<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">throw</span> std<span style="color:#f92672">::</span>out_of_range(<span style="color:#e6db74">"Negative distance"</span>);
+        <span style="color:#66d9ef">while</span>(d<span style="color:#f92672">++</span>) <span style="color:#f92672">--</span>iter;
     }
 
-    template&lt;typename IterT,typename DistT&gt;
-    void advance(IterT&amp; iter,DistT d)
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> IterT,<span style="color:#66d9ef">typename</span> DistT<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> advance(IterT<span style="color:#f92672">&amp;</span> iter,DistT d)
     {
-        doAdvance(iter,d,typename::std::iterator_traits&lt;IterT&gt;::iterator_category();
+        doAdvance(iter,d,<span style="color:#66d9ef">typename</span><span style="color:#f92672">::</span>std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>IterT<span style="color:#f92672">&gt;::</span>iterator_category();
     }
-</code></pre>
-<h3 id="未完待续">未完待续</h3>
+</code></pre></div><h3 id="未完待续">未完待续</h3>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
 <div style="height:50px"></div>

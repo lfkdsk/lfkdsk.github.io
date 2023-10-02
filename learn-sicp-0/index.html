@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,25 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "0x00：SICP 的魔法 - Scheme 基础和黑盒抽象",
       "headline" : "0x00：SICP 的魔法 - Scheme 基础和黑盒抽象",
-      "description" : "作者 ：刘丰恺
-作者博客：若梦浮生
-转载需征得作者本人同意
- 计算机科学的内容包罗万象，其中的经典的课程也是不胜枚举。但是在这其中SICP(Structure and Interpretation of Computer Programs)绝对是其中的经典和翘楚，在2008年以前SICP的MIT6.001课程历来是CS相关专业必修入门课程。
-SICP的核心内容是什么呢？众说纷云，有人说是一本有关Lisp／Scheme的书主要讲函数式编程的思想，有的说是一本有关解释器构造的入门书籍，和我们学过的龙书挂钩，但就我个人而言，SICP作为一本入门书更多的不是担负起介绍某一方面具体的知识的重任，而是从多个角度去教一个初学者从程序抽象、理解工程架构、学习DSL的构建方法&hellip;&hellip;，不单纯介绍一方面的知识而是完备的形成一个闭环的去像你介绍什么是Computer Science。相比于这些当初选用MIT Scheme现在使用Python，不过是最大程度上减小编程语言本身的复杂度对学生理解的影响，个人觉得无足挂怀。
-SICP的各个版本的封面，都选择了魔法师作为其中的主要素材，这里也作为我这个系列的名字，让我们一起领略SICP的魔法。
-学习之前 在正式开始之前，我们先简单的了解几个问题。
-我们如何看待Computer Science？ 很惊人对吧，第一次看到这个NO COMPUTER NO SCIENCE的时候我也是被这种说法吓到了。但是对于这个说法的讲解倒也是能自圆其说。
-首先是NO SCIENCE，作者在课上说CS不像是一门科学更像是一门艺术或者是工程。工程好理解，但是艺术听起来就很玄之又玄的感觉，但是这里笔者想谈谈自己的感受，对于笔者个人而言，编程像是一种写作，就想写作当前这篇文章的感觉是一样的，代码／文字从手中流淌出来，形成程序／文章，两者可以说是近乎相同的。
-再说这个NO COMPUTER，作者认为这门学科也不是完全和计算机有关，就像几何学不一定合圆规和量角器有关系一样，文以载道，计算机只是帮助我们实现这些功能的工具而已，这也就是为什么变成会被称作和魔法相同，编写代码／编写咒语，即使我们生活在一个没有计算机的魔法世界，我们仍然能学习这门课程（当然不会再被称之为CS了）。
-定义和过程的理解 我们首先来看这个公式，这是一个对于平方根的定义，和我们在数学书上学到的一样。给我们一个y的值我们可以很方便的确定是不是x的平方根，但是这个公式并不能告诉我们平方根到底是怎么求的，也就是说上文只是在告诉我们平方根到底是什么。
-但是如果要涉及怎么求平方根，我们就需要借助牛顿迭代法了，通过猜测一个数字，再根据求出商，两者相加求平均值作为下一次的平方根猜测量，这样逐步逼近到达一个最接近的数值就是x的平方根。
- 如下求 2 的平方根
-    猜测量 商 平均值     1 2&frasl;1 = 2 (2 + 1) / 2 = 1.5   1.5 2 / 1.5 = 1.3333 (1.5 + 1.3333) / 2 = 1.",
+      "description" : "作者 ：刘丰恺\n作者博客：若梦浮生\n转载需征得作者本人同意\n 计算机科学的内容包罗万象，其中的经典的课程也是不胜枚举。但是在这其中SICP(Structure and Interpretation of Computer Programs)绝对是其中的经典和翘楚，在2008年以前SICP的MIT6.001课程历来是CS相关专业必修入门课程。\nSICP的核心内容是什么呢？众说纷云，有人说是一本有关Lisp／Scheme的书主要讲函数式编程的思想，有的说是一本有关解释器构造的入门书籍，和我们学过的龙书挂钩，但就我个人而言，SICP作为一本入门书更多的不是担负起介绍某一方面具体的知识的重任，而是从多个角度去教一个初学者从程序抽象、理解工程架构、学习DSL的构建方法\u0026hellip;\u0026hellip;，不单纯介绍一方面的知识而是完备的形成一个闭环的去像你介绍什么是Computer Science。相比于这些当初选用MIT Scheme现在使用Python，不过是最大程度上减小编程语言本身的复杂度对学生理解的影响，个人觉得无足挂怀。\nSICP的各个版本的封面，都选择了魔法师作为其中的主要素材，这里也作为我这个系列的名字，让我们一起领略SICP的魔法。\n学习之前 在正式开始之前，我们先简单的了解几个问题。\n我们如何看待Computer Science？ 很惊人对吧，第一次看到这个NO COMPUTER NO SCIENCE的时候我也是被这种说法吓到了。但是对于这个说法的讲解倒也是能自圆其说。\n首先是NO SCIENCE，作者在课上说CS不像是一门科学更像是一门艺术或者是工程。工程好理解，但是艺术听起来就很玄之又玄的感觉，但是这里笔者想谈谈自己的感受，对于笔者个人而言，编程像是一种写作，就想写作当前这篇文章的感觉是一样的，代码／文字从手中流淌出来，形成程序／文章，两者可以说是近乎相同的。\n再说这个NO COMPUTER，作者认为这门学科也不是完全和计算机有关，就像几何学不一定合圆规和量角器有关系一样，文以载道，计算机只是帮助我们实现这些功能的工具而已，这也就是为什么变成会被称作和魔法相同，编写代码／编写咒语，即使我们生活在一个没有计算机的魔法世界，我们仍然能学习这门课程（当然不会再被称之为CS了）。\n定义和过程的理解 我们首先来看这个公式，这是一个对于平方根的定义，和我们在数学书上学到的一样。给我们一个y的值我们可以很方便的确定是不是x的平方根，但是这个公式并不能告诉我们平方根到底是怎么求的，也就是说上文只是在告诉我们平方根到底是什么。\n但是如果要涉及怎么求平方根，我们就需要借助牛顿迭代法了，通过猜测一个数字，再根据求出商，两者相加求平均值作为下一次的平方根猜测量，这样逐步逼近到达一个最接近的数值就是x的平方根。\n 如下求 2 的平方根\n    猜测量 商 平均值     1 2\/1 = 2 (2 \u002b 1) \/ 2 = 1.5   1.5 2 \/ 1.5 = 1.3333 (1.5 \u002b 1.3333) \/ 2 = 1.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -41,9 +28,9 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2017",
-      "datePublished": "2017-02-21 22:22:14 &#43;0000 UTC",
-      "dateModified" : "2017-02-21 22:22:14 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/learn-sicp-0/",
+      "datePublished": "2017-02-21 22:22:14 \u002b0000 UTC",
+      "dateModified" : "2017-02-21 22:22:14 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/learn-sicp-0\/",
       "keywords" : [ "SICP","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -63,7 +50,7 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
 定义和过程的理解 我们首先来看这个公式，这是一个对于平方根的定义，和我们在数学书上学到的一样。给我们一个y的值我们可以很方便的确定是不是x的平方根，但是这个公式并不能告诉我们平方根到底是怎么求的，也就是说上文只是在告诉我们平方根到底是什么。
 但是如果要涉及怎么求平方根，我们就需要借助牛顿迭代法了，通过猜测一个数字，再根据求出商，两者相加求平均值作为下一次的平方根猜测量，这样逐步逼近到达一个最接近的数值就是x的平方根。
  如下求 2 的平方根
-    猜测量 商 平均值     1 2⁄1 = 2 (2 + 1) / 2 = 1.5   1.5 2 / 1.5 = 1.3333 (1.5 + 1.3333) / 2 = 1." name="description"/>
+    猜测量 商 平均值     1 2/1 = 2 (2 + 1) / 2 = 1.5   1.5 2 / 1.5 = 1.3333 (1.5 + 1.3333) / 2 = 1." name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -143,7 +130,7 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
 <tbody>
 <tr>
 <td>1</td>
-<td><sup>2</sup>⁄<sub>1</sub> = 2</td>
+<td>2/1 = 2</td>
 <td>(2 + 1) / 2 =  1.5</td>
 </tr>
 <tr>
@@ -167,7 +154,7 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
 <h2 id="scheme-基础">Scheme 基础</h2>
 <p>之前我们说过，选择 Scheme 看重的是它的函数性特性，但是更重要的是它的简洁易用能减少学习语言的负担。 Scheme 是一门解释器语言，其实也有编译器的实现，不过这都不重要。解释器语言是一个接受输入返回数据的大循环(Read-Evaluate-Print Loop)，就像是聊天的交互一样，每接受一段输入，就返回这段代码的执行结果，这就是书封面图的由来：</p>
 <p><img alt="sicp" src="sicp.png"/></p>
-<p>​                           <strong>(一个Eval和Apply互生的球)</strong></p>
+<p>​							<strong>(一个Eval和Apply互生的球)</strong></p>
 <h3 id="构造语言的三个基本要素">构造语言的三个基本要素</h3>
 <ul>
 <li>基本表达式形式：构造各种程序的基础</li>
@@ -187,32 +174,28 @@ SICP的各个版本的封面，都选择了魔法师作为其中的主要素材�
 <p>这里介绍一些简单的语法知识用来学习更多的相关知识。</p>
 <h4 id="表达式">表达式</h4>
 <p>在 Scheme 中 表达式中最基本的表达式就是一个数字：</p>
-<pre><code class="language-lisp">&gt; 486 ; 输入
-486
-</code></pre>
-<p>简单的表达式，使用前缀的形式，括号里第一个元素表示操作（运算），后面是参数（运算对象）运算符和参数之间、不同参数之间用空格分隔：</p>
-<pre><code class="language-lisp">&gt; (+ 34 5)
-39
-&gt; (* 3 4)
-12
-</code></pre>
-<h4 id="组合子">组合子</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> <span style="color:#ae81ff">486</span> <span style="color:#75715e">; 输入</span>
+<span style="color:#ae81ff">486</span>
+</code></pre></div><p>简单的表达式，使用前缀的形式，括号里第一个元素表示操作（运算），后面是参数（运算对象）运算符和参数之间、不同参数之间用空格分隔：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">5</span>)
+<span style="color:#ae81ff">39</span>
+<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
+<span style="color:#ae81ff">12</span>
+</code></pre></div><h4 id="组合子">组合子</h4>
 <p>表达式可以进行嵌套和组合：</p>
-<pre><code class="language-lisp">&gt; (+ 1 (* 3 4))
-13
-</code></pre>
-<p>**注意使用合理的代码书写规范 **</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
+<span style="color:#ae81ff">13</span>
+</code></pre></div><p>**注意使用合理的代码书写规范 **</p>
 <h4 id="命名和环境">命名和环境</h4>
 <p>对变量和过程进行命名：</p>
-<pre><code class="language-lisp">&gt; (define size 15) ; 定义变量
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (define size <span style="color:#ae81ff">15</span>) <span style="color:#75715e">; 定义变量</span>
 size
-&gt; (define (getSize x) ; 定义过程
-    	(* x 3))
+<span style="color:#a6e22e">&gt;</span> (define (getSize x) <span style="color:#75715e">; 定义过程</span>
+    	(<span style="color:#a6e22e">*</span> x <span style="color:#ae81ff">3</span>))
 getSize
-&gt; (getSize 12)
-36
-</code></pre>
-<p>小标题里面提到了环境(environment)这个意义可能需要介绍一下，其实这个环境和作用域和可见性都是相关的概念，你可以理解为程序有一个全局的<code>Map</code>存储了很多的键值对，Key是名字，Value是数据还是过程都可以。除此以外，程序的每一层<code>block</code>（代码块）都有一个自己的<code>Map</code>存储当前环境下的键值对，这个存储的<code>Map</code>就可以简单理解为当前的环境。</p>
+<span style="color:#a6e22e">&gt;</span> (getSize <span style="color:#ae81ff">12</span>)
+<span style="color:#ae81ff">36</span>
+</code></pre></div><p>小标题里面提到了环境(environment)这个意义可能需要介绍一下，其实这个环境和作用域和可见性都是相关的概念，你可以理解为程序有一个全局的<code>Map</code>存储了很多的键值对，Key是名字，Value是数据还是过程都可以。除此以外，程序的每一层<code>block</code>（代码块）都有一个自己的<code>Map</code>存储当前环境下的键值对，这个存储的<code>Map</code>就可以简单理解为当前的环境。</p>
 <blockquote>
 <p>Tips: 与C语言对比：</p>
 <ul>
@@ -234,46 +217,37 @@ getSize
 <ul>
 <li>条件表达式</li>
 </ul>
-<pre><code class="language-lisp">&gt; ; 类似switch语法结构的cond子句
-&gt; (define (abs x)
-&gt;   (cond ((&gt; x 0) x)
-&gt;       ((= x 0) x)
-&gt;       ((&lt; x 0) -x)))
-&gt; ; if子句
-&gt; (define (abs x)
-&gt;   (if (&lt; x 0)
-&gt;       (-x)
-&gt;       x))
-&gt; ```
-&gt; * 复合谓词
-&gt;
-&gt; ``` lisp
-&gt; ; and 
-&gt; (and expr1 expr2...)
-&gt; ; or 
-&gt; (or expr1 expr2...)
-&gt; ; not
-&gt; (not expr1)
-&gt; ```
-
-### 再看平方根
-
-之前我们提到了用牛顿迭代法求平方根的过程，整个过程就像是这样的一个黑箱一样，我们不需要知道`过程`实现的细节，就可以直接使用：
-
-![black-box](blackbox.png)
-
-再从分解的角度上看结合我们在第一节里面的讨论，再加上我们已经学过了一些 Scheme 的内容，我们能得出这样的计算平方根的代码：
-
-```lisp
-(define (sqrt-iter guess x)
-	(if (good-enough? guess x)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; 类似switch语法结构的cond子句</span>
+(define (<span style="color:#a6e22e">abs</span> x)
+  (cond ((<span style="color:#a6e22e">&gt;</span> x <span style="color:#ae81ff">0</span>) x)
+    	((<span style="color:#a6e22e">=</span> x <span style="color:#ae81ff">0</span>) x)
+    	((<span style="color:#a6e22e">&lt;</span> x <span style="color:#ae81ff">0</span>) -x)))
+<span style="color:#75715e">; if子句</span>
+(define (<span style="color:#a6e22e">abs</span> x)
+  (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> x <span style="color:#ae81ff">0</span>)
+      (-x)
+      x))
+</code></pre></div><ul>
+<li>复合谓词</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">; and </span>
+(and expr1 expr2...)
+<span style="color:#75715e">; or </span>
+(or expr1 expr2...)
+<span style="color:#75715e">; not</span>
+(<span style="color:#a6e22e">not</span> expr1)
+</code></pre></div></blockquote>
+<h3 id="再看平方根">再看平方根</h3>
+<p>之前我们提到了用牛顿迭代法求平方根的过程，整个过程就像是这样的一个黑箱一样，我们不需要知道<code>过程</code>实现的细节，就可以直接使用：</p>
+<p><img alt="black-box" src="blackbox.png"/></p>
+<p>再从分解的角度上看结合我们在第一节里面的讨论，再加上我们已经学过了一些 Scheme 的内容，我们能得出这样的计算平方根的代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (sqrt-iter guess x)
+	(<span style="color:#66d9ef">if</span> (good-enough? guess x)
 		guess
 		(sqrt-iter (improve guess x)
 					x)))
-</code></pre>
-</blockquote>
-<p>​        求值的过程，被分解成了几个子函数来计算，<code>good-enough?</code>是一个判断对精度的判断，<code>improve</code>是求平均值，总而言之，略去这些函数的定义，这个算法其实相当的轻便和易懂。</p>
-<p>​   算法的分解图如下：</p>
+</code></pre></div><p>​        求值的过程，被分解成了几个子函数来计算，<code>good-enough?</code>是一个判断对精度的判断，<code>improve</code>是求平均值，总而言之，略去这些函数的定义，这个算法其实相当的轻便和易懂。</p>
+<p>​	算法的分解图如下：</p>
 <p><img alt="block-split" src="split.png"/></p>
 <p>这也是黑箱的另一种角度，从结构可以看到，不但过程是用户的黑箱，过程和过程之间也是存在着护卫黑箱的关系的，比如<code>sqare</code>是<code>good-enough</code>的黑箱，<code>good-enough</code>又是<code>sqrt-iter</code>的黑箱。</p>
 <p>所以这里我们能得到这样的结论：</p>
@@ -285,10 +259,9 @@ getSize
 <ul>
 <li>局部名：</li>
 </ul>
-<pre><code class="language-lisp">(define (square x) (* x x))
-(define (square y) (* y y))
-</code></pre>
-<p>这东西其实很好理解，上面的两个定义本身不因形参名字的改变而改变，x是这个过程的<code>约束比变量</code>，可以理解为作用域逃不出当层环境，只是一个<code>占位符</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-lisp" data-lang="lisp">(define (square x) (<span style="color:#a6e22e">*</span> x x))
+(define (square y) (<span style="color:#a6e22e">*</span> y y))
+</code></pre></div><p>这东西其实很好理解，上面的两个定义本身不因形参名字的改变而改变，x是这个过程的<code>约束比变量</code>，可以理解为作用域逃不出当层环境，只是一个<code>占位符</code>。</p>
 <p>这其中如果<code>自由变量</code>（类比可见性强的变量）和<code>约束变量</code>名同就会被约束变量替换，该环境下拿到的变量就是当前环境x，而非全局的x了。</p>
 <ul>
 <li>内部定义和块结构：</li>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,15 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "Redex: Use SExpr to embed IR code",
       "headline" : "Redex: Use SExpr to embed IR code",
-      "description" : "A better way to write outline method or modify ir code in redex.
- Background In Redex, we may often modify/insert methods&rsquo; ir code and redex actually supported some ways to write these. Such as :
-auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&gt;set_type(DexType::make_type(&quot;LFoo;&quot;));  Or just us dasm api :
-auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {});  It&rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.",
+      "description" : "A better way to write outline method or modify ir code in redex.\n Background In Redex, we may often modify\/insert methods\u0027 ir code and redex actually supported some ways to write these. Such as :\nauto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -\u0026gt;set_type(DexType::make_type(\u0026#34;LFoo;\u0026#34;)); Or just us dasm api :\nauto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(\u0026#34;LFoo;\u0026#34;), {}); It\u0026rsquo;s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -31,19 +28,19 @@ auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {})
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2021",
-      "datePublished": "2021-11-29 03:20:31 &#43;0800 CST",
-      "dateModified" : "2021-11-29 03:20:31 &#43;0800 CST",
-      "url" : "https://lfkdsk.github.io/redex-sexpr/",
+      "datePublished": "2021-11-29 03:20:31 \u002b0800 CST",
+      "dateModified" : "2021-11-29 03:20:31 \u002b0800 CST",
+      "url" : "https:\/\/lfkdsk.github.io\/redex-sexpr\/",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
 <title>Redex: Use SExpr to embed IR code - lfkdsk's Blog</title>
 <meta content="Redex: Use SExpr to embed IR code - lfkdsk's Blog" property="og:title"/>
 <meta content="article" property="og:type"/>
-<meta content='A better way to write outline method or modify ir code in redex.
- Background In Redex, we may often modify/insert methods’ ir code and redex actually supported some ways to write these. Such as :
-auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&gt;set_type(DexType::make_type("LFoo;"));  Or just us dasm api :
-auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type("LFoo;"), {});  It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly.' name="description"/>
+<meta content="A better way to write outline method or modify ir code in redex.
+ Background In Redex, we may often modify/insert methods' ir code and redex actually supported some ways to write these. Such as :
+auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE)) -&gt;set_type(DexType::make_type(&quot;LFoo;&quot;)); Or just us dasm api :
+auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type(&quot;LFoo;&quot;), {}); It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly." name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -94,51 +91,47 @@ auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type("LFoo;"), {});  It’s 
 <p>A better way to write outline method or modify ir code in redex.</p>
 </blockquote>
 <h2 id="background">Background</h2>
-<p>In Redex, we may often modify/insert methods’ ir code and redex actually supported some ways to write these. Such as :</p>
-<pre><code class="language-cpp">auto insn = (new IRInstruction(OPCODE_NEW_INSTANCE))
-                 -&gt;set_type(DexType::make_type("LFoo;"));
-</code></pre>
-<p>Or just us dasm api :</p>
-<pre><code class="language-cpp">auto insn = dasm(OPCODE_NEW_INSTANCE, DexType::make_type("LFoo;"), {});       
-</code></pre>
-<p>It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly. It will be very difficult to write the right code and verify them after every time we change the api.
+<p>In Redex, we may often modify/insert methods' ir code and redex actually supported some ways to write these. Such as :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> insn <span style="color:#f92672">=</span> (<span style="color:#66d9ef">new</span> IRInstruction(OPCODE_NEW_INSTANCE))
+                 <span style="color:#f92672">-&gt;</span>set_type(DexType<span style="color:#f92672">::</span>make_type(<span style="color:#e6db74">"LFoo;"</span>));
+</code></pre></div><p>Or just us dasm api :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> insn <span style="color:#f92672">=</span> dasm(OPCODE_NEW_INSTANCE, DexType<span style="color:#f92672">::</span>make_type(<span style="color:#e6db74">"LFoo;"</span>), {});       
+</code></pre></div><p>It’s just fine. But if we want to write ir codes which have more complex logic, or even if we want to write an outline method directly. It will be very difficult to write the right code and verify them after every time we change the api.
 Specifically, the method contains several blocks and entry point or several if/switch structure and mult-conditions. Maybe this is why there is no much complex outline method in redex pass.
 It seems like <code>StringBuilderOutline</code> or <code>InstructionSequenceOutlinerPass</code> is the most complex generator method in redex. You could see that in their create_outlined_method method.
 So I think we could improve the experience of writing the outline method or complex ir code. In LLVM, we have a pass named Cpp Backend what we input LLVM IR (such as we call it code) and get the IR builder codes which could build code we input by cpp.</p>
 <p>You could get LLVM CxxBackend from : <a href="https://github.com/zhangjiantao/llvm-cxxapi">https://github.com/zhangjiantao/llvm-cxxapi</a></p>
 <p>Use ir to write ir is a better way to write complex ir code.</p>
-<h2 id="how-to-use-genasexpr-when-should-we-use-it">How to use GenAsExpr ? When should we use it ?</h2>
+<h2 id="how-to-use-genasexpr--when-should-we-use-it-">How to use GenAsExpr ? When should we use it ?</h2>
 <p>For example, I’m writing a new StringBuilderOutline pass to reduce spec string builder method calls. So I need to write a generic method to handle these intermediate results and append them into a string builder. But using IRCode APIs to write this method is difficult and easy to make mistake. (Because it has a for-loop, we need to de-sugar it by mind to write some ir like labels with goto and insert some branch targets).</p>
 <h3 id="step-1-write-method-in-java-demo">Step 1: write method in java demo.</h3>
 <p>So we could use IRReGen pass to resolve this work. What method we actually need is just like this :</p>
-<pre><code class="language-java">@Keep
-public static String bind(Object... args) {
-    StringBuilder builder = new StringBuilder();
-    for (int i = 0; i &lt; args.length ; i++) {
-        builder.append(args[i]);
-    }
-    return builder.toString();
-}
-</code></pre>
-<p>So we write it in a demo project and add @Keep to ensure it will be saved in the release version.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Keep</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span>Object<span style="color:#f92672">...</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    StringBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> args<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>args<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">return</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>So we write it in a demo project and add @Keep to ensure it will be saved in the release version.
 Step 2: add pass in redex.config
 Add IRReGenPass into our demo redex.config and add args to array named gen_s_expr_for like the following code.</p>
-<pre><code class="language-json">{
-  "redex": {
-    "passes": [
-       "IRReGenPass",
-       // other pass.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">"redex"</span>: {
+    <span style="color:#f92672">"passes"</span>: [
+       <span style="color:#e6db74">"IRReGenPass"</span>,
+       <span style="color:#75715e">// other pass.
+</span><span style="color:#75715e"></span>    ]
+  },
+  <span style="color:#f92672">"IRReGen"</span>: {
+    <span style="color:#f92672">"gen_s_expr_for"</span>: [
+      <span style="color:#e6db74">"Lcom/example/myapplication/MainActivity;.bind:([Ljava/lang/Object;)Ljava/lang/String;"</span>
     ]
   },
-  "IRReGen": {
-    "gen_s_expr_for": [
-      "Lcom/example/myapplication/MainActivity;.bind:([Ljava/lang/Object;)Ljava/lang/String;"
-    ]
-  },
-  // ... other params
-}
-</code></pre>
-<p>ALERT: Write the JVM method description with the complete method type signature.
+  <span style="color:#75715e">// ... other params
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>ALERT: Write the JVM method description with the complete method type signature.
 Step 3: get the result in log and use it !
 Run redex compile and you will get the following log in shell:
 <img alt="" src="code0.png"/>
@@ -152,58 +145,59 @@ The code will be more readable and easier to modify (just re-gen it).</p>
 <blockquote>
 <p>S-Expr <a href="https://en.wikipedia.org/wiki/S-expression">https://en.wikipedia.org/wiki/S-expression</a></p>
 </blockquote>
-<pre><code class="language-cpp">void GenAsSExpr::run_pass(DexStoresVector&amp; stores,
-                       ConfigFiles&amp; conf,
-                       PassManager&amp; mgr) {
-  const auto&amp; scope = build_class_scope(stores);
-  auto&amp; method_names = this-&gt;m_ir_gen_methods;
-  walk::parallel::methods(scope, [&amp;method_names](DexMethod* m) {
-    auto method_name = m-&gt;get_deobfuscated_name();
-    auto in_list = [&amp;method_names](std::string &amp;name) -&gt; bool {
-      return std::find(method_names.begin(), method_names.end(), name) !=
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> GenAsSExpr<span style="color:#f92672">::</span>run_pass(DexStoresVector<span style="color:#f92672">&amp;</span> stores,
+                       ConfigFiles<span style="color:#f92672">&amp;</span> conf,
+                       PassManager<span style="color:#f92672">&amp;</span> mgr) {
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> scope <span style="color:#f92672">=</span> build_class_scope(stores);
+  <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> method_names <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_ir_gen_methods;
+  walk<span style="color:#f92672">::</span>parallel<span style="color:#f92672">::</span>methods(scope, [<span style="color:#f92672">&amp;</span>method_names](DexMethod<span style="color:#f92672">*</span> m) {
+    <span style="color:#66d9ef">auto</span> method_name <span style="color:#f92672">=</span> m<span style="color:#f92672">-&gt;</span>get_deobfuscated_name();
+    <span style="color:#66d9ef">auto</span> in_list <span style="color:#f92672">=</span> [<span style="color:#f92672">&amp;</span>method_names](std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span>name) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">bool</span> {
+      <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>find(method_names.begin(), method_names.end(), name) <span style="color:#f92672">!=</span>
              method_names.end();
     };
 
-    if (!in_list(method_name)) {
-      return;
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>in_list(method_name)) {
+      <span style="color:#66d9ef">return</span>;
     }
 
-    // auto code = m-&gt;get_code();
-    auto s_expr = assembler::method_to_s_expr(m);
-    auto s_expr_str = s_expr.pretty_str();
+    <span style="color:#75715e">// auto code = m-&gt;get_code();
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> s_expr <span style="color:#f92672">=</span> assembler<span style="color:#f92672">::</span>method_to_s_expr(m);
+    <span style="color:#66d9ef">auto</span> s_expr_str <span style="color:#f92672">=</span> s_expr.pretty_str();
 
-    std::cout &lt;&lt; "Generate Method for: " &lt;&lt; method_name &lt;&lt; " : \n" &lt;&lt; std::endl;
-    std::cout &lt;&lt; s_expr_str &lt;&lt; std::endl;
+    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">"Generate Method for: "</span> <span style="color:#f92672">&lt;&lt;</span> method_name <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">" : </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> s_expr_str <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
   });
 
-  auto&amp; classes_names = this-&gt;m_ir_gen_classes;
-  walk::parallel::classes(scope, [&amp;classes_names] (DexClass* cls) {
-    auto cls_name = cls-&gt;get_deobfuscated_name();
-    auto in_list = [&amp;classes_names](std::string &amp;name) -&gt; bool {
-      return std::find(classes_names.begin(), classes_names.end(), name) !=
+  <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> classes_names <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>m_ir_gen_classes;
+  walk<span style="color:#f92672">::</span>parallel<span style="color:#f92672">::</span>classes(scope, [<span style="color:#f92672">&amp;</span>classes_names] (DexClass<span style="color:#f92672">*</span> cls) {
+    <span style="color:#66d9ef">auto</span> cls_name <span style="color:#f92672">=</span> cls<span style="color:#f92672">-&gt;</span>get_deobfuscated_name();
+    <span style="color:#66d9ef">auto</span> in_list <span style="color:#f92672">=</span> [<span style="color:#f92672">&amp;</span>classes_names](std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span>name) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">bool</span> {
+      <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>find(classes_names.begin(), classes_names.end(), name) <span style="color:#f92672">!=</span>
              classes_names.end();
     };
 
-    if (!in_list(cls_name)) {
-      return;
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>in_list(cls_name)) {
+      <span style="color:#66d9ef">return</span>;
     }
 
-    // auto code = m-&gt;get_code();
-    auto s_expr = assembler::class_to_s_expr(cls);
-    auto s_expr_str = s_expr.pretty_str(/* depth */ 3);
+    <span style="color:#75715e">// auto code = m-&gt;get_code();
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> s_expr <span style="color:#f92672">=</span> assembler<span style="color:#f92672">::</span>class_to_s_expr(cls);
+    <span style="color:#66d9ef">auto</span> s_expr_str <span style="color:#f92672">=</span> s_expr.pretty_str(<span style="color:#75715e">/* depth */</span> <span style="color:#ae81ff">3</span>);
 
-    std::cout &lt;&lt; "Generate Class for: " &lt;&lt; cls_name &lt;&lt; " : \n" &lt;&lt; std::endl;
-    std::cout &lt;&lt; s_expr_str &lt;&lt; std::endl;
+    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">"Generate Class for: "</span> <span style="color:#f92672">&lt;&lt;</span> cls_name <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">" : </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> s_expr_str <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 
   });
 }
 
-</code></pre>
-<p>We often use s-expr like expr in some Lisp-like langs. And many languages could compile their code into s-expr for serialization or check error. Redex also supports compile ir to s-expr and re-compile ir code from s-expr.
+</code></pre></div><p>We often use s-expr like expr in some Lisp-like langs. And many languages could compile their code into s-expr for serialization or check error. Redex also supports compile ir to s-expr and re-compile ir code from s-expr.
 So I added a new pass to accept method descriptions and compile it to s-expr. I also added some methods to make their output prettier. Maybe we can add more features to this pass.</p>
-<p>Redex s-expr still has some features not supported:
-- Try - cache structure
-- Filled-array-data opcode</p>
+<p>Redex s-expr still has some features not supported:</p>
+<ul>
+<li>Try - cache structure</li>
+<li>Filled-array-data opcode</li>
+</ul>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
 <div style="height:50px"></div>

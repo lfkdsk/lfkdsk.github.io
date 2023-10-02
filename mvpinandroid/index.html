@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,21 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "MVP In Android",
       "headline" : "MVP In Android",
-      "description" : "众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。
-所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。
-What is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。
-MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。
-Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
-按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
-如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
-Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&lt;Presenter&gt; { void initialRecycler(List&lt;ExamArrange&gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
-Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
-Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。",
+      "description" : "众所周知，Android的设计架构一直为人所诟病，模块的分割不清，很容易造成新手的困惑和迷茫，并且写出来的代码非常混杂，Activity即包含UI的处理，还包括数据的具体处理，让一个Activity弄出好几千行的容量，而且代码非常不清晰，可读性比较差。\n所以在Android的开发过程中，一直没有一个统一的开发模式，MVC、MVP、MVVM都有出现，不过之前Google在Github开源的一个开源库to-do-mvp ，Google提供了他们对MVP的一个范式，我们一次为基础谈谈Android 的MVP的应用。\nWhat is MVP? MVP 指的是“models-views-presenters”的缩写，通过把逻辑操作和UI操作分离的方式，来让逻辑的结构更为清晰。Activity是一个通用的“God Object”什么都能放进去，导致了Android开发通常使用的是“models-views”的模式，仅仅把数据层单独的分离了出来，导致了逻辑操作放在了Activity里面。\nMVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过代理类和UI对象的绑定来实现逻辑操作的分离，View和Presenter可以互见，Model完全由Presenter操作，就是这种模式的核心理念。\nStructure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。\n按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。\n如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。\nContract Interface public class ExamArrangeContract { \/** * @link ExamArrange 考场安排 *\/ interface View extends BaseView\u0026lt;Presenter\u0026gt; { void initialRecycler(List\u0026lt;ExamArrange\u0026gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } } 契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。\nActivity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。\nBase Interface public interface BaseView\u0026lt;T\u0026gt; { void setPresenter(T presenter); } Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。\npublic interface BasePresenter { void start(); } 另外Presenter的Base类中也只提供了一个start()函数用作Presenter的启动函数。一般放在Activity的onStart()或者是onResume()就可以了。",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -37,9 +28,9 @@ Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presente
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2016",
-      "datePublished": "2016-09-06 07:57:49 &#43;0000 UTC",
-      "dateModified" : "2016-09-06 07:57:49 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/mvpinandroid/",
+      "datePublished": "2016-09-06 07:57:49 \u002b0000 UTC",
+      "dateModified" : "2016-09-06 07:57:49 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/mvpinandroid\/",
       "keywords" : [ "Android","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -53,9 +44,10 @@ MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过�
 Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
 按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
 如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
-Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&lt;Presenter&gt; { void initialRecycler(List&lt;ExamArrange&gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
+Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&lt;Presenter&gt; { void initialRecycler(List&lt;ExamArrange&gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } } 契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
 Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
-Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。" name="description"/>
+Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presenter); } Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。
+public interface BasePresenter { void start(); } 另外Presenter的Base类中也只提供了一个start()函数用作Presenter的启动函数。一般放在Activity的onStart()或者是onResume()就可以了。" name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -113,230 +105,224 @@ Base Interface public interface BaseView&lt;T&gt; { void setPresenter(T presente
 <p>按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。</p>
 <p>如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。</p>
 <h3 id="contract-interface">Contract Interface</h3>
-<pre><code class="language-java">public class ExamArrangeContract {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExamArrangeContract</span> <span style="color:#f92672">{</span>
 
-    /**
-     * @link ExamArrange 考场安排
-     */
-    interface View extends BaseView&lt;Presenter&gt; {
-        void initialRecycler(List&lt;ExamArrange&gt; arranges);
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * @link ExamArrange 考场安排
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">View</span> <span style="color:#66d9ef">extends</span> BaseView<span style="color:#f92672">&lt;</span>Presenter<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialRecycler</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;</span> arranges<span style="color:#f92672">);</span>
 
-        void notifyRefreshRecycler();
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyRefreshRecycler</span><span style="color:#f92672">();</span>
 
-        void stopRefresh();
-    }
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stopRefresh</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    interface Presenter extends BasePresenter {
-        void initialDataForRecycler();
+    <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Presenter</span> <span style="color:#66d9ef">extends</span> BasePresenter <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialDataForRecycler</span><span style="color:#f92672">();</span>
 
-        void beginLoad(PtrFrameLayout frame);
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beginLoad</span><span style="color:#f92672">(</span>PtrFrameLayout frame<span style="color:#f92672">);</span>
 
-        void loadMore();
-    }
-}
-</code></pre>
-<p>契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。</p>
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadMore</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。</p>
 <p>Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。</p>
 <h3 id="base-interface">Base Interface</h3>
-<pre><code class="language-java">public interface BaseView&lt;T&gt; {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">BaseView</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 
-    void setPresenter(T presenter);
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPresenter</span><span style="color:#f92672">(</span>T presenter<span style="color:#f92672">);</span>
 
-}
-</code></pre>
-<p>Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</p>
-<pre><code class="language-java">public interface BasePresenter {
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">BasePresenter</span> <span style="color:#f92672">{</span>
 
-    void start();
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
 
-}
-</code></pre>
-<p>另外Presenter的Base类中也只提供了一个<code>start()</code>函数用作Presenter的启动函数。一般放在Activity的<code>onStart()</code>或者是<code>onResume()</code>就可以了。</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>另外Presenter的Base类中也只提供了一个<code>start()</code>函数用作Presenter的启动函数。一般放在Activity的<code>onStart()</code>或者是<code>onResume()</code>就可以了。</p>
 <h3 id="implemention">Implemention</h3>
 <p>实现类只需要分别继承契约类里面的接口就可以了。</p>
 <p>下面放上跟那个契约类相关的实现方法。</p>
 <h4 id="首先是在fragment里实现view接口">首先是在Fragment里实现View接口</h4>
-<pre><code class="language-java">public class ExamArrangeFragment extends RecyclerFragment implements ExamArrangeContract.View {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExamArrangeFragment</span> <span style="color:#66d9ef">extends</span> RecyclerFragment <span style="color:#66d9ef">implements</span> ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">View</span> <span style="color:#f92672">{</span>
 
-    public static ExamArrangeFragment newInstance() {
-        Bundle args = new Bundle();
-        ExamArrangeFragment fragment = new ExamArrangeFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExamArrangeFragment <span style="color:#a6e22e">newInstance</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Bundle args <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Bundle<span style="color:#f92672">();</span>
+        ExamArrangeFragment fragment <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExamArrangeFragment<span style="color:#f92672">();</span>
+        fragment<span style="color:#f92672">.</span><span style="color:#a6e22e">setArguments</span><span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> fragment<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-    private ExamArrangeContract.Presenter examArrangePresenter;
+    <span style="color:#66d9ef">private</span> ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">Presenter</span> examArrangePresenter<span style="color:#f92672">;</span>
 
-    private CommonAdapter&lt;ExamArrange&gt; adapter;
+    <span style="color:#66d9ef">private</span> CommonAdapter<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;</span> adapter<span style="color:#f92672">;</span>
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View wrapper = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, wrapper);
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> View <span style="color:#a6e22e">onCreateView</span><span style="color:#f92672">(</span>LayoutInflater inflater<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> ViewGroup container<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        View wrapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreateView</span><span style="color:#f92672">(</span>inflater<span style="color:#f92672">,</span> container<span style="color:#f92672">,</span> savedInstanceState<span style="color:#f92672">);</span>
+        ButterKnife<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> wrapper<span style="color:#f92672">);</span>
 
-        titleBar.setTitle("考场安排");
+        titleBar<span style="color:#f92672">.</span><span style="color:#a6e22e">setTitle</span><span style="color:#f92672">(</span><span style="color:#e6db74">"考场安排"</span><span style="color:#f92672">);</span>
 
-        return wrapper;
-    }
+        <span style="color:#66d9ef">return</span> wrapper<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void beginLoad(PtrFrameLayout frame) {
-        examArrangePresenter.beginLoad(frame);
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beginLoad</span><span style="color:#f92672">(</span>PtrFrameLayout frame<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        examArrangePresenter<span style="color:#f92672">.</span><span style="color:#a6e22e">beginLoad</span><span style="color:#f92672">(</span>frame<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void loadMore() {
-        examArrangePresenter.loadMore();
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadMore</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        examArrangePresenter<span style="color:#f92672">.</span><span style="color:#a6e22e">loadMore</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        examArrangePresenter.start();
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResume</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onResume</span><span style="color:#f92672">();</span>
+        examArrangePresenter<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onDestroyView</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onDestroyView</span><span style="color:#f92672">();</span>
+        ButterKnife<span style="color:#f92672">.</span><span style="color:#a6e22e">unbind</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void setPresenter(ExamArrangeContract.Presenter presenter) {
-        this.examArrangePresenter = presenter;
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPresenter</span><span style="color:#f92672">(</span>ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">Presenter</span> presenter<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">examArrangePresenter</span> <span style="color:#f92672">=</span> presenter<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void initialRecycler(List&lt;ExamArrange&gt; arranges) {
-        adapter = new CommonAdapter&lt;ExamArrange&gt;(
-                getContext(),
-                R.layout.item_exam_room,
-                arranges) {
-            @Override
-            public void bind(ViewHolder holder, ExamArrange examArrange) {
-//                holder.setText(R.id.exam_item_score_name, examArrange.getName());
-            }
-        };
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialRecycler</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;</span> arranges<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        adapter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CommonAdapter<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;(</span>
+                getContext<span style="color:#f92672">(),</span>
+                R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">item_exam_room</span><span style="color:#f92672">,</span>
+                arranges<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span>ViewHolder holder<span style="color:#f92672">,</span> ExamArrange examArrange<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="color:#75715e">//                holder.setText(R.id.exam_item_score_name, examArrange.getName());
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">};</span>
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        baseRecycler.setLayoutManager(manager);
-        baseRecycler.setAdapter(adapter);
-        baseRecycler.addOnScrollListener(new EndlessRecyclerOnScrollListener(manager) {
-            @Override
-            public void onLoadMore(int currentPage) {
-                examArrangePresenter.loadMore();
-            }
-        });
+        LinearLayoutManager manager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinearLayoutManager<span style="color:#f92672">(</span>getContext<span style="color:#f92672">());</span>
+        baseRecycler<span style="color:#f92672">.</span><span style="color:#a6e22e">setLayoutManager</span><span style="color:#f92672">(</span>manager<span style="color:#f92672">);</span>
+        baseRecycler<span style="color:#f92672">.</span><span style="color:#a6e22e">setAdapter</span><span style="color:#f92672">(</span>adapter<span style="color:#f92672">);</span>
+        baseRecycler<span style="color:#f92672">.</span><span style="color:#a6e22e">addOnScrollListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> EndlessRecyclerOnScrollListener<span style="color:#f92672">(</span>manager<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onLoadMore</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> currentPage<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                examArrangePresenter<span style="color:#f92672">.</span><span style="color:#a6e22e">loadMore</span><span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
 
-        createFooterView();
-    }
+        createFooterView<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    private void createFooterView() {
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.cube_views_load_more_default_footer,
-                        baseRecycler, false);
-        HeaderViewRecyclerAdapter headerViewRecyclerAdapter = new HeaderViewRecyclerAdapter(adapter);
-        baseRecycler.setAdapter(headerViewRecyclerAdapter);
-        headerViewRecyclerAdapter.addFooterView(view);
-    }
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createFooterView</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        View view <span style="color:#f92672">=</span> LayoutInflater<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>getContext<span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">inflate</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cube_views_load_more_default_footer</span><span style="color:#f92672">,</span>
+                        baseRecycler<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+        HeaderViewRecyclerAdapter headerViewRecyclerAdapter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HeaderViewRecyclerAdapter<span style="color:#f92672">(</span>adapter<span style="color:#f92672">);</span>
+        baseRecycler<span style="color:#f92672">.</span><span style="color:#a6e22e">setAdapter</span><span style="color:#f92672">(</span>headerViewRecyclerAdapter<span style="color:#f92672">);</span>
+        headerViewRecyclerAdapter<span style="color:#f92672">.</span><span style="color:#a6e22e">addFooterView</span><span style="color:#f92672">(</span>view<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void notifyRefreshRecycler() {
-        adapter.notifyDataSetChanged();
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyRefreshRecycler</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        adapter<span style="color:#f92672">.</span><span style="color:#a6e22e">notifyDataSetChanged</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void stopRefresh() {
-        ptrFrameLayout.refreshComplete();
-    }
-}	
-</code></pre>
-<p>在setPresenter中绑定一个引用，然后在UI里面就可以调用数据了。</p>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stopRefresh</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        ptrFrameLayout<span style="color:#f92672">.</span><span style="color:#a6e22e">refreshComplete</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>	
+</code></pre></div><p>在setPresenter中绑定一个引用，然后在UI里面就可以调用数据了。</p>
 <h4 id="presenter实现类">Presenter实现类</h4>
 <p>Presenter实现类</p>
-<pre><code class="language-java">public class ExamArrangePresenter implements ExamArrangeContract.Presenter {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExamArrangePresenter</span> <span style="color:#66d9ef">implements</span> ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">Presenter</span> <span style="color:#f92672">{</span>
 
-    private ExamArrangeContract.View mView;
+    <span style="color:#66d9ef">private</span> ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">View</span> mView<span style="color:#f92672">;</span>
     
-    private ArrayList&lt;ExamArrange&gt; arranges;
+    <span style="color:#66d9ef">private</span> ArrayList<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;</span> arranges<span style="color:#f92672">;</span>
 
-    public ExamArrangePresenter(ExamArrangeContract.View mView) {
-        this.mView = mView;
-        this.mView.setPresenter(this);
-        this.arranges = new ArrayList&lt;&gt;();
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ExamArrangePresenter</span><span style="color:#f92672">(</span>ExamArrangeContract<span style="color:#f92672">.</span><span style="color:#a6e22e">View</span> mView<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mView</span> <span style="color:#f92672">=</span> mView<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mView</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setPresenter</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">arranges</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#f92672">}</span>
 
 
-    @Override
-    public void start() {
-        mView.initialRecycler(arranges);
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        mView<span style="color:#f92672">.</span><span style="color:#a6e22e">initialRecycler</span><span style="color:#f92672">(</span>arranges<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void initialDataForRecycler() {
-		...
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialDataForRecycler</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#f92672">...</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void beginLoad(PtrFrameLayout frame) {
-        for (int i = 0; i &lt; 10; i++) {
-            arranges.add(new ExamArrange());
-        }
-        mView.notifyRefreshRecycler();
-        mView.stopRefresh();
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">beginLoad</span><span style="color:#f92672">(</span>PtrFrameLayout frame<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 10<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            arranges<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ExamArrange<span style="color:#f92672">());</span>
+        <span style="color:#f92672">}</span>
+        mView<span style="color:#f92672">.</span><span style="color:#a6e22e">notifyRefreshRecycler</span><span style="color:#f92672">();</span>
+        mView<span style="color:#f92672">.</span><span style="color:#a6e22e">stopRefresh</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    @Override
-    public void loadMore() {
-        simulateLoadMoreData();
-    }
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadMore</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        simulateLoadMoreData<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
     
-    private void simulateLoadMoreData() {
-        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .map(new Func1&lt;Long, Object&gt;() {
-                    @Override
-                    public Object call(Long aLong) {
-                        loadMoreData();
-                        mView.notifyRefreshRecycler();
-                        return null;
-                    }
-                }).subscribe();
-    }
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simulateLoadMoreData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Observable<span style="color:#f92672">.</span><span style="color:#a6e22e">timer</span><span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">,</span> AndroidSchedulers<span style="color:#f92672">.</span><span style="color:#a6e22e">mainThread</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Func1<span style="color:#f92672">&lt;</span>Long<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+                    <span style="color:#a6e22e">@Override</span>
+                    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Long aLong<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        loadMoreData<span style="color:#f92672">();</span>
+                        mView<span style="color:#f92672">.</span><span style="color:#a6e22e">notifyRefreshRecycler</span><span style="color:#f92672">();</span>
+                        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">}).</span><span style="color:#a6e22e">subscribe</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-    private void loadMoreData() {
-        List&lt;ExamArrange&gt; moreList = new ArrayList&lt;&gt;();
-        for (int i = 1; i &lt; 13; i++) {
-            ExamArrange arrange = new ExamArrange();
-            arrange.setName("fuck " + 1);
-            moreList.add(arrange);
-        }
-        arranges.addAll(moreList);
-    }
-}
-</code></pre>
-<h3 id="bind">Bind</h3>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadMoreData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>ExamArrange<span style="color:#f92672">&gt;</span> moreList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 13<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            ExamArrange arrange <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExamArrange<span style="color:#f92672">();</span>
+            arrange<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">"fuck "</span> <span style="color:#f92672">+</span> 1<span style="color:#f92672">);</span>
+            moreList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>arrange<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        arranges<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">(</span>moreList<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="bind">Bind</h3>
 <p>最后在Activity中将两者绑定。</p>
-<pre><code class="language-java">public class ExamArrangeActivity extends AppCompatActivity {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExamArrangeActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#f92672">{</span>
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exam_arrange);
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Nullable</span> Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">);</span>
+        setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_exam_arrange</span><span style="color:#f92672">);</span>
 
-        ExamArrangeFragment fragment = (ExamArrangeFragment)
-                getSupportFragmentManager().findFragmentById(R.id.exam_arrangement_contain);
+        ExamArrangeFragment fragment <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>ExamArrangeFragment<span style="color:#f92672">)</span>
+                getSupportFragmentManager<span style="color:#f92672">().</span><span style="color:#a6e22e">findFragmentById</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">exam_arrangement_contain</span><span style="color:#f92672">);</span>
 
-        if (fragment == null) {
-            fragment = ExamArrangeFragment.newInstance();
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
-                    fragment, R.id.exam_arrangement_contain);
-        }
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fragment <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            fragment <span style="color:#f92672">=</span> ExamArrangeFragment<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+            ActivityUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">addFragmentToActivity</span><span style="color:#f92672">(</span>getSupportFragmentManager<span style="color:#f92672">(),</span>
+                    fragment<span style="color:#f92672">,</span> R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">exam_arrangement_contain</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
 
-        ExamArrangePresenter presenter = new ExamArrangePresenter(fragment);
-    }
-}
-</code></pre>
-<h2 id="最后再说两句">最后再说两句</h2>
+        ExamArrangePresenter presenter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExamArrangePresenter<span style="color:#f92672">(</span>fragment<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="最后再说两句">最后再说两句</h2>
 <p>上面介绍的方法也只是MVP在Android上的一种实现方式，其实还有把Acivity当成presenter的做法，多种方式不一而足。不过使用了MVP架构之后UI和逻辑都更为清晰这也是显而易见的，希望大家能有所收获，让Android工程更为清晰。</p>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>

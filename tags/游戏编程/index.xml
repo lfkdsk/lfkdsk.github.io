@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>游戏编程 on lfkdsk&#39;s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 游戏编程 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Thu, 08 Sep 2016 16:04:42 +0000</lastBuildDate>
-    
-	<atom:link href="https://lfkdsk.github.io/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 08 Sep 2016 16:04:42 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何处理游戏中的碰撞事件</title>
       <link>https://lfkdsk.github.io/how-to-solve-co/</link>
@@ -25,8 +21,8 @@
 示例图 图示是使用了四叉树进行碰撞判断的一个图示，变成紫色的是从四叉树中拿取的离我最近的可能碰撞对象，这里我们只需要处理最近的四个对象就可以了，这个demo感谢FriceEngine的demo。
 物体分组 对Engine所加载的对象进行分层处理，每层维护一个对象列表，对可能根本不需要进行碰撞处理的对象不去处理，不会发生碰撞的层也不去处理，这样我们的O2的复杂度没变，但是我们减少了很多无用的碰撞对象，而我们想要他们碰撞也可以非常简单的切换。
 我在JustWeEngine里面就试着用了物体分组的方式
-public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围 protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; }  通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
-private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); }  然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。</description>
+public enum LayerType { Button, Default } public interface LayerListener { boolean Touch(MotionEvent event); void Collision(BaseSub baseSub); void Update(); void Draw(); } protected LayerType layerType; protected String layerName; // Layer的刷新范围也是绘制范围  protected Rect layerField; protected Screen layerScreen; public Layer(LayerType layerType, Screen layerScreen, Rect layerField) { this.setLayerType(layerType); this.layerField = layerField; this.layerScreen = layerScreen; } 通过引入Layer的概念，把不同的对象放到不同的组里面，分别进行碰撞处理。
+private ArrayList&amp;lt;Layer&amp;gt; e_layers; public interface ScreenListener { void Init(); void Load(); void Update(); void Touch(MotionEvent event); } 然后在Screen类里面就不再处理碰撞事件，而是统一的在Layer中进行处理。</description>
     </item>
     
   </channel>

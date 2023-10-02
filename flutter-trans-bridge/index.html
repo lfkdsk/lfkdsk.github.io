@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,11 +15,11 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
-      "name" : "TransBridge: Flutter/Web/Native Cross Bridge Solution",
-      "headline" : "TransBridge: Flutter/Web/Native Cross Bridge Solution",
+      "name" : "TransBridge: Flutter\/Web\/Native Cross Bridge Solution",
+      "headline" : "TransBridge: Flutter\/Web\/Native Cross Bridge Solution",
       "description" : "Due to the early development of some businesses and the large proportion of Web programs in the long-term App, there is a lot of accumulation of Web-related bridges. When developing Flutter, how to reuse the end capabilities has become the focus. Therefore, the Flutter Bridge integration solution in the design can seamlessly integrate with the existing bridge solutions on the native side, converting the default bridge into a flutter channel for use.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
@@ -28,9 +28,9 @@
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2020",
-      "datePublished": "2020-04-13 18:53:33 &#43;0000 UTC",
-      "dateModified" : "2020-04-13 18:53:33 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/flutter-trans-bridge/",
+      "datePublished": "2020-04-13 18:53:33 \u002b0000 UTC",
+      "dateModified" : "2020-04-13 18:53:33 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/flutter-trans-bridge\/",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -91,73 +91,68 @@
 <p>Based on the analysis of the Flutter Platform Channel, we can conclude that the communication implemented by Flutter on the Dart and Native sides is full-duplex asynchronous communication. Therefore, in principle, we use a single MethodChannel name for integrated transmission and communication of multiple bridges, which will not cause blocking problems in itself, and verify through pressure measurement experiments that the split transmission of the same large text (1M text in multiple asynchronous logical transmissions and a single channel transmission) will not be faster, so we can pass it through a single Bridge Channel and transfer it to the Bridge side.</p>
 <h3 id="bridge-annotation">Bridge Annotation</h3>
 <p>Take a simple show toast method as an example:</p>
-<pre><code class="language-dart">    @Bridge('Toast')
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    <span style="color:#960050;background-color:#1e0010">@</span>Bridge(<span style="color:#e6db74">'Toast'</span>)
     mixin Toast on BridgeModule {
-     @BridgeMethod()
-     Future&gt; showToast(
-       {@required String title,
-       @required int duration,
+     <span style="color:#960050;background-color:#1e0010">@</span>BridgeMethod()
+     Future<span style="color:#f92672">&gt;</span> showToast(
+       {<span style="color:#960050;background-color:#1e0010">@</span>required <span style="color:#66d9ef">String</span> title,
+       <span style="color:#960050;background-color:#1e0010">@</span>required <span style="color:#66d9ef">int</span> duration,
        Map extra});
-     @BridgeMethod()
-     Future&gt; hideToast();
+     <span style="color:#960050;background-color:#1e0010">@</span>BridgeMethod()
+     Future<span style="color:#f92672">&gt;</span> hideToast();
     }
-</code></pre>
-<p>By writing a class that uses Bridge to describe Toast, and in which showToast and hideToast corresponding to Web Bridge are implemented according to parameter needs and use<code>BridgeMethod</code>These Annotations have some parameters that can control the code generation of some specific CodeGen Processor, only the default situation is used here.</p>
+</code></pre></div><p>By writing a class that uses Bridge to describe Toast, and in which showToast and hideToast corresponding to Web Bridge are implemented according to parameter needs and use<code>BridgeMethod</code>These Annotations have some parameters that can control the code generation of some specific CodeGen Processor, only the default situation is used here.</p>
 <ul>
 <li>Code generation:</li>
 </ul>
-<pre><code class="language-shell">    flutter packages pub run build_runner build
-</code></pre>
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-shell" data-lang="shell">    flutter packages pub run build_runner build
+</code></pre></div><ul>
 <li>The result is:</li>
 </ul>
-<pre><code class="language-dart">    // GENERATED CODE - DO NOT MODIFY BY HAND
-    part of 'toast.dart';
-    // **************************************************************************
-    // BridgeGenerator
-    // **************************************************************************
-    class ToastBridge extends BridgeModule with Toast {
-     ToastBridge({BridgeClient client}) : super(client: client);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    <span style="color:#75715e">// GENERATED CODE - DO NOT MODIFY BY HAND
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">part of</span> <span style="color:#e6db74">'toast.dart'</span>;
+    <span style="color:#75715e">// **************************************************************************
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// BridgeGenerator
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// **************************************************************************
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ToastBridge</span> <span style="color:#66d9ef">extends</span> BridgeModule <span style="color:#66d9ef">with</span> Toast {
+     ToastBridge({BridgeClient client}) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(client: client);
      Future showToast({
-      @required String title,
-      @required int duration,
+      <span style="color:#960050;background-color:#1e0010">@</span>required <span style="color:#66d9ef">String</span> title,
+      <span style="color:#960050;background-color:#1e0010">@</span>required <span style="color:#66d9ef">int</span> duration,
       Map extra,
      }) {
-      var _$params = {
-       'title': title,
-       'duration': duration,
-       'extra': extra,
+      <span style="color:#66d9ef">var</span> _$params <span style="color:#f92672">=</span> {
+       <span style="color:#e6db74">'title'</span><span style="color:#f92672">:</span> title,
+       <span style="color:#e6db74">'duration'</span><span style="color:#f92672">:</span> duration,
+       <span style="color:#e6db74">'extra'</span><span style="color:#f92672">:</span> extra,
       };
-      var _$result = client.getData('TTRToast.showToast', params: _$params);
-      return _$result;
+      <span style="color:#66d9ef">var</span> _$result <span style="color:#f92672">=</span> client.getData(<span style="color:#e6db74">'TTRToast.showToast'</span>, params: _$params);
+      <span style="color:#66d9ef">return</span> _$result;
      }
      Future hideToast() {
-      var _$result = client.getData('TTRToast.hideToast');
-      return _$result;
+      <span style="color:#66d9ef">var</span> _$result <span style="color:#f92672">=</span> client.getData(<span style="color:#e6db74">'TTRToast.hideToast'</span>);
+      <span style="color:#66d9ef">return</span> _$result;
      }
     }
-</code></pre>
-<p>Generates the result of automatic splicing parameters, and according to the Web side naming, parameter rules will call Bridge Client for transmission.</p>
+</code></pre></div><p>Generates the result of automatic splicing parameters, and according to the Web side naming, parameter rules will call Bridge Client for transmission.</p>
 <p>Bridge Client Support</p>
-<pre><code class="language-dart">    */// Bridge channel.*
-    final MethodChannel _channel;
-    */// Default channel name.*
-    static const String *defaultChannelName* =
-      'com.example.hybrid.bridge-flutter';
-    */// Error emitter.*
-    final StreamController _errorEmitter =
-      new StreamController.broadcast(sync: false);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    <span style="color:#f92672">*</span><span style="color:#75715e">/// Bridge channel.*
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> MethodChannel _channel;
+    <span style="color:#f92672">*</span><span style="color:#75715e">/// Default channel name.*
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">*</span>defaultChannelName<span style="color:#f92672">*</span> <span style="color:#f92672">=</span>
+      <span style="color:#e6db74">'com.example.hybrid.bridge-flutter'</span>;
+    <span style="color:#f92672">*</span><span style="color:#75715e">/// Error emitter.*
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> StreamController _errorEmitter <span style="color:#f92672">=</span>
+      <span style="color:#66d9ef">new</span> StreamController.broadcast(<span style="color:#66d9ef">sync</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>);
     BridgeClient({
-     String channelName = *defaultChannelName*,
-    }) : _channel = MethodChannel(channelName, JSONMethodCodec()) {
+     <span style="color:#66d9ef">String</span> channelName <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>defaultChannelName<span style="color:#f92672">*</span>,
+    }) <span style="color:#f92672">:</span> _channel <span style="color:#f92672">=</span> MethodChannel(channelName, JSONMethodCodec()) {
      _channel.setMethodCallHandler(_onEvent);
     }
-</code></pre>
-<p>The Bridge Client side uses a unified Method Channel for development, which is not only compatible with the existing Bridge implemented by the Web and React Native side, but also avoids the inconvenient multi-Method Channel scheme at this stage. Due to the full duplex and asynchronous call scheme implementation of Method Channel, using a single Method Channel will not cause additional performance problems.</p>
+</code></pre></div><p>The Bridge Client side uses a unified Method Channel for development, which is not only compatible with the existing Bridge implemented by the Web and React Native side, but also avoids the inconvenient multi-Method Channel scheme at this stage. Due to the full duplex and asynchronous call scheme implementation of Method Channel, using a single Method Channel will not cause additional performance problems.</p>
 <p>You can write the following code directly by calling on the Dart side:</p>
-<pre><code class="language-dart">    client.ui.toast('xxxxx')
-</code></pre>
-<h2 id="trans-bridge-implementation">Trans Bridge Implementation</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    client.ui.toast(<span style="color:#e6db74">'xxxxx'</span>)
+</code></pre></div><h2 id="trans-bridge-implementation">Trans Bridge Implementation</h2>
 <blockquote>
 <p>Flutter’s Plugins code organization is not yet mature compared to the Method organization of various Bridge applications. Of course, Flutter is also gradually promoting the development of more convenient cross-end methods to enable better hybrid engineering.</p>
 </blockquote>
@@ -165,6 +160,7 @@
 <p>Structure</p>
 <p>Only the Trans Bridge scheme for accessing Flutter is described here. The structure contains the following modules:</p>
 <blockquote>
+</blockquote>
 <pre><code>- fluttermk
 - transbridge-core
 - transbridge-hybrid
@@ -172,7 +168,6 @@
 - transbridge-flutterimpl
 - ... other bridge impl.
 </code></pre>
-</blockquote>
 <ul>
 <li>Fluttermk: At present, flutter does not have an expedient solution for product-dependent implementations. It provides some required flutter-sdk mock interfaces on the pule-native side, and provides corresponding Adapter bindings in regular flutter-plugins. Currently, only MethodChannel related bindings are used.</li>
 </ul>
@@ -180,21 +175,26 @@
 <p>At present, Flutter’s hybrid engineering implementation should have a corresponding mvn library, hoping to better develop product-dependent solutions and reduce the implementation of similar protocols.</p>
 </blockquote>
 <ul>
-<li><p>Transbridge-core: provides abstract connection from Flutter Method Channel to generalized JsBridge Call, provides simple Call, Result, Host, Context and other related operations, leaving enough interfaces with specific bridge implementations for access.</p></li>
-<li><p>Transbridge-xxx: Flutter - Web Bridge JsBridge for different specific implementation of the difference, leaving enough available send event and call method interface for automatic binding, the current completion of the hybird jsbridge, jsbridge 2 access.</p></li>
-<li><p>Transbridge-flutterimpl: Bridge support without specifying it, no spec coupling with related platforms such as js, react native or flutter, provides a specific call and implementation of the interface described by the core module, and includes binding access to Flutter spec outside here.</p></li>
+<li>
+<p>Transbridge-core: provides abstract connection from Flutter Method Channel to generalized JsBridge Call, provides simple Call, Result, Host, Context and other related operations, leaving enough interfaces with specific bridge implementations for access.</p>
+</li>
+<li>
+<p>Transbridge-xxx: Flutter - Web Bridge JsBridge for different specific implementation of the difference, leaving enough available send event and call method interface for automatic binding, the current completion of the hybird jsbridge, jsbridge 2 access.</p>
+</li>
+<li>
+<p>Transbridge-flutterimpl: Bridge support without specifying it, no spec coupling with related platforms such as js, react native or flutter, provides a specific call and implementation of the interface described by the core module, and includes binding access to Flutter spec outside here.</p>
+</li>
 </ul>
 <h3 id="bridge-usage">Bridge Usage</h3>
 <p>When using Trans Bridge, it is very similar to the implementation of most jsbridges. For example, the above Flutter Client-side example can be implemented on the native side as:</p>
-<pre><code>    public class VLUIBridge extends BridgeMethods.ComposeMethod {
+<pre tabindex="0"><code>    public class VLUIBridge extends BridgeMethods.ComposeMethod {
       @SubMethod
       public Single showToast(IBridgeContext context, String name, JsonObject params) {
         Toast.*makeText*(getContext(), params.get("text").getAsString(), Toast.*LENGTH_SHORT*).show();
         return BridgeResult.*createSingleSuccessBridgeResult*();
       }
     }
-</code></pre>
-<h3 id="bridge-core-design">Bridge Core Design</h3>
+</code></pre><h3 id="bridge-core-design">Bridge Core Design</h3>
 <pre><code>├── AbsBridgetMethodCallHandler.java
 ├── IBridgeAuth.java
 ├── IBridgeCall.java
@@ -205,144 +205,158 @@
 </code></pre>
 <p>Bridge Core includes only the following interfaces, and the default Stub implementation of each interface to avoid interface upgrade conflicts:</p>
 <ul>
-<li><p>IBridgeCall provides a usage description for a specific Bridge</p></li>
-<li><p>AbsBridgeMethodCallHandler describes calls from FlutterMK to an IBridgeCall abstract description</p></li>
-<li><p>IBridgeContext describes the Context abstractions included in the runtime</p></li>
-<li><p>IBridgeMethod provides abstraction for concrete Bridge Method</p></li>
-<li><p>IBridgeResult provides a description of the results for Bridge</p></li>
-<li><p>IBridgeHost provides an abstraction of the Bridge call host delegate</p></li>
-<li><p>IBridgeAuth provides authentication abstraction for BridgeScope</p></li>
+<li>
+<p>IBridgeCall provides a usage description for a specific Bridge</p>
+</li>
+<li>
+<p>AbsBridgeMethodCallHandler describes calls from FlutterMK to an IBridgeCall abstract description</p>
+</li>
+<li>
+<p>IBridgeContext describes the Context abstractions included in the runtime</p>
+</li>
+<li>
+<p>IBridgeMethod provides abstraction for concrete Bridge Method</p>
+</li>
+<li>
+<p>IBridgeResult provides a description of the results for Bridge</p>
+</li>
+<li>
+<p>IBridgeHost provides an abstraction of the Bridge call host delegate</p>
+</li>
+<li>
+<p>IBridgeAuth provides authentication abstraction for BridgeScope</p>
+</li>
 </ul>
 <p>Here are some representative abstract descriptions:</p>
 <h4 id="bridgecall">BridgeCall</h4>
-<pre><code class="language-java">    public interface IBridgeCall {
-      void call(@NonNull String name, @NonNull JsonObject params, @NonNull View view, @NonNull MethodChannelMk.ResultMk result);
-    }
-</code></pre>
-<p>Bridge Call can be abstracted as a method signature description of (name, params, view, result ) =&gt; Unit. It can be considered that an abstracted bridge only needs to provide:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IBridgeCall</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">call</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@NonNull</span> String name<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> JsonObject params<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> View view<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> MethodChannelMk<span style="color:#f92672">.</span><span style="color:#a6e22e">ResultMk</span> result<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Bridge Call can be abstracted as a method signature description of (name, params, view, result ) =&gt; Unit. It can be considered that an abstracted bridge only needs to provide:</p>
 <ul>
-<li><p>Name Method name</p></li>
-<li><p>Params parameter information</p></li>
-<li><p>View for relevant spec information</p></li>
-<li><p>FlutterMk return receipt held as a result</p></li>
+<li>
+<p>Name Method name</p>
+</li>
+<li>
+<p>Params parameter information</p>
+</li>
+<li>
+<p>View for relevant spec information</p>
+</li>
+<li>
+<p>FlutterMk return receipt held as a result</p>
+</li>
 </ul>
 <p>It can be described as an abstraction of a Bridge. A spec bridge can be called and supported by the Bridge Method Call Handler through the description of the IBridgeCall interface.</p>
 <h4 id="bridgemethodcallhandler">BridgeMethodCallHandler</h4>
-<pre><code class="language-java">      @Override
-      public void onMethodCall(@NonNull MethodCallMk call, @NonNull MethodChannelMk.ResultMk result) {
-        if (call.name() == null || call.name().length() == 0) {
-          result.notImplemented();
-          return;
-        }
-        JsonObject args = (JsonObject) call.arguments();
-        bridge.call(call.name(), args, host, result);
-      }
-</code></pre>
-<p>MethodCallHandler uses FlutterMk’s Flutter Protocol to forward the Flutter-side Method Channel to an abstract description of an IBridgeCall, which can be considered as the calling process of a specific Bridge. From this step, Flutter’s actual Method Channel is converted to a specific Native-side Bridge implementation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onMethodCall</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@NonNull</span> MethodCallMk call<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> MethodChannelMk<span style="color:#f92672">.</span><span style="color:#a6e22e">ResultMk</span> result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>call<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> call<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">().</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          result<span style="color:#f92672">.</span><span style="color:#a6e22e">notImplemented</span><span style="color:#f92672">();</span>
+          <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        JsonObject args <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>JsonObject<span style="color:#f92672">)</span> call<span style="color:#f92672">.</span><span style="color:#a6e22e">arguments</span><span style="color:#f92672">();</span>
+        bridge<span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>call<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">(),</span> args<span style="color:#f92672">,</span> host<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+</code></pre></div><p>MethodCallHandler uses FlutterMk’s Flutter Protocol to forward the Flutter-side Method Channel to an abstract description of an IBridgeCall, which can be considered as the calling process of a specific Bridge. From this step, Flutter’s actual Method Channel is converted to a specific Native-side Bridge implementation.</p>
 <h4 id="bridgemethod">BridgeMethod</h4>
-<pre><code class="language-java">    public interface IBridgeMethod {
-      EnumSet getType();
-      Single call(IBridgeContext context, String name, JsonObject params);
-    }
-</code></pre>
-<p>The abstraction of BridgeMethod only provides MethodTypes saved through EnumSet, which we then implement for different MethodTypes to handle various permission processing, async or sync call processes separately. And the main method<code>call</code>That is, the above IBridgeCall call scheme for Bridge support.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IBridgeMethod</span> <span style="color:#f92672">{</span>
+      EnumSet <span style="color:#a6e22e">getType</span><span style="color:#f92672">();</span>
+      Single <span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>IBridgeContext context<span style="color:#f92672">,</span> String name<span style="color:#f92672">,</span> JsonObject params<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The abstraction of BridgeMethod only provides MethodTypes saved through EnumSet, which we then implement for different MethodTypes to handle various permission processing, async or sync call processes separately. And the main method<code>call</code>That is, the above IBridgeCall call scheme for Bridge support.</p>
 <p>IBridgeMethod also supports the specialization of many types of methods, such as Public, Private, Protected attributes for management Bridge permission control and ASync, Sync, Compose and other attributes can be used according to needs. And in flutter-impl support implements a simple registration mode for various combination types of Annotation.</p>
 <h4 id="bridge-spec-impl">Bridge Spec Impl</h4>
 <p>The Spec Impl here specifies the Spec specialization of the Trans-Bridge to a specific JSBridge, which is different from the full set of JSBridge implementations implemented by flutter-impl. On top of a specific Bridge transformation, more is how to convert the abstract methods and invocation methods described by Bridge-Core to a corresponding Bridge implementation, or by wrapping the abstract method into the method package of the specific Bridge. Currently, it has been implemented to connect to the other bridges.</p>
 <p>For example, the above figure is a concrete implementation of converting this straddle bridge solution to jsbridge2. Flutter Bridge Impl only realizes the relevant functions of Flutter Mk’s Protocol Adapter. The core JsBridge2Call describes how to abstract jsbridge2 to the implementation of IBridgeCall:</p>
-<pre><code class="language-java">    public class Jsbridge2Call extends IBridgeCall.BridgeCallStub {
-      private final JsBridge2 bridge;
-      private final FlutterBridgeImpl actualBridge;
-      public Jsbridge2Call(MethodChannelMk channelMk) {
-        Environment env = JsBridge2.*create*().setCustomBridge(new FlutterBridgeImpl(channelMk));
-        this.actualBridge = (FlutterBridgeImpl) env.getCustomBridge();
-        this.bridge = env.build();
-      }
-      @Override
-      public void call(@NonNull String name, @NonNull JsonObject params, @NonNull View view, @NonNull MethodChannelMk.ResultMk result) {
-        Js2JavaCall call = Js2JavaCall.*builder*()
-            .setMethodName(name)
-            .setCallbackId("invalid")
-            .setType("invalid")
-            .setVersion("1.0")
-            .setNamespace("host")
-            .setParams(params.toString())
-            .build();
-        this.actualBridge.setResultMk(call,result);
-        this.actualBridge.invokeMethod(call);
-      }
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Jsbridge2Call</span> <span style="color:#66d9ef">extends</span> IBridgeCall<span style="color:#f92672">.</span><span style="color:#a6e22e">BridgeCallStub</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> JsBridge2 bridge<span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> FlutterBridgeImpl actualBridge<span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Jsbridge2Call</span><span style="color:#f92672">(</span>MethodChannelMk channelMk<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Environment env <span style="color:#f92672">=</span> JsBridge2<span style="color:#f92672">.*</span>create<span style="color:#f92672">*().</span><span style="color:#a6e22e">setCustomBridge</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FlutterBridgeImpl<span style="color:#f92672">(</span>channelMk<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">actualBridge</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>FlutterBridgeImpl<span style="color:#f92672">)</span> env<span style="color:#f92672">.</span><span style="color:#a6e22e">getCustomBridge</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bridge</span> <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+      <span style="color:#f92672">}</span>
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">call</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@NonNull</span> String name<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> JsonObject params<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> View view<span style="color:#f92672">,</span> <span style="color:#a6e22e">@NonNull</span> MethodChannelMk<span style="color:#f92672">.</span><span style="color:#a6e22e">ResultMk</span> result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Js2JavaCall call <span style="color:#f92672">=</span> Js2JavaCall<span style="color:#f92672">.*</span>builder<span style="color:#f92672">*()</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setMethodName</span><span style="color:#f92672">(</span>name<span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setCallbackId</span><span style="color:#f92672">(</span><span style="color:#e6db74">"invalid"</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setType</span><span style="color:#f92672">(</span><span style="color:#e6db74">"invalid"</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setVersion</span><span style="color:#f92672">(</span><span style="color:#e6db74">"1.0"</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setNamespace</span><span style="color:#f92672">(</span><span style="color:#e6db74">"host"</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">setParams</span><span style="color:#f92672">(</span>params<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">())</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">actualBridge</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setResultMk</span><span style="color:#f92672">(</span>call<span style="color:#f92672">,</span>result<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">actualBridge</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>call<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 
-</code></pre>
-<p>This communication with Amano opened up the internal bridge call method, and constructed the parameters of the call parameters through the built-in data class Js2JavaCall of jsbridge2. The specific invoke process was later implemented in the implementation of FlutterBridgeImpl, invoke Js and invodeJsCallBack, but only forwarded part of the FlutterMk implementation Protocol.</p>
-<pre><code class="language-dart">    @Override
-    protected void invokeJs(String params) {
-      JsonObject obj = *gson*.fromJson(params, JsonObject.class);
-      channelMk.invokeMethod(obj.get("__event_id").getAsString(), obj.getAsJsonObject("__params"));
+</code></pre></div><p>This communication with Amano opened up the internal bridge call method, and constructed the parameters of the call parameters through the built-in data class Js2JavaCall of jsbridge2. The specific invoke process was later implemented in the implementation of FlutterBridgeImpl, invoke Js and invodeJsCallBack, but only forwarded part of the FlutterMk implementation Protocol.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    <span style="color:#960050;background-color:#1e0010">@</span>Override
+    protected <span style="color:#66d9ef">void</span> invokeJs(<span style="color:#66d9ef">String</span> params) {
+      JsonObject obj <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>gson<span style="color:#f92672">*</span>.fromJson(params, JsonObject.class);
+      channelMk.invokeMethod(obj.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">"__event_id"</span>).getAsString(), obj.getAsJsonObject(<span style="color:#e6db74">"__params"</span>));
     }
-    @Override
-    protected void invokeJsCallback(String data, @Nullable Js2JavaCall call) {
-      if (call == null || resultMkMap.get(call) == null) {
-        return;
+    <span style="color:#960050;background-color:#1e0010">@</span>Override
+    protected <span style="color:#66d9ef">void</span> invokeJsCallback(<span style="color:#66d9ef">String</span> data, <span style="color:#960050;background-color:#1e0010">@</span>Nullable Js2JavaCall call) {
+      <span style="color:#66d9ef">if</span> (call <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> resultMkMap.<span style="color:#66d9ef">get</span>(call) <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+        <span style="color:#66d9ef">return</span>;
       }
-      JsonObject obj = *gson*.fromJson(data, JsonObject.class);
-      int code = obj.get("code").getAsInt();
-      String resultData = obj.get("__data").getAsString();
-      MethodChannelMk.ResultMk resultMk = resultMkMap.get(call);
-      // TODO: result value callback
-      this.resultMkMap.remove(call);
+      JsonObject obj <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>gson<span style="color:#f92672">*</span>.fromJson(data, JsonObject.class);
+      <span style="color:#66d9ef">int</span> code <span style="color:#f92672">=</span> obj.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">"code"</span>).getAsInt();
+      <span style="color:#66d9ef">String</span> resultData <span style="color:#f92672">=</span> obj.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">"__data"</span>).getAsString();
+      MethodChannelMk.ResultMk resultMk <span style="color:#f92672">=</span> resultMkMap.<span style="color:#66d9ef">get</span>(call);
+      <span style="color:#75715e">// TODO: result value callback
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">this</span>.resultMkMap.remove(call);
     }
-</code></pre>
-<h3 id="flutter-impl">Flutter Impl</h3>
+</code></pre></div><h3 id="flutter-impl">Flutter Impl</h3>
 <p>Flutter-impl is a concrete implementation of a description scheme in Bridge-Core. If there is no particularly strong demand for jsbridge support on the end, integrated cross-end projects will be directly connected to the implementation of Flutter-Impl. Most of the functions can be understood as a no-platform-spec bridge design, and we will only explain and describe some of the features in the introduction here.</p>
 <p>The implementation of Transbridge provides the use of binding to the lifecycle (although it may not be used), provides the abstraction of Host Delegate, binds to the lifecycle of Activity and the cycle of View, and will automatically destroy according to the lifecycle:</p>
-<pre><code class="language-dart">    public void addModule(View view, final Object key, Object module, boolean isWeak) {
-      int id = ViewIDMarker.*ensureBridgeId*(view);
-      Map map = mModules.get(key);
-      if (map == null) {
-        map = new ConcurrentHashMap&lt;&gt;();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    public <span style="color:#66d9ef">void</span> addModule(View view, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">Object</span> key, <span style="color:#66d9ef">Object</span> module, boolean isWeak) {
+      <span style="color:#66d9ef">int</span> id <span style="color:#f92672">=</span> ViewIDMarker.<span style="color:#f92672">*</span>ensureBridgeId<span style="color:#f92672">*</span>(view);
+      Map map <span style="color:#f92672">=</span> mModules.<span style="color:#66d9ef">get</span>(key);
+      <span style="color:#66d9ef">if</span> (map <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+        map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;</span>();
         mModules.put(key, map);
       }
-      map.put(id, isWeak ? new WeakReference&lt;&gt;(module) : module);
-      if (view != null) {
+      map.put(id, isWeak <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> WeakReference<span style="color:#f92672">&lt;&gt;</span>(module) <span style="color:#f92672">:</span> module);
+      <span style="color:#66d9ef">if</span> (view <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
         view.addOnAttachStateChangeListener(...);
       }
     }
-</code></pre>
-<p>Among them, the View ID Marker is provided through the lock-free mode of CAS, that is, it can quickly add Tag to the bundled View so that it can be quickly bound and processed when calling. In the bound view, in addition to more convenient binding life cycle, it can also get more specific data and information based on the implementation of different platforms (such as FlutterView and ReactNativeView) according to the Platform View.</p>
+</code></pre></div><p>Among them, the View ID Marker is provided through the lock-free mode of CAS, that is, it can quickly add Tag to the bundled View so that it can be quickly bound and processed when calling. In the bound view, in addition to more convenient binding life cycle, it can also get more specific data and information based on the implementation of different platforms (such as FlutterView and ReactNativeView) according to the Platform View.</p>
 <p>In the overall data model, it can be considered that the bridge-method is preloaded, and the corresponding Host Delegate only adds a temporary entry-pointer to the call bridge. However, after the life cycle is destructed, the entry-pointer of this temporary response cannot be called.</p>
-<pre><code class="language-dart">    public interface IBridgeHook extends IBridgeMethod {
-      // *TODO:* *add others hook type.*
-      enum HookType {
-    //     PRE,
-        *CONVERT*,
-    //     POST
-      }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    public interface IBridgeHook <span style="color:#66d9ef">extends</span> IBridgeMethod {
+      <span style="color:#75715e">// *TODO:* *add others hook type.*
+</span><span style="color:#75715e"></span>      enum HookType {
+    <span style="color:#75715e">//     PRE,
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">*</span>CONVERT<span style="color:#f92672">*</span>,
+    <span style="color:#75715e">//     POST
+</span><span style="color:#75715e"></span>      }
       HookType hookType();
     }
     public interface IGhostHook {
-      Single onGhostHooks(IBridgeContext context, String name, JsonObject params);
+      Single onGhostHooks(IBridgeContext context, <span style="color:#66d9ef">String</span> name, JsonObject params);
     }
-</code></pre>
-<p>On top of the overall process according to the Bridge-Core given Context, Result, Method, Auth specific implementation, and provides a variety of manual support business Hook, GhostMethod Hook redefinition, unified processing can not be invoked Ghost Method.</p>
-<pre><code class="language-dart">    for (final Method declaredMethod : clazz.getDeclaredMethods()) {
-      SubMethod subMethod = declaredMethod.getAnnotation(SubMethod.class);
-      if (subMethod == null) {
-        continue;
+</code></pre></div><p>On top of the overall process according to the Bridge-Core given Context, Result, Method, Auth specific implementation, and provides a variety of manual support business Hook, GhostMethod Hook redefinition, unified processing can not be invoked Ghost Method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-dart" data-lang="dart">    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">final</span> Method declaredMethod <span style="color:#f92672">:</span> clazz.getDeclaredMethods()) {
+      SubMethod subMethod <span style="color:#f92672">=</span> declaredMethod.getAnnotation(SubMethod.class);
+      <span style="color:#66d9ef">if</span> (subMethod <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+        <span style="color:#66d9ef">continue</span>;
       }
-      this.register(name + '.' + declaredMethod.getName(), new BridgeMethods.PublicMethod() {
-        @Override
-        public Single call(IBridgeContext context, String name, JsonObject params) {
-          try {
-            return (Single) declaredMethod.invoke(method, context, name, params);
-          } catch (IllegalAccessException | InvocationTargetException e) {
+      <span style="color:#66d9ef">this</span>.register(name <span style="color:#f92672">+</span> <span style="color:#e6db74">'.'</span> <span style="color:#f92672">+</span> declaredMethod.getName(), <span style="color:#66d9ef">new</span> BridgeMethods.PublicMethod() {
+        <span style="color:#960050;background-color:#1e0010">@</span>Override
+        public Single call(IBridgeContext context, <span style="color:#66d9ef">String</span> name, JsonObject params) {
+          <span style="color:#66d9ef">try</span> {
+            <span style="color:#66d9ef">return</span> (Single) declaredMethod.invoke(method, context, name, params);
+          } <span style="color:#66d9ef">catch</span> (IllegalAccessException <span style="color:#f92672">|</span> InvocationTargetException e) {
             e.printStackTrace();
           }
-          return BridgeResult.*createSingleErrorBridgeResult*(name);
+          <span style="color:#66d9ef">return</span> BridgeResult.<span style="color:#f92672">*</span>createSingleErrorBridgeResult<span style="color:#f92672">*</span>(name);
         }
       });
-</code></pre>
-<p>In terms of Method registration, different registration schemes are also provided for the specific implementation of various Method Types. For example, the calling scheme using Compose Method can use @SubMethod to describe multiple Methods to design a group of non-independent Bridge Methods that can share states. And through Call to Observable, it is also very easy to implement the scheme that Async or Sync methods are called by value throughout the process.</p>
+</code></pre></div><p>In terms of Method registration, different registration schemes are also provided for the specific implementation of various Method Types. For example, the calling scheme using Compose Method can use @SubMethod to describe multiple Methods to design a group of non-independent Bridge Methods that can share states. And through Call to Observable, it is also very easy to implement the scheme that Async or Sync methods are called by value throughout the process.</p>
 <h2 id="summary">Summary</h2>
 <p>This article explains the design and implementation of Flutter’s cross-end Bridge solution at present and for a period of time. Mainly from how to design a cross-end infrastructure design, how to split the fine grain and business-friendly fine grain modules, and how to integrate with the existing Native infrastructure in the Flutter life cycle. This also reminds us that when we design the architecture, we should also take into account the historical process. The project structure and call process that are too different from the original architecture are easy to be inconsistent. How to think about more generic architecture design can improve the universality and maintainability of the project. How to make the project have a better development experience and business friendliness is also the direction that Flutter officials and our Flutter Infra will strive for in the future.</p>
 </div>

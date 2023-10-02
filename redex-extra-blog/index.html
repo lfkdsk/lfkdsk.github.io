@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,21 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "抖音 Android 包体积优化探索：基于 ReDex 的 DEX 优化落地实践",
       "headline" : "抖音 Android 包体积优化探索：基于 ReDex 的 DEX 优化落地实践",
-      "description" : "本文为作者工作内容外发文章的转载 原文链接
-本文作者：冯瑞；廖斌斌；刘丰恺
- 前言 应用安装包的体积会显著影响应用的下载速度和安装速度，按照 Google 的经验数据，包体积每增加 1M 会造成 0.17%的新增折损。抖音的一些实验也证明了包体积会显著影响下载激活的转化率。
-Android 的安装包是 APK 格式的，在抖音的安装包中 DEX 的体积占比达到了 40%以上，所以针对 DEX 的体积优化是一种行之有效的包体积优化手段。
-DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对字节码进行业务无感的通用优化成为我们的一个探索方向。
-优化结果 终端基础技术团队和抖音基础技术团队在过去的一年里，利用 ReDex 在抖音包体积优化方面取得了一些明显的收益，这些优化也被同步到了其他各大 App 上。
-在抖音、头条和其他应用上，我们的优化对 APK 体积的缩减普遍达到了 4%以上，对 DEX 体积的缩减则可以达到 8% ~ 10%
-优化思路 在 android 应用的构建过程中，Java/Kotlin 代码会先被编译成 Class 字节码，在这个阶段 gradle 提供了 Transformer 可以进行字节码的自定义处理，很多插件都是在这个阶段处理字节码的。然后，Class 文件经过 dexBuilder/mergeDex 等任务的处理会生成 DEX 文件，并最终被打进安装包中。整个过程如下所示：
-所以，针对字节码的优化是有 2 个时机可以进行的:
- 在 transformer 阶段对 Class 字节码进行优化 在 DEX 阶段对 DEX 文件进行优化  显然，对 DEX 进行优化是更理想的一种方式，因为在 DEX 文件中，除了字节码指令外，还存在跨 DEX 引用、字符串池这样的结构，针对这些 DEX 格式的优化是无法在 transformer 阶段进行的。",
+      "description" : "本文为作者工作内容外发文章的转载 原文链接\n本文作者：冯瑞；廖斌斌；刘丰恺\n 前言 应用安装包的体积会显著影响应用的下载速度和安装速度，按照 Google 的经验数据，包体积每增加 1M 会造成 0.17%的新增折损。抖音的一些实验也证明了包体积会显著影响下载激活的转化率。\nAndroid 的安装包是 APK 格式的，在抖音的安装包中 DEX 的体积占比达到了 40%以上，所以针对 DEX 的体积优化是一种行之有效的包体积优化手段。\nDEX 本质上是由 Java\/Kotlin 代码编译而成的字节码，因此，针对字节码进行业务无感的通用优化成为我们的一个探索方向。\n优化结果 终端基础技术团队和抖音基础技术团队在过去的一年里，利用 ReDex 在抖音包体积优化方面取得了一些明显的收益，这些优化也被同步到了其他各大 App 上。\n在抖音、头条和其他应用上，我们的优化对 APK 体积的缩减普遍达到了 4%以上，对 DEX 体积的缩减则可以达到 8% ~ 10%\n优化思路 在 android 应用的构建过程中，Java\/Kotlin 代码会先被编译成 Class 字节码，在这个阶段 gradle 提供了 Transformer 可以进行字节码的自定义处理，很多插件都是在这个阶段处理字节码的。然后，Class 文件经过 dexBuilder\/mergeDex 等任务的处理会生成 DEX 文件，并最终被打进安装包中。整个过程如下所示：\n所以，针对字节码的优化是有 2 个时机可以进行的:\n 在 transformer 阶段对 Class 字节码进行优化 在 DEX 阶段对 DEX 文件进行优化  显然，对 DEX 进行优化是更理想的一种方式，因为在 DEX 文件中，除了字节码指令外，还存在跨 DEX 引用、字符串池这样的结构，针对这些 DEX 格式的优化是无法在 transformer 阶段进行的。",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -37,9 +28,9 @@ DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2022",
-      "datePublished": "2022-06-12 16:55:16 &#43;0800 CST",
-      "dateModified" : "2022-06-12 16:55:16 &#43;0800 CST",
-      "url" : "https://lfkdsk.github.io/redex-extra-blog/",
+      "datePublished": "2022-06-12 16:55:16 \u002b0800 CST",
+      "dateModified" : "2022-06-12 16:55:16 \u002b0800 CST",
+      "url" : "https:\/\/lfkdsk.github.io\/redex-extra-blog\/",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -146,25 +137,22 @@ DEX 本质上是由 Java/Kotlin 代码编译而成的字节码，因此，针对
 <h4 id="constantpropagationpass"><strong>ConstantPropagationPass</strong></h4>
 <p>该 Pass 实际上包含了常量折叠和常量传播。</p>
 <p>常量折叠是在编译期简化常量的过程，比如</p>
-<pre><code class="language-Java">y = 7 - 14 / 2
----&gt;
-y = 0
-</code></pre>
-<p>常量传播是在编译期替代指令中已知常量的过程，比如</p>
-<pre><code class="language-Java">int x = 14;
-int y = 7 - x / 2;
-return y * (28 / x + 2);
----&gt;
-int x = 14;
-int y = 7 - 14 / 2;
-return (7 - 14 / 2) * (28 / 14 + 2);
-</code></pre>
-<p>上面的例子经过 常量折叠 + 常量传播优化后就会简化为</p>
-<pre><code class="language-Java">int x = 14;
-int y = 0;
-return 0;
-</code></pre>
-<p>再经过死代码删除就可以最终变为<code>return 0</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-Java" data-lang="Java">y <span style="color:#f92672">=</span> 7 <span style="color:#f92672">-</span> 14 <span style="color:#f92672">/</span> 2
+<span style="color:#f92672">---&gt;</span>
+y <span style="color:#f92672">=</span> 0
+</code></pre></div><p>常量传播是在编译期替代指令中已知常量的过程，比如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 14<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 7 <span style="color:#f92672">-</span> x <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">return</span> y <span style="color:#f92672">*</span> <span style="color:#f92672">(</span>28 <span style="color:#f92672">/</span> x <span style="color:#f92672">+</span> 2<span style="color:#f92672">);</span>
+<span style="color:#f92672">---&gt;</span>
+<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 14<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 7 <span style="color:#f92672">-</span> 14 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>7 <span style="color:#f92672">-</span> 14 <span style="color:#f92672">/</span> 2<span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span>28 <span style="color:#f92672">/</span> 14 <span style="color:#f92672">+</span> 2<span style="color:#f92672">);</span>
+</code></pre></div><p>上面的例子经过 常量折叠 + 常量传播优化后就会简化为</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 14<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
+</code></pre></div><p>再经过死代码删除就可以最终变为<code>return 0</code>。</p>
 <p>具体的优化过程是：</p>
 <ol>
 <li>对方法进行数据流分析，主要针对 const/move 等指令，得出一个寄存器在某个位置可能的取值</li>
@@ -214,21 +202,23 @@ return 0;
 <p>但是<code>-repackageclasses 'X'</code>的处理会影响 ReDex 的 InterDexPass 的算法逻辑(InterDexPass 可以参考下文)，导致收益缩减</p>
 <ul>
 <li>收益测试</li>
-<li>- Proguard <code>-repackageclasses 'X'</code> 收益: 600K+
-
+<li>
 <ul>
+<li>Proguard <code>-repackageclasses 'X'</code> 收益: 600K+</li>
 <li>Redex <code>InterDexPass</code> 收益: 400K+</li>
 <li>同时应用 Proguard <code>-repackageclasses 'X'</code> 和 Redex <code>InterDexPass</code> 收益: 40K+</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>本质原因在于 Proguard 重命名后，影响了 InterDexPass 函数引用权重分配，导致 InterDex 收益被回收</p>
 <ul>
 <li>解决方案</li>
-<li>- InterDexPass 深入分析原理，优化权重算法
-
+<li>
 <ul>
+<li>InterDexPass 深入分析原理，优化权重算法</li>
 <li>先执行 InterDexPass，后执行类似 Proguard 的<code>-repackageclasses 'X'</code></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>权重算法优化相对来说比较复杂，同时存在众多不可确定性，比如潜在的跟其他优化的冲突，所以我们采取了第二种解决方案。</p>
 <p>这里需要解决的一个关键点在于如何确定一个类名是否可以被安全的重命名，我们采取了一个比较取巧的方式，ReDex 会分析 Proguard 传递上来 mapping.txt 文件，只要我们保持跟 Proguard 类重命名优化一样的处理策略，就不会引发反射/native 调用/序列化等一系列问题。</p>
@@ -237,29 +227,26 @@ return 0;
 <h4 id="stringbuilderoutlinerpass"><strong>StringBuilderOutlinerPass</strong></h4>
 <p>该 Pass 是针对 StringBuilder 的 CallSites 进行分析缩略的优化，与死代码删除搭配使用可以有不错的优化效果。</p>
 <p>为何要优化 <code>StringBuilder</code> 呢？在 Java 的代码开发过程中，字符串操作几乎是我们最经常做的一件事情，无论是实际处理字符串拼接还是各种不同数据类型之间的拼接操作。而这些拼接操作都会被 Java 的 <code>de-sugar</code> 优化为 StringBuilder 操作。比如：<code>var log = "A" + 1 + "B" + 1.0f + other_var;</code> 会被优化为：</p>
-<pre><code class="language-go">StringBuilder builder = new StringBuilder();
-builder.append("A"); builder.append(1);
-builder.append("B"); builder.append(1.0f);
-builder.append(other_var);
-builder.toString();
-</code></pre>
-<p>因此我们对 StringBuilder 的所有 Callsites 进行分析，在最好情况下多个方法调用可以被优化为一个调用，这个方法是一个 outline （外联）方法，具体的参数拼接和 toString 被隐藏在函数内部：</p>
-<pre><code class="language-bash">invoke-static {v1, v2, v3} Outline;.bind:([Ljava/lang/Object)Ljava/lang/String;
-</code></pre>
-<p>优化步骤可以被简单的分为如下几个步骤：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-go" data-lang="go"><span style="color:#a6e22e">StringBuilder</span> <span style="color:#a6e22e">builder</span> = <span style="color:#a6e22e">new</span> <span style="color:#a6e22e">StringBuilder</span>();
+<span style="color:#a6e22e">builder</span>.append(<span style="color:#e6db74">"A"</span>); <span style="color:#a6e22e">builder</span>.append(<span style="color:#ae81ff">1</span>);
+<span style="color:#a6e22e">builder</span>.append(<span style="color:#e6db74">"B"</span>); <span style="color:#a6e22e">builder</span>.append(<span style="color:#ae81ff">1.0</span><span style="color:#a6e22e">f</span>);
+<span style="color:#a6e22e">builder</span>.append(<span style="color:#a6e22e">other_var</span>);
+<span style="color:#a6e22e">builder</span>.<span style="color:#a6e22e">toString</span>();
+</code></pre></div><p>因此我们对 StringBuilder 的所有 Callsites 进行分析，在最好情况下多个方法调用可以被优化为一个调用，这个方法是一个 outline （外联）方法，具体的参数拼接和 toString 被隐藏在函数内部：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-bash" data-lang="bash">invoke-static <span style="color:#f92672">{</span>v1, v2, v3<span style="color:#f92672">}</span> Outline;.bind:<span style="color:#f92672">([</span>Ljava/lang/Object<span style="color:#f92672">)</span>Ljava/lang/String;
+</code></pre></div><p>优化步骤可以被简单的分为如下几个步骤：</p>
 <ol>
 <li>生成一个泛型的外联方法、以及数个特定参数的方法：我们可以认为生成的方法大概是这样的</li>
 </ol>
-<pre><code class="language-Java">@Keep
-public static String bind(Object... args) {
-    StringBuilder builder = new StringBuilder();
-    for (int i = 0; i &lt; args.length ; i++) {
-        builder.append(args[i]);
-    }
-    return builder.toString();
-}
-</code></pre>
-<ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-Java" data-lang="Java"><span style="color:#a6e22e">@Keep</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span>Object<span style="color:#f92672">...</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    StringBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> args<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>args<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">return</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol>
 <li>收集 <code>StringBuilder</code> 的 CallSites ：通过抽象解释和不动点分析，分析所有的 StringBuilder 操作，对 append、new-instance、和 init 方法分类。判断每次 append 的参数是不是 immutable 操作，如果增加的 insn 少于减少的 insn 即会减少代码，就对这里进行处理。</li>
 <li>生成外联方法调用：由于我们使用了泛型方法来接受参数，因此我们要对基础类型生成 ValueOf 的转换操作、并且删除 <code>append</code> 方法前为了防止被错误优化我们还需要插入 move 指令来 copy 原有参数（这些 move 指令会被后续优化正确删除）、如果参数个数还在我们生成的特定 outline 方法范围内我们就可以使用特定方法来生成外联函数，其余的将使用泛化的外联来接受。</li>
 </ol>
@@ -280,43 +267,39 @@ public static String bind(Object... args) {
 <p>在字节码中，<code>invoke-virtual/interface</code>指令需要一个方法引用，在很多情况下，这个引用指向的是子类或者实现类的引用，把这个引用替换成父类和接口的方法引用不会影响运行时逻辑，同时会减少 DEX 中方法引用的数量。在生成 DEX 的时候，方法引用的 65536 限制通常是最先遇到的瓶颈，该优化也可以缓解这种情况。</p>
 <p><img alt="" src="graph4.svg"/></p>
 <p>如上图所示，优化前 caller 方法的 invoke 指令使用的是子类引用，其伪指令如下所示，需要用到 2 个引用</p>
-<pre><code>new-instance v0, Sub1
+<pre tabindex="0"><code>new-instance v0, Sub1
 invoke-virtual v0, Sub1.a()
 new-instance v1, Sub2
 invoke-virtual v1, Sub2.a()
-</code></pre>
-<p>优化后，invoke 指令都指向其父类应用，2 个引用可以合并为 1 个，减少了 DEX 中的引用数量</p>
-<pre><code class="language-arduino">new-instance v0, Sub1
-invoke-virtual v0, Base.a()
-new-instance v1, Sub2
-invoke-virtual v1, Base.a()
-</code></pre>
-<h3 id="针对编程语言的优化">针对编程语言的优化</h3>
+</code></pre><p>优化后，invoke 指令都指向其父类应用，2 个引用可以合并为 1 个，减少了 DEX 中的引用数量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-arduino" data-lang="arduino"><span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>instance v0, Sub1
+invoke<span style="color:#f92672">-</span><span style="color:#66d9ef">virtual</span> v0, Base.a()
+<span style="color:#66d9ef">new</span><span style="color:#f92672">-</span>instance v1, Sub2
+invoke<span style="color:#f92672">-</span><span style="color:#66d9ef">virtual</span> v1, Base.a()
+</code></pre></div><h3 id="针对编程语言的优化">针对编程语言的优化</h3>
 <h4 id="kotlindataclasspass"><strong>KotlinDataClassPass</strong></h4>
 <p>该 Pass 是对 Kotlin data class 的优化，基本思路是对 data class 的生成代码进行精简。</p>
 <ul>
 <li>解构声明优化</li>
 </ul>
 <p>Kotlin 中存在解构声明这种语法，可以更方便的创建多个变量，基本用法如下</p>
-<pre><code class="language-kotlin">data class Person(val name: String，val age: Int)
-val (name，age) = person("John"，20)
-</code></pre>
-<p>kotlinc 会为<code>Person</code>类生成 get 方法和 componentN 方法，如下是伪代码表示</p>
-<pre><code class="language-kotlin"> Person {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(<span style="color:#66d9ef">val</span> name: String<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">val</span> age: Int)
+<span style="color:#66d9ef">val</span> <span style="color:#960050;background-color:#1e0010">(</span>name<span style="color:#960050;background-color:#1e0010">，</span>age) = person(<span style="color:#e6db74">"John"</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">20</span>)
+</code></pre></div><p>kotlinc 会为<code>Person</code>类生成 get 方法和 componentN 方法，如下是伪代码表示</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-kotlin" data-lang="kotlin"> Person {
      String name;
      Int age;
 
-     getName(): String { return name; }
-     getAge(): Int { return age; }
-     component1(): String { return name; }
-     component2(): Int { return age; }
+     getName(): String { <span style="color:#66d9ef">return</span> name; }
+     getAge(): Int { <span style="color:#66d9ef">return</span> age; }
+     component1(): String { <span style="color:#66d9ef">return</span> name; }
+     component2(): Int { <span style="color:#66d9ef">return</span> age; }
  }
 
-// 解构声明编译为
-val name = person.component12 1()
-val age = person.component2()
-</code></pre>
-<p>可以看到，get 和 component 的逻辑是一样的，所以在编译期，可以进行全局的匹配，用 get 替换掉 component，然后再删除 component。</p>
+<span style="color:#75715e">// 解构声明编译为
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> name = person.component12 <span style="color:#ae81ff">1</span>()
+<span style="color:#66d9ef">val</span> age = person.component2()
+</code></pre></div><p>可以看到，get 和 component 的逻辑是一样的，所以在编译期，可以进行全局的匹配，用 get 替换掉 component，然后再删除 component。</p>
 <ul>
 <li>toString 等生成方法优化</li>
 </ul>
@@ -327,13 +310,12 @@ val age = person.component2()
 <p>DEX 及其他文件经过压缩打成 APK，如果能通过改变 DEX 的内容来提升压缩率，那么也会减小最终的包体积。RegAllocPass 就是通过重新分配寄存器来提升压缩率的。</p>
 <p>dx 生成 DEX 时使用的是线性寄存器分配算法，其基本步骤是进行存活变量分析，然后计算出每个变量的活跃区间，再根据活跃区间依次为变量分配寄存器，超出活跃区间的寄存器可以进行再分配，其优点是运行速度快，但结果往往不是最优的。</p>
 <p>比如下面的代码，dx 分配了 6 个寄存器，v0 ~ v5</p>
-<pre><code class="language-kotlin">public static double calculateLuminance(@ColorInt int color) {
-    final double[] result = getTempDouble3Array();
-    colorToXYZ(color，result);
-    return result[1] / 100;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">public</span> static double calculateLuminance(<span style="color:#a6e22e">@ColorInt</span> int color) {
+    <span style="color:#66d9ef">final</span> double[] result = getTempDouble3Array();
+    colorToXYZ(color<span style="color:#960050;background-color:#1e0010">，</span>result);
+    <span style="color:#66d9ef">return</span> result[<span style="color:#ae81ff">1</span>] / <span style="color:#ae81ff">100</span>;
 }
-</code></pre>
-<p><img alt="图片" src="code5.png"/></p>
+</code></pre></div><p><img alt="图片" src="code5.png"/></p>
 <p>相对的，ReDex 使用了图着色算法进行寄存器分配，基本步骤是进行存活变量分析，并构建冲突图，冲突图的每个节点是一个变量，如果 2 个变量可以同时存活，就在两个节点之间建立边，最后为冲突图着色，每个颜色代表一个寄存器，着色完成即寄存器分配完成。着色法相对更慢，结果一般更优。对上面同样的代码，着色法使用了 4 个寄存器，v0 ~ v3。</p>
 <p><img alt="图片" src="code6.png"/></p>
 <p>DEX 中的方法使用的寄存器越少，其内容重复率就越高，压缩率也会更大，从而减小了包体积。</p>
@@ -349,23 +331,22 @@ val age = person.component2()
 <ol>
 <li>空方法优化问题 代码中可能存在一些空方法，排除掉反射和 natvie 调用等场景后，剩下的空方法应该是可以删除的。但是在做优化时，却遇到了 crash，如以下代码</li>
 </ol>
-<pre><code class="language-kotlin">object XXPreloadSDKHelper {
-    init {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">object</span> <span style="color:#a6e22e">XXPreloadSDKHelper</span> {
+    <span style="color:#66d9ef">init</span> {
         initXXPreloadSDK()
     }
-    fun fakeInit() {
+    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">fakeInit</span>() {
     }
 }
 
-// 初始化任务
-public class XXInitTask implements Runnable {
-    @Override
-    public void run() {
+<span style="color:#75715e">// 初始化任务
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XXInitTask</span> implements Runnable {
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> void run() {
         XXPreloadSDKHelper.INSTANCE.fakeInit();
     }
 }
-</code></pre>
-<p>在初始化代码中调用<code>fakeInit</code>，它是一个空方法，调用它的目的是触发<code>XXSDKHelper</code>类加载从而执行<code>init</code>语句块，如果删除了这个空方法，就会导致初始化未执行，在后续的流程中抛空指针。</p>
+</code></pre></div><p>在初始化代码中调用<code>fakeInit</code>，它是一个空方法，调用它的目的是触发<code>XXSDKHelper</code>类加载从而执行<code>init</code>语句块，如果删除了这个空方法，就会导致初始化未执行，在后续的流程中抛空指针。</p>
 <ol>
 <li>复杂反射问题</li>
 </ol>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.53" name="generator"/>
+<meta content="Hugo 0.91.2" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -15,12 +15,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https://lfkdsk.github.io"
+           "@id": "https:\/\/lfkdsk.github.io"
       },
       "articleSection" : "",
       "name" : "Redex: ResolveRefs Pass",
       "headline" : "Redex: ResolveRefs Pass",
-      "description" : "Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex&rsquo;s optimizations. The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don&rsquo;t have to deal with the distinction between a ref and a def.",
+      "description" : "Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field\/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex\u0026rsquo;s optimizations. The motivation of this pass is to resolve all method\/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don\u0026rsquo;t have to deal with the distinction between a ref and a def.",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -28,9 +28,9 @@
       "accountablePerson" : "Intra-Mind Traveler",
       "copyrightHolder" : "Intra-Mind Traveler",
       "copyrightYear" : "2021",
-      "datePublished": "2021-10-11 18:17:31 &#43;0000 UTC",
-      "dateModified" : "2021-10-11 18:17:31 &#43;0000 UTC",
-      "url" : "https://lfkdsk.github.io/redex-resolve-refs/",
+      "datePublished": "2021-10-11 18:17:31 \u002b0000 UTC",
+      "dateModified" : "2021-10-11 18:17:31 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/redex-resolve-refs\/",
       "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
   }
 </script>
@@ -89,34 +89,33 @@
 The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don’t have to deal with the distinction between a <code>ref</code> and a <code>def</code>.
 Unlike RebindRefs, the goal here is to bind the method/field reference to the most accurate one possible to produce an accurate reachability graph of the program. Therefore, the number of unique method references is not a concern.</p>
 <h2 id="optimization">Optimization</h2>
-<h3 id="1-search-all-methods-op-replace-ref-def">1. Search all methods op replace ref =&gt; def</h3>
-<pre><code class="language-java">import java.util.*;
-import lombok.*;
+<h3 id="1-search-all-methods-op-replace-ref--def">1. Search all methods op replace ref =&gt; def</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> java.util.*<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> lombok.*<span style="color:#f92672">;</span>
 
-public class Main {
-    public static class A {
-        public void print() {
-            System.out.print('A');
-        }
-    }    
-    public Main() {
-        int i = 0;
-        i++;
-        new A().print();
-    }
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">'A'</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>    
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Main</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        i<span style="color:#f92672">++;</span>
+        <span style="color:#66d9ef">new</span> A<span style="color:#f92672">().</span><span style="color:#a6e22e">print</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
     
-    public static class B {
-        public void a() {
-            new A().print();
-        }
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">a</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">new</span> A<span style="color:#f92672">().</span><span style="color:#a6e22e">print</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
     
-    public static void main() {
-        new A().print();
-    }
-}
-</code></pre>
-<p>It will generate A.print ref in twice:</p>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">new</span> A<span style="color:#f92672">().</span><span style="color:#a6e22e">print</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>It will generate A.print ref in twice:</p>
 <p><img alt="" src="codegen.png"/></p>
 <p>So this pass will search all methods and exchange their refs to a more accurate ref. Such as:</p>
 <p><img alt="" src="redex-code.png"/></p>
