@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -20,7 +20,7 @@
       "articleSection" : "",
       "name" : "学习制作一门有趣的编程语言－0x03",
       "headline" : "学习制作一门有趣的编程语言－0x03",
-      "description" : "分析一个C语言的Lex \u0026amp; Yacc 程序 博客地址： http:\/\/lfkdsk.github.io\n代码地址： https:\/\/github.com\/lfkdsk\/CodeParse\n本节我们来分析一个能匹配C语言的Lex \u0026amp; Yacc 程序\n Lex文件:http:\/\/www.lysator.liu.se\/c\/ANSI-C-grammar-l.html\nYacc文件:http:\/\/www.lysator.liu.se\/c\/ANSI-C-grammar-y.html\n 也可以直接在我的github代码地址中进行下载。\n先来分析Lex文件 D\t[0-9] L\t[a-zA-Z_] H\t[a-fA-F0-9] E\t[Ee][\u002b-]?{D}\u002b FS\t(f|F|l|L) IS\t(u|U|l|L)* 首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \\ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。\n\u0026#34;\/*\u0026#34;\t{ comment(); } 第16行匹配了C语言的注释开始，并且调用了comment()函数。\ncomment() { char c, c1; loop: while ((c = input()) != \u0026#39;*\u0026#39; \u0026amp;\u0026amp; c != 0) putchar(c); if ((c1 = input()) != \u0026#39;\/\u0026#39; \u0026amp;\u0026amp; c != 0) { unput(c1); goto loop; } if (c !",
+      "description" : "分析一个C语言的Lex \u0026amp; Yacc 程序 博客地址： http:\/\/lfkdsk.github.io\n代码地址： https:\/\/github.com\/lfkdsk\/CodeParse\n本节我们来分析一个能匹配C语言的Lex \u0026amp; Yacc 程序\n Lex文件:http:\/\/www.lysator.liu.se\/c\/ANSI-C-grammar-l.html\nYacc文件:http:\/\/www.lysator.liu.se\/c\/ANSI-C-grammar-y.html\n 也可以直接在我的github代码地址中进行下载。\n先来分析Lex文件 D\t[0-9] L\t[a-zA-Z_] H\t[a-fA-F0-9] E\t[Ee][\u002b-]?{D}\u002b FS\t(f|F|l|L) IS\t(u|U|l|L)*  首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \\ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。\n\u0026quot;\/*\u0026quot;\t{ comment(); }  第16行匹配了C语言的注释开始，并且调用了comment()函数。\ncomment() { char c, c1; loop: while ((c = input()) != \u0027*\u0027 \u0026amp;\u0026amp; c != 0) putchar(c); if ((c1 = input()) != \u0027\/\u0027 \u0026amp;\u0026amp; c != 0) { unput(c1); goto loop; } if (c !",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -43,8 +43,8 @@
  Lex文件:http://www.lysator.liu.se/c/ANSI-C-grammar-l.html
 Yacc文件:http://www.lysator.liu.se/c/ANSI-C-grammar-y.html
  也可以直接在我的github代码地址中进行下载。
-先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)* 首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
-&quot;/*&quot;	{ comment(); } 第16行匹配了C语言的注释开始，并且调用了comment()函数。
+先来分析Lex文件 D	[0-9] L	[a-zA-Z_] H	[a-fA-F0-9] E	[Ee][+-]?{D}+ FS	(f|F|l|L) IS	(u|U|l|L)*  首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中FS \ IS 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。
+&quot;/*&quot;	{ comment(); }  第16行匹配了C语言的注释开始，并且调用了comment()函数。
 comment() { char c, c1; loop: while ((c = input()) != '*' &amp;&amp; c != 0) putchar(c); if ((c1 = input()) != '/' &amp;&amp; c != 0) { unput(c1); goto loop; } if (c !" name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
@@ -92,247 +92,262 @@ comment() { char c, c1; loop: while ((c = input()) != '*' &amp;&amp; c != 0) put
 </div>
 </header>
 <div class="post-content markdown-body">
-<h2 id="分析一个c语言的lex--yacc-程序">分析一个C语言的Lex &amp; Yacc 程序</h2>
+<h2 id="分析一个c语言的lex-yacc-程序">分析一个C语言的Lex &amp; Yacc 程序</h2>
 <p><code>博客地址</code>： <a href="http://lfkdsk.github.io">http://lfkdsk.github.io</a><br/>
 <code>代码地址</code>： <a href="https://github.com/lfkdsk/CodeParse">https://github.com/lfkdsk/CodeParse</a></p>
 <p>本节我们来分析一个能匹配C语言的Lex &amp; Yacc 程序</p>
 <blockquote>
-<p><code>Lex文件</code>:http://www.lysator.liu.se/c/ANSI-C-grammar-l.html</p>
-<p><code>Yacc文件</code>:http://www.lysator.liu.se/c/ANSI-C-grammar-y.html</p>
+<p><code>Lex文件</code>:<a href="http://www.lysator.liu.se/c/ANSI-C-grammar-l.html">http://www.lysator.liu.se/c/ANSI-C-grammar-l.html</a></p>
+<p><code>Yacc文件</code>:<a href="http://www.lysator.liu.se/c/ANSI-C-grammar-y.html">http://www.lysator.liu.se/c/ANSI-C-grammar-y.html</a></p>
 </blockquote>
 <p>也可以直接在我的github代码地址中进行下载。</p>
 <h3 id="先来分析lex文件">先来分析Lex文件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">D			[<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]
-L			[a<span style="color:#f92672">-</span>zA<span style="color:#f92672">-</span>Z_]
-H			[a<span style="color:#f92672">-</span>fA<span style="color:#f92672">-</span>F0<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]
-E			[Ee][<span style="color:#f92672">+-</span>]<span style="color:#f92672">?</span>{D}<span style="color:#f92672">+</span>
-FS			(f<span style="color:#f92672">|</span>F<span style="color:#f92672">|</span>l<span style="color:#f92672">|</span>L)
-IS			(u<span style="color:#f92672">|</span>U<span style="color:#f92672">|</span>l<span style="color:#f92672">|</span>L)<span style="color:#f92672">*</span>
+<pre><code class="language-c">D			[0-9]
+L			[a-zA-Z_]
+H			[a-fA-F0-9]
+E			[Ee][+-]?{D}+
+FS			(f|F|l|L)
+IS			(u|U|l|L)*
 
-</code></pre></div><p>首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中<code>FS</code> \ <code>IS</code> 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#e6db74">"/*"</span>			{ comment(); }
-</code></pre></div><p>第16行匹配了C语言的注释开始，并且调用了<code>comment()</code>函数。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">comment()
+</code></pre>
+<p>首先定义了一些正则式，这些正则的功能都是一目了然的。他们都不是完整的功能性的定义，而是为了下文组装方便的。其中<code>FS</code> \ <code>IS</code> 的作用是在数字跟在后面的尾缀（浮点型、无符号、长整形之类的）。</p>
+<pre><code class="language-c">"/*"			{ comment(); }
+</code></pre>
+<p>第16行匹配了C语言的注释开始，并且调用了<code>comment()</code>函数。</p>
+<pre><code class="language-c">comment()
 {
-	<span style="color:#66d9ef">char</span> c, c1;
+	char c, c1;
 
 loop:
-	<span style="color:#66d9ef">while</span> ((c <span style="color:#f92672">=</span> input()) <span style="color:#f92672">!=</span> <span style="color:#e6db74">'*'</span> <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+	while ((c = input()) != '*' &amp;&amp; c != 0)
 		putchar(c);
 
-	<span style="color:#66d9ef">if</span> ((c1 <span style="color:#f92672">=</span> input()) <span style="color:#f92672">!=</span> <span style="color:#e6db74">'/'</span> <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+	if ((c1 = input()) != '/' &amp;&amp; c != 0)
 	{
 		unput(c1);
-		<span style="color:#66d9ef">goto</span> loop;
+		goto loop;
 	}
 
-	<span style="color:#66d9ef">if</span> (c <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+	if (c != 0)
 		putchar(c1);
 }
-</code></pre></div><p><code>comment()</code>函数只做了一件事就是找到这个注释的结尾以判断这真的是一个注释，因为是注释，函数没有返回值，lex里面也没有对应的调用。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#e6db74">"auto"</span>			{ count(); <span style="color:#66d9ef">return</span>(AUTO); }
-<span style="color:#e6db74">"break"</span>			{ count(); <span style="color:#66d9ef">return</span>(BREAK); }
-<span style="color:#e6db74">"case"</span>			{ count(); <span style="color:#66d9ef">return</span>(CASE); }
-<span style="color:#e6db74">"char"</span>			{ count(); <span style="color:#66d9ef">return</span>(CHAR); }
-<span style="color:#e6db74">"const"</span>			{ count(); <span style="color:#66d9ef">return</span>(CONST); }
+</code></pre>
+<p><code>comment()</code>函数只做了一件事就是找到这个注释的结尾以判断这真的是一个注释，因为是注释，函数没有返回值，lex里面也没有对应的调用。</p>
+<pre><code class="language-c">"auto"			{ count(); return(AUTO); }
+"break"			{ count(); return(BREAK); }
+"case"			{ count(); return(CASE); }
+"char"			{ count(); return(CHAR); }
+"const"			{ count(); return(CONST); }
 ...
-</code></pre></div><p>18-49行定义了C语言的内置关键字他们都调用了一个<code>count()</code>返回了一个对应的Token。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> column <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</code></pre>
+<p>18-49行定义了C语言的内置关键字他们都调用了一个<code>count()</code>返回了一个对应的Token。</p>
+<pre><code class="language-c">int column = 0;
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">count</span>()
+void count()
 {
-	<span style="color:#66d9ef">int</span> i;
+	int i;
 
-	<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; yytext[i] <span style="color:#f92672">!=</span> <span style="color:#e6db74">'\0'</span>; i<span style="color:#f92672">++</span>)
-		<span style="color:#66d9ef">if</span> (yytext[i] <span style="color:#f92672">==</span> <span style="color:#e6db74">'\n'</span>)
-			column <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (yytext[i] <span style="color:#f92672">==</span> <span style="color:#e6db74">'\t'</span>)
-			column <span style="color:#f92672">+=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> (column <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>);
-		<span style="color:#66d9ef">else</span>
-			column<span style="color:#f92672">++</span>;
+	for (i = 0; yytext[i] != '\0'; i++)
+		if (yytext[i] == '\n')
+			column = 0;
+		else if (yytext[i] == '\t')
+			column += 8 - (column % 8);
+		else
+			column++;
 
 	ECHO;
 }
 
-</code></pre></div><p>这段函数在每次匹配之后记录了当前行中的具体位置(每当\n时换行\t时计算位置)。</p>
+</code></pre>
+<p>这段函数在每次匹配之后记录了当前行中的具体位置(每当\n时换行\t时计算位置)。</p>
 <p><code>ECHO</code>是一段宏：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Copy whatever the last rule matched to the standard output. */</span>
-<span style="color:#75715e">#ifndef ECHO
-</span><span style="color:#75715e"></span><span style="color:#75715e">/* This used to be an fputs(), but since the string might contain NUL's,
-</span><span style="color:#75715e"> * we now use fwrite().
-</span><span style="color:#75715e"> */</span>
-<span style="color:#75715e">#define ECHO fwrite( yytext, yyleng, 1, yyout )
-</span><span style="color:#75715e">#endif
-</span></code></pre></div><p>51-62一些类型匹配：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#75715e">// 这是C中变量名的定义
-</span><span style="color:#75715e"></span>{L}({L}<span style="color:#f92672">|</span>{D})<span style="color:#f92672">*</span>		{ count(); <span style="color:#66d9ef">return</span>(check_type()); }
-<span style="color:#75715e">// 16进制数
-</span><span style="color:#75715e"></span><span style="color:#ae81ff">0</span>[xX]{H}<span style="color:#f92672">+</span>{IS}<span style="color:#f92672">?</span>		{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-<span style="color:#75715e">// 各种数字
-</span><span style="color:#75715e"></span><span style="color:#ae81ff">0</span>{D}<span style="color:#f92672">+</span>{IS}<span style="color:#f92672">?</span>		{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-{D}<span style="color:#f92672">+</span>{IS}<span style="color:#f92672">?</span>		{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-<span style="color:#75715e">// 字符
-</span><span style="color:#75715e"></span>L<span style="color:#f92672">?</span><span style="color:#960050;background-color:#1e0010">'</span>(<span style="color:#960050;background-color:#1e0010">\\</span>.<span style="color:#f92672">|</span>[<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">\\'</span>])<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">'</span>	{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-<span style="color:#75715e">// 科学计数法
-</span><span style="color:#75715e"></span>{D}<span style="color:#f92672">+</span>{E}{FS}<span style="color:#f92672">?</span>		{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-{D}<span style="color:#f92672">*</span><span style="color:#e6db74">"."</span>{D}<span style="color:#f92672">+</span>({E})<span style="color:#f92672">?</span>{FS}<span style="color:#f92672">?</span>	{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-{D}<span style="color:#f92672">+</span><span style="color:#e6db74">"."</span>{D}<span style="color:#f92672">*</span>({E})<span style="color:#f92672">?</span>{FS}<span style="color:#f92672">?</span>	{ count(); <span style="color:#66d9ef">return</span>(CONSTANT); }
-<span style="color:#75715e">// 字符串
-</span><span style="color:#75715e"></span>L<span style="color:#f92672">?</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">"(</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">.|[^</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">"</span>])<span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">"	{ count(); return(STRING_LITERAL); }</span>
-</code></pre></div><p><code>check_type()</code>中对类型进行检查。</p>
+<pre><code class="language-c">/* Copy whatever the last rule matched to the standard output. */
+#ifndef ECHO
+/* This used to be an fputs(), but since the string might contain NUL's,
+ * we now use fwrite().
+ */
+#define ECHO fwrite( yytext, yyleng, 1, yyout )
+#endif
+</code></pre>
+<p>51-62一些类型匹配：</p>
+<pre><code class="language-c">// 这是C中变量名的定义
+{L}({L}|{D})*		{ count(); return(check_type()); }
+// 16进制数
+0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
+// 各种数字
+0{D}+{IS}?		{ count(); return(CONSTANT); }
+{D}+{IS}?		{ count(); return(CONSTANT); }
+// 字符
+L?'(\\.|[^\\'])+'	{ count(); return(CONSTANT); }
+// 科学计数法
+{D}+{E}{FS}?		{ count(); return(CONSTANT); }
+{D}*"."{D}+({E})?{FS}?	{ count(); return(CONSTANT); }
+{D}+"."{D}*({E})?{FS}?	{ count(); return(CONSTANT); }
+// 字符串
+L?\"(\\.|[^\\"])*\"	{ count(); return(STRING_LITERAL); }
+</code></pre>
+<p><code>check_type()</code>中对类型进行检查。</p>
 <p>Lex就只有这么多了。</p>
 <h3 id="再来分析yacc文件">再来分析Yacc文件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c"><span style="color:#f92672">%</span>token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
-<span style="color:#f92672">%</span>token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-<span style="color:#f92672">%</span>token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-<span style="color:#f92672">%</span>token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-<span style="color:#f92672">%</span>token XOR_ASSIGN OR_ASSIGN TYPE_NAME
+<pre><code class="language-c">%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
+%token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
+%token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
+%token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
+%token XOR_ASSIGN OR_ASSIGN TYPE_NAME
 
-<span style="color:#f92672">%</span>token TYPEDEF EXTERN STATIC AUTO REGISTER
-<span style="color:#f92672">%</span>token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-<span style="color:#f92672">%</span>token STRUCT UNION ENUM ELLIPSIS
+%token TYPEDEF EXTERN STATIC AUTO REGISTER
+%token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
+%token STRUCT UNION ENUM ELLIPSIS
 
-<span style="color:#f92672">%</span>token CASE DEFAULT IF ELSE LOWER_THAN_ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token CASE DEFAULT IF ELSE LOWER_THAN_ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
-<span style="color:#f92672">%</span>start translation_unit
+%start translation_unit
 
-<span style="color:#f92672">%</span>nonassoc LOWER_THAN_ELSE 
-<span style="color:#f92672">%</span>nonassoc ELSE
-</code></pre></div><p>这里我们定义了一些关键字的Token，重点看最后两行<code>LOWER_THAN_ELSE</code> 和<code>ELSE</code>分别代表了两种的ELSE的优先级，用于处理ELSE常见的悬空冲突问题。</p>
+%nonassoc LOWER_THAN_ELSE 
+%nonassoc ELSE
+</code></pre>
+<p>这里我们定义了一些关键字的Token，重点看最后两行<code>LOWER_THAN_ELSE</code> 和<code>ELSE</code>分别代表了两种的ELSE的优先级，用于处理ELSE常见的悬空冲突问题。</p>
 <p>接下来我们看看yacc文件中的BNF式都是怎么写的。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">primary_expression
+<pre><code class="language-c">primary_expression
 	: IDENTIFIER
-	<span style="color:#f92672">|</span> CONSTANT
-	<span style="color:#f92672">|</span> STRING_LITERAL
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span>
+	| CONSTANT
+	| STRING_LITERAL
+	| '(' expression ')'
 	;
-</code></pre></div><p>最小的子集由ID，常量，字符串，还有括号覆盖的表达式构成。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">postfix_expression
+</code></pre>
+<p>最小的子集由ID，常量，字符串，还有括号覆盖的表达式构成。</p>
+<pre><code class="language-c">postfix_expression
 	: primary_expression
-	<span style="color:#f92672">|</span> postfix_expression <span style="color:#e6db74">'['</span> expression <span style="color:#e6db74">']'</span>
-	<span style="color:#f92672">|</span> postfix_expression <span style="color:#e6db74">'('</span> <span style="color:#e6db74">')'</span>
-	<span style="color:#f92672">|</span> postfix_expression <span style="color:#e6db74">'('</span> argument_expression_list <span style="color:#e6db74">')'</span>
-	<span style="color:#f92672">|</span> postfix_expression <span style="color:#e6db74">'.'</span> IDENTIFIER
-	<span style="color:#f92672">|</span> postfix_expression PTR_OP IDENTIFIER
-	<span style="color:#f92672">|</span> postfix_expression INC_OP
-	<span style="color:#f92672">|</span> postfix_expression DEC_OP
+	| postfix_expression '[' expression ']'
+	| postfix_expression '(' ')'
+	| postfix_expression '(' argument_expression_list ')'
+	| postfix_expression '.' IDENTIFIER
+	| postfix_expression PTR_OP IDENTIFIER
+	| postfix_expression INC_OP
+	| postfix_expression DEC_OP
 	;
-</code></pre></div><p>这个指出了postfix_expression可以代表数组，函数调用，带参数的函数调用，.表达式，-&gt;指针，++,–。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">argument_expression_list
+</code></pre>
+<p>这个指出了postfix_expression可以代表数组，函数调用，带参数的函数调用，.表达式，-&gt;指针，++,–。</p>
+<pre><code class="language-c">argument_expression_list
 	: assignment_expression
-	<span style="color:#f92672">|</span> argument_expression_list <span style="color:#e6db74">','</span> assignment_expression
+	| argument_expression_list ',' assignment_expression
 	;
 
 unary_expression
 	: postfix_expression
-	<span style="color:#f92672">|</span> INC_OP unary_expression
-	<span style="color:#f92672">|</span> DEC_OP unary_expression
-	<span style="color:#f92672">|</span> unary_operator cast_expression
-	<span style="color:#f92672">|</span> SIZEOF unary_expression
-	<span style="color:#f92672">|</span> SIZEOF <span style="color:#e6db74">'('</span> type_name <span style="color:#e6db74">')'</span>
+	| INC_OP unary_expression
+	| DEC_OP unary_expression
+	| unary_operator cast_expression
+	| SIZEOF unary_expression
+	| SIZEOF '(' type_name ')'
 	;
-</code></pre></div><p>参数表达式列表由多个',‘和assignment_expression组成，其实就是函数的多个传参。</p>
+</code></pre>
+<p>参数表达式列表由多个’,‘和assignment_expression组成，其实就是函数的多个传参。</p>
 <p>一元表达式包含之前的postfix还有前置的++, –。还有就是对一个东西求sizeof也是。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">unary_operator
-	: <span style="color:#e6db74">'&amp;'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'*'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'+'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'-'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'~'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'!'</span>
+<pre><code class="language-c">unary_operator
+	: '&amp;'
+	| '*'
+	| '+'
+	| '-'
+	| '~'
+	| '!'
 	;
-</code></pre></div><p>一元运算符。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">cast_expression
+</code></pre>
+<p>一元运算符。</p>
+<pre><code class="language-c">cast_expression
 	: unary_expression
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'('</span> type_name <span style="color:#e6db74">')'</span> cast_expression
+	| '(' type_name ')' cast_expression
 	;
 
 multiplicative_expression
 	: cast_expression
-	<span style="color:#f92672">|</span> multiplicative_expression <span style="color:#e6db74">'*'</span> cast_expression
-	<span style="color:#f92672">|</span> multiplicative_expression <span style="color:#e6db74">'/'</span> cast_expression
-	<span style="color:#f92672">|</span> multiplicative_expression <span style="color:#e6db74">'%'</span> cast_expression
+	| multiplicative_expression '*' cast_expression
+	| multiplicative_expression '/' cast_expression
+	| multiplicative_expression '%' cast_expression
 	;
 
 additive_expression
 	: multiplicative_expression
-	<span style="color:#f92672">|</span> additive_expression <span style="color:#e6db74">'+'</span> multiplicative_expression
-	<span style="color:#f92672">|</span> additive_expression <span style="color:#e6db74">'-'</span> multiplicative_expression
+	| additive_expression '+' multiplicative_expression
+	| additive_expression '-' multiplicative_expression
 	;
-</code></pre></div><p>cast_expression:强制类型转换</p>
+</code></pre>
+<p>cast_expression:强制类型转换</p>
 <p>multiplicative_expression/additive_expression:区分这五种运算的优先级。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">shift_expression
+<pre><code class="language-c">shift_expression
 	: additive_expression
-	<span style="color:#f92672">|</span> shift_expression LEFT_OP additive_expression
-	<span style="color:#f92672">|</span> shift_expression RIGHT_OP additive_expression
+	| shift_expression LEFT_OP additive_expression
+	| shift_expression RIGHT_OP additive_expression
 	;
 
 relational_expression
 	: shift_expression
-	<span style="color:#f92672">|</span> relational_expression <span style="color:#e6db74">'&lt;'</span> shift_expression
-	<span style="color:#f92672">|</span> relational_expression <span style="color:#e6db74">'&gt;'</span> shift_expression
-	<span style="color:#f92672">|</span> relational_expression LE_OP shift_expression
-	<span style="color:#f92672">|</span> relational_expression GE_OP shift_expression
+	| relational_expression '&lt;' shift_expression
+	| relational_expression '&gt;' shift_expression
+	| relational_expression LE_OP shift_expression
+	| relational_expression GE_OP shift_expression
 	;
 
 equality_expression
 	: relational_expression
-	<span style="color:#f92672">|</span> equality_expression EQ_OP relational_expression
-	<span style="color:#f92672">|</span> equality_expression NE_OP relational_expression
+	| equality_expression EQ_OP relational_expression
+	| equality_expression NE_OP relational_expression
 	;
-</code></pre></div><p>shift-&gt;位运算 ；relational_expression 处理比较；equality_expression 处理相等关系。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">and_expression
+</code></pre>
+<p>shift-&gt;位运算 ；relational_expression 处理比较；equality_expression 处理相等关系。</p>
+<pre><code class="language-c">and_expression
 	: equality_expression
-	<span style="color:#f92672">|</span> and_expression <span style="color:#e6db74">'&amp;'</span> equality_expression
+	| and_expression '&amp;' equality_expression
 	;
 
 exclusive_or_expression
 	: and_expression
-	<span style="color:#f92672">|</span> exclusive_or_expression <span style="color:#e6db74">'^'</span> and_expression
+	| exclusive_or_expression '^' and_expression
 	;
 
 inclusive_or_expression
 	: exclusive_or_expression
-	<span style="color:#f92672">|</span> inclusive_or_expression <span style="color:#e6db74">'|'</span> exclusive_or_expression
+	| inclusive_or_expression '|' exclusive_or_expression
 	;
 
 logical_and_expression
 	: inclusive_or_expression
-	<span style="color:#f92672">|</span> logical_and_expression AND_OP inclusive_or_expression
+	| logical_and_expression AND_OP inclusive_or_expression
 	;
 
 logical_or_expression
 	: logical_and_expression
-	<span style="color:#f92672">|</span> logical_or_expression OR_OP logical_and_expression
+	| logical_or_expression OR_OP logical_and_expression
 	;
 
 conditional_expression
 	: logical_or_expression
-	<span style="color:#f92672">|</span> logical_or_expression <span style="color:#e6db74">'?'</span> expression <span style="color:#e6db74">':'</span> conditional_expression
+	| logical_or_expression '?' expression ':' conditional_expression
 	;
-</code></pre></div><p>下面是几种逻辑运算符的匹配关系，还有三目运算符。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">assignment_expression
+</code></pre>
+<p>下面是几种逻辑运算符的匹配关系，还有三目运算符。</p>
+<pre><code class="language-c">assignment_expression
 	: conditional_expression
-	<span style="color:#f92672">|</span> unary_expression assignment_operator assignment_expression
+	| unary_expression assignment_operator assignment_expression
 	;
 
 assignment_operator
-	: <span style="color:#e6db74">'='</span>
-	<span style="color:#f92672">|</span> MUL_ASSIGN
-	<span style="color:#f92672">|</span> DIV_ASSIGN
-	<span style="color:#f92672">|</span> MOD_ASSIGN
-	<span style="color:#f92672">|</span> ADD_ASSIGN
-	<span style="color:#f92672">|</span> SUB_ASSIGN
-	<span style="color:#f92672">|</span> LEFT_ASSIGN
-	<span style="color:#f92672">|</span> RIGHT_ASSIGN
-	<span style="color:#f92672">|</span> AND_ASSIGN
-	<span style="color:#f92672">|</span> XOR_ASSIGN
-	<span style="color:#f92672">|</span> OR_ASSIGN
+	: '='
+	| MUL_ASSIGN
+	| DIV_ASSIGN
+	| MOD_ASSIGN
+	| ADD_ASSIGN
+	| SUB_ASSIGN
+	| LEFT_ASSIGN
+	| RIGHT_ASSIGN
+	| AND_ASSIGN
+	| XOR_ASSIGN
+	| OR_ASSIGN
 	;
 
 expression
 	: assignment_expression
-	<span style="color:#f92672">|</span> expression <span style="color:#e6db74">','</span> assignment_expression
+	| expression ',' assignment_expression
 	;
 
 constant_expression
@@ -340,162 +355,170 @@ constant_expression
 	;
 
 declaration
-	: declaration_specifiers <span style="color:#e6db74">';'</span>
-	<span style="color:#f92672">|</span> declaration_specifiers init_declarator_list <span style="color:#e6db74">';'</span>
+	: declaration_specifiers ';'
+	| declaration_specifiers init_declarator_list ';'
 	;
 
 declaration_specifiers
 	: storage_class_specifier
-	<span style="color:#f92672">|</span> storage_class_specifier declaration_specifiers
-	<span style="color:#f92672">|</span> type_specifier
-	<span style="color:#f92672">|</span> type_specifier declaration_specifiers
-	<span style="color:#f92672">|</span> type_qualifier
-	<span style="color:#f92672">|</span> type_qualifier declaration_specifiers
+	| storage_class_specifier declaration_specifiers
+	| type_specifier
+	| type_specifier declaration_specifiers
+	| type_qualifier
+	| type_qualifier declaration_specifiers
 	;
-</code></pre></div><p>assignment_operator 指定了一类缩略形式，诸如：/= *= += -=之类的。</p>
+</code></pre>
+<p>assignment_operator 指定了一类缩略形式，诸如：/= *= += -=之类的。</p>
 <p>declaration 添加了‘;’</p>
 <p>declaration_specifiers定义了类型的声明。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">init_declarator_list
+<pre><code class="language-c">init_declarator_list
 	: init_declarator
-	<span style="color:#f92672">|</span> init_declarator_list <span style="color:#e6db74">','</span> init_declarator
+	| init_declarator_list ',' init_declarator
 	;
 
 init_declarator
 	: declarator
-	<span style="color:#f92672">|</span> declarator <span style="color:#e6db74">'='</span> initializer
+	| declarator '=' initializer
 	;
 
 storage_class_specifier
 	: TYPEDEF
-	<span style="color:#f92672">|</span> EXTERN
-	<span style="color:#f92672">|</span> STATIC
-	<span style="color:#f92672">|</span> AUTO
-	<span style="color:#f92672">|</span> REGISTER
+	| EXTERN
+	| STATIC
+	| AUTO
+	| REGISTER
 	;
-</code></pre></div><p>storage_class_specifier 定义了几种类型。init_declarator完成了初始化。</p>
+</code></pre>
+<p>storage_class_specifier 定义了几种类型。init_declarator完成了初始化。</p>
 <p>init_declarator_list ‘,’ init_declarator 是在对于多个同类型的参数的初始化。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">type_specifier
+<pre><code class="language-c">type_specifier
 	: VOID
-	<span style="color:#f92672">|</span> CHAR
-	<span style="color:#f92672">|</span> SHORT
-	<span style="color:#f92672">|</span> INT
-	<span style="color:#f92672">|</span> LONG
-	<span style="color:#f92672">|</span> FLOAT
-	<span style="color:#f92672">|</span> DOUBLE
-	<span style="color:#f92672">|</span> SIGNED
-	<span style="color:#f92672">|</span> UNSIGNED
-	<span style="color:#f92672">|</span> struct_or_union_specifier
-	<span style="color:#f92672">|</span> enum_specifier
-	<span style="color:#f92672">|</span> TYPE_NAME
+	| CHAR
+	| SHORT
+	| INT
+	| LONG
+	| FLOAT
+	| DOUBLE
+	| SIGNED
+	| UNSIGNED
+	| struct_or_union_specifier
+	| enum_specifier
+	| TYPE_NAME
 	;
 
 struct_or_union_specifier
-	: struct_or_union IDENTIFIER <span style="color:#e6db74">'{'</span> struct_declaration_list <span style="color:#e6db74">'}'</span>
-	<span style="color:#f92672">|</span> struct_or_union <span style="color:#e6db74">'{'</span> struct_declaration_list <span style="color:#e6db74">'}'</span>
-	<span style="color:#f92672">|</span> struct_or_union IDENTIFIER
+	: struct_or_union IDENTIFIER '{' struct_declaration_list '}'
+	| struct_or_union '{' struct_declaration_list '}'
+	| struct_or_union IDENTIFIER
 	;
 
 struct_or_union
 	: STRUCT
-	<span style="color:#f92672">|</span> UNION
+	| UNION
 	;
-</code></pre></div><p>type_specifier 中定义了很多的数据类型。struct_or_union是结构体和联合的定义。</p>
+</code></pre>
+<p>type_specifier 中定义了很多的数据类型。struct_or_union是结构体和联合的定义。</p>
 <p>struct_or_union_specifier 给出了对结构体的定义。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">struct_declaration_list
+<pre><code class="language-c">struct_declaration_list
 	: struct_declaration
-	<span style="color:#f92672">|</span> struct_declaration_list struct_declaration
+	| struct_declaration_list struct_declaration
 	;
 
 struct_declaration
-	: specifier_qualifier_list struct_declarator_list <span style="color:#e6db74">';'</span>
+	: specifier_qualifier_list struct_declarator_list ';'
 	;
 
 specifier_qualifier_list
 	: type_specifier specifier_qualifier_list
-	<span style="color:#f92672">|</span> type_specifier
-	<span style="color:#f92672">|</span> type_qualifier specifier_qualifier_list
-	<span style="color:#f92672">|</span> type_qualifier
+	| type_specifier
+	| type_qualifier specifier_qualifier_list
+	| type_qualifier
 	;
-</code></pre></div><p>继续给出了一些结构体的申请。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">struct_declarator_list
+</code></pre>
+<p>继续给出了一些结构体的申请。</p>
+<pre><code class="language-c">struct_declarator_list
 	: struct_declarator
-	<span style="color:#f92672">|</span> struct_declarator_list <span style="color:#e6db74">','</span> struct_declarator
+	| struct_declarator_list ',' struct_declarator
 	;
 
 struct_declarator
 	: declarator
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">':'</span> constant_expression
-	<span style="color:#f92672">|</span> declarator <span style="color:#e6db74">':'</span> constant_expression
+	| ':' constant_expression
+	| declarator ':' constant_expression
 	;
 
 enum_specifier
-	: ENUM <span style="color:#e6db74">'{'</span> enumerator_list <span style="color:#e6db74">'}'</span>
-	<span style="color:#f92672">|</span> ENUM IDENTIFIER <span style="color:#e6db74">'{'</span> enumerator_list <span style="color:#e6db74">'}'</span>
-	<span style="color:#f92672">|</span> ENUM IDENTIFIER
+	: ENUM '{' enumerator_list '}'
+	| ENUM IDENTIFIER '{' enumerator_list '}'
+	| ENUM IDENTIFIER
 	;
 
 enumerator_list
 	: enumerator
-	<span style="color:#f92672">|</span> enumerator_list <span style="color:#e6db74">','</span> enumerator
+	| enumerator_list ',' enumerator
 	;
 
 enumerator
 	: IDENTIFIER
-	<span style="color:#f92672">|</span> IDENTIFIER <span style="color:#e6db74">'='</span> constant_expression
+	| IDENTIFIER '=' constant_expression
 	;
-</code></pre></div><p>struct_declarator_list 是多个结构体的申请过程。</p>
+</code></pre>
+<p>struct_declarator_list 是多个结构体的申请过程。</p>
 <p>struct_declarator 结构体的声明符。</p>
 <p>constant_expression 指向了一些逻辑表达式。</p>
 <p>enum_specifier 定义了联合的声明，同样list就是多个同类型的声明，emumerator是对结构体的初始化。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">type_qualifier
+<pre><code class="language-c">type_qualifier
 	: CONST
-	<span style="color:#f92672">|</span> VOLATILE
+	| VOLATILE
 	;
 
 declarator
 	: pointer direct_declarator
-	<span style="color:#f92672">|</span> direct_declarator
+	| direct_declarator
 	;
 
 direct_declarator
 	: IDENTIFIER
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'('</span> declarator <span style="color:#e6db74">')'</span>
-	<span style="color:#f92672">|</span> direct_declarator <span style="color:#e6db74">'['</span> constant_expression <span style="color:#e6db74">']'</span>
-	<span style="color:#f92672">|</span> direct_declarator <span style="color:#e6db74">'['</span> <span style="color:#e6db74">']'</span>
-	<span style="color:#f92672">|</span> direct_declarator <span style="color:#e6db74">'('</span> parameter_type_list <span style="color:#e6db74">')'</span>
-	<span style="color:#f92672">|</span> direct_declarator <span style="color:#e6db74">'('</span> identifier_list <span style="color:#e6db74">')'</span>
-	<span style="color:#f92672">|</span> direct_declarator <span style="color:#e6db74">'('</span> <span style="color:#e6db74">')'</span>
+	| '(' declarator ')'
+	| direct_declarator '[' constant_expression ']'
+	| direct_declarator '[' ']'
+	| direct_declarator '(' parameter_type_list ')'
+	| direct_declarator '(' identifier_list ')'
+	| direct_declarator '(' ')'
 	;
-</code></pre></div><p>type_qualifier 定义了const 和 volatile 关键字。</p>
+</code></pre>
+<p>type_qualifier 定义了const 和 volatile 关键字。</p>
 <p>declarator 声明符指向了指针类型和基础类型。</p>
 <p>direct_declarator 直接声明符，包含了数组、带参数的函数返回值，等等等。</p>
 <p>pointer 指针类型。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">pointer
-	: <span style="color:#e6db74">'*'</span>
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'*'</span> type_qualifier_list
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'*'</span> pointer
-	<span style="color:#f92672">|</span> <span style="color:#e6db74">'*'</span> type_qualifier_list pointer
+<pre><code class="language-c">pointer
+	: '*'
+	| '*' type_qualifier_list
+	| '*' pointer
+	| '*' type_qualifier_list pointer
 	;
 
 type_qualifier_list
 	: type_qualifier
-	<span style="color:#f92672">|</span> type_qualifier_list type_qualifier
+	| type_qualifier_list type_qualifier
 	;
 
 
 parameter_type_list
 	: parameter_list
-	<span style="color:#f92672">|</span> parameter_list <span style="color:#e6db74">','</span> ELLIPSIS
+	| parameter_list ',' ELLIPSIS
 	;
-</code></pre></div><p>pointer 指明了几种指针的书写方式。</p>
+</code></pre>
+<p>pointer 指明了几种指针的书写方式。</p>
 <p>parameter_type_list 代表参数列表。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-c" data-lang="c">		<span style="color:#75715e">/* 这里的无else的优先级是低于由else 的 */</span>
+<pre><code class="language-c">		/* 这里的无else的优先级是低于由else 的 */
 selection_statement
-	: IF <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span> statement <span style="color:#f92672">%</span>prec LOWER_THAN_ELSE
-	<span style="color:#f92672">|</span> IF <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span> statement ELSE statement
-	<span style="color:#f92672">|</span> SWITCH <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span> statement
+	: IF '(' expression ')' statement %prec LOWER_THAN_ELSE
+	| IF '(' expression ')' statement ELSE statement
+	| SWITCH '(' expression ')' statement
 	;
-</code></pre></div><p>其余的只有这里值得注意一下，这里出现了著名的ELSE悬空的移进规约bug，所以使用了一个优先级低于ELSE的LOWER_THAN_ELSE来指定优先级。</p>
+</code></pre>
+<p>其余的只有这里值得注意一下，这里出现了著名的ELSE悬空的移进规约bug，所以使用了一个优先级低于ELSE的LOWER_THAN_ELSE来指定优先级。</p>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
 <div style="height:50px"></div>

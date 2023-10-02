@@ -6,7 +6,11 @@
     <description>Recent content in 情怀向 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Sat, 10 Feb 2007 22:36:42 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E6%83%85%E6%80%80%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2007 22:36:42 +0000</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/%E6%83%85%E6%80%80%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>情怀向：仙剑Dos版攻略</title>
       <link>https://lfkdsk.github.io/xianjian10/</link>
@@ -14,7 +18,7 @@
       
       <guid>https://lfkdsk.github.io/xianjian10/</guid>
       <description>初中时候的中二之作。
-  #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
+ --   #the-canvas { border: 1px solid black; direction: ltr; width: 100%; height: auto; display: none; } #paginator { display: none; text-align: center; margin-top: 10px; } #loadingWrapper { display: none; justify-content: center; align-items: center; width: 100%; height: 350px; } #loading { display: inline-block; width: 50px; height: 50px; border: 3px solid #d2d0d0;; border-radius: 50%; border-top-color: #383838; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1s ease-in-out infinite; } @keyframes spin { to { -webkit-transform: rotate(360deg); } } @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }      &amp;lt;- - &amp;nbsp; &amp;nbsp; Page:  /   window.</description>
     </item>
     
   </channel>

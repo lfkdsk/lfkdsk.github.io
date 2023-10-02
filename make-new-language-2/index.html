@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -20,7 +20,7 @@
       "articleSection" : "",
       "name" : "学习制作一门有趣的编程语言－0x02",
       "headline" : "学习制作一门有趣的编程语言－0x02",
-      "description" : "博客地址： http:\/\/lfkdsk.github.io\n代码地址： https:\/\/github.com\/lfkdsk\/CodeParse\n 为计算器添加一些新功能  本节代码：CalcWithTable\n 上次我们使用Lex \u0026amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。\n先看Lex文件 %{ #include \u0026#34;y.tab.h\u0026#34;#include \u0026lt;math.h\u0026gt;#include \u0026#34;link_list.h\u0026#34; %} %% \/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 *\/ ([0-9]\u002b|([0-9]*\\.[0-9]\u002b)([eE][-\u002b]?[0-9]\u002b)?) { \/* 转换为double类型 *\/ yylval.dval = atof(yytext); \/* 我把它打印出来 *\/ printf(\u0026#34;number : %s \\n\u0026#34;, yytext); return NUMBER; } [ \\t] ; \/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 *\/ [A-Za-z][A-Za-z0-9]* { \/* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 *\/ \/* 返回值为对应的指针 *\/ yylval.name = addNode(yytext); printLink(); \/* 返回的Token指变量名 *\/ return NAME; } \u0026#34;$\u0026#34; { return 0; } \\n | .",
+      "description" : "博客地址： http:\/\/lfkdsk.github.io\n代码地址： https:\/\/github.com\/lfkdsk\/CodeParse\n 为计算器添加一些新功能  本节代码：CalcWithTable\n 上次我们使用Lex \u0026amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。\n先看Lex文件 %{ #include \u0026quot;y.tab.h\u0026quot; #include \u0026lt;math.h\u0026gt; #include \u0026quot;link_list.h\u0026quot; %} %% \/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 *\/ ([0-9]\u002b|([0-9]*\\.[0-9]\u002b)([eE][-\u002b]?[0-9]\u002b)?) { \/* 转换为double类型 *\/ yylval.dval = atof(yytext); \/* 我把它打印出来 *\/ printf(\u0026quot;number : %s \\n\u0026quot;, yytext); return NUMBER; } [ \\t] ; \/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 *\/ [A-Za-z][A-Za-z0-9]* { \/* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 *\/ \/* 返回值为对应的指针 *\/ yylval.name = addNode(yytext); printLink(); \/* 返回的Token指变量名 *\/ return NAME; } \u0026quot;$\u0026quot; { return 0; } \\n | .",
       "inLanguage" : "en-US",
       "author" : "Intra-Mind Traveler",
       "creator" : "Intra-Mind Traveler",
@@ -41,7 +41,7 @@
 代码地址： https://github.com/lfkdsk/CodeParse
  为计算器添加一些新功能  本节代码：CalcWithTable
  上次我们使用Lex &amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
-先看Lex文件 %{ #include "y.tab.h"#include &lt;math.h&gt;#include "link_list.h" %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf("number : %s \n", yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } "$" { return 0; } \n | .' name="description"/>
+先看Lex文件 %{ #include "y.tab.h" #include &lt;math.h&gt; #include "link_list.h" %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf("number : %s \n", yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } "$" { return 0; } \n | .' name="description"/>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
 <link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
@@ -99,244 +99,249 @@
 <p>上次我们使用Lex &amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法
 ，将优先级提升，这次重写这个计算器并添加一些新的功能。</p>
 <h4 id="先看lex文件">先看Lex文件</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">
-<span style="color:#f92672">%</span>{
+<pre><code class="language-C">
+%{
 
-<span style="color:#75715e">#include</span> <span style="color:#75715e">"y.tab.h"</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;math.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">"link_list.h"</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#f92672">%</span>}
+#include "y.tab.h"
+#include &lt;math.h&gt;
+#include "link_list.h"
 
-<span style="color:#f92672">%%</span>
-	<span style="color:#75715e">/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */</span>
-([<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">+|</span>([<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">\</span>.[<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">+</span>)([eE][<span style="color:#f92672">-+</span>]<span style="color:#f92672">?</span>[<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">+</span>)<span style="color:#f92672">?</span>) {
-		  <span style="color:#75715e">/* 转换为double类型 */</span>
-          yylval.dval <span style="color:#f92672">=</span> atof(yytext);
-          <span style="color:#75715e">/* 我把它打印出来 */</span>
-          printf(<span style="color:#e6db74">"number : %s </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span>, yytext);
-          <span style="color:#66d9ef">return</span> NUMBER;
+%}
+
+%%
+	/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) {
+		  /* 转换为double类型 */
+          yylval.dval = atof(yytext);
+          /* 我把它打印出来 */
+          printf("number : %s \n", yytext);
+          return NUMBER;
     }
 
-[ <span style="color:#960050;background-color:#1e0010">\</span>t] ;
+[ \t] ;
 
-	<span style="color:#75715e">/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */</span>
-[A<span style="color:#f92672">-</span>Za<span style="color:#f92672">-</span>z][A<span style="color:#f92672">-</span>Za<span style="color:#f92672">-</span>z0<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">*</span> {
-		  <span style="color:#75715e">/* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */</span>
-		  <span style="color:#75715e">/* 返回值为对应的指针 */</span>
-          yylval.name <span style="color:#f92672">=</span> addNode(yytext);
+	/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */
+[A-Za-z][A-Za-z0-9]* {
+		  /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */
+		  /* 返回值为对应的指针 */
+          yylval.name = addNode(yytext);
           printLink();
-          <span style="color:#75715e">/* 返回的Token指变量名 */</span>
-          <span style="color:#66d9ef">return</span> NAME;
+          /* 返回的Token指变量名 */
+          return NAME;
       }
 
-<span style="color:#e6db74">"$"</span>   {
-          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+"$"   {
+          return 0;
       }
 
-<span style="color:#960050;background-color:#1e0010">\</span>n    <span style="color:#f92672">|</span>
+\n    |
 
 .     {
-            <span style="color:#66d9ef">return</span> yytext[<span style="color:#ae81ff">0</span>];
+            return yytext[0];
       }
 
-<span style="color:#f92672">%%</span>
+%%
 
 
 
-</code></pre></div><p>这段代码和之前的区别不大，但是我们明显的为它增加了一个功能，就是识别变量名。</p>
+</code></pre>
+<p>这段代码和之前的区别不大，但是我们明显的为它增加了一个功能，就是识别变量名。</p>
 <h4 id="在看yacc">在看yacc：</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">
-<span style="color:#f92672">%</span>{
+<pre><code class="language-C">
+%{
 
-<span style="color:#75715e">#include</span> <span style="color:#75715e">"link_list.h"</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> yydebug<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;math.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#f92672">%</span>}
+#include "link_list.h"
+int yydebug=1;
+#include &lt;math.h&gt;
 
-<span style="color:#f92672">%</span><span style="color:#66d9ef">union</span>{
-    <span style="color:#66d9ef">double</span> dval;
-    <span style="color:#75715e">/* 存储的类型变了 存储的是一个symtable类型的结构体指针 */</span>
-    <span style="color:#66d9ef">struct</span> symtable <span style="color:#f92672">*</span>name;
+%}
+
+%union{
+    double dval;
+    /* 存储的类型变了 存储的是一个symtable类型的结构体指针 */
+    struct symtable *name;
 }
 
-	<span style="color:#75715e">/* 声明了两个Token 指针类型的NAME double类型的NUMBER */</span>
-<span style="color:#f92672">%</span>token <span style="color:#f92672">&lt;</span>name<span style="color:#f92672">&gt;</span> NAME
-<span style="color:#f92672">%</span>token <span style="color:#f92672">&lt;</span>dval<span style="color:#f92672">&gt;</span> NUMBER
+	/* 声明了两个Token 指针类型的NAME double类型的NUMBER */
+%token &lt;name&gt; NAME
+%token &lt;dval&gt; NUMBER
 
-	<span style="color:#75715e">/* 这里强行指定了左结合以及优先性 */</span>
-<span style="color:#f92672">%</span>left <span style="color:#e6db74">'-'</span> <span style="color:#e6db74">'+'</span>
-<span style="color:#f92672">%</span>left <span style="color:#e6db74">'*'</span> <span style="color:#e6db74">'/'</span>
-	<span style="color:#75715e">/* 为一元减号设置了最高的优先级 */</span>
-<span style="color:#f92672">%</span>nonassoc UMINUS
+	/* 这里强行指定了左结合以及优先性 */
+%left '-' '+'
+%left '*' '/'
+	/* 为一元减号设置了最高的优先级 */
+%nonassoc UMINUS
 
-<span style="color:#f92672">%</span>type <span style="color:#f92672">&lt;</span>dval<span style="color:#f92672">&gt;</span> expression
+%type &lt;dval&gt; expression
 
-<span style="color:#f92672">%%</span>
+%%
 
-stament_list: stament <span style="color:#e6db74">'\n'</span>
-            <span style="color:#f92672">|</span> stament_list stament <span style="color:#e6db74">'\n'</span>
+stament_list: stament '\n'
+            | stament_list stament '\n'
             ;
 
-        <span style="color:#75715e">/* 增加了一个规则处理变量名赋值 */</span>
-stament: NAME <span style="color:#e6db74">'='</span> expression { <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>; }
-       <span style="color:#f92672">|</span> expression { printf(<span style="color:#e6db74">"= %g </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span>, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>); }
+        /* 增加了一个规则处理变量名赋值 */
+stament: NAME '=' expression { $1-&gt;value = $3; }
+       | expression { printf("= %g \n", $1); }
        ;
 
-expression: expression <span style="color:#e6db74">'+'</span> expression { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>; }
-          <span style="color:#f92672">|</span> expression <span style="color:#e6db74">'-'</span> expression { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>; }
-          <span style="color:#f92672">|</span> expression <span style="color:#e6db74">'*'</span> expression { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>; }
-          <span style="color:#f92672">|</span> expression <span style="color:#e6db74">'/'</span> expression {
-              <span style="color:#66d9ef">if</span>(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0.0</span>){
-                  yyerror(<span style="color:#e6db74">"devide by zero"</span>);
-              }<span style="color:#66d9ef">else</span>{
-                  <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>;
+expression: expression '+' expression { $$ = $1 + $3; }
+          | expression '-' expression { $$ = $1 - $3; }
+          | expression '*' expression { $$ = $1 * $3; }
+          | expression '/' expression {
+              if($3 == 0.0){
+                  yyerror("devide by zero");
+              }else{
+                  $$ = $1 / $3;
               }
           }
-          		<span style="color:#75715e">/* 这里再只有一元建好操作符的时候强制使用UMINUS的结合性 */</span>
-          <span style="color:#f92672">|</span> <span style="color:#e6db74">'-'</span> expression <span style="color:#f92672">%</span>prec UMINUS { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>; }
-          <span style="color:#f92672">|</span> <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span> { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>; }
-          <span style="color:#f92672">|</span> NUMBER
-          		<span style="color:#75715e">/* 当出现变量名的时候 把变量名对应的值返回 */</span>
-          <span style="color:#f92672">|</span> NAME   { <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-&gt;</span>value; }
-          		<span style="color:#75715e">/* 这也是新功能 计算器支持使用内置函数 当变量名存在函数指针的时候 */</span>
-          		<span style="color:#75715e">/* 将其作为函数处理 */</span>
-          <span style="color:#f92672">|</span> NAME <span style="color:#e6db74">'('</span> expression <span style="color:#e6db74">')'</span> {
-              <span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-&gt;</span>funcptr)
+          		/* 这里再只有一元建好操作符的时候强制使用UMINUS的结合性 */
+          | '-' expression %prec UMINUS { $$ = -$2; }
+          | '(' expression ')' { $$ = $2; }
+          | NUMBER
+          		/* 当出现变量名的时候 把变量名对应的值返回 */
+          | NAME   { $$ = $1-&gt;value; }
+          		/* 这也是新功能 计算器支持使用内置函数 当变量名存在函数指针的时候 */
+          		/* 将其作为函数处理 */
+          | NAME '(' expression ')' {
+              if ($1-&gt;funcptr)
               {
-                <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> (<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-&gt;</span>funcptr)(<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span>);
-              }<span style="color:#66d9ef">else</span>{
-                printf(<span style="color:#e6db74">"%s is not a function </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span>, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-&gt;</span>name);
-                <span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+                $$ = ($1-&gt;funcptr)($3);
+              }else{
+                printf("%s is not a function \n", $1-&gt;name);
+                $$ = 0.0;
               }
           }
           ;
 
-<span style="color:#f92672">%%</span>
+%%
 
-<span style="color:#66d9ef">int</span> main(){
+int main(){
 
-    <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">double</span> sqrt(), exp(), log();
+    extern double sqrt(), exp(), log();
 
-    <span style="color:#75715e">/* 现在无法动下的生成函数 所以只能添加内置的几种函数 */</span>
-    addFunction(<span style="color:#e6db74">"sqrt"</span>, sqrt);
-    addFunction(<span style="color:#e6db74">"exp"</span>,exp);
-    addFunction(<span style="color:#e6db74">"log"</span>,log);
+    /* 现在无法动下的生成函数 所以只能添加内置的几种函数 */
+    addFunction("sqrt", sqrt);
+    addFunction("exp",exp);
+    addFunction("log",log);
 
     yyparse();
 }
 
 
 
-</code></pre></div><p>现在的yacc文件中我们支持了变量名的申请，和函数的调用，这里面我们的函数都来自于<code>link_list.h</code>中的定义</p>
-<h4 id="link_listh-"><code>link_list.h</code> :</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">
-<span style="color:#75715e">#ifndef SYMBOL
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> symtable {
-  <span style="color:#75715e">/* data */</span>
-    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name;
-    <span style="color:#66d9ef">double</span> value;
-    <span style="color:#75715e">/* 函数指针 */</span>
-    <span style="color:#66d9ef">double</span> (<span style="color:#f92672">*</span>funcptr)();
-    <span style="color:#66d9ef">struct</span> symtable <span style="color:#f92672">*</span>next;
+</code></pre>
+<p>现在的yacc文件中我们支持了变量名的申请，和函数的调用，这里面我们的函数都来自于<code>link_list.h</code>中的定义</p>
+<h4 id="link-list-h"><code>link_list.h</code> :</h4>
+<pre><code class="language-C">
+#ifndef SYMBOL
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct symtable {
+  /* data */
+    char *name;
+    double value;
+    /* 函数指针 */
+    double (*funcptr)();
+    struct symtable *next;
 };
 
-<span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span> <span style="color:#a6e22e">addNode</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>symbol);
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printLink</span>();
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addFunction</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, <span style="color:#66d9ef">double</span> func());
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>
+struct symtable* addNode(char *symbol);
+void printLink();
+void addFunction(char *name, double func());
+#endif
 
 
-</code></pre></div><h4 id="link_listc-"><code>link_list.c</code> :</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">
-<span style="color:#75715e">#include</span> <span style="color:#75715e">"link_list.h"</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">struct</span> symtable <span style="color:#f92672">*</span>head <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</code></pre>
+<h4 id="link-list-c"><code>link_list.c</code> :</h4>
+<pre><code class="language-C">
+#include "link_list.h"
 
-<span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span> <span style="color:#a6e22e">addNode</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>symbol){
+struct symtable *head = 0;
 
-    <span style="color:#66d9ef">if</span> (flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        head <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> symtable));
-        head<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">=</span> strdup(symbol);
-        head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">return</span> head;
+int flag = 0;
+
+struct symtable* addNode(char *symbol){
+
+    if (flag == 0) {
+        flag = 1;
+        head = (struct symtable*)malloc(sizeof(struct symtable));
+        head-&gt;name = strdup(symbol);
+        head-&gt;next = 0;
+        return head;
     }
 
-    <span style="color:#66d9ef">struct</span> symtable <span style="color:#f92672">*</span>sp <span style="color:#f92672">=</span> head;
+    struct symtable *sp = head;
     
-    <span style="color:#66d9ef">while</span> (sp <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
-        <span style="color:#66d9ef">if</span> (sp<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>strcmp(sp<span style="color:#f92672">-&gt;</span>name, symbol)) {
-          <span style="color:#75715e">/*  找到一样的了 */</span>
-            <span style="color:#66d9ef">return</span> sp;
+    while (sp != 0) {
+        if (sp-&gt;name &amp;&amp; !strcmp(sp-&gt;name, symbol)) {
+          /*  找到一样的了 */
+            return sp;
         }
 
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>sp<span style="color:#f92672">-&gt;</span>name) {
-            sp<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">=</span> strdup(symbol);
-            <span style="color:#66d9ef">return</span> sp;
+        if (!sp-&gt;name) {
+            sp-&gt;name = strdup(symbol);
+            return sp;
         }
 
-        sp <span style="color:#f92672">=</span> sp<span style="color:#f92672">-&gt;</span>next;
+        sp = sp-&gt;next;
     }
     
-    sp <span style="color:#f92672">=</span> head;
+    sp = head;
     
-    <span style="color:#66d9ef">while</span> (sp<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
-        sp <span style="color:#f92672">=</span> sp<span style="color:#f92672">-&gt;</span>next;
+    while (sp-&gt;next != 0) {
+        sp = sp-&gt;next;
     }
 
-    <span style="color:#66d9ef">struct</span> symtable <span style="color:#f92672">*</span>tail;
-    tail <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> symtable));
-    tail<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">=</span> strdup(symbol);
-    tail<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    sp<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> tail;
-    <span style="color:#66d9ef">return</span> tail;
+    struct symtable *tail;
+    tail = (struct symtable*)malloc(sizeof(struct symtable));
+    tail-&gt;name = strdup(symbol);
+    tail-&gt;next = 0;
+    sp-&gt;next = tail;
+    return tail;
 }
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printLink</span>(){
-  <span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span> sp <span style="color:#f92672">=</span> head;
-  <span style="color:#66d9ef">while</span> (sp <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
-      printf(<span style="color:#e6db74">"name : %s index : %p value : %f </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">"</span>, sp<span style="color:#f92672">-&gt;</span>name, sp, sp<span style="color:#f92672">-&gt;</span>value);
-      sp <span style="color:#f92672">=</span> sp<span style="color:#f92672">-&gt;</span>next;
+void printLink(){
+  struct symtable* sp = head;
+  while (sp != 0) {
+      printf("name : %s index : %p value : %f \n", sp-&gt;name, sp, sp-&gt;value);
+      sp = sp-&gt;next;
   }
 }
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addFunction</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>name, <span style="color:#66d9ef">double</span> func()){
-    <span style="color:#66d9ef">struct</span> symtable<span style="color:#f92672">*</span> sp <span style="color:#f92672">=</span> addNode(name);
-    sp<span style="color:#f92672">-&gt;</span>funcptr <span style="color:#f92672">=</span> func;
+void addFunction(char *name, double func()){
+    struct symtable* sp = addNode(name);
+    sp-&gt;funcptr = func;
 }
 
 
 
 
-</code></pre></div><p>至此我们的计算器就能支持参数名和内置函数了。</p>
+</code></pre>
+<p>至此我们的计算器就能支持参数名和内置函数了。</p>
 <h4 id="我们来写一下makefile文件">我们来写一下makefile文件:</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-makefile" data-lang="makefile">
+<pre><code class="language-makefile">
 
-<span style="color:#a6e22e">ex_calc</span><span style="color:#f92672">:</span> y.tab.o lex.yy.o link_list.o
+ex_calc: y.tab.o lex.yy.o link_list.o
 	$ cc -o ex_calc link_list.c y.tab.c lex.yy.c -ly -ll
 
-<span style="color:#a6e22e">link_list.o</span><span style="color:#f92672">:</span> link_list.c link_list.h
+link_list.o: link_list.c link_list.h
 
-<span style="color:#a6e22e">lex.yy.o</span><span style="color:#f92672">:</span> lex.yy.c y.tab.h
+lex.yy.o: lex.yy.c y.tab.h
 
-<span style="color:#a6e22e">lex.yy.o y.tab.o</span><span style="color:#f92672">:</span> link_list.h
+lex.yy.o y.tab.o: link_list.h
 
-<span style="color:#a6e22e">y.tab.c y.tab.h</span><span style="color:#f92672">:</span> ex_calc.y
+y.tab.c y.tab.h: ex_calc.y
 			$ yacc -d ex_calc.y
 
-<span style="color:#a6e22e">lex.yy.c</span><span style="color:#f92672">:</span> ex_calc.l
+lex.yy.c: ex_calc.l
 	$ lex ex_calc.l
 
 
-</code></pre></div><p>之后使用make命令编译运行，就可以正常使用了。</p>
+</code></pre>
+<p>之后使用make命令编译运行，就可以正常使用了。</p>
 <p><img alt="calc_page" src="calc_page.png"/></p>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>

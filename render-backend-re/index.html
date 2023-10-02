@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -94,14 +94,14 @@ Headless Chrome (including backend optimizations) Continuing to use Headless Chr
 <p>You can refer to the Sprite Graph used when making the game, use each Headless as a resource pool, and each page can render a certain number of pictures. When calling the screenshot API, use the Meta-Data to store the location of the specific page under a certain namespace. Take screenshots, so that the configurable resource pool expands a large part, and the number of concurrency processed can also be increased.</p>
 <p><img alt="" src="progress.png"/></p>
 <ul>
-<li>PS: Another optimization point is the expansion of the content of the meta-data of the Master node. If we know that a specific Page has currently rendered a certain template, we can directly modify the parameters of the rendered DOM. Take a screenshot after the parameter.</li>
-</ul>
+<li><p>PS: Another optimization point is the expansion of the content of the meta-data of the Master node. If we know that a specific Page has currently rendered a certain template, we can directly modify the parameters of the rendered DOM. Take a screenshot after the parameter.</p>
 <h2 id="resvg-solution">RESVG solution</h2>
 <p><a href="https://github.com/RazrFalcon/resvg">https://github.com/RazrFalcon/resvg</a>
 The implementation of resvg has a relatively complete implementation of SVG 1.1, but resvg still lacks some SVG solutions that may be needed in the future.
 <a href="https://github.com/RazrFalcon/resvg/blob/master/docs/unsupported.md">https://github.com/RazrFalcon/resvg/blob/master/docs/unsupported.md</a>
 <a href="https://razrfalcon.github.io/resvg-test-suite/svg-support-table.html">https://razrfalcon.github.io/resvg-test-suite/svg-support-table.html</a>
-The link above shows a list of features that resvg does not currently support.</p>
+The link above shows a list of features that resvg does not currently support.</p></li>
+</ul>
 <p><img alt="" src="vs.png"/></p>
 <p>Resvg itself uses cairo as the underlying drawing engine, which is efficient enough to be used as a direction for future implementation. At present, the syntax range we use the svg syntax itself is relatively biased, and most of the syntax is style support implemented using CSS.</p>
 <ul>

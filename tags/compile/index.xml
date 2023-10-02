@@ -6,7 +6,11 @@
     <description>Recent content in Compile on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Fri, 06 Mar 2020 15:09:37 +0800</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/compile/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Mar 2020 15:09:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/compile/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>FlutterWeb 编译流程分析</title>
       <link>https://lfkdsk.github.io/flutter-for-web-compile/</link>

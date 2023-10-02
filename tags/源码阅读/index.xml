@@ -6,7 +6,11 @@
     <description>Recent content in 源码阅读 on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Thu, 24 Aug 2017 19:50:32 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Aug 2017 19:50:32 +0000</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Retrofit 实现分析</title>
       <link>https://lfkdsk.github.io/read-retrofit/</link>
@@ -15,9 +19,9 @@
       <guid>https://lfkdsk.github.io/read-retrofit/</guid>
       <description>Retrofit 为我们提供了一种非常优雅的方式去书写 Restful 的请求的接口代码，和 OkHttp 、Rxjava 都能方便的无缝搭配，为我们在 Java 和 Android 提供了非常便捷的网络请求的编写方式。这篇文章中我们会从 Usage 出发，逐个步骤的分析 Retrofit 的实现方式。
 实现分析 我们可以定义这样的一个接口，代表一种 restful 请求：
-public interface GitHubService { @GET(&amp;#34;users/{user}/repos&amp;#34;) Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;#34;user&amp;#34;) String user); } 在使用 Retrofit 的时候：
-Retrofit retrofit = new Retrofit.Builder() .baseUrl(&amp;#34;https://api.github.com/&amp;#34;) .build(); GitHubService service = retrofit.create(GitHubService.class); 我们通过 Builder 模式拼好 baseUrl 等字串，通过 retrofit 对象可以创建我们的接口对应的实体类，我们通过对这个实体类的操作，就能对我们定义好的接口去请求对应的数据：
-Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;#34;octocat&amp;#34;); 创建请求类 @SuppressWarnings(&amp;#34;unchecked&amp;#34;) // Single-interface proxy creation guarded by parameter safety.  public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { Utils.</description>
+public interface GitHubService { @GET(&amp;quot;users/{user}/repos&amp;quot;) Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; listRepos(@Path(&amp;quot;user&amp;quot;) String user); }  在使用 Retrofit 的时候：
+Retrofit retrofit = new Retrofit.Builder() .baseUrl(&amp;quot;https://api.github.com/&amp;quot;) .build(); GitHubService service = retrofit.create(GitHubService.class);  我们通过 Builder 模式拼好 baseUrl 等字串，通过 retrofit 对象可以创建我们的接口对应的实体类，我们通过对这个实体类的操作，就能对我们定义好的接口去请求对应的数据：
+Call&amp;lt;List&amp;lt;Repo&amp;gt;&amp;gt; repos = service.listRepos(&amp;quot;octocat&amp;quot;);  创建请求类 @SuppressWarnings(&amp;quot;unchecked&amp;quot;) // Single-interface proxy creation guarded by parameter safety. public &amp;lt;T&amp;gt; T create(final Class&amp;lt;T&amp;gt; service) { Utils.</description>
     </item>
     
   </channel>

@@ -6,7 +6,11 @@
     <description>Recent content in Android on lfkdsk&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
-    <lastBuildDate>Tue, 06 Sep 2016 07:57:49 +0000</lastBuildDate><atom:link href="https://lfkdsk.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2016 07:57:49 +0000</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>MVP In Android</title>
       <link>https://lfkdsk.github.io/mvpinandroid/</link>
@@ -20,10 +24,9 @@ MVP中的Presenter代理类是对MVC模式中Controller的一种更新，通过�
 Structure 这里参照Google的官方推荐标准来讲解如何使用MVP的模式。
 按照MVP的设计模式，Model很清晰了就是我们抽象出来的数据模型，这个有的是只是Bean类型的数据模型，或者可以通过抽象接口来实现提供数据的Model模型，这个我认为都可以，看情况而定，有的时候过于拆分也会导致过度使用的问题出现。View类一般认为是Activity／Fragment这种和UI关联度高的控件。Presenter是抽象出来的代理类，处理逻辑问题。
 如何将View和Presenter链接起来呢？我们使用了一个契约类的方式定义了View和Presenter的暴露接口。
-Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&amp;lt;Presenter&amp;gt; { void initialRecycler(List&amp;lt;ExamArrange&amp;gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } } 契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
+Contract Interface public class ExamArrangeContract { /** * @link ExamArrange 考场安排 */ interface View extends BaseView&amp;lt;Presenter&amp;gt; { void initialRecycler(List&amp;lt;ExamArrange&amp;gt; arranges); void notifyRefreshRecycler(); void stopRefresh(); } interface Presenter extends BasePresenter { void initialDataForRecycler(); void beginLoad(PtrFrameLayout frame); void loadMore(); } }  契约类大多是形如以上代码的形式，重点定义了View和Presenter的暴露接口，里面定义了二者的职能。比如说View负责刷新RecyclerView的视图，Presenter负责给RecyclerView加载更多提供数据。
 Activity／Fragment继承其中的View类，另外再定一个一个对Presenter的实现类就可以了。
-Base Interface public interface BaseView&amp;lt;T&amp;gt; { void setPresenter(T presenter); } Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。
-public interface BasePresenter { void start(); } 另外Presenter的Base类中也只提供了一个start()函数用作Presenter的启动函数。一般放在Activity的onStart()或者是onResume()就可以了。</description>
+Base Interface public interface BaseView&amp;lt;T&amp;gt; { void setPresenter(T presenter); }  Contract类里面View继承的BaseView只有一个方法，就是和数据绑定。</description>
     </item>
     
   </channel>

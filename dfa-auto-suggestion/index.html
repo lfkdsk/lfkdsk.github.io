@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -87,326 +87,331 @@ DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; 
 <div class="post-content markdown-body">
 <p>之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。</p>
 <h3 id="dfa状态">DFA状态</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> sample<span style="color:#f92672">;</span>
+<pre><code class="language-java">package sample;
 
-<span style="color:#f92672">import</span> java.util.ArrayList<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.HashMap<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.Map<span style="color:#f92672">;</span>
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Dfa 状态
-</span><span style="color:#75715e"> *
-</span><span style="color:#75715e"> * @author liufengkai
-</span><span style="color:#75715e"> *         Created by liufengkai on 16/7/10.
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DfaState</span> <span style="color:#66d9ef">implements</span> Comparable<span style="color:#f92672">&lt;</span>DfaState<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+/**
+ * Dfa 状态
+ *
+ * @author liufengkai
+ *         Created by liufengkai on 16/7/10.
+ */
+public class DfaState implements Comparable&lt;DfaState&gt; {
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> DFA_ID_COUNT <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * state id
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> stateId<span style="color:#f92672">;</span>
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * transition set
-</span><span style="color:#75715e">     * char / set of dfaState
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> DfaState<span style="color:#f92672">&gt;</span> transitionSet<span style="color:#f92672">;</span>
+    private static int DFA_ID_COUNT = 0;
+    /**
+     * state id
+     */
+    private int stateId;
+    /**
+     * transition set
+     * char / set of dfaState
+     */
+    private Map&lt;Integer, DfaState&gt; transitionSet;
 
-    <span style="color:#66d9ef">private</span> DfaState parentState<span style="color:#f92672">;</span>
+    private DfaState parentState;
 
-    <span style="color:#66d9ef">private</span> Integer parentInput<span style="color:#f92672">;</span>
+    private Integer parentInput;
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 构造方法
-</span><span style="color:#75715e">     *
-</span><span style="color:#75715e">     * @param input       输入串
-</span><span style="color:#75715e">     * @param parentState 父节点
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DfaState</span><span style="color:#f92672">(</span>Integer input<span style="color:#f92672">,</span> DfaState parentState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">parentInput</span> <span style="color:#f92672">=</span> input<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">parentState</span> <span style="color:#f92672">=</span> parentState<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">stateId</span> <span style="color:#f92672">=</span> DFA_ID_COUNT<span style="color:#f92672">++;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">transitionSet</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
-    <span style="color:#f92672">}</span>
+    /**
+     * 构造方法
+     *
+     * @param input       输入串
+     * @param parentState 父节点
+     */
+    public DfaState(Integer input, DfaState parentState) {
+        this.parentInput = input;
+        this.parentState = parentState;
+        this.stateId = DFA_ID_COUNT++;
+        this.transitionSet = new HashMap&lt;&gt;();
+    }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 添加一条转移语句
-</span><span style="color:#75715e">     *
-</span><span style="color:#75715e">     * @param input 输入字符
-</span><span style="color:#75715e">     * @param state 下一个状态
-</span><span style="color:#75715e">     * @return 返回添加状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">addTransition</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">,</span> DfaState state<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    /**
+     * 添加一条转移语句
+     *
+     * @param input 输入字符
+     * @param state 下一个状态
+     * @return 返回添加状态
+     */
+    public DfaState addTransition(int input, DfaState state) {
 
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>input<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> state<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
+        if (!transitionSet.containsKey(input)) {
+            transitionSet.put(input, state);
+        }
 
-        <span style="color:#66d9ef">return</span> state<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+        return state;
+    }
 
-    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">getTransitionInput</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> getTransitionSet<span style="color:#f92672">().</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+    public DfaState getTransitionInput(int input) {
+        return getTransitionSet().get(input);
+    }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getStateId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> stateId<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public int getStateId() {
+        return stateId;
+    }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTotalNumber</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> DFA_ID_COUNT<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public static int getTotalNumber() {
+        return DFA_ID_COUNT;
+    }
 
-    <span style="color:#66d9ef">public</span> Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> DfaState<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getTransitionSet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> transitionSet<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public Map&lt;Integer, DfaState&gt; getTransitionSet() {
+        return transitionSet;
+    }
 
-    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">getParentState</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> parentState<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public DfaState getParentState() {
+        return parentState;
+    }
 
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>DfaState o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    @Override
+    public int compareTo(DfaState o) {
+        return 0;
+    }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getParentInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> parentInput<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public int getParentInput() {
+        return parentInput;
+    }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 打印状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printState</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">"state : "</span> <span style="color:#f92672">+</span> getStateId<span style="color:#f92672">());</span>
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer integer <span style="color:#f92672">:</span> transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">"symbol: "</span> <span style="color:#f92672">+</span>
-                    <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> integer<span style="color:#f92672">.</span><span style="color:#a6e22e">intValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">" to :"</span> <span style="color:#f92672">+</span>
-                    transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>integer<span style="color:#f92672">).</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">());</span>
-            transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>integer<span style="color:#f92672">).</span><span style="color:#a6e22e">printState</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+    /**
+     * 打印状态
+     */
+    public void printState() {
+        System.out.println("state : " + getStateId());
+        for (Integer integer : transitionSet.keySet()) {
+            System.out.println("symbol: " +
+                    (char) integer.intValue() + " to :" +
+                    transitionSet.get(integer).getStateId());
+            transitionSet.get(integer).printState();
+        }
+    }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 返回结束状态
-</span><span style="color:#75715e">     *
-</span><span style="color:#75715e">     * @param list 传入结束状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">returnEndList</span><span style="color:#f92672">(</span>ArrayList<span style="color:#f92672">&lt;</span>DfaState<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer key <span style="color:#f92672">:</span> transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            DfaState cur <span style="color:#f92672">=</span> transitionSet<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cur<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionSet</span><span style="color:#f92672">().</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>cur<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-                cur<span style="color:#f92672">.</span><span style="color:#a6e22e">returnEndList</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+    /**
+     * 返回结束状态
+     *
+     * @param list 传入结束状态
+     */
+    public void returnEndList(ArrayList&lt;DfaState&gt; list) {
+        for (Integer key : transitionSet.keySet()) {
+            DfaState cur = transitionSet.get(key);
+            if (cur.getTransitionSet().isEmpty()) {
+                list.add(cur);
+            } else {
+                cur.returnEndList(list);
+            }
+        }
+    }
+}
 
-</code></pre></div><p>DFAState定义了很多基础的方法，比如每个状态都有唯一的ID值与之对应，虽然是一个DFA但是插入的过程是发现下一个节点不同才分叉，由此看来每个状态都应该有唯一的父节点与之对应，使用了一个Map来记录我们有哪些路径，还有一个方法来递归查找终结节点，使用这个方法来倒序查找预测分析出的字符串，这并不是一个效率很高的方法，之后也会被替换。</p>
+</code></pre>
+<p>DFAState定义了很多基础的方法，比如每个状态都有唯一的ID值与之对应，虽然是一个DFA但是插入的过程是发现下一个节点不同才分叉，由此看来每个状态都应该有唯一的父节点与之对应，使用了一个Map来记录我们有哪些路径，还有一个方法来递归查找终结节点，使用这个方法来倒序查找预测分析出的字符串，这并不是一个效率很高的方法，之后也会被替换。</p>
 <h3 id="dfabuilder创建dfa">DFABuilder创建DFA</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> sample<span style="color:#f92672">;</span>
+<pre><code class="language-java">package sample;
 
-<span style="color:#f92672">import</span> java.util.ArrayList<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.HashMap<span style="color:#f92672">;</span>
+import java.util.ArrayList;
+import java.util.HashMap;
 
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Created by liufengkai on 16/7/10.
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DfaBuilder</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * NFA 状态机的起始状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> DfaState startState <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 状态机的当前状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> DfaState currentState <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 接受状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> HashMap<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> DfaState<span style="color:#f92672">&gt;</span> acceptState<span style="color:#f92672">;</span>
+/**
+ * Created by liufengkai on 16/7/10.
+ */
+public class DfaBuilder {
+    /**
+     * NFA 状态机的起始状态
+     */
+    public DfaState startState = null;
+    /**
+     * 状态机的当前状态
+     */
+    public DfaState currentState = null;
+    /**
+     * 接受状态
+     */
+    public HashMap&lt;Integer, DfaState&gt; acceptState;
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> RETURN_ID <span style="color:#f92672">=</span> 13<span style="color:#f92672">;</span>
+    private static final int RETURN_ID = 13;
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> CHANGE_LINE_ID <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+    private static final int CHANGE_LINE_ID = 10;
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> TAB_ID <span style="color:#f92672">=</span> 9<span style="color:#f92672">;</span>
+    private static final int TAB_ID = 9;
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> SPACE_ID <span style="color:#f92672">=</span> 32<span style="color:#f92672">;</span>
+    private static final int SPACE_ID = 32;
 
-    <span style="color:#66d9ef">private</span> ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> endIdList<span style="color:#f92672">;</span>
+    private ArrayList&lt;Integer&gt; endIdList;
 
-    <span style="color:#66d9ef">private</span> DfaCallBack dfaCallBack <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    private DfaCallBack dfaCallBack = null;
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DfaBuilder</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">// parent is null
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DfaState<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">));</span>
-    <span style="color:#f92672">}</span>
+    public DfaBuilder() {
+        // parent is null
+        this(new DfaState(null, null));
+    }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DfaBuilder</span><span style="color:#f92672">(</span>DfaState startState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">startState</span> <span style="color:#f92672">=</span> startState<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">currentState</span> <span style="color:#f92672">=</span> startState<span style="color:#f92672">;</span>
-        initial<span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
+    public DfaBuilder(DfaState startState) {
+        this.startState = startState;
+        this.currentState = startState;
+        initial();
+    }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 添加接受状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addAcceptState</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">,</span> DfaState accept<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>input<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> accept<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+    /**
+     * 添加接受状态
+     */
+    public void addAcceptState(int input, DfaState accept) {
+        if (!acceptState.containsKey(input)) {
+            acceptState.put(input, accept);
+        }
+    }
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initial</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">acceptState</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">endIdList</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-        initialEndIdList<span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialEndIdList</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>RETURN_ID<span style="color:#f92672">);</span>
-        endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>CHANGE_LINE_ID<span style="color:#f92672">);</span>
-        endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>TAB_ID<span style="color:#f92672">);</span>
-        endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>SPACE_ID<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">input</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">// parser 了所有特殊情况 对于单词的提示
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 一个单词内是不会出现空格制表符和换行的
-</span><span style="color:#75715e">//        System.out.println(input + "sss");
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>input<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">currentState</span> <span style="color:#f92672">=</span> startState<span style="color:#f92672">;</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
+    private void initial() {
+        this.acceptState = new HashMap&lt;&gt;();
+        this.endIdList = new ArrayList&lt;&gt;();
+        initialEndIdList();
+    }
 
 
-        <span style="color:#75715e">// 处理了当输入串还在起始状态的情况
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> startState<span style="color:#f92672">.</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> startInput<span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
+    private void initialEndIdList() {
+        endIdList.add(RETURN_ID);
+        endIdList.add(CHANGE_LINE_ID);
+        endIdList.add(TAB_ID);
+        endIdList.add(SPACE_ID);
+    }
 
-        <span style="color:#75715e">// 说明状态不在起始状态
-</span><span style="color:#75715e"></span>        DfaState tempCurrent <span style="color:#f92672">=</span> currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionInput</span><span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>tempCurrent <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            tempCurrent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DfaState<span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> currentState<span style="color:#f92672">);</span>
-            currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">addTransition</span><span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> tempCurrent<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>dfaCallBack <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> dfaCallBack<span style="color:#f92672">.</span><span style="color:#a6e22e">onMultipleSetBack</span><span style="color:#f92672">(</span>tempCurrent<span style="color:#f92672">,</span> tempCurrent<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionSet</span><span style="color:#f92672">());</span>
-        <span style="color:#f92672">}</span>
-        currentState <span style="color:#f92672">=</span> tempCurrent<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">return</span> currentState<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public DfaState input(int input) {
+        // parser 了所有特殊情况 对于单词的提示
+        // 一个单词内是不会出现空格制表符和换行的
+//        System.out.println(input + "sss");
+        if (endIdList.contains(input)) {
+            this.currentState = startState;
+            return null;
+        }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 处理还在输入串起始状态的情况
-</span><span style="color:#75715e">     *
-</span><span style="color:#75715e">     * @param input 输入
-</span><span style="color:#75715e">     * @return current状态
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">startInput</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        DfaState current<span style="color:#f92672">;</span>
-        <span style="color:#75715e">// 转入第一个起始状态
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>input<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            current <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DfaState<span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> currentState<span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAcceptState</span><span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> current<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-            current <span style="color:#f92672">=</span> acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>dfaCallBack <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> dfaCallBack<span style="color:#f92672">.</span><span style="color:#a6e22e">onMultipleSetBack</span><span style="color:#f92672">(</span>current<span style="color:#f92672">,</span> current<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionSet</span><span style="color:#f92672">());</span>
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">currentState</span> <span style="color:#f92672">=</span> current<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">return</span> current<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setDfaCallBack</span><span style="color:#f92672">(</span>DfaCallBack dfaCallBack<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">dfaCallBack</span> <span style="color:#f92672">=</span> dfaCallBack<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+        // 处理了当输入串还在起始状态的情况
+        if (currentState.getStateId() == startState.getStateId()) {
+            return startInput(input);
+        }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printDfa</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer integer <span style="color:#f92672">:</span> acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">"接受状态 "</span> <span style="color:#f92672">+</span> acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>integer<span style="color:#f92672">).</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">());</span>
-            acceptState<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>integer<span style="color:#f92672">).</span><span style="color:#a6e22e">printState</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+        // 说明状态不在起始状态
+        DfaState tempCurrent = currentState.getTransitionInput(input);
+        if (tempCurrent == null) {
+            tempCurrent = new DfaState(input, currentState);
+            currentState.addTransition(input, tempCurrent);
+        } else {
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(tempCurrent, tempCurrent.getTransitionSet());
+        }
+        currentState = tempCurrent;
+        return currentState;
+    }
 
-    <span style="color:#75715e">/**
-</span><span style="color:#75715e">     * 重设startState
-</span><span style="color:#75715e">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">resetStartState</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">currentState</span> <span style="color:#f92672">=</span> startState<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+    /**
+     * 处理还在输入串起始状态的情况
+     *
+     * @param input 输入
+     * @return current状态
+     */
+    public DfaState startInput(int input) {
+        DfaState current;
+        // 转入第一个起始状态
+        if (!acceptState.containsKey(input)) {
+            current = new DfaState(input, currentState);
+            this.addAcceptState(input, current);
+        } else {
+            current = acceptState.get(input);
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(current, current.getTransitionSet());
+        }
+        this.currentState = current;
+        return current;
+    }
 
-</code></pre></div><p>DFABuilder定义了DFA的开始状态和现在的匹配的状态还定义了一些如何继续处理节点的方法。</p>
+    public void setDfaCallBack(DfaCallBack dfaCallBack) {
+        this.dfaCallBack = dfaCallBack;
+    }
+
+    public void printDfa() {
+        for (Integer integer : acceptState.keySet()) {
+            System.out.println("接受状态 " + acceptState.get(integer).getStateId());
+            acceptState.get(integer).printState();
+        }
+    }
+
+    /**
+     * 重设startState
+     */
+    public void resetStartState() {
+        this.currentState = startState;
+    }
+}
+
+</code></pre>
+<p>DFABuilder定义了DFA的开始状态和现在的匹配的状态还定义了一些如何继续处理节点的方法。</p>
 <p>重点应该看如下的这个方法：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> DfaState <span style="color:#a6e22e">input</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">// parser 了所有特殊情况 对于单词的提示
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 一个单词内是不会出现空格制表符和换行的
-</span><span style="color:#75715e">//        System.out.println(input + "sss");
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>endIdList<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>input<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">currentState</span> <span style="color:#f92672">=</span> startState<span style="color:#f92672">;</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
+<pre><code class="language-java">    public DfaState input(int input) {
+        // parser 了所有特殊情况 对于单词的提示
+        // 一个单词内是不会出现空格制表符和换行的
+//        System.out.println(input + "sss");
+        if (endIdList.contains(input)) {
+            this.currentState = startState;
+            return null;
+        }
 
 
-        <span style="color:#75715e">// 处理了当输入串还在起始状态的情况
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> startState<span style="color:#f92672">.</span><span style="color:#a6e22e">getStateId</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> startInput<span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
+        // 处理了当输入串还在起始状态的情况
+        if (currentState.getStateId() == startState.getStateId()) {
+            return startInput(input);
+        }
 
-        <span style="color:#75715e">// 说明状态不在起始状态
-</span><span style="color:#75715e"></span>        DfaState tempCurrent <span style="color:#f92672">=</span> currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionInput</span><span style="color:#f92672">(</span>input<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>tempCurrent <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            tempCurrent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DfaState<span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> currentState<span style="color:#f92672">);</span>
-            currentState<span style="color:#f92672">.</span><span style="color:#a6e22e">addTransition</span><span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> tempCurrent<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>dfaCallBack <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> dfaCallBack<span style="color:#f92672">.</span><span style="color:#a6e22e">onMultipleSetBack</span><span style="color:#f92672">(</span>tempCurrent<span style="color:#f92672">,</span> tempCurrent<span style="color:#f92672">.</span><span style="color:#a6e22e">getTransitionSet</span><span style="color:#f92672">());</span>
-        <span style="color:#f92672">}</span>
-        currentState <span style="color:#f92672">=</span> tempCurrent<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">return</span> currentState<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p>endIdList里面包含一些提示匹配方法结束的标志，比如空格，换行，回车，制表符，每次匹配到这个的时候就把状态切换回初始状态。如果输入串还在初始状态即第一次输入，就添加一个接受状态，其余的就找到对应的DFAState步进或是插入就可以了。另外还定义了一个接口用于返回数据进行处理。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> sample<span style="color:#f92672">;</span>
+        // 说明状态不在起始状态
+        DfaState tempCurrent = currentState.getTransitionInput(input);
+        if (tempCurrent == null) {
+            tempCurrent = new DfaState(input, currentState);
+            currentState.addTransition(input, tempCurrent);
+        } else {
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(tempCurrent, tempCurrent.getTransitionSet());
+        }
+        currentState = tempCurrent;
+        return currentState;
+    }
+</code></pre>
+<p>endIdList里面包含一些提示匹配方法结束的标志，比如空格，换行，回车，制表符，每次匹配到这个的时候就把状态切换回初始状态。如果输入串还在初始状态即第一次输入，就添加一个接受状态，其余的就找到对应的DFAState步进或是插入就可以了。另外还定义了一个接口用于返回数据进行处理。</p>
+<pre><code class="language-java">package sample;
 
-<span style="color:#f92672">import</span> java.util.Map<span style="color:#f92672">;</span>
+import java.util.Map;
 
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Created by liufengkai on 16/7/10.
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">DfaCallBack</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onMultipleSetBack</span><span style="color:#f92672">(</span>DfaState current<span style="color:#f92672">,</span> Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> DfaState<span style="color:#f92672">&gt;</span> states<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+/**
+ * Created by liufengkai on 16/7/10.
+ */
+public interface DfaCallBack {
+    void onMultipleSetBack(DfaState current, Map&lt;Integer, DfaState&gt; states);
+}
 
-</code></pre></div><p>返回当前节点和接续的状态集。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-java" data-lang="java">        DfaBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DfaBuilder<span style="color:#f92672">();</span>
+</code></pre>
+<p>返回当前节点和接续的状态集。</p>
+<pre><code class="language-java">        DfaBuilder builder = new DfaBuilder();
 
-        builder<span style="color:#f92672">.</span><span style="color:#a6e22e">setDfaCallBack</span><span style="color:#f92672">((</span>current<span style="color:#f92672">,</span> states<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+        builder.setDfaCallBack((current, states) -&gt; {
 
-            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">"current list "</span> <span style="color:#f92672">+</span> getCurrentString<span style="color:#f92672">(</span>current<span style="color:#f92672">));</span>
-            ArrayList<span style="color:#f92672">&lt;</span>DfaState<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer key <span style="color:#f92672">:</span> states<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                states<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">).</span><span style="color:#a6e22e">returnEndList</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
+            System.out.println("current list " + getCurrentString(current));
+            ArrayList&lt;DfaState&gt; list = new ArrayList&lt;&gt;();
+            for (Integer key : states.keySet()) {
+                states.get(key).returnEndList(list);
+            }
 
-            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>DfaState state <span style="color:#f92672">:</span> list<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">"prediction list "</span> <span style="color:#f92672">+</span> getCurrentString<span style="color:#f92672">(</span>state<span style="color:#f92672">));</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">});</span>
+            for (DfaState state : list) {
+                System.out.println("prediction list " + getCurrentString(state));
+            }
+        });
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">getCurrentString</span><span style="color:#f92672">(</span>DfaState currentState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        String tempString <span style="color:#f92672">=</span> <span style="color:#e6db74">""</span><span style="color:#f92672">;</span>
-        DfaState tempState <span style="color:#f92672">=</span> currentState<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>tempState<span style="color:#f92672">.</span><span style="color:#a6e22e">getParentState</span><span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            tempString <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> tempState<span style="color:#f92672">.</span><span style="color:#a6e22e">getParentInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> tempString<span style="color:#f92672">;</span>
-            tempState <span style="color:#f92672">=</span> tempState<span style="color:#f92672">.</span><span style="color:#a6e22e">getParentState</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">return</span> tempString<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    public static String getCurrentString(DfaState currentState) {
+        String tempString = "";
+        DfaState tempState = currentState;
+        while (tempState.getParentState() != null) {
+            tempString = (char) tempState.getParentInput() + tempString;
+            tempState = tempState.getParentState();
+        }
+        return tempString;
+    }
 
-</code></pre></div><p>使用的时候使用类似这样的方式就能实现简单的预测提示了。</p>
+</code></pre>
+<p>使用的时候使用类似这样的方式就能实现简单的预测提示了。</p>
 <h3 id="效果图">效果图</h3>
 <p>我打算看看javaFx，写一个带gui的，不过现在有点懒，还没写完。</p>
 <p><img alt="pic" src="psb.png"/></p>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -94,62 +94,67 @@
 <p>However, only supporting the conditional compilation relationship between files cannot completely solve this problem. For example, in the branch merge of Vessel, many functions (including various native libraries and libraries of Dart and Native) are merged, but we will still encounter some libraries that cannot be used under the two major versions of the branch.</p>
 <p>For example, the bridge_client I developed by myself relies on analyzer , source_gen and other basic libraries that are strongly related to the Dart version, so it is difficult to directly make this library run directly on the two Dart versions on the two basic libraries.</p>
 <p>Therefore, by modifying Dart Pub to make it open with Conditional Import, we can also choose according to different conditions in the configuration file of Dart Pub.</p>
-<h2 id="how-to-impl-">How to impl ?</h2>
+<h2 id="how-to-impl">How to impl ?</h2>
 <p>Details in : <a href="https://github.com/lfkdsk/dart_pub">https://github.com/lfkdsk/dart_pub</a></p>
-<h2 id="how-to-use-">How to use ?</h2>
+<h2 id="how-to-use">How to use ?</h2>
 <blockquote>
 <p>How to use Conditional Import, please refer to: <a href="https://lfkdsk.github.io/dart-conditional-import/">https://lfkdsk.github.io/dart-conditional-import/</a></p>
 </blockquote>
 <p>For example, in pubspec.yaml configuration file, we need to rely on two versions <code>branch_1</code> and <code>branch_1</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">dependencies</span>:
-  <span style="color:#f92672">flutter</span>:
-    <span style="color:#f92672">sdk</span>: <span style="color:#ae81ff">flutter</span>
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
 
-  <span style="color:#75715e"># The following adds the Cupertino Icons font to your application.</span>
-  <span style="color:#75715e"># Use with the CupertinoIcons class for iOS style icons.</span>
-  <span style="color:#f92672">cupertino_icons</span>: <span style="color:#ae81ff">^1.0.0</span>
-  <span style="color:#f92672">bridge_client</span>:
-    <span style="color:#f92672">condition.branch_1</span>: <span style="color:#ae81ff">^1.0.0</span>
-    <span style="color:#f92672">condition.branch_2</span>: <span style="color:#ae81ff">^2.0.0</span>
-</code></pre></div><p>Among them <code>condition.branch_1</code> and <code>condition.branch_2</code> are automatically injected by the flutter_tools frame part.
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.0
+  bridge_client:
+    condition.branch_1: ^1.0.0
+    condition.branch_2: ^2.0.0
+</code></pre>
+<p>Among them <code>condition.branch_1</code> and <code>condition.branch_2</code> are automatically injected by the flutter_tools frame part.
 At this time we use flutter pub get:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-shell" data-lang="shell">flutter pub get --local-engine-src-path<span style="color:#f92672">=</span>xxxxx
-</code></pre></div><p>Note that pub get can pass dependencies in pubspec.lock:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-yaml" data-lang="yaml">  <span style="color:#f92672">bridge_client</span>:
-    <span style="color:#f92672">dependency</span>: <span style="color:#e6db74">"direct main"</span>
-    <span style="color:#f92672">description</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">bridge_client</span>
-    <span style="color:#f92672">source</span>: <span style="color:#ae81ff">hosted</span>
-    <span style="color:#f92672">version</span>: <span style="color:#e6db74">"2.0.2"</span>
-</code></pre></div><p>Dependencies can also be pulled correctly to ^ 2.0.0 and above, supporting the version of the flutter 1.22 engine.</p>
+<pre><code class="language-shell">flutter pub get --local-engine-src-path=xxxxx
+</code></pre>
+<p>Note that pub get can pass dependencies in pubspec.lock:</p>
+<pre><code class="language-yaml">  bridge_client:
+    dependency: "direct main"
+    description:
+      name: bridge_client
+    source: hosted
+    version: "2.0.2"
+</code></pre>
+<p>Dependencies can also be pulled correctly to ^ 2.0.0 and above, supporting the version of the flutter 1.22 engine.</p>
 <h2 id="advanced-mode">Advanced mode</h2>
 <h3 id="version-can-be-customized">Version can be customized</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">dependencies</span>:
-  <span style="color:#f92672">flutter</span>:
-    <span style="color:#f92672">sdk</span>: <span style="color:#ae81ff">flutter</span>
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
     
-  <span style="color:#f92672">bd_bridge_client</span>:
-    <span style="color:#f92672">condition.branch_1</span>: 
-        <span style="color:#f92672">git</span>: <span style="color:#ae81ff">xxx.git</span>
-        <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">xxxx</span>
-    <span style="color:#f92672">condition.branch_2</span>: <span style="color:#ae81ff">^2.0.0</span>
-</code></pre></div><p>Everything in Conditional Pub is the same as the rules pubspec.yaml before, so we can easily use git dependencies, hosted dependencies, and normal version number descriptions for different versions.</p>
+  bd_bridge_client:
+    condition.branch_1: 
+        git: xxx.git
+        ref: xxxx
+    condition.branch_2: ^2.0.0
+</code></pre>
+<p>Everything in Conditional Pub is the same as the rules pubspec.yaml before, so we can easily use git dependencies, hosted dependencies, and normal version number descriptions for different versions.</p>
 <h3 id="conditions-can-be-customized">Conditions can be customized</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">dependencies</span>:
-  <span style="color:#f92672">flutter</span>:
-    <span style="color:#f92672">sdk</span>: <span style="color:#ae81ff">flutter</span>
+<pre><code class="language-yaml">dependencies:
+  flutter:
+    sdk: flutter
     
-  <span style="color:#f92672">cupertino_icons</span>: <span style="color:#ae81ff">^1.0.0</span>
-  <span style="color:#f92672">hook_coverage</span>:
-    <span style="color:#f92672">condition.hooked</span>: 
-        <span style="color:#f92672">git</span>: <span style="color:#ae81ff">xxx.git</span>
-        <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">xxxx</span>
-    <span style="color:#f92672">condition.no_hooked</span>: <span style="color:#ae81ff">^2.0.0-wrapper</span>
+  cupertino_icons: ^1.0.0
+  hook_coverage:
+    condition.hooked: 
+        git: xxx.git
+        ref: xxxx
+    condition.no_hooked: ^2.0.0-wrapper
 
-<span style="color:#f92672">conditions</span>:
-   <span style="color:#f92672">condition.hooked</span>: <span style="color:#66d9ef">true</span>
-   <span style="color:#f92672">condition.no_hooked</span>: <span style="color:#66d9ef">false</span>        
-</code></pre></div><p>The solution gets through Conditional Import, so you can freely use custom conditions for version selection. For example, we can use it according to whether to turn on the hook switch.</p>
+conditions:
+   condition.hooked: true
+   condition.no_hooked: false        
+</code></pre>
+<p>The solution gets through Conditional Import, so you can freely use custom conditions for version selection. For example, we can use it according to whether to turn on the hook switch.</p>
 </div>
 <p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
 <div style="height:50px"></div>

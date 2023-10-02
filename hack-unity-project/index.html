@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="Hugo 0.91.2" name="generator"/>
+<meta content="Hugo 0.59.1" name="generator"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Intra-Mind Traveler" name="author"/>
@@ -113,9 +113,9 @@
 <li>相对于能实现同样功能的直接进行「二进制分析修改」来说，代码可读性更好容易进行持续迭代开发</li>
 </ol>
 <h2 id="效果展示">效果展示</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p><video controls="" src="1.mp4" style="zoom:60%;"></video></p>
+<p><video controls="" src="2.mp4" style="zoom:45%;"></video></p>
+<p><video controls="" src="3.mp4" style="zoom:45%;"></video></p>
 <h2 id="方案设计">方案设计</h2>
 <p>上文中我们简述了方案的思路，包含几个方面：</p>
 <ul>
@@ -124,19 +124,19 @@
 <li>通过修改 Dex IR 织入 Hook 模块：编写好指定的 Hook 函数之后我们还需要通过编写一些指定的 bytecode 来使得 Android 能够加载我们的 Hook 模块。</li>
 </ul>
 <p><img alt="" src="graph.svg"/></p>
-<h2 id="破题函数指针分析">破题：函数指针分析</h2>
+<h2 id="破题-函数指针分析">破题：函数指针分析</h2>
 <h3 id="il2cpp-背景知识">il2cpp 背景知识</h3>
 <p>il2cpp 是 Unity 自己开发的一套 C# 的 aot backend。从整体的数据流程上来看，用户编写的 C# 代码会先被 C# 的 compiler frontend 翻译成 CIL bytecode 格式，随后会通过 Linker 进行 strip code，再被 il2cpp 程序将 CIL 逐个文件翻译为 Cpp 文件，最终被 LLVM 程序编译为 native 程序。</p>
 <p><img alt="" src="flow.jpg"/></p>
 <p>关于 il2cpp 编译流程的相关技术文章分析之前笔者已经写过，此处不再赘述，可以参考以下文章 or 分享了解更多技术细节：</p>
 <ul>
 <li><a href="https://bytedance.feishu.cn/docx/doxcnOQzx5mbcGZ4JSYiOTLkqOe">Rono - Unity CIL Static Optimizer </a> ：ReIL 是笔者正在开发的一个 C# Optimizer 打通了整条针对 C# / Unity 编译的 pipeline ，并且在此之中实现了多种静态分析、VM 分析相关的 Pass 。</li>
-<li><a href="">Unity il2cpp compilation.pptx</a> ：笔者还进行过一个 Unity il2cpp 流程分析的相关分享。分享视频（略）</li>
+<li>[Unity il2cpp compilation.pptx]() ：笔者还进行过一个 Unity il2cpp 流程分析的相关分享。分享视频（略）</li>
 </ul>
 <h3 id="method-的编译逻辑论证">Method 的编译逻辑论证</h3>
 <p>il2cpp 实际上更多是一个 c# =&gt; cpp 的 transpiler ，与其说是一个完整的 aot 方案，更像是针对逐个 bytecode 进行 dump 转义生成的流程。</p>
 <p>因此生成 cpp 部分保留了相对充分的 vm 内容，可以被认为 C# 的每个 module 、method、field 都会在静态分析的阶段进行提前计算，计算出 virtual table、method slot 等相关静态参数。每个 Module 的编译结果都会生成一个类似 <code>s_methodPointers</code> 的结构，引用该 module 的全部方法：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> Il2CppMethodPointer s_methodPointers[<span style="color:#ae81ff">1027</span>] <span style="color:#f92672">=</span> 
+<pre><code class="language-C">static Il2CppMethodPointer s_methodPointers[1027] = 
 {
     Comments_Start_mA6AE4B777CE1A3C2B23062670AEE6A98277A3797,
     Comments_Update_mF7B79710EF16558F936AE4072AE7A52D102FEC68,
@@ -146,177 +146,189 @@
     Comments_initRowPos_m5481CC4F50E02E189C305968FFCE7F51CC4A45BE,
     Comments_gradientPos_m9DD6E215FF49B1963333E88664FCE851F647FCB7,
     Comments__ctor_m3C9DD1C32C5503C3D961B231F1F91D767C9A6E19,
-    <span style="color:#75715e">// ...     
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>而在每个 il2cpp module 的 def 之中也会引用该函数指针 list ：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C"><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">const</span> CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[];
-IL2CPP_EXTERN_C <span style="color:#66d9ef">const</span> Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
-<span style="color:#66d9ef">const</span> Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule <span style="color:#f92672">=</span> 
+    // ...     
+}
+</code></pre>
+<p>而在每个 il2cpp module 的 def 之中也会引用该函数指针 list ：</p>
+<pre><code class="language-C">extern const CustomAttributesCacheGenerator g_AssemblyU2DCSharp_AttributeGenerators[];
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
+const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
-    <span style="color:#e6db74">"Assembly-CSharp.dll"</span>,
-    <span style="color:#ae81ff">1027</span>,
+    "Assembly-CSharp.dll",
+    1027,
     s_methodPointers,
-    <span style="color:#ae81ff">0</span>,
+    0,
     NULL,
     s_InvokerIndices,
-    <span style="color:#ae81ff">0</span>,
+    0,
     NULL,
-    <span style="color:#ae81ff">0</span>,
+    0,
     NULL,
-    <span style="color:#ae81ff">0</span>,
+    0,
     NULL,
     NULL,
     g_AssemblyU2DCSharp_AttributeGenerators,
-    NULL, <span style="color:#75715e">// module initializer,
-</span><span style="color:#75715e"></span>    NULL,
+    NULL, // module initializer,
+    NULL,
     NULL,
     NULL,
 };
-</code></pre></div><p>而在对 virtual method 进行实际进行调用的过程中，会使用对 runtime 查找的方式进行搜索：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C"><span style="color:#75715e">// RenderTexture buffer = RenderTexture.GetTemporary(source.width/4, source.height/4, 0);
-</span><span style="color:#75715e"></span>RenderTexture_t5FE7A5B47EF962A0E8D7BEBA05E9FC87D49A1849 <span style="color:#f92672">*</span> L_0 <span style="color:#f92672">=</span> ___source0;
+</code></pre>
+<p>而在对 virtual method 进行实际进行调用的过程中，会使用对 runtime 查找的方式进行搜索：</p>
+<pre><code class="language-C">// RenderTexture buffer = RenderTexture.GetTemporary(source.width/4, source.height/4, 0);
+RenderTexture_t5FE7A5B47EF962A0E8D7BEBA05E9FC87D49A1849 * L_0 = ___source0;
 NullCheck(L_0);
-<span style="color:#66d9ef">int32_t</span> L_1;
-L_1 <span style="color:#f92672">=</span> VirtFuncInvoker0<span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">int32_t</span> <span style="color:#f92672">&gt;::</span>Invoke(<span style="color:#ae81ff">5</span> <span style="color:#75715e">/* System.Int32 UnityEngine.Texture::get_width() */</span>, L_0);
-</code></pre></div><p><code>VirFuncInvoker</code> 实际持有的第一个参数就是 method pointer 在实际存储的 vtable slot 。因此我们可以得知 il2cpp method 本身在二进制程序之中有相对稳定的地址和偏移量，比如并不是类似 VM 的 load 机制使得不同的函数每次加载有不同偏移量地址。</p>
+int32_t L_1;
+L_1 = VirtFuncInvoker0&lt; int32_t &gt;::Invoke(5 /* System.Int32 UnityEngine.Texture::get_width() */, L_0);
+</code></pre>
+<p><code>VirFuncInvoker</code> 实际持有的第一个参数就是 method pointer 在实际存储的 vtable slot 。因此我们可以得知 il2cpp method 本身在二进制程序之中有相对稳定的地址和偏移量，比如并不是类似 VM 的 load 机制使得不同的函数每次加载有不同偏移量地址。</p>
 <h3 id="分析-il2cpp-与-metadata-生成偏移地址">分析 il2cpp 与 metadata 生成偏移地址</h3>
 <p>il2cpp 的编译结果会产生两个主要产物：<code>libil2cpp.so</code> 与 <code>global-metadata.dat</code> 。其中 <code>libil2cpp.so</code> 为 il2cpp 编译产生出的 so library，而· <code>global-metadata.dat</code> 本身保存了 il2cpp 在编译流程产生的各类 metadata 比如 class hierarchy, method pointer 等各种信息，例如上文中计算的函数指针数组、vtable slot 的计算的固定值。因此我们在此处要编写程序读取程序反编译的结果的 libil2cpp 与 global-metadata 的信息进行分析。</p>
 <p><img alt="img" src="code.png"/></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">        public ulong <span style="color:#a6e22e">GetMethodPointer</span>(string imageName, Il2CppMethodDefinition methodDef)
+<pre><code class="language-C">        public ulong GetMethodPointer(string imageName, Il2CppMethodDefinition methodDef)
         {
-            <span style="color:#66d9ef">if</span> (Version <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">24.2</span>)
+            if (Version &gt;= 24.2)
             {
-                var methodToken <span style="color:#f92672">=</span> methodDef.token;
-                var ptrs <span style="color:#f92672">=</span> codeGenModuleMethodPointers[imageName];
-                var methodPointerIndex <span style="color:#f92672">=</span> methodToken <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x00FFFFFFu</span>;
-                <span style="color:#66d9ef">return</span> ptrs[methodPointerIndex <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+                var methodToken = methodDef.token;
+                var ptrs = codeGenModuleMethodPointers[imageName];
+                var methodPointerIndex = methodToken &amp; 0x00FFFFFFu;
+                return ptrs[methodPointerIndex - 1];
             }
-            <span style="color:#66d9ef">else</span>
+            else
             {
-                var methodIndex <span style="color:#f92672">=</span> methodDef.methodIndex;
-                <span style="color:#66d9ef">if</span> (methodIndex <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>)
+                var methodIndex = methodDef.methodIndex;
+                if (methodIndex &gt;= 0)
                 {
-                    <span style="color:#66d9ef">return</span> methodPointers[methodIndex];
+                    return methodPointers[methodIndex];
                 }
             }
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+            return 0;
         }
-</code></pre></div><p>将具体的函数地址偏移量的 dump 生成出来我们就可以得出每个 property 与 method 的指针偏移量。</p>
+</code></pre>
+<p>将具体的函数地址偏移量的 dump 生成出来我们就可以得出每个 property 与 method 的指针偏移量。</p>
 <p><img alt="img" src="code2.png"/></p>
 <p>有了指针的偏移量我们就可以通过 libil2cpp.so 本身的内存地址来获取到实际的指针位置来进行 Hook 或者进行替换。</p>
-<h3 id="-破解-metadata-加密">* 破解 metadata 加密</h3>
+<h3 id="破解-metadata-加密">* 破解 metadata 加密</h3>
 <p>相对主流的商业游戏会针对 il2cpp 内部的数据段与 metadata 段进行加密，使得我们不能够通过反编译程序对 il2cpp 的内部数据段进行分析，这种时候我们我们需要对 il2cpp 内部的数据段进行解密。无论如何加密，在应用中实际使用的时候内存的调用中是有被解密的，因此我们只需要能够给从内存中抓取到对应的 libil2cpp 就可以了。</p>
 <p>这里笔者不便细述可以给出两种技术方案：</p>
 <ol>
 <li>il2CppDumper： <a href="https://github.com/Perfare/Zygisk-Il2CppDumper">https://github.com/Perfare/Zygisk-Il2CppDumper</a> 如果有 Root 设备，我们可以通过安装脸谱也使用 Hook 来编译一个针对应用的内存钩子来进行 dump 分析。</li>
 <li>直接内存 dump：如果没有 Root 设备，我们也可以通过普通的内存分析器来进行分析并抓取到 libil2cpp 在实际内存中的数据段就可以了。</li>
 </ol>
-<h2 id="承题hook-函数编写">承题：Hook 函数编写</h2>
+<h2 id="承题-hook-函数编写">承题：Hook 函数编写</h2>
 <h3 id="cydia-substrate-基础逻辑">Cydia Substrate 基础逻辑</h3>
 <p>在获取了函数的具体指针的 offset 之后，其实如果指向修改函数的具体内容，我们可以直接通过把 binary 拖进 IDA 来增补 bytecode 进行修改。不过本身使用 IDA 进行修改二进制的方案比较麻烦，并且每次都要进行类似的查找和修改并且逻辑比较复杂。因此方案上打算直接使用一个 Hook 方案就可以，比如 Cydia Substrate, Dobby 等。</p>
 <p>这里我使用了 Cydia Substrate 包裹的一个 Android 实现模板 <a href="https://github.com/joeyjurjens/Android-Hooking-Template">https://github.com/joeyjurjens/Android-Hooking-Template</a> 进行编写，这里也顺带阅读了下 Cydia Substrate 的使用原理。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">_extern <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MSHookFunction</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>symbol, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>replace, <span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>result) {
-    <span style="color:#66d9ef">return</span> SubstrateHookFunction(NULL, symbol, replace, result);
+<pre><code class="language-C">_extern void MSHookFunction(void *symbol, void *replace, void **result) {
+    return SubstrateHookFunction(NULL, symbol, replace, result);
 }
-</code></pre></div><p>Cydia Substrate 本身基于对某个函数指针地址的替换来进行实现，主要流程可以简述为：修改函数的入口，先跳转到代替函数，对原来的函数入口做一个备份返回。备份指令：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">    uintptr_t <span style="color:#a6e22e">source</span>(reinterpret_cast<span style="color:#f92672">&lt;</span>uintptr_t<span style="color:#f92672">&gt;</span>(symbol));
-    uintptr_t <span style="color:#a6e22e">target</span>(reinterpret_cast<span style="color:#f92672">&lt;</span>uintptr_t<span style="color:#f92672">&gt;</span>(replace));
-    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">area</span>(reinterpret_cast<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*&gt;</span>(symbol));
-    size_t <span style="color:#a6e22e">required</span>(MSSizeOfJump(target, source));
+</code></pre>
+<p>Cydia Substrate 本身基于对某个函数指针地址的替换来进行实现，主要流程可以简述为：修改函数的入口，先跳转到代替函数，对原来的函数入口做一个备份返回。备份指令：</p>
+<pre><code class="language-C">    uintptr_t source(reinterpret_cast&lt;uintptr_t&gt;(symbol));
+    uintptr_t target(reinterpret_cast&lt;uintptr_t&gt;(replace));
+    uint8_t *area(reinterpret_cast&lt;uint8_t *&gt;(symbol));
+    size_t required(MSSizeOfJump(target, source));
 
-    size_t <span style="color:#a6e22e">used</span>(<span style="color:#ae81ff">0</span>);
-    <span style="color:#66d9ef">while</span> (used <span style="color:#f92672">&lt;</span> required) {
-        size_t width(MSGetInstructionWidthIntel(area <span style="color:#f92672">+</span> used));
-        <span style="color:#66d9ef">if</span> (width <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-            MSLog(MSLogLevelError, <span style="color:#e6db74">"MS:Error:MSGetInstructionWidthIntel(%p) == 0"</span>, area <span style="color:#f92672">+</span> used);
-            <span style="color:#66d9ef">return</span>;
+    size_t used(0);
+    while (used &lt; required) {
+        size_t width(MSGetInstructionWidthIntel(area + used));
+        if (width == 0) {
+            MSLog(MSLogLevelError, "MS:Error:MSGetInstructionWidthIntel(%p) == 0", area + used);
+            return;
         }
 
-        used <span style="color:#f92672">+=</span> width;
+        used += width;
     }
-    size_t blank(used <span style="color:#f92672">-</span> required);
+    size_t blank(used - required);
 
-    <span style="color:#66d9ef">uint8_t</span> backup[used];
+    uint8_t backup[used];
     memcpy(backup, area, used);
-</code></pre></div><p>这里针对 Hook 的函数备份了前两个指令并且为了替换这两个指令需要进行多少个指令进行还原。后续 copy 了一块新的内存用来存取新的 Hook 函数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">buffer</span>(reinterpret_cast<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*&gt;</span>(mmap(
-        NULL, length, PROT_READ <span style="color:#f92672">|</span> PROT_WRITE, MAP_ANON <span style="color:#f92672">|</span> MAP_PRIVATE, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>
+</code></pre>
+<p>这里针对 Hook 的函数备份了前两个指令并且为了替换这两个指令需要进行多少个指令进行还原。后续 copy 了一块新的内存用来存取新的 Hook 函数：</p>
+<pre><code class="language-C">    uint8_t *buffer(reinterpret_cast&lt;uint8_t *&gt;(mmap(
+        NULL, length, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0
     )));
     
-    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">current</span>(buffer);
+    uint8_t *current(buffer);
 
-    <span style="color:#66d9ef">for</span> (size_t offset(<span style="color:#ae81ff">0</span>), width; offset <span style="color:#f92672">!=</span> used; offset <span style="color:#f92672">+=</span> width) {
+    for (size_t offset(0), width; offset != used; offset += width) {
        hde64s decode;
-       hde64_disasm(backup <span style="color:#f92672">+</span> offset, <span style="color:#f92672">&amp;</span>decode);
-       width <span style="color:#f92672">=</span> decode.len;
-<span style="color:#75715e">// copy &amp; build jump .
-</span></code></pre></div><p>最后会通过生成对应的 jump 指令来完成整个 Hook 函数部分的替换基础。</p>
+       hde64_disasm(backup + offset, &amp;decode);
+       width = decode.len;
+// copy &amp; build jump .
+</code></pre>
+<p>最后会通过生成对应的 jump 指令来完成整个 Hook 函数部分的替换基础。</p>
 <h3 id="hook-函数搜索实践">Hook 函数搜索实践</h3>
 <p>使用 <code>Android-Hooking-Template</code> 的话我们可以屏蔽使用 Hook 部分的方案使用细节了，只需要关注我们实际的编写的计算逻辑就可以了，这里面我们对 Cydia Substrate 的 Hook 进行一下封装以便于我们生成调用：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C"><span style="color:#75715e">#define HOOK_DEF(ret, func, ...) \
-</span><span style="color:#75715e">  ret (*orig_##func)(__VA_ARGS__); \
-</span><span style="color:#75715e">  ret hook_##func(__VA_ARGS__)
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">#define HOOK_USE(ret, func) \
-</span><span style="color:#75715e">  MSHookFunction((void *)getRealOffset(ret), (void *) hook_##func, (void **) &amp;orig_##func); \
-</span></code></pre></div><p>其中 <code>getRealOffset</code> 的调用实际上是通过 libil2cpp 的基地址来计算实际的地址：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> libName <span style="color:#f92672">=</span> <span style="color:#e6db74">"libil2cpp.so"</span>;
+<pre><code class="language-C">#define HOOK_DEF(ret, func, ...) \
+  ret (*orig_##func)(__VA_ARGS__); \
+  ret hook_##func(__VA_ARGS__)
 
-DWORD <span style="color:#a6e22e">get_libBase</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> libName);
-DWORD <span style="color:#a6e22e">getRealOffset</span>(DWORD address);
+#define HOOK_USE(ret, func) \
+  MSHookFunction((void *)getRealOffset(ret), (void *) hook_##func, (void **) &amp;orig_##func); \
+</code></pre>
+<p>其中 <code>getRealOffset</code> 的调用实际上是通过 libil2cpp 的基地址来计算实际的地址：</p>
+<pre><code class="language-C">const char* libName = "libil2cpp.so";
 
-DWORD <span style="color:#a6e22e">get_libBase</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> libName) {
-    FILE <span style="color:#f92672">*</span>fp;
-    DWORD addr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">char</span> filename[<span style="color:#ae81ff">32</span>], buffer[<span style="color:#ae81ff">1024</span>];
-    snprintf(filename, <span style="color:#66d9ef">sizeof</span>(filename), <span style="color:#e6db74">"/proc/%d/maps"</span>, getpid());
-    fp <span style="color:#f92672">=</span> fopen(filename, <span style="color:#e6db74">"rt"</span>);
-    <span style="color:#66d9ef">if</span> (fp <span style="color:#f92672">!=</span> NULL) {
-        <span style="color:#66d9ef">while</span> (fgets(buffer, <span style="color:#66d9ef">sizeof</span>(buffer), fp)) {
-            <span style="color:#66d9ef">if</span> (strstr(buffer, libName)) {
-                addr <span style="color:#f92672">=</span> (uintptr_t) strtoul(buffer, NULL, <span style="color:#ae81ff">16</span>);
-                <span style="color:#66d9ef">break</span>;
+DWORD get_libBase(const char* libName);
+DWORD getRealOffset(DWORD address);
+
+DWORD get_libBase(const char* libName) {
+    FILE *fp;
+    DWORD addr = 0;
+    char filename[32], buffer[1024];
+    snprintf(filename, sizeof(filename), "/proc/%d/maps", getpid());
+    fp = fopen(filename, "rt");
+    if (fp != NULL) {
+        while (fgets(buffer, sizeof(buffer), fp)) {
+            if (strstr(buffer, libName)) {
+                addr = (uintptr_t) strtoul(buffer, NULL, 16);
+                break;
             }
         }
         fclose(fp);
     }
-    <span style="color:#66d9ef">return</span> addr;
+    return addr;
 }
 
-DWORD <span style="color:#a6e22e">getRealOffset</span>(DWORD address) {
-    <span style="color:#66d9ef">if</span> (libBase <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-        libBase <span style="color:#f92672">=</span> get_libBase(libName);
+DWORD getRealOffset(DWORD address) {
+    if (libBase == 0) {
+        libBase = get_libBase(libName);
     }
-    <span style="color:#66d9ef">return</span> (libBase <span style="color:#f92672">+</span> address);
+    return (libBase + address);
 }
-</code></pre></div><p>这里我们开始搜索我们在上一步 dump 的 method pointer offset 的文件来找到我们需要的一些函数来进行分析，比如这里我们发现了 <code>get_isUndeadable</code> 这个方法来判断某些角色是否为不可被击杀的（例如某个 NPC 之类）：</p>
+</code></pre>
+<p>这里我们开始搜索我们在上一步 dump 的 method pointer offset 的文件来找到我们需要的一些函数来进行分析，比如这里我们发现了 <code>get_isUndeadable</code> 这个方法来判断某些角色是否为不可被击杀的（例如某个 NPC 之类）：</p>
 <p><img alt="img" src="code3.png"/></p>
 <p>我们可以编写如下的 Hook 代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">HOOK_DEF(<span style="color:#66d9ef">bool</span>, get_isUndeadable, <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> _this) {
-    <span style="color:#66d9ef">int</span> side <span style="color:#f92672">=</span> orig_get_side(_this);
-    <span style="color:#66d9ef">bool</span> ret <span style="color:#f92672">=</span> orig_get_isUndeadable(_this);
-    <span style="color:#66d9ef">if</span> (side <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
-        <span style="color:#66d9ef">return</span> ret;
+<pre><code class="language-C">HOOK_DEF(bool, get_isUndeadable, void* _this) {
+    int side = orig_get_side(_this);
+    bool ret = orig_get_isUndeadable(_this);
+    if (side != 1) {
+        return ret;
     }
-    <span style="color:#66d9ef">return</span> true;
+    return true;
 }
-</code></pre></div><p>这里我们调用了另一个 <code>get_side</code> 函数来判断当前 <code>this pointer</code> 的指针指向的对象是哪方面的对象，如果是我们自己的对象当然应该是 <code>Undeadable</code> 但是敌方对象应该能够被杀死：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C" data-lang="C">HOOK_DEF(<span style="color:#66d9ef">int</span>, get_side, <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> _this) {
-    <span style="color:#66d9ef">int</span> rec <span style="color:#f92672">=</span> orig_get_side(_this);
-    <span style="color:#66d9ef">return</span> rec;
+</code></pre>
+<p>这里我们调用了另一个 <code>get_side</code> 函数来判断当前 <code>this pointer</code> 的指针指向的对象是哪方面的对象，如果是我们自己的对象当然应该是 <code>Undeadable</code> 但是敌方对象应该能够被杀死：</p>
+<pre><code class="language-C">HOOK_DEF(int, get_side, void* _this) {
+    int rec = orig_get_side(_this);
+    return rec;
 }
-</code></pre></div><p>而实际上 <code>get_side</code> 的返回结果其实是一个枚举对象，这个对象在 cpp 层面可以直接使用 int 来模拟：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C#" data-lang="C#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> SideType 
+</code></pre>
+<p>而实际上 <code>get_side</code> 的返回结果其实是一个枚举对象，这个对象在 cpp 层面可以直接使用 int 来模拟：</p>
+<pre><code class="language-C#">public enum SideType 
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> value__; <span style="color:#75715e">// 0x0
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> SideType NONE = <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> SideType ALLY = <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> SideType ENEMY = <span style="color:#ae81ff">2</span>;
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> SideType BOTH_ALLY_AND_ENEMY = <span style="color:#ae81ff">3</span>;
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> SideType NEUTRAL = <span style="color:#ae81ff">4</span>;
+    public int value__; // 0x0
+    public const SideType NONE = 0;
+    public const SideType ALLY = 1;
+    public const SideType ENEMY = 2;
+    public const SideType BOTH_ALLY_AND_ENEMY = 3;
+    public const SideType NEUTRAL = 4;
 }
-</code></pre></div><p>至此我们对整个流程的功能修改已经结束了，我们可以搞定我们想要对 Unity 游戏的修改了！最后我们可以通过 template 把 hook 编译成一个独立的 libhook.so 就可以准备最后的环节。</p>
-<h2 id="收尾dex-ir-织入">收尾：Dex IR 织入</h2>
+</code></pre>
+<p>至此我们对整个流程的功能修改已经结束了，我们可以搞定我们想要对 Unity 游戏的修改了！最后我们可以通过 template 把 hook 编译成一个独立的 libhook.so 就可以准备最后的环节。</p>
+<h2 id="收尾-dex-ir-织入">收尾：Dex IR 织入</h2>
 <h3 id="dex-ir-修改背景知识">Dex IR 修改背景知识</h3>
 <p>Android Dex IR 的修改方案比较多，整体流程上也可以视作重新分析 Dex 文件格式并在我们需要部分的 IR 进行分析、修改。在挑选框架上我们可以选择的工具比较多，可以使用 fb 的 Redex 、Google 的 R8 、以及很多其他的 dextools 来进行分析。这部分也是笔者的工作内容之一，关于 Redex 的相关内容可以参考以下一些内容：</p>
 <ul>
@@ -324,35 +336,37 @@ DWORD <span style="color:#a6e22e">getRealOffset</span>(DWORD address) {
 <li>关于使用 Redex 织入代码的便捷方案 <a href="https://lfkdsk.github.io/redex-sexpr/">ReDex: GenAsSExpr - new helper pass to write redex itself</a> ，笔者在 Redex 之中支持了一种编写 S-Expr 的便捷方式来插入 Dex 方法的方案。</li>
 </ul>
 <p>此处我们插入的代码内容比较少，我直接选择了 <code>Android-Hooking-Template</code> 的直接插入的方案，读者可以自己考虑如何使用 Redex 来实现同样的功能。</p>
-<h3 id="插入-dex-ir--load-hook">插入 Dex IR &amp; load Hook</h3>
+<h3 id="插入-dex-ir-load-hook">插入 Dex IR &amp; load Hook</h3>
 <p><code>Android-Hooking-Template</code> 提供了一个插入的 LoadLibrary 的机制，例如如下的代码很简单就是直接 load <code>libhook.so</code> 的代码，这个函数在一个 Handler 里面被子线程异步调用：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C#" data-lang="C#"><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">virtual</span> methods
-.method <span style="color:#66d9ef">public</span> run()V
-    .locals <span style="color:#ae81ff">1</span>
+<pre><code class="language-C#"># virtual methods
+.method public run()V
+    .locals 1
 
     .prologue
-    .line <span style="color:#ae81ff">17</span>
-    <span style="color:#66d9ef">const</span>-<span style="color:#66d9ef">string</span>/jumbo v0, <span style="color:#e6db74">"hook"</span>
+    .line 17
+    const-string/jumbo v0, "hook"
 
-    invoke-<span style="color:#66d9ef">static</span> {v0}, Ljava/lang/System;-&gt;loadLibrary(Ljava/lang/String;)V
+    invoke-static {v0}, Ljava/lang/System;-&gt;loadLibrary(Ljava/lang/String;)V
 
-    .line <span style="color:#ae81ff">18</span>
-    <span style="color:#66d9ef">return</span>-<span style="color:#66d9ef">void</span>
+    .line 18
+    return-void
 .end method
-</code></pre></div><p>找到 Unity 调用的实际容器 <code>Lcom/unity3d/player/UnityPlayerActivity</code> ，我们可以在 <code>onCreate</code> 的最前面的代码里插入我们的 load 逻辑：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4" tabindex="0"><code class="language-C#" data-lang="C#">.method <span style="color:#66d9ef">protected</span> onCreate(Landroid/os/Bundle;)V
-    .locals <span style="color:#ae81ff">1</span>
+</code></pre>
+<p>找到 Unity 调用的实际容器 <code>Lcom/unity3d/player/UnityPlayerActivity</code> ，我们可以在 <code>onCreate</code> 的最前面的代码里插入我们的 load 逻辑：</p>
+<pre><code class="language-C#">.method protected onCreate(Landroid/os/Bundle;)V
+    .locals 1
 
-    <span style="color:#66d9ef">const</span>-<span style="color:#66d9ef">string</span> v0, <span style="color:#e6db74">"LOAD-HOOK"</span>
+    const-string v0, "LOAD-HOOK"
 
-    invoke-<span style="color:#66d9ef">static</span> {v0, v0}, Landroid/util/Log;-&gt;e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v0}, Landroid/util/Log;-&gt;e(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-<span style="color:#66d9ef">static</span> {}, Lcom/loadLib/libLoader;-&gt;loadLib()V
+    invoke-static {}, Lcom/loadLib/libLoader;-&gt;loadLib()V
 
-    <span style="color:#66d9ef">const</span>/<span style="color:#ae81ff">4</span> v0, <span style="color:#ae81ff">0x1</span>
+    const/4 v0, 0x1
 
-    invoke-<span style="color:#66d9ef">virtual</span> {p0, v0}, Lcom/unity3d/player/UnityPlayerActivity;-&gt;requestWindowFeature(I)Z
-</code></pre></div><p>这里我们直接插入了一个 <code>invoke-static</code> 的静态调用，这里我还加入了一个 Android Log 的调用来在 log 里观察 Hook 是否被正确加载。在这之后的逻辑就非常清晰了，我们插入 Dex IR、Copy libhook.so 到反编译的工程之内，并且把整个工程再 recompile 出来安装运行就可以了。</p>
+    invoke-virtual {p0, v0}, Lcom/unity3d/player/UnityPlayerActivity;-&gt;requestWindowFeature(I)Z
+</code></pre>
+<p>这里我们直接插入了一个 <code>invoke-static</code> 的静态调用，这里我还加入了一个 Android Log 的调用来在 log 里观察 Hook 是否被正确加载。在这之后的逻辑就非常清晰了，我们插入 Dex IR、Copy libhook.so 到反编译的工程之内，并且把整个工程再 recompile 出来安装运行就可以了。</p>
 <h2 id="总结">总结</h2>
 <p>这一篇文章写得很快并且跑通后从实际的操作上并没有非常复杂的逻辑，但是本身所使用的交叉技术知识比较多，比如：二进制分析、Unity il2cpp 的编译体系知识、CIL 的静态分析知识、Cpp Hook 方案、以及 Redex 等 Dex IR 修改方案等。开发的时候也是，因为每个步骤都是坑都换了几种方案来进行尝试，大概用了一两个晚上才把流程跑通。因此想完全消化可能还需要多一些实践，或者我也可以写一些更多详细的文章来表现更多方案的细节。</p>
 </div>
