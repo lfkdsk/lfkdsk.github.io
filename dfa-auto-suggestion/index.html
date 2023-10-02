@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/dfa-auto-suggestion/" property="og:url"/>
+<link href="https://lfkdsk.github.io/dfa-auto-suggestion/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "使用DFA做文本编辑器的自动提示",
+      "headline" : "使用DFA做文本编辑器的自动提示",
+      "description" : "之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。\nDFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; import java.util.Map; \/** * Dfa 状态 * * @author liufengkai * Created by liufengkai on 16\/7\/10. *\/ public class DfaState implements Comparable\u0026lt;DfaState\u0026gt; { private static int DFA_ID_COUNT = 0; \/** * state id *\/ private int stateId; \/** * transition set * char \/ set of dfaState *\/ private Map\u0026lt;Integer, DfaState\u0026gt; transitionSet; private DfaState parentState; private Integer parentInput; \/** * 构造方法 * * @param input 输入串 * @param parentState 父节点 *\/ public DfaState(Integer input, DfaState parentState) { this.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-07-11 07:59:17 \u002b0000 UTC",
+      "dateModified" : "2016-07-11 07:59:17 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/dfa-auto-suggestion\/",
+      "keywords" : [ "自动机","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>使用DFA做文本编辑器的自动提示 - lfkdsk's Blog</title>
+<meta content="使用DFA做文本编辑器的自动提示 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。
+DFA状态 package sample; import java.util.ArrayList; import java.util.HashMap; import java.util.Map; /** * Dfa 状态 * * @author liufengkai * Created by liufengkai on 16/7/10. */ public class DfaState implements Comparable&lt;DfaState&gt; { private static int DFA_ID_COUNT = 0; /** * state id */ private int stateId; /** * transition set * char / set of dfaState */ private Map&lt;Integer, DfaState&gt; transitionSet; private DfaState parentState; private Integer parentInput; /** * 构造方法 * * @param input 输入串 * @param parentState 父节点 */ public DfaState(Integer input, DfaState parentState) { this." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">使用DFA做文本编辑器的自动提示</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-07-11 07:59:17 UTC">
+                  11 Jul 2016
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<p>之前看龙书的时候，龙书提到可以在编译器里用动态的生成的NFA自动机来动态匹配自己的输入串，NFA的简单实现其实写起来非常简单，但是我是实际凭感觉写完之后，却觉得并不是非常的好用，在处理自己已经输入过的串，如果还要处理空串和一个符号对应多种路径就势必涉及回溯，所以我就动态生成了一个DFA，应该不是最简的，但是也能满足需求。</p>
+<h3 id="dfa状态">DFA状态</h3>
+<pre><code class="language-java">package sample;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Dfa 状态
+ *
+ * @author liufengkai
+ *         Created by liufengkai on 16/7/10.
+ */
+public class DfaState implements Comparable&lt;DfaState&gt; {
+
+    private static int DFA_ID_COUNT = 0;
+    /**
+     * state id
+     */
+    private int stateId;
+    /**
+     * transition set
+     * char / set of dfaState
+     */
+    private Map&lt;Integer, DfaState&gt; transitionSet;
+
+    private DfaState parentState;
+
+    private Integer parentInput;
+
+    /**
+     * 构造方法
+     *
+     * @param input       输入串
+     * @param parentState 父节点
+     */
+    public DfaState(Integer input, DfaState parentState) {
+        this.parentInput = input;
+        this.parentState = parentState;
+        this.stateId = DFA_ID_COUNT++;
+        this.transitionSet = new HashMap&lt;&gt;();
+    }
+
+    /**
+     * 添加一条转移语句
+     *
+     * @param input 输入字符
+     * @param state 下一个状态
+     * @return 返回添加状态
+     */
+    public DfaState addTransition(int input, DfaState state) {
+
+        if (!transitionSet.containsKey(input)) {
+            transitionSet.put(input, state);
+        }
+
+        return state;
+    }
+
+    public DfaState getTransitionInput(int input) {
+        return getTransitionSet().get(input);
+    }
+
+    public int getStateId() {
+        return stateId;
+    }
+
+    public static int getTotalNumber() {
+        return DFA_ID_COUNT;
+    }
+
+    public Map&lt;Integer, DfaState&gt; getTransitionSet() {
+        return transitionSet;
+    }
+
+    public DfaState getParentState() {
+        return parentState;
+    }
+
+    @Override
+    public int compareTo(DfaState o) {
+        return 0;
+    }
+
+    public int getParentInput() {
+        return parentInput;
+    }
+
+    /**
+     * 打印状态
+     */
+    public void printState() {
+        System.out.println("state : " + getStateId());
+        for (Integer integer : transitionSet.keySet()) {
+            System.out.println("symbol: " +
+                    (char) integer.intValue() + " to :" +
+                    transitionSet.get(integer).getStateId());
+            transitionSet.get(integer).printState();
+        }
+    }
+
+    /**
+     * 返回结束状态
+     *
+     * @param list 传入结束状态
+     */
+    public void returnEndList(ArrayList&lt;DfaState&gt; list) {
+        for (Integer key : transitionSet.keySet()) {
+            DfaState cur = transitionSet.get(key);
+            if (cur.getTransitionSet().isEmpty()) {
+                list.add(cur);
+            } else {
+                cur.returnEndList(list);
+            }
+        }
+    }
+}
+
+</code></pre>
+<p>DFAState定义了很多基础的方法，比如每个状态都有唯一的ID值与之对应，虽然是一个DFA但是插入的过程是发现下一个节点不同才分叉，由此看来每个状态都应该有唯一的父节点与之对应，使用了一个Map来记录我们有哪些路径，还有一个方法来递归查找终结节点，使用这个方法来倒序查找预测分析出的字符串，这并不是一个效率很高的方法，之后也会被替换。</p>
+<h3 id="dfabuilder创建dfa">DFABuilder创建DFA</h3>
+<pre><code class="language-java">package sample;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * Created by liufengkai on 16/7/10.
+ */
+public class DfaBuilder {
+    /**
+     * NFA 状态机的起始状态
+     */
+    public DfaState startState = null;
+    /**
+     * 状态机的当前状态
+     */
+    public DfaState currentState = null;
+    /**
+     * 接受状态
+     */
+    public HashMap&lt;Integer, DfaState&gt; acceptState;
+
+    private static final int RETURN_ID = 13;
+
+    private static final int CHANGE_LINE_ID = 10;
+
+    private static final int TAB_ID = 9;
+
+    private static final int SPACE_ID = 32;
+
+    private ArrayList&lt;Integer&gt; endIdList;
+
+    private DfaCallBack dfaCallBack = null;
+
+    public DfaBuilder() {
+        // parent is null
+        this(new DfaState(null, null));
+    }
+
+    public DfaBuilder(DfaState startState) {
+        this.startState = startState;
+        this.currentState = startState;
+        initial();
+    }
+
+    /**
+     * 添加接受状态
+     */
+    public void addAcceptState(int input, DfaState accept) {
+        if (!acceptState.containsKey(input)) {
+            acceptState.put(input, accept);
+        }
+    }
+
+    private void initial() {
+        this.acceptState = new HashMap&lt;&gt;();
+        this.endIdList = new ArrayList&lt;&gt;();
+        initialEndIdList();
+    }
+
+
+    private void initialEndIdList() {
+        endIdList.add(RETURN_ID);
+        endIdList.add(CHANGE_LINE_ID);
+        endIdList.add(TAB_ID);
+        endIdList.add(SPACE_ID);
+    }
+
+    public DfaState input(int input) {
+        // parser 了所有特殊情况 对于单词的提示
+        // 一个单词内是不会出现空格制表符和换行的
+//        System.out.println(input + "sss");
+        if (endIdList.contains(input)) {
+            this.currentState = startState;
+            return null;
+        }
+
+
+        // 处理了当输入串还在起始状态的情况
+        if (currentState.getStateId() == startState.getStateId()) {
+            return startInput(input);
+        }
+
+        // 说明状态不在起始状态
+        DfaState tempCurrent = currentState.getTransitionInput(input);
+        if (tempCurrent == null) {
+            tempCurrent = new DfaState(input, currentState);
+            currentState.addTransition(input, tempCurrent);
+        } else {
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(tempCurrent, tempCurrent.getTransitionSet());
+        }
+        currentState = tempCurrent;
+        return currentState;
+    }
+
+    /**
+     * 处理还在输入串起始状态的情况
+     *
+     * @param input 输入
+     * @return current状态
+     */
+    public DfaState startInput(int input) {
+        DfaState current;
+        // 转入第一个起始状态
+        if (!acceptState.containsKey(input)) {
+            current = new DfaState(input, currentState);
+            this.addAcceptState(input, current);
+        } else {
+            current = acceptState.get(input);
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(current, current.getTransitionSet());
+        }
+        this.currentState = current;
+        return current;
+    }
+
+    public void setDfaCallBack(DfaCallBack dfaCallBack) {
+        this.dfaCallBack = dfaCallBack;
+    }
+
+    public void printDfa() {
+        for (Integer integer : acceptState.keySet()) {
+            System.out.println("接受状态 " + acceptState.get(integer).getStateId());
+            acceptState.get(integer).printState();
+        }
+    }
+
+    /**
+     * 重设startState
+     */
+    public void resetStartState() {
+        this.currentState = startState;
+    }
+}
+
+</code></pre>
+<p>DFABuilder定义了DFA的开始状态和现在的匹配的状态还定义了一些如何继续处理节点的方法。</p>
+<p>重点应该看如下的这个方法：</p>
+<pre><code class="language-java">    public DfaState input(int input) {
+        // parser 了所有特殊情况 对于单词的提示
+        // 一个单词内是不会出现空格制表符和换行的
+//        System.out.println(input + "sss");
+        if (endIdList.contains(input)) {
+            this.currentState = startState;
+            return null;
+        }
+
+
+        // 处理了当输入串还在起始状态的情况
+        if (currentState.getStateId() == startState.getStateId()) {
+            return startInput(input);
+        }
+
+        // 说明状态不在起始状态
+        DfaState tempCurrent = currentState.getTransitionInput(input);
+        if (tempCurrent == null) {
+            tempCurrent = new DfaState(input, currentState);
+            currentState.addTransition(input, tempCurrent);
+        } else {
+            if (dfaCallBack != null) dfaCallBack.onMultipleSetBack(tempCurrent, tempCurrent.getTransitionSet());
+        }
+        currentState = tempCurrent;
+        return currentState;
+    }
+</code></pre>
+<p>endIdList里面包含一些提示匹配方法结束的标志，比如空格，换行，回车，制表符，每次匹配到这个的时候就把状态切换回初始状态。如果输入串还在初始状态即第一次输入，就添加一个接受状态，其余的就找到对应的DFAState步进或是插入就可以了。另外还定义了一个接口用于返回数据进行处理。</p>
+<pre><code class="language-java">package sample;
+
+import java.util.Map;
+
+/**
+ * Created by liufengkai on 16/7/10.
+ */
+public interface DfaCallBack {
+    void onMultipleSetBack(DfaState current, Map&lt;Integer, DfaState&gt; states);
+}
+
+</code></pre>
+<p>返回当前节点和接续的状态集。</p>
+<pre><code class="language-java">        DfaBuilder builder = new DfaBuilder();
+
+        builder.setDfaCallBack((current, states) -&gt; {
+
+            System.out.println("current list " + getCurrentString(current));
+            ArrayList&lt;DfaState&gt; list = new ArrayList&lt;&gt;();
+            for (Integer key : states.keySet()) {
+                states.get(key).returnEndList(list);
+            }
+
+            for (DfaState state : list) {
+                System.out.println("prediction list " + getCurrentString(state));
+            }
+        });
+
+    public static String getCurrentString(DfaState currentState) {
+        String tempString = "";
+        DfaState tempState = currentState;
+        while (tempState.getParentState() != null) {
+            tempString = (char) tempState.getParentInput() + tempString;
+            tempState = tempState.getParentState();
+        }
+        return tempString;
+    }
+
+</code></pre>
+<p>使用的时候使用类似这样的方式就能实现简单的预测提示了。</p>
+<h3 id="效果图">效果图</h3>
+<p>我打算看看javaFx，写一个带gui的，不过现在有点懒，还没写完。</p>
+<p><img alt="pic" src="psb.png"/></p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>

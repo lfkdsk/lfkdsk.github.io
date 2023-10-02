@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/make-new-language-2/" property="og:url"/>
+<link href="https://lfkdsk.github.io/make-new-language-2/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "学习制作一门有趣的编程语言－0x02",
+      "headline" : "学习制作一门有趣的编程语言－0x02",
+      "description" : "博客地址： http:\/\/lfkdsk.github.io\n代码地址： https:\/\/github.com\/lfkdsk\/CodeParse\n 为计算器添加一些新功能  本节代码：CalcWithTable\n 上次我们使用Lex \u0026amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。\n先看Lex文件 %{ #include \u0026quot;y.tab.h\u0026quot; #include \u0026lt;math.h\u0026gt; #include \u0026quot;link_list.h\u0026quot; %} %% \/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 *\/ ([0-9]\u002b|([0-9]*\\.[0-9]\u002b)([eE][-\u002b]?[0-9]\u002b)?) { \/* 转换为double类型 *\/ yylval.dval = atof(yytext); \/* 我把它打印出来 *\/ printf(\u0026quot;number : %s \\n\u0026quot;, yytext); return NUMBER; } [ \\t] ; \/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 *\/ [A-Za-z][A-Za-z0-9]* { \/* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 *\/ \/* 返回值为对应的指针 *\/ yylval.name = addNode(yytext); printLink(); \/* 返回的Token指变量名 *\/ return NAME; } \u0026quot;$\u0026quot; { return 0; } \\n | .",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-06-01 12:13:17 \u002b0000 UTC",
+      "dateModified" : "2016-06-01 12:13:17 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/make-new-language-2\/",
+      "keywords" : [ "编程语言","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>学习制作一门有趣的编程语言－0x02 - lfkdsk's Blog</title>
+<meta content="学习制作一门有趣的编程语言－0x02 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='博客地址： http://lfkdsk.github.io
+代码地址： https://github.com/lfkdsk/CodeParse
+ 为计算器添加一些新功能  本节代码：CalcWithTable
+ 上次我们使用Lex &amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法 ，将优先级提升，这次重写这个计算器并添加一些新的功能。
+先看Lex文件 %{ #include "y.tab.h" #include &lt;math.h&gt; #include "link_list.h" %} %% /* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */ ([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) { /* 转换为double类型 */ yylval.dval = atof(yytext); /* 我把它打印出来 */ printf("number : %s \n", yytext); return NUMBER; } [ \t] ; /* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */ [A-Za-z][A-Za-z0-9]* { /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */ /* 返回值为对应的指针 */ yylval.name = addNode(yytext); printLink(); /* 返回的Token指变量名 */ return NAME; } "$" { return 0; } \n | .' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">学习制作一门有趣的编程语言－0x02</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-06-01 12:13:17 UTC">
+                  01 Jun 2016
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<blockquote>
+<p><code>博客地址</code>： <a href="http://lfkdsk.github.io">http://lfkdsk.github.io</a><br/>
+<code>代码地址</code>： <a href="https://github.com/lfkdsk/CodeParse">https://github.com/lfkdsk/CodeParse</a></p>
+</blockquote>
+<h3 id="为计算器添加一些新功能">为计算器添加一些新功能</h3>
+<blockquote>
+<p><code>本节代码</code>：<a href="https://github.com/lfkdsk/CodeParse/tree/master/make_new_language_demo/calc_with_table">CalcWithTable</a></p>
+</blockquote>
+<p>上次我们使用Lex &amp; Yacc制作了一个能够处理优先级的计算器，其中的优先级的设定是通过修改文法
+，将优先级提升，这次重写这个计算器并添加一些新的功能。</p>
+<h4 id="先看lex文件">先看Lex文件</h4>
+<pre><code class="language-C">
+%{
+
+#include "y.tab.h"
+#include &lt;math.h&gt;
+#include "link_list.h"
+
+%}
+
+%%
+	/* 这段正则和之前都有所不同 明显的增加了对于科学技术法的支持 */
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) {
+		  /* 转换为double类型 */
+          yylval.dval = atof(yytext);
+          /* 我把它打印出来 */
+          printf("number : %s \n", yytext);
+          return NUMBER;
+    }
+
+[ \t] ;
+
+	/* 这里提供了对于字母和字母组合的识别 这是对于变量名的识别匹配 */
+[A-Za-z][A-Za-z0-9]* {
+		  /* addNode(char *)是link_list.c中的函数 将变量名和对应的参数存储在一个链表中 */
+		  /* 返回值为对应的指针 */
+          yylval.name = addNode(yytext);
+          printLink();
+          /* 返回的Token指变量名 */
+          return NAME;
+      }
+
+"$"   {
+          return 0;
+      }
+
+\n    |
+
+.     {
+            return yytext[0];
+      }
+
+%%
+
+
+
+</code></pre>
+<p>这段代码和之前的区别不大，但是我们明显的为它增加了一个功能，就是识别变量名。</p>
+<h4 id="在看yacc">在看yacc：</h4>
+<pre><code class="language-C">
+%{
+
+#include "link_list.h"
+int yydebug=1;
+#include &lt;math.h&gt;
+
+%}
+
+%union{
+    double dval;
+    /* 存储的类型变了 存储的是一个symtable类型的结构体指针 */
+    struct symtable *name;
+}
+
+	/* 声明了两个Token 指针类型的NAME double类型的NUMBER */
+%token &lt;name&gt; NAME
+%token &lt;dval&gt; NUMBER
+
+	/* 这里强行指定了左结合以及优先性 */
+%left '-' '+'
+%left '*' '/'
+	/* 为一元减号设置了最高的优先级 */
+%nonassoc UMINUS
+
+%type &lt;dval&gt; expression
+
+%%
+
+stament_list: stament '\n'
+            | stament_list stament '\n'
+            ;
+
+        /* 增加了一个规则处理变量名赋值 */
+stament: NAME '=' expression { $1-&gt;value = $3; }
+       | expression { printf("= %g \n", $1); }
+       ;
+
+expression: expression '+' expression { $$ = $1 + $3; }
+          | expression '-' expression { $$ = $1 - $3; }
+          | expression '*' expression { $$ = $1 * $3; }
+          | expression '/' expression {
+              if($3 == 0.0){
+                  yyerror("devide by zero");
+              }else{
+                  $$ = $1 / $3;
+              }
+          }
+          		/* 这里再只有一元建好操作符的时候强制使用UMINUS的结合性 */
+          | '-' expression %prec UMINUS { $$ = -$2; }
+          | '(' expression ')' { $$ = $2; }
+          | NUMBER
+          		/* 当出现变量名的时候 把变量名对应的值返回 */
+          | NAME   { $$ = $1-&gt;value; }
+          		/* 这也是新功能 计算器支持使用内置函数 当变量名存在函数指针的时候 */
+          		/* 将其作为函数处理 */
+          | NAME '(' expression ')' {
+              if ($1-&gt;funcptr)
+              {
+                $$ = ($1-&gt;funcptr)($3);
+              }else{
+                printf("%s is not a function \n", $1-&gt;name);
+                $$ = 0.0;
+              }
+          }
+          ;
+
+%%
+
+int main(){
+
+    extern double sqrt(), exp(), log();
+
+    /* 现在无法动下的生成函数 所以只能添加内置的几种函数 */
+    addFunction("sqrt", sqrt);
+    addFunction("exp",exp);
+    addFunction("log",log);
+
+    yyparse();
+}
+
+
+
+</code></pre>
+<p>现在的yacc文件中我们支持了变量名的申请，和函数的调用，这里面我们的函数都来自于<code>link_list.h</code>中的定义</p>
+<h4 id="link-list-h"><code>link_list.h</code> :</h4>
+<pre><code class="language-C">
+#ifndef SYMBOL
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct symtable {
+  /* data */
+    char *name;
+    double value;
+    /* 函数指针 */
+    double (*funcptr)();
+    struct symtable *next;
+};
+
+struct symtable* addNode(char *symbol);
+void printLink();
+void addFunction(char *name, double func());
+#endif
+
+
+
+</code></pre>
+<h4 id="link-list-c"><code>link_list.c</code> :</h4>
+<pre><code class="language-C">
+#include "link_list.h"
+
+struct symtable *head = 0;
+
+int flag = 0;
+
+struct symtable* addNode(char *symbol){
+
+    if (flag == 0) {
+        flag = 1;
+        head = (struct symtable*)malloc(sizeof(struct symtable));
+        head-&gt;name = strdup(symbol);
+        head-&gt;next = 0;
+        return head;
+    }
+
+    struct symtable *sp = head;
+    
+    while (sp != 0) {
+        if (sp-&gt;name &amp;&amp; !strcmp(sp-&gt;name, symbol)) {
+          /*  找到一样的了 */
+            return sp;
+        }
+
+        if (!sp-&gt;name) {
+            sp-&gt;name = strdup(symbol);
+            return sp;
+        }
+
+        sp = sp-&gt;next;
+    }
+    
+    sp = head;
+    
+    while (sp-&gt;next != 0) {
+        sp = sp-&gt;next;
+    }
+
+    struct symtable *tail;
+    tail = (struct symtable*)malloc(sizeof(struct symtable));
+    tail-&gt;name = strdup(symbol);
+    tail-&gt;next = 0;
+    sp-&gt;next = tail;
+    return tail;
+}
+
+void printLink(){
+  struct symtable* sp = head;
+  while (sp != 0) {
+      printf("name : %s index : %p value : %f \n", sp-&gt;name, sp, sp-&gt;value);
+      sp = sp-&gt;next;
+  }
+}
+
+void addFunction(char *name, double func()){
+    struct symtable* sp = addNode(name);
+    sp-&gt;funcptr = func;
+}
+
+
+
+
+</code></pre>
+<p>至此我们的计算器就能支持参数名和内置函数了。</p>
+<h4 id="我们来写一下makefile文件">我们来写一下makefile文件:</h4>
+<pre><code class="language-makefile">
+
+ex_calc: y.tab.o lex.yy.o link_list.o
+	$ cc -o ex_calc link_list.c y.tab.c lex.yy.c -ly -ll
+
+link_list.o: link_list.c link_list.h
+
+lex.yy.o: lex.yy.c y.tab.h
+
+lex.yy.o y.tab.o: link_list.h
+
+y.tab.c y.tab.h: ex_calc.y
+			$ yacc -d ex_calc.y
+
+lex.yy.c: ex_calc.l
+	$ lex ex_calc.l
+
+
+</code></pre>
+<p>之后使用make命令编译运行，就可以正常使用了。</p>
+<p><img alt="calc_page" src="calc_page.png"/></p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>

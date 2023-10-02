@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/make-gallery-myself/" property="og:url"/>
+<link href="https://lfkdsk.github.io/make-gallery-myself/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "MYGallery: 拍照、选图、上传部署一站式方案",
+      "headline" : "MYGallery: 拍照、选图、上传部署一站式方案",
+      "description" : "出于对网络平台的数据焦虑，以及对内容的可控性，我的 Blog、Podcast 以及对一些喜欢的内容都希望能在 Github 来进行定期抓取和部署。很多方案的实现都是通过一个简单的胶水脚本 \u002b Hexo or Hugo 这种 codegen 框架来实现，比如对 podcast 每天的 CI 自动部署就是对 RSS 内容的监听，并且根据返回值来生成 Hexo 需要的内容，然后再驱动 Hexo 来进行部署。\n不过我发现很多静态网站的生成框架对 Gallery 的支持都不是很好，一来是与图片相关的 feature 需要更多的动态性，还有就是其实大多数框架还是针对于各种文档来实现的（也可能是针对 Gallery 的需求也不是很多）。之前发现了这点就有点想放弃了，不过前段时间入手了一台富士 X-S20，拍了很多照片所以对 Gallery 的需求又增长了起来。我们来看下最终的效果吧：\n首页：\n内容页：\n其实这里面所做的事情都很简单，大多数都是对现有方案的整合，不过最后的实现对我来说已经足够方便了。每次拍照上传图片的 Routine 大概是：\n 从相机导出到 SSD 的 photos library，选一些图片 打开一个 UI 的编辑器，选择图片上传 如果需要一个新的相册就在配置文件里写一下文件夹名字和选一个封面图  没了。因此这篇文章只打算对每个步骤的流程随便谈谈，技术上可说之处不多算是一种方案整合。\n日常拍照流程 1.拍照、SSD 沉库 这里选择了 Mac 上的 Photos Library，之前听一个朋友分享过，Mac 的图册不是只和 iCloud 紧密相连的，也可以自己创建离线的整个图库（注意而非相册）。因此我们可以直接在 Mac 的应用菜单使用 Option \u002b 鼠标点击 的方式打开照片应用：\n在这里可以选取或者是新建一个独立于系统相册的新建 photoslibrary，这里我把这个 photoslibrary 放到了 SSD 移动硬盘里面去，然后按按照年度来创建 library 以及按照主题来创建相簿分类：",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-09-26 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2023-09-26 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/make-gallery-myself\/",
+      "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>MYGallery: 拍照、选图、上传部署一站式方案 - lfkdsk's Blog</title>
+<meta content="MYGallery: 拍照、选图、上传部署一站式方案 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="出于对网络平台的数据焦虑，以及对内容的可控性，我的 Blog、Podcast 以及对一些喜欢的内容都希望能在 Github 来进行定期抓取和部署。很多方案的实现都是通过一个简单的胶水脚本 + Hexo or Hugo 这种 codegen 框架来实现，比如对 podcast 每天的 CI 自动部署就是对 RSS 内容的监听，并且根据返回值来生成 Hexo 需要的内容，然后再驱动 Hexo 来进行部署。
+不过我发现很多静态网站的生成框架对 Gallery 的支持都不是很好，一来是与图片相关的 feature 需要更多的动态性，还有就是其实大多数框架还是针对于各种文档来实现的（也可能是针对 Gallery 的需求也不是很多）。之前发现了这点就有点想放弃了，不过前段时间入手了一台富士 X-S20，拍了很多照片所以对 Gallery 的需求又增长了起来。我们来看下最终的效果吧：
+首页：
+内容页：
+其实这里面所做的事情都很简单，大多数都是对现有方案的整合，不过最后的实现对我来说已经足够方便了。每次拍照上传图片的 Routine 大概是：
+ 从相机导出到 SSD 的 photos library，选一些图片 打开一个 UI 的编辑器，选择图片上传 如果需要一个新的相册就在配置文件里写一下文件夹名字和选一个封面图  没了。因此这篇文章只打算对每个步骤的流程随便谈谈，技术上可说之处不多算是一种方案整合。
+日常拍照流程 1.拍照、SSD 沉库 这里选择了 Mac 上的 Photos Library，之前听一个朋友分享过，Mac 的图册不是只和 iCloud 紧密相连的，也可以自己创建离线的整个图库（注意而非相册）。因此我们可以直接在 Mac 的应用菜单使用 Option + 鼠标点击 的方式打开照片应用：
+在这里可以选取或者是新建一个独立于系统相册的新建 photoslibrary，这里我把这个 photoslibrary 放到了 SSD 移动硬盘里面去，然后按按照年度来创建 library 以及按照主题来创建相簿分类：" name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">MYGallery: 拍照、选图、上传部署一站式方案</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2023-09-26 00:00:00 UTC">
+                  26 Sep 2023
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<p>出于对网络平台的数据焦虑，以及对内容的可控性，我的 Blog、Podcast 以及对一些喜欢的内容都希望能在 Github 来进行定期抓取和部署。很多方案的实现都是通过一个简单的胶水脚本 + Hexo or Hugo 这种 codegen 框架来实现，比如对 podcast 每天的 CI 自动部署就是对 RSS 内容的监听，并且根据返回值来生成 Hexo 需要的内容，然后再驱动 Hexo 来进行部署。</p>
+<p>不过我发现很多静态网站的生成框架对 Gallery 的支持都不是很好，一来是与图片相关的 feature 需要更多的动态性，还有就是其实大多数框架还是针对于各种文档来实现的（也可能是针对 Gallery 的需求也不是很多）。之前发现了这点就有点想放弃了，不过前段时间入手了一台富士 X-S20，拍了很多照片所以对 Gallery 的需求又增长了起来。我们来看下最终的效果吧：</p>
+<p>首页：</p>
+<p><img alt="首页" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-myself/WX20230926-100127@2x.webp"/></p>
+<p>内容页：</p>
+<p><img alt="内容页" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-myself/WX20230926-100600@2x.webp"/></p>
+<p>其实这里面所做的事情都很简单，大多数都是对现有方案的整合，不过最后的实现对我来说已经足够方便了。每次拍照上传图片的 Routine 大概是：</p>
+<ol>
+<li>从相机导出到 SSD 的 photos library，选一些图片</li>
+<li>打开一个 UI 的编辑器，选择图片上传</li>
+<li>如果需要一个新的相册就在配置文件里写一下文件夹名字和选一个封面图</li>
+</ol>
+<p>没了。因此这篇文章只打算对每个步骤的流程随便谈谈，技术上可说之处不多算是一种方案整合。</p>
+<h2 id="日常拍照流程">日常拍照流程</h2>
+<h3 id="1-拍照-ssd-沉库">1.拍照、SSD 沉库</h3>
+<p>这里选择了 Mac 上的 Photos Library，之前听一个朋友分享过，Mac 的图册不是只和 iCloud 紧密相连的，也可以自己创建离线的整个图库（注意而非相册）。因此我们可以直接在 Mac 的应用菜单使用 <code>Option + 鼠标点击</code> 的方式打开照片应用：</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/selectlibrary.webp"/></p>
+<p>在这里可以选取或者是新建一个独立于系统相册的新建 photoslibrary，这里我把这个 photoslibrary 放到了 SSD 移动硬盘里面去，然后按按照年度来创建 library 以及按照主题来创建相簿分类：</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/ssdlib.webp"/></p>
+<p>PhotosLibrary 可以享受 Mac &amp; iOS 本身相册除了 iCloud 以外的大多数的相册功能：收藏、元信息管理、人物地点生成图片分析、以及 JPG 和 RAW 合并显示之类的功能（这里突然想到 iCloud 不可用如果有其他足够大的网盘，也可以直接把 PhotosLibrary 创建进去）。每次拍完照在 Mac 上插入 SD 卡，选择直接导入并删除就可以把新拍的照片导入到一个新的分类，并且也不需要清理 SD 卡里面的东西了。</p>
+<h3 id="2-选图-收藏-导出">2.选图、收藏、导出</h3>
+<p>接下来就可以在每个拍照的相簿分类之中选择出自己想要的照片，可以打上标签也可以直接使用个人收藏的功能（这里我偷懒直接使用了个人收藏的功能）。然后在分类选择里选择个人收藏，然后全选导出图片即可，我导出的目标也放在了 SSD 的热存储里。</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/selectpic.webp"/></p>
+<p>创建了一个 <code>Selected/&lt;主题&gt;</code> 的名字，用来存放打算放到 Gallery 网站的图片。</p>
+<h3 id="3-picx-上传-gallery-部署">3. PicX 上传、Gallery 部署</h3>
+<p>接下来的就打开 PicX 选择我们 <code>gallery</code> 的 repo 地址，如果是一个新的相册就选择创建到一个新的 git 文件夹，然后直接上传图片就可以。PicX 其实是一种利用 git 以及 github api 上传图片以及其他资源的一种 UI 化的工具，因此文件夹也和 git 的规则一样，如果文件夹下没有文件无法创建一个孤立的文件夹。由于对使用稳定性的要求以及对自部署的追求，这个是我 fork 并且增补了一些功能的自部署 PicX 版本（本身为一个开源项目）。</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/picx.webp"/></p>
+<p>其实上传的步骤我们可以使用 Git 命令或者各种 UI 化的 Git 工具来直接把图片复制进去，但是出于两点原因我选择使用一个 Web 的图片处理工具：</p>
+<ol>
+<li>一是要完全追求不写代码不使用命令的方案，这样非技术人员也可以使用 UI 工具进行比较轻松的使用，而且在非电脑等可以使用 Git 命令的地方，比如说手机或者 Pad 上也一样可以使用这个工具进行上传。本身应用被部署为一个 Web 应用也可以不用安装任何新的东西就可以使用。</li>
+<li>二是 PicX 本身也可以实现上传图片、压缩图片、以及打水印、对图片进行管理（删除、重命名）等一系列操作，我们相机支出的图片比较大，直接上传到 Github 可以会有下载、解析速度比较慢的问题，压缩到 WebP 可能就会好很多。</li>
+</ol>
+<p>下一步就是 Gallery 的总部署，这里我们的创建主题仍然是一个手动进行管理的方案，因为我们要手动的对主题进行排序。而如果我们需要自动使用某些顺序来进行管理（比如说日期），那我们可能会需要对每个主题文件夹下增加一些需要额外的元信息。但是可能我还是会想手动指定顺序而不是根据日期进行决定，因此这里主题的信息是需要自己手动管理的：</p>
+<p>![](“<a href='https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/readmeyml.webp"'>https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/readmeyml.webp"</a>)</p>
+<p>在这个 <code>README.yml</code> 文件内，格式如上图所示。每个主题的名字会作为最上层 Key 来使用，下面会使用以下集中顺序：</p>
+<ol>
+<li>url: 主题的文件夹名字，这里和我们 PicX 创建的图片文件夹名字一致</li>
+<li>date：具体的拍照日期，我这里指定了 <code>YYYY-MM-DD</code> 的日期顺序</li>
+<li>cover：封面图的 url，不过为了方便切换 CDN 以及一些其他方案（缩略图）的实现这里只需要写出 <code>文件夹名字/文件名</code> 即可。</li>
+<li>style：style 并不是必须的，默认的 style 是文字在右侧的模式，设置为 <code>fullscreen</code> 之后会变成上下模式的样式，未来也可能支持更多样式。</li>
+</ol>
+<p>本身顺序是由前到后的顺序进行的，因此每次把最新的主题写在最前面就可以了。如果想给某个相册增补图片也不需要有额外的配置，直接上传图片就会驱动 CI 进行更新，大约等待 2min 左右我们增加的新相册就部署好啦！</p>
+<h2 id="部分技术方案迭代杂谈">部分技术方案迭代杂谈</h2>
+<p>能够用来展示图片的网站有很多，不过这几年出于对数据可控的目标所以希望能够自己使用、自行部署的方案。另外一个比较大的目标是，所有的部分（除了拍照、选图）都可以脱离任何的命令行、任何的安装软件来执行，尽量能在纯 Web 的平台上进行实现。当然最后我们也逐渐实现了这个目标 ——</p>
+<ol>
+<li>上传、压缩、图片水印使用 Web 工具 PicX</li>
+<li>填选主题可以直接在 Github 的 Web 页面对单个文件进行修改（我在路上还真的这么操作过）</li>
+<li>自动生成网站以及部署完全依赖 Github CI 来实现</li>
+</ol>
+<p>之前也参考过网上其他的图库方案，但是都有我不足够满意的地方：比如一个指定方向的图库可能会对横纵都有的图片支持不好、比如发现纵向的图片可能会把图片自动转成横图、压缩加水印等方案都比较依赖于本地的某种命令行 …… 等等。</p>
+<h3 id="部分目标">部分目标</h3>
+<p>除了本身图库的全 Web 化操作的要求之外，我还有一个目标预期就是要完全的可迁移支持。Hexo 或者 Hugo 有我很不喜欢的一点是，因为他本身是一个生成的模板了，因此他里面的每个文章（比如说是 Blog 或者 Gallery 里面的某个主题）都要人来手动编写。但是如果本身内容就是机械的复制，比如说 Gallery 分类图片本身是扫描文件夹来生成的、或者本身 Blog 内容是来源于 RSS 生成出来的，那我们完全就不应该手动来处理。<strong>如果能把数据的生产端和主题、代码生成器、以及配置完全分开，那我的这套技术方案就可以完全无成本的迁移给其他人使用（并且不需要技术能力）。</strong></p>
+<p>因此我觉得世界上有必要搞出二阶 meta 的 Hexo 生成器，比如说 Hexo 是 <code>markdown files to html site</code> 的方案，其实我在这种场景下还需要的是 <code>multi-sourse to markdown files to html site</code> 的高阶方案。这种方案的实现也不是很复杂，在比如 Podcast 的 Clone 站以及这个 Gallery 方案之中，都应用了这种方案，<code>code generator of generator</code> 说起来复杂但是也不过是几个 <code>yml</code> 配置脚本以及一个 <code>py</code> 胶水脚本来实现就可以的。</p>
+<p>而 <strong>数据的生产端和主题、代码生成器、以及配置完全分开</strong> 这个目标还带来了另一种好处，就是我们可以无缝切换其中的某个部分。比如说对于不了解技术的人来说，学习使用整套框架的难度仅有 <strong>申请 Github Token</strong> 以及 <strong>填写主题信息</strong> 两个内容，而不需要了解框架、生成器样式、框架生成器、以及框架生成器的生成器。而且数据是数据主题是主题，如果我们以后想要切换数据的渲染样式也可以完全没有难度的替换所谓 <strong>中间件</strong>。</p>
+<p>市面上没有现成的，因此我打算自己来实现一个这种方案。</p>
+<p>最后的方案如同我们在最开始在讨论使用的情况下一样，只需要一个 <code>Gallery</code> 的目标 repo 就可以使用。但是驱动整套方案的 repo 一共有三个：</p>
+<ol>
+<li>Gallery ：用户存储图片的 repo</li>
+<li>Hexo-Theme-Type：一个 Hexo 支持相册的主题，这里我对其中也进行了一些修改（这里感谢下原作者 <a href="https://github.com/aiokr">aiokr</a>）。</li>
+<li>Album-Template: 这个类似于 Hexo 的 Site 概念，不过我修改为全空，实现了 codegen 脚本 <code>build.py</code> 放在其中。</li>
+</ol>
+<p>整套方案会由 <code>Gallery</code> 内部的 github action 的 CI 来驱动，我们在逻辑上也可以按照这个逻辑来进行分析。</p>
+<pre><code class="language-yml">name: run build.py
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *'
+
+env:
+  GIT_USER: lfkdsk # change to yourself
+  GIT_EMAIL: ... # change to yourself
+  THEME_REPO: lfkdsk/hexo-theme-type
+  THEME_BRANCH: main
+  TEMPLATE_REPO: lfkdsk/album_template
+  TEMPLATE_BRANCE: main
+  
+...
+</code></pre>
+<p>整个 CI 唯一需要修改的地方就是 <code>GIT_USER</code> 以及 <code>GIT_EMAIL</code> 修改为自己的就可以了，其他部分都不用动。下面的 <code>THEME_REPO</code> 以及 <code>TEMPLATE_REPO</code> 之类的信息是主题的仓库，以及模板生成器的仓库，这些都是可进行替换的。并且那几个仓库更新后，Gallery 每日的定期 Build 也会使用上我们最新的站点生成器以及最新的主题信息。</p>
+<h3 id="配置抽离">配置抽离</h3>
+<p>为了实现可迁移性，我把很多 Hexo 框架需要写入站点配置的信息都抽离到可以在 <code>Gallery/CONFIG.yml</code> 进行配置的程度。比如这里我们把网站的一些名字、分享页图片、以及部分操作按钮的配置、SLOGAN 的配置都抽取到了这个配置文件之中：</p>
+<pre><code class="language-yml">title: 照片集
+subtitle: Take Photo Think Seriously
+description: 拿起相机，认真思考
+cover: 'https://github.com/lfkdsk/picx-images-hosting/raw/master/20230817/IMG_7586.4e91my1ve140.17iz0sa56gik.webp'
+author: lfkdsk
+
+footer_logo: 
+  use: self
+  self:
+    link: 'https://lfkdsk.github.io/'
+    src: 'https://github.com/lfkdsk/picx-images-hosting/raw/master/20230817/tripper2white.2pbuwaqvndu0.webp'
+
+url: https://lfkdsk.github.io/gallery
+root: /gallery
+
+photography_page:
+  slogan: true
+  slogan_descr: 'The moments when I pressed the shutter, the moments are forever.'
+
+google_analytics: 
+  use: gtag
+  ga_id: 
+  ga_api: 
+  gtag_id: xxxx
+
+nav:
+  归档: 
+    link: https://lfkdsk.github.io
+    icon: inbox
+
+thumbnail_url: https://cdn.jsdelivr.net/gh/lfkdsk/gallery@thumbnail/
+base_url: https://cdn.jsdelivr.net/gh/lfkdsk/gallery@master
+</code></pre>
+<p>这里的配置我弄得很混杂，但是不会和原有的 <code>_config.yml</code> 产生重复。比如说这里面的 <code>base_url</code> 以及 <code>thumbnail_url</code> 都是必须的这里代表了部署进去网站的 CDN 前缀以及我们缩略图的 CDN URL 配置。其他的 url 和 root 是给 config 使用的，所以也是需要的，这个用户使用的时候 copy 过去改成自己的就可以。这个在做代码生成阶段会混合 <code>album_temple</code> 以及这个文件之中的内容，产出一个新的 <code>_config.yml</code> 文件，并且用这个新文件来驱动 Hexo build。</p>
+<p>比如在 <code>build.py</code> 之中，我们对 config 进行了混合：</p>
+<pre><code class="language-python">config = {}
+# re-generate config file.
+with open("./gallery/CONFIG.yml", 'r', encoding="utf-8") as g, open("./_config.yml", "r+", encoding="utf-8") as c, open("./new_config.yml", "w", encoding="utf-8") as n:
+    g_file, c_file = yaml.safe_load(g), yaml.safe_load(c)
+    for item in g_file:
+        print(item)
+        c_file[str(item)] = g_file[item]
+        config[str(item)] = g_file[item]
+    print(list(c_file))        
+    yaml.safe_dump(c_file, n, allow_unicode=True)
+
+thumbnail_url = config["thumbnail_url"]
+base_url = config["base_url"]
+thumbnail_size = config.get("thumbnail_size", 1000)
+thumbnail_public = "thumbnail_public"
+</code></pre>
+<p>而在最终的 Hexo Deploy 的部分，我们也是用了这个新生成的 <code>new_config.yml</code>:</p>
+<pre><code class="language-yml">    - name: Install Dependencies &amp; Build
+      run: |
+        npm install
+        npm ci
+        npm install hexo-cli -g
+        hexo g --config new_config.yml
+        ls ./public        
+
+</code></pre>
+<p>这里我们就实现了 config 的配置覆盖以及抽离混合。</p>
+<h3 id="免费资源利用-图片解析-部署">免费资源利用、图片解析、部署</h3>
+<p>整个的 Gallery 部署方案使用了很多免费资源，免费的 PicX 工具（类似于一个 Web App）、免费的 Github 存储、免费的 Github Action 来实现。但是在实际上，很多免费的资源都会有限制，因此我们要尽量不去碰触这些限制，以便于产生不必要的开销。比如首先就是 Github 本身对文件单一会有 100M 的大小限制（50M 以上上传就会出现警告），我们的相机拍出来，只要不把 RAW 格式的文件上传是不会有这么大的，当然我们其实在 PicX 上也会把图片压缩到 1-2M 左右的 WebP 的程度，所以问题不大。</p>
+<p>另一个问题就是对整个仓库有 <strong>理想情况下小于 1 GB，强烈建议小于 5 GB</strong> 的要求，不过 5GB 的全部大小应该是建议值而不是完全的硬性限制。而且如果我们需要切换仓库，也只需要以 5GB 为限制，来分库就可以，不过是在 CI 里多一个 Clone 配置，不会影响整个流程的便捷性质。</p>
+<p>还有一个方面就是 GitHub Page 的部署本身也有以下的要求限制：</p>
+<blockquote>
+<p>GitHub Pages 站点受到以下使用限制的约束：</p>
+<ul>
+<li>GitHub Pages 源存储库的建议限制为 1 GB。 有关详细信息，请参阅“<a href="https://docs.github.com/zh/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-and-repository-size-limitations">关于 GitHub 上的大文件</a>”</li>
+<li>发布的 GitHub Pages 站点不得超过 1 GB。</li>
+<li>如果花费的时间超过 10 分钟，GitHub Pages 部署将超时。</li>
+<li>GitHub Pages 站点的软带宽限制为每月 100 GB。</li>
+<li>GitHub Pages 站点的软限制为每小时 10 次生成。 如果使用自定义 GitHub Actions 工作流生成和发布站点，则此限制不适用</li>
+<li>为了为所有 GitHub Pages 站点提供一致的服务质量，可能会实施速率限制。 这些速率限制无意干扰 GitHub Pages 的合法使用。 如果你的请求触发了速率限制，你将收到相应响应，其中包含 HTTP 状态代码 <code>429</code> 以及信息性 HTML 正文。</li>
+</ul>
+</blockquote>
+<p>这里面对我们的限制主要有几个方面，生成 Github Page 的大小 <strong>1G</strong>，编译时间 <strong>10Min</strong>（本 Blog 没考虑图床所以快炸了）。每小时 10 次生成，这个我们使用了自定义 Action 所以问题不大。</p>
+<p>这里首先是 Github Page 的大小，我们选择了直接使用 Gallery 的 Github 图片 URL 进行生成，这样解析本身就通过了 Github 来实现。我们当然也可以选择一些支持 Github URL 解析的 CDN 来配置，这些在 PicX 里面都可以进行自主选择：</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/cdn.webp"/></p>
+<p>这样我们就通过 Github URL 自主可解析的方案来绕开了 Github Page 对整站大小的限制，我们的图片不会再被打包到整个站点之中。整个站点会长期维持在个位数 MB 左右：</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/githubpagesize.webp"/></p>
+<p>另一方面的问题就是编译时间了，因为我们每次都会把本 repo（Gallery 本体）clone 到 CI 本地，但是走 Github 的内部网络 CDN 所以 GB 下载速度也是秒级的。我们的 build.py 环节会处理 config、搜索文件夹、以及生成对应的 Gallery 文件，这个就是我们会考虑的编译时间。当然 Github 限制的所谓编译时间更类似于，Gihub Deploy 的编译时间（这个差不多是 40s 左右）。不过我们通过把图床外置，不把图片本身打包在 github page site 里面，就可以让 Github Action 的编译时间始终停留在 1 分 30 秒左右，几乎不会因为有新的图片分类而线性增长。</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/buildtime.webp"/></p>
+<h3 id="缩略图方案-编译速度优化方案">缩略图方案、编译速度优化方案</h3>
+<p>处于展示的方式，一张上传的图片可能会在首页作为 coverimage 出现，也会出现在详情页下方选择图片的区域之中。但是本身图片压缩过，同时加载数十张接近 1M 左右的图片，仍然会对浏览器产生很大的渲染、下载负荷。这里尤其是详情页选择 list 的图片，这里在设计缩略图方案前每一张都是原图的水平，放在了 100X100 的格子里，下载速度、渲染速度都很慢。但是我们的方案追求完全托管、完全静态化的方案，也没办法提供类似直接的缩略图服务，比如类似 Vercel 支持的那种缩略图功能。</p>
+<p>但是从分享给其他朋友的使用体验来看，本身加载数张原图的设计，哪怕对在海外网络的朋友都比较慢，因此设计一个缩略图系统还是很有必要的。这里我把这个方案也通过 Github Action 的编译流程来实现了。我们把 Gallery 的另一个分支（默认为 thumbnail 分支）用来存储缩略图，并且保持和主分支同样的文件结构，这就是为何我们在 <code>CONFIG.yml</code> 内部要同时提供 thumbnail CDN 前缀的原因。每次 build 开始前都会 clone gallery 的 thumbnail 分支：</p>
+<pre><code class="language-yml">    - name: Checkout template repo
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ env.TEMPLATE_REPO }}
+        ref: ${{ env.TEMPLATE_BRANCE }}        
+    - name: Checkout gallery repo
+      uses: actions/checkout@v2
+      with:
+        path: gallery
+    - name: Checkout thumbnail repo
+      uses: actions/checkout@v2
+      with:
+        ref: thumbnail
+        path: thumbnail_public        
+    - name: Checkout theme repo
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ env.THEME_REPO }}
+        ref: ${{ env.THEME_BRANCH }}        
+        path: themes/hexo-theme-type
+
+</code></pre>
+<p>（以上依次为模板 repo，gallery 图库 thumbnail 分支，以及 gallery 图库 主分支。）</p>
+<p>而我们在 <code>build.py</code> 的生成缩略图环节会根据缩略图是否已经存在来确认是否需要生成新的缩略图，这样我们的编译速度在新增加图片的单次会产生一个线性增加，但是在之后的 build 由于已经生成过了，所以我们就不再需要重新生成了。这样无新增图片的编译时间仍然可以被控制在 2min 以内，并且我们也有开关可以强制生成一次所有的缩略图。</p>
+<pre><code class="language-python">        
+  def thumbnail_image(input_file, output_file, max_size=(1000, 1000), resample=3, ext='webp'):
+    im = Image.open(input_file)
+    im.thumbnail(max_size, resample=resample)
+    im = ImageOps.exif_transpose(im)
+    im.save(output_file, format=ext, optimize=True)
+
+video = ""
+img_url = f'{base_url}/{url}/{i}'
+img_thumbnail_url = f'{thumbnail_url}/{url}/{name}.webp'
+thumbnail_name =f'./{thumbnail_public}/{url}/{name}.webp'
+# compress image
+if gen_thumbnail or not os.path.exists(thumbnail_name):
+   thumbnail_image(f'{gallery_dir}/{i}', output_file=thumbnail_name, max_size=(thumbnail_size, thumbnail_size))
+
+</code></pre>
+<p>我们压缩过的缩略图大概都在 100KB 以下，并且本身也根据 CDN 进行解析不会被包进最后的 Github Page 里面，不占用 Github Page 的大小。最后再通过 deploy 环节对该 Github 分支进行一次增量 push，现在打开首页以及详情页下面的缩略图都可以秒加载全部啦！</p>
+<pre><code class="language-yml">    - name: Deploy Thumbnail
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: ./thumbnail_public
+        publish_branch: thumbnail
+        github_token: ${{ secrets.GH_PAGES_DEPLOY }}
+        user_name: ${{ env.GIT_USER }}
+        user_email: ${{ env.GIT_EMAIL }}
+        commit_msg: ${{ github.event.head_commit.message }}          
+</code></pre>
+<h1 id="尾声">尾声</h1>
+<p>这篇文章本身写的比较杂，混合了如何使用 Gallery、我的拍照上传部署工作流程、以及部分对 Gallery 实现优化方案的探讨。这大概是很类似程序员折腾工具方案的乐趣，或者很多人喜欢折腾笔记软件方案的乐趣，但是与之类似的是我们不要为了折腾工具而折腾工具 —— 最终的目的还是为了服务相机拍照展示。还是要多多举起相机 📷 出门拍照，才能享受值得分享图片的乐趣~ 这个主题的作者 AioKr 留下我很喜欢的一句话 <strong>Take Photo Think Seriously !</strong></p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/dart-error-asm/" property="og:url"/>
+<link href="https://lfkdsk.github.io/dart-error-asm/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "CompilerDev: Bytecode error in Dart",
+      "headline" : "CompilerDev: Bytecode error in Dart",
+      "description" : "Problem: phenomenon that cannot be fully covered When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:\n input keys [] [info]::Trans--2020-11-27 14:16:04.755980: Transformer Debug Open. [info]::Trans--2020-11-27 14:16:04.759208: Load Pass: hook [info]::Trans--2020-11-27 14:16:05.074541: print hook_coverage::HookAllMethod start [389]@[346] [346] #C2 @[358] [358] #C5 class HookAllMethod extends dart.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-12-10 02:49:51 \u002b0800 CST",
+      "dateModified" : "2020-12-10 02:49:51 \u002b0800 CST",
+      "url" : "https:\/\/lfkdsk.github.io\/dart-error-asm\/",
+      "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>CompilerDev: Bytecode error in Dart - lfkdsk's Blog</title>
+<meta content="CompilerDev: Bytecode error in Dart - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="Problem: phenomenon that cannot be fully covered When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:
+ input keys [] [info]::Trans--2020-11-27 14:16:04.755980: Transformer Debug Open. [info]::Trans--2020-11-27 14:16:04.759208: Load Pass: hook [info]::Trans--2020-11-27 14:16:05.074541: print hook_coverage::HookAllMethod start [389]@[346] [346] #C2 @[358] [358] #C5 class HookAllMethod extends dart." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">CompilerDev: Bytecode error in Dart</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2020-12-10 02:49:51 CST">
+                  10 Dec 2020
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<h2 id="problem-phenomenon-that-cannot-be-fully-covered">Problem: phenomenon that cannot be fully covered</h2>
+<p>When adapting Hook Coverage to dynamically generate bytecode logic, an error was encountered (under the scenario of full pile insertion). The initial situation was that the full amount of Hook code did not take effect:</p>
+<pre><code>    input keys []
+    [info]::Trans--2020-11-27 14:16:04.755980: Transformer Debug Open.
+    [info]::Trans--2020-11-27 14:16:04.759208: Load Pass: hook
+    [info]::Trans--2020-11-27 14:16:05.074541: print hook_coverage::HookAllMethod start
+    [389]@[346] [346] #C2
+    @[358] [358] #C5
+    class HookAllMethod extends dart.core::Object {
+    [-1]  synthetic constructor () → hook_coverage::HookAllMethod*
+        : [-1] super dart.core::Object:: [-1]()
+    ...
+</code></pre>
+<h2 id="hook-s-adaptation-repair">Hook’s adaptation repair</h2>
+<p>According to the debugging investigation, Hook did not search for the corresponding library when searching for the corresponding package name. It is associated with the dynamic execution of modifying the dynamic package name. Therefore, the problem lies in this part. Because the package name was modified, the corresponding information was not searched. Hook has a problem with the package name generated by the Hook Macro macro for the full amount of piles. Hook’s pile insertion point was executed after performing the dynamic modification of the package name. Hook did not find the same code as the original package name. The logic of dynamic modification of the package name is as follows:</p>
+<pre><code class="language-dart">  for (Library library in result.component.libraries) {
+    String packageName = "${library.importUri}";
+    if (isDynamicLib(library, options) &amp;&amp;
+        !packageName.startsWith("package:flutter/") &amp;&amp;
+        !reflectionUris.contains(packageName)) {
+      library.importUri = Uri.parse(
+        "package:fix_" + packageName.substring("package:".length),
+      );
+    }
+  }
+
+</code></pre>
+<p>If you find the problem, Hook’s adaptation here is not a problem. There are two options:</p>
+<ol>
+<li>Put the stub point of Hook in the Dart language from before modifying the package name.</li>
+<li>Adapt within the TransformerTemplate, and automatically add fix_ prefix to all written Hook logic when it is recognized as a dynamic package.</li>
+</ol>
+<p>However, after the success of generating the full amount of piles, a new problem occurred, and a compilation error occurred during the period when ByteCode was generated.</p>
+<h2 id="compilation-error-generated-by-genbytecode">Compilation error generated by genByteCode</h2>
+<pre><code>    Unhandled exception:
+    NoSuchMethodError: The method '[]' was called on null.
+    Receiver: null
+    Tried calling: [](":async_stack_trace")
+    #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:53:5)
+    #1      Frame.getSyntheticVar (package:vm/bytecode/local_vars.dart:274:20)
+    #2      LocalVariables.asyncStackTraceVar (package:vm/bytecode/local_vars.dart:149:10)
+    #3      BytecodeGenerator._genClosureBytecode (package:vm/bytecode/gen_bytecode.dart:2492:26)
+    #4      BytecodeGenerator._genClosure (package:vm/bytecode/gen_bytecode.dart:2730:38)
+    #5      BytecodeGenerator.visitFunctionExpression (package:vm/bytecode/gen_bytecode.dart:3061:5)
+    #6      FunctionExpression.accept (package:kernel/ast.dart:4318:44)
+    #7      BytecodeGenerator._generateNode (package:vm/bytecode/gen_bytecode.dart:1159:10)
+    #8      BytecodeGenerator.visitVariableDeclaration (package:vm/bytecode/gen_bytecode.dart:4552:11)
+    #9      VariableDeclaration.accept (package:kernel/ast.dart:5292:43)
+    #10     BytecodeGenerator._generateNode (package:vm/bytecode/gen_bytecode.dart:1159:10)
+    #11     _GrowableList.forEach (dart:core-patch/growable_array.dart:285:8)
+    #12     BytecodeGenerator._generateNodeList (package:vm/bytecode/gen_bytecode.dart:1164:11)
+    #13     BytecodeGenerator.visitBlock (package:vm/bytecode/gen_bytecode.dart:3949:5)
+    #14     Block.accept (package:kernel/ast.dart:4519:43)
+    #15     BytecodeGenerator._generateNode (package:vm/bytecode/gen_bytecode.dart:1159:10)
+    #16     BytecodeGenerator.defaultMember (package:vm/bytecode/gen_bytecode.dart:924:13)
+    #17     TreeVisitor.visitProcedure (package:kernel/visitor.dart:232:39)
+    #18     Procedure.accept (package:kernel/ast.dart:2140:40)
+    #19     visitList (package:kernel/ast.dart:7073:14)
+    #20     BytecodeGenerator.visitLibrary (package:vm/bytecode/gen_bytecode.dart:231:5)
+    #21     generateBytecode.&lt;anonymous closure&gt; (package:vm/bytecode/gen_bytecode.dart:107:27)
+</code></pre>
+<p>After opening the full amount of bytecode inserting piles, I saw the Log as shown above. It is actually difficult to see any specific problems from the place where the Log and error are generated. This is due to the fact that the ByteCode Generator of Dart itself is not good. Visitor and Transformer, which should have a very clear structure, have become very procedural and state-oriented, and have difficulties in debug the code.</p>
+<p>From the point of view of Log, it is actually to deal with asynchrony when a _genClosureBytecode generates closure bytecode, and to find the problem of asynchronous variables.</p>
+<h2 id="problem-solving">Problem solving</h2>
+<h3 id="actual-code-location">Actual code location</h3>
+<pre><code class="language-dart">    int _genClosureBytecode(
+        LocalFunction node, String name, FunctionNode function) {
+      _pushAssemblerState();
+      locals.enterScope(node);
+      final savedParentFunction = parentFunction;
+      parentFunction = enclosingFunction;
+      final savedIsClosure = isClosure;
+      isClosure = true;
+      enclosingFunction = function;
+      final savedLoopDepth = currentLoopDepth;
+      currentLoopDepth = 0;
+      final savedInferredTypesAttribute = inferredTypesAttribute;
+      inferredTypesAttribute = null;
+      if (function.typeParameters.isNotEmpty) {
+        functionTypeParameters ??= new List&lt;TypeParameter&gt;();
+        functionTypeParameters.addAll(function.typeParameters);
+        functionTypeParametersSet = functionTypeParameters.toSet();
+      }
+      List&lt;Label&gt; savedYieldPoints = yieldPoints;
+      yieldPoints = locals.isSyncYieldingFrame ? &lt;Label&gt;[] : null;
+      closures ??= &lt;ClosureDeclaration&gt;[];
+      final int closureIndex = closures.length;
+      final closure = getClosureDeclaration(node, function, name, closureIndex,
+          savedIsClosure ? parentFunction : enclosingMember);
+      closures.add(closure);
+      final int closureFunctionIndex = cp.addClosureFunction(closureIndex);
+      _recordSourcePosition(function.fileOffset);
+      _genPrologue(node, function);
+      if (options.causalAsyncStacks &amp;&amp;
+          parentFunction != null &amp;&amp;
+          (parentFunction.dartAsyncMarker == AsyncMarker.Async ||
+              parentFunction.dartAsyncMarker == AsyncMarker.AsyncStar)) {
+          final savedSourcePosition = asm.currentSourcePosition;
+          _recordSourcePosition(TreeNode.noOffset);
+          _genLoadVar(locals.asyncStackTraceVar,
+              currentContextLevel: locals.contextLevelAtEntry);
+          _genDirectCall(
+              setAsyncThreadStackTrace, objectTable.getArgDescHandle(1), 1);
+          asm.emitDrop1();
+          asm.currentSourcePosition = savedSourcePosition;
+      }
+</code></pre>
+<h3 id="background-knowledge">Background knowledge</h3>
+<p>The async and await in Dart are syntax sugars in themselves, which are not mechanisms that can be directly used at the bottom by writing down. In fact, they are supported by generating holes in the Dart layer code. In the Dart pkg/kernel/transformations/continuations.dart, we can see how this syntax sugar is expanded by Transformer in the Kernel layer:</p>
+<p><img alt="" src="log.png"/></p>
+<p>The variables in the diagram are the ones we see in the error stack. An asynchronous method in the Kernel layer will actually be expanded to:</p>
+<pre><code>  @#C8 final (#lib4::StubCut*) →* dart.async::Future&lt;void&gt;* func = (#lib4::StubCut* stub) → dart.async::Future&lt;void&gt;* /* originally async
+  */ {
+    final dart.async::_AsyncAwaitCompleter&lt;void&gt;* :async_completer = new dart.async::_AsyncAwaitCompleter::&lt;void&gt;();
+    dart.async::FutureOr&lt;void&gt;* :return_value;
+    dynamic :async_stack_trace;
+    dynamic :async_op_then;
+    dynamic :async_op_error;
+    dart.core::int* :await_jump_var = 0;
+    dynamic :await_ctx_var;
+    function :async_op([dynamic :result, dynamic :exception, dynamic :stack_trace]) → dynamic yielding
+      try {
+        #L26:
+        {
+        实际的代码处理逻辑
+       }
+        dart.async::_completeOnAsyncReturn(:async_completer, :return_value);
+        return;
+      }
+      on dynamic catch(dynamic :exception, dynamic :stack_trace) {
+        :async_completer.{dart.async::Completer::completeError}(:exception, :stack_trace);
+      }
+    :async_stack_trace = dart.async::_asyncStackTraceHelper(:async_op);
+    :async_op_then = dart.async::_asyncThenWrapperHelper(:async_op);
+    :async_op_error = dart.async::_asyncErrorWrapperHelper(:async_op);
+    :async_completer.start(:async_op);
+    return :async_completer.{dart.async::Completer::future};
+  };
+</code></pre>
+<p>So the variable to look for from the above error log is actually<code>async_stack_trace</code>-This variable that expands at the Dart layer. Several attempts to fix the logic were made against this information.</p>
+<h3 id="conjecture-1-generated-code-fileoffset-fileendoffset-problem">Conjecture 1: Generated code fileOffset, fileEndOffset problem</h3>
+<p><img alt="" src="log1.png"/></p>
+<p>Before fixing the problem, directly debug ByteCode through the Dart Pkg project (see debugging method[How to Debug Dart AST with Dart Hook?]() You will always see an error log with the following contents, so guessing errors may also be from<code>emitSourcePosition</code>From this switch.</p>
+<p>It is possible that ByteCode has stricter requirements on the source position of the Kernel layer code, and may require a more accurate location to generate debugging information. Therefore, try to refine the fileOffset and fileEndOffset that generate the Kernel part in TemplateTransformer.</p>
+<pre><code>        final call = MethodInvocation(
+          VariableGet(thisPointer, injectType),
+          Name(stubKey, meta.injectLib),
+          Arguments(
+            [],
+            types:
+                member.function.typeParameters.isNotEmpty &amp;&amp; member is! Constructor
+                    ? ir.getAsTypeArguments(
+                        member.function.typeParameters,
+                        member.enclosingLibrary,
+                      )
+                    : [],
+          )..fileOffset = member.fileOffset,
+       )..fileOffset = member.fileOffset;
+        final handler = FunctionExpression(
+          FunctionNode(
+            Block(
+              [
+                member.function.returnType is VoidType
+                    ? ExpressionStatement(call)
+                    : ReturnStatement(call)
+                  ..fileOffset = member.fileOffset,
+              ],
+            )..fileOffset = member.fileOffset,
+            positionalParameters: [
+              thisPointer..fileOffset = member.fileOffset,
+            ],
+            returnType: const DynamicType(),
+           requiredParameterCount: 1,
+          )..fileOffset = member.fileOffset,
+</code></pre>
+<p>For example, the above figure adds specific location information to each node, but the errors after the debugger and engine run have not improved.</p>
+<h3 id="conjecture-2-incomplete-type-information">Conjecture 2: Incomplete type information</h3>
+<p>Same as above, adding additional type-specific information for each location:</p>
+<pre><code class="language-dart">          type: FunctionType(
+            [injectType],
+            member.function.returnType,
+            Nullability.legacy,
+          ),
+</code></pre>
+<p>However, the problem has not been solved after the type information is completed.</p>
+<h3 id="conjecture-3-async-is-not-expanded-by-code">Conjecture 3: Async is not expanded by code</h3>
+<p>The syntax sugar that has been popularized in the background knowledge of await and async will be desaccharified after the continuation.dart process, but the full amount of Hook and Coverage piles are all after the desaccharification operation at the front end of the Compiler, so try to advance the code part of Hook Transformer to the continuation process:</p>
+<p><img alt="" src="code0.png"/></p>
+<p><img alt="" src="code1.png"/></p>
+<p><img alt="" src="code2.png"/></p>
+<p>I also tried the continuation of the generated FunctionExpression in the Hook Exec process:</p>
+<p><img alt="" src="code3.png"/></p>
+<p>But the problem has not been solved.</p>
+<h3 id="problem-solved">Problem solved</h3>
+<p>The problem comes back to comparing the logic of a Kernel without a stake with the logic of applying a stake Kernel in the same part of the code:</p>
+<pre><code class="language-dart">      if (options.causalAsyncStacks &amp;&amp;
+          parentFunction != null &amp;&amp;
+          (parentFunction.dartAsyncMarker == AsyncMarker.Async ||
+              parentFunction.dartAsyncMarker == AsyncMarker.AsyncStar)) {
+          final savedSourcePosition = asm.currentSourcePosition;
+          _recordSourcePosition(TreeNode.noOffset);
+          _genLoadVar(locals.asyncStackTraceVar,
+              currentContextLevel: locals.contextLevelAtEntry);
+          _genDirectCall(
+              setAsyncThreadStackTrace, objectTable.getArgDescHandle(1), 1);
+          asm.emitDrop1();
+          asm.currentSourcePosition = savedSourcePosition;
+      }
+</code></pre>
+<p>After comparison, it is found that this paragraph<code>causalAsyncStacks</code>The logic is that when _genClosureFunction generates a closure, it will look for the parent node of the closure. If it is asynchronous and opens<code>causalAsyncStacks</code>On the premise of this switch, variables such as async_stack_trace are read from the parent object for error return and frame node calculation.</p>
+<p>For example, the actual code for a library procudure is:</p>
+<pre><code>    {
+      final dart.async::_AsyncAwaitCompleter&lt;void&gt;* :async_completer = new dart.async::_AsyncAwaitCompleter::&lt;void&gt;();
+      dart.async::FutureOr&lt;void&gt;* :return_value;
+      dynamic :async_stack_trace;
+      dynamic :async_op_then;
+      dynamic :async_op_error;
+      dart.core::int* :await_jump_var = 0;
+      dynamic :await_ctx_var;
+      dynamic :saved_try_context_var0;
+      function :async_op([dynamic :result, dynamic :exception, dynamic :stack_trace]) → dynamic yielding 
+        try {
+          #L2:
+          {
+            final #lib7::QuestionArguments* args = let final #lib7::QuestionArguments* #t14723 = #lib8::ModalRoute::of&lt;dart.core::Object*&gt;(context).{#lib9::Route::settings}.{#lib9::RouteSettings::arguments} as #lib7::QuestionArguments* in #t14723.{#lib7::QuestionArguments::==}(null) ?{#lib7::QuestionArguments*} new #lib7::QuestionArguments::() : #t14723;
+            [yield] let dynamic #t14724 = dart.async::_awaitHelper(#lib9::Navigator::push&lt;#lib10::Animation&lt;dart.core::double*&gt;*&gt;(context, new #lib6::SuccessRoute::(message: message, hasNextQuestion: args.{#lib7::QuestionArguments::hasNextQuestion})), :async_op_then, :async_op_error, :async_op) in null;
+            final #lib10::Animation&lt;dart.core::double*&gt;* animation = dart._internal::unsafeCast&lt;#lib10::Animation&lt;dart.core::double*&gt;*&gt;(:result);
+            function listener() → void {
+              if(animation.{#lib10::Animation::status}.{dart.core::Object::==}(#C4) &amp;&amp; animation.{#lib10::Animation::value}.{dart.core::num::&lt;}(0.6)) {
+                if(args.{#lib7::QuestionArguments::hasNextQuestion}) {
+                  final #lib7::QuestionArguments* nextQuestion = args.{#lib7::QuestionArguments::nextQuestion}();
+                  #lib9::Navigator::pushReplacementNamed&lt;dart.core::Object*, dart.core::Object*&gt;(context, nextQuestion.{#lib7::QuestionArguments::routeName}, arguments: nextQuestion);
+                }
+                else {
+                  #lib9::Navigator::popUntil(context, (#lib9::Route&lt;dynamic&gt;* route) → dart.core::bool* =&gt; !route.{#lib9::Route::settings}.{#lib9::RouteSettings::name}.{dart.core::String::contains}("sphinx"));
+                }
+                animation.{#lib10::Animation::removeListener}(listener);
+              }
+            }
+            animation.{#lib10::Animation::addListener}(listener);
+          }
+          dart.async::_completeOnAsyncReturn(:async_completer, :return_value);
+          return;
+        }
+        on dynamic catch(dynamic :exception, dynamic :stack_trace) {
+          :async_completer.{dart.async::Completer::completeError}(:exception, :stack_trace);
+        }
+      :async_stack_trace = dart.async::_asyncStackTraceHelper(:async_op);
+      :async_op_then = dart.async::_asyncThenWrapperHelper(:async_op);
+      :async_op_error = dart.async::_asyncErrorWrapperHelper(:async_op);
+      :async_completer.start(:async_op);
+      return :async_completer.{dart.async::Completer::future};
+    }
+</code></pre>
+<p>But after Dart Hook, this code became the execution jump and Hook’s plug-in code:</p>
+<pre><code>    {
+      @#C6 final dynamic __func__ = (#lib6::StubCut* stub) → dynamic {
+        return stub{#lib6::StubCut*}.hook_method452();
+      };
+      return hook_coverage::HookAllMethod::hookStaticInject(new #lib6::StubCut::(&lt;dynamic, dynamic&gt;{"__line_no__": "207"}, "package:fix_dev_rpg/src/style_sphinx/success_route.dart", "navigateToNextQuestion", "package:fix_dev_rpg/src/style_sphinx/success_route.dart", null, "navigateToNextQuestion", "hook_method452", &lt;dynamic&gt;[context, message], &lt;dynamic, dynamic&gt;{}, __func__{dynamic}));
+    }
+</code></pre>
+<p>Processing<code>__func__</code>When this FunctionExpression looks for outer functions, there are no Async related variables (which have been transferred to other execution functions).</p>
+<p>Therefore, the way to fix the problem is relatively simple:</p>
+<pre><code class="language-dart">    if (options.causalAsyncStacks &amp;&amp;
+        parentFunction != null &amp;&amp;
+        (parentFunction.dartAsyncMarker == AsyncMarker.Async ||
+            parentFunction.dartAsyncMarker == AsyncMarker.AsyncStar)) {
+      if (!parentFunction.body.toString().contains('hook_method')) {
+        final savedSourcePosition = asm.currentSourcePosition;
+        _recordSourcePosition(TreeNode.noOffset);
+        _genLoadVar(locals.asyncStackTraceVar,
+            currentContextLevel: locals.contextLevelAtEntry);
+        _genDirectCall(
+            setAsyncThreadStackTrace, objectTable.getArgDescHandle(1), 1);
+        asm.emitDrop1();
+        asm.currentSourcePosition = savedSourcePosition;
+      }
+    }
+</code></pre>
+<p>We just need to check that the parent object is an object that we have handled by Dart Hook, in which case we can run through the entire compilation process without checking the relevant logic of casualAsync.</p>
+<h2 id="further-more">Further More</h2>
+<p>The efficiency of the full amount of piling + ByteCode bytecode interpreter is quite problematic. We may still need to consider the piling scheme based on the implantation of Injects instead of wrapping Around, so that we can also support line-level code piling in this way.</p>
+<p> </p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>

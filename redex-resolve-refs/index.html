@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/redex-resolve-refs/" property="og:url"/>
+<link href="https://lfkdsk.github.io/redex-resolve-refs/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "Redex: ResolveRefs Pass",
+      "headline" : "Redex: ResolveRefs Pass",
+      "description" : "Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field\/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex\u0026rsquo;s optimizations. The motivation of this pass is to resolve all method\/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don\u0026rsquo;t have to deal with the distinction between a ref and a def.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-10-11 18:17:31 \u002b0000 UTC",
+      "dateModified" : "2021-10-11 18:17:31 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/redex-resolve-refs\/",
+      "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>Redex: ResolveRefs Pass - lfkdsk's Blog</title>
+<meta content="Redex: ResolveRefs Pass - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content="Introduction A field or method being referenced by an instruction could be a pure ref. In which, the ref points to a class where the field/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex’s optimizations. The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don’t have to deal with the distinction between a ref and a def." name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">Redex: ResolveRefs Pass</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2021-10-11 18:17:31 UTC">
+                  11 Oct 2021
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<h2 id="introduction">Introduction</h2>
+<p>A field or method being referenced by an instruction could be a pure <code>ref</code>. In which, the ref points to a class where the field/method is not actually defined. This is allowed in dex bytecode. However, it adds complexity to Redex’s optimizations.
+The motivation of this pass is to resolve all method/field references to its definition in the most accurate way possible. It is supposed to be done early on, so that the rest of the optimizations don’t have to deal with the distinction between a <code>ref</code> and a <code>def</code>.
+Unlike RebindRefs, the goal here is to bind the method/field reference to the most accurate one possible to produce an accurate reachability graph of the program. Therefore, the number of unique method references is not a concern.</p>
+<h2 id="optimization">Optimization</h2>
+<h3 id="1-search-all-methods-op-replace-ref-def">1. Search all methods op replace ref =&gt; def</h3>
+<pre><code class="language-java">import java.util.*;
+import lombok.*;
+
+public class Main {
+    public static class A {
+        public void print() {
+            System.out.print('A');
+        }
+    }    
+    public Main() {
+        int i = 0;
+        i++;
+        new A().print();
+    }
+    
+    public static class B {
+        public void a() {
+            new A().print();
+        }
+    }
+    
+    public static void main() {
+        new A().print();
+    }
+}
+</code></pre>
+<p>It will generate A.print ref in twice:</p>
+<p><img alt="" src="codegen.png"/></p>
+<p>So this pass will search all methods and exchange their refs to a more accurate ref. Such as:</p>
+<p><img alt="" src="redex-code.png"/></p>
+<p>But when searching for a definition of a virtual callsite, we return one of the possible callees.</p>
+<p><img alt="" src="redex-code-1.png"/></p>
+<h3 id="2-refine-virtual-method">2. Refine virtual method</h3>
+<p>In the last step, we chose one of the possible callees to generate method def’s ref. But it is very rough, so we can use the real type which is saved in insn-reg to get_inferred_method_def .</p>
+<p><img alt="" src="redex-code-2.png"/></p>
+<h3 id="3-after-this-pass">3. After this pass</h3>
+<ul>
+<li>This pass should be used before ReBindRefPass .</li>
+<li>After this, we don’t have to deal with the distinction between a <code>ref</code> and a <code>def</code>.</li>
+</ul>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>

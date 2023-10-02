@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interesting! on lfkdsk&#39;s Blog</title>
+    <link>https://lfkdsk.github.io/tags/interesting/</link>
+    <description>Recent content in Interesting! on lfkdsk&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <lastBuildDate>Thu, 16 Jun 2016 21:30:29 +0000</lastBuildDate>
+    
+	<atom:link href="https://lfkdsk.github.io/tags/interesting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我们来写一些魔法</title>
+      <link>https://lfkdsk.github.io/some-magic-things/</link>
+      <pubDate>Thu, 16 Jun 2016 21:30:29 +0000</pubDate>
+      
+      <guid>https://lfkdsk.github.io/some-magic-things/</guid>
+      <description>请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
+SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
+首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, &amp;quot;key&amp;quot;, 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
+同时在AndroidManifest文件中：
+&amp;lt;receiver android:name=&amp;quot;.SecretReceiver&amp;quot; android:enabled=&amp;quot;true&amp;quot; android:exported=&amp;quot;true&amp;quot;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;quot;android.provider.Telephony.SECRET_CODE&amp;quot; /&amp;gt; &amp;lt;data android:host=&amp;quot;12467&amp;quot; android:scheme=&amp;quot;android_secret_code&amp;quot; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/receiver&amp;gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
+host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
+添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.</description>
+    </item>
+    
+  </channel>
+</rss>

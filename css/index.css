@@ -1,0 +1,270 @@
+/* global */
+
+html {
+  font-family: "Bree Serif", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Bree Serif", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 20px;
+  background-image: url("/img/geometry2.png");
+}
+
+/* overwrite */
+.markdown-body {
+  font-size: 16px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: 600;
+  text-decoration: underline;
+}
+/* i18n */
+
+.Chinese .markdown-body {
+  /* font-size: 18px; */
+  line-height: 200%;
+  letter-spacing: 0.3px;
+}
+
+.paper a,
+button,
+input,
+option,
+p,
+select,
+table,
+tbody,
+td,
+textarea,
+th,
+thead,
+tr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+}
+
+a {
+  color: #000;
+}
+
+p {
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+
+/* fonts */
+
+/* @font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arvo"), url(../fonts/Arvo.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Permanent Marker";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Permanent Marker Regular"), local("PermanentMarker-Regular"), url("../fonts/PermanentMarker-Regular.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+} */
+
+/* header */
+
+.site-title {
+  font-size: 1.8rem;
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.site-title a {
+  font-family: bungee shade,sans-serif;
+}
+
+.site-date-catalog {
+  font-size: 1.5rem;
+}
+
+.signatures {
+  font-family: "Permanent Marker", Impact, Charcoal, sans-serif;
+}
+
+.signatures a {
+  text-decoration: none;
+}
+
+.head-line {
+  height: 3px;
+  width: 100%;
+  background-color: #000;
+  margin: 30px 0;
+}
+
+.lang-switch {
+  font-weight: 600;
+}
+
+.header-line {
+  width: 100%;
+  border-width: 2px;
+  border-color: #482936;
+  border-style: solid none none none;
+}
+/* posts */
+
+.posts {
+  margin-bottom: 80px;
+}
+
+.posts-date {
+  font-size: 1.1rem;
+}
+
+.posts-title {
+  font-size: 1.1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* word-break: break-all; */
+}
+
+.post-line {
+  margin: 12px 0;
+}
+
+.posts-footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.posts-footer-item {
+  margin-right: 12px;
+}
+
+/* post */
+/* img 添加边框 */
+
+.post img {
+  max-width: 95%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  background: white;
+  border-radius: .2rem;
+  padding: 0.5rem;
+  box-shadow: 1px 2px 4px gray;
+  text-align: center;
+  /* border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; */
+}
+
+.post video {
+  max-width: 100%;
+}
+
+.post audio {
+  max-width: 100%;
+}
+
+.post-date {}
+
+.post-author {
+  float: right;
+  font-weight: 600;
+}
+
+.post-header {
+  margin-bottom: 50px;
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: 600;
+  word-wrap:break-word; 
+  word-break:break-all; 
+}
+
+.post-content {
+  margin-bottom: 50px;
+}
+
+.post-comments {
+  margin-bottom: 50px;
+}
+
+#disqus_thread {
+  position: relative;
+}
+
+#disqus_thread:after {
+  content: "";
+  display: block;
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: white;
+}
+
+/* .paper {
+  font-family: "Arvo", Arial, Helvetica, sans-serif !important;
+} */
+
+.to-top {
+  opacity: 1;
+  display: inline-block;
+  padding: 1em;
+  position: fixed;
+  bottom: 1em;
+  right: 1em
+}
+.to-top .paper-btn {
+  padding: .6em 1em;
+  background: #fff;
+  border-top-left-radius: 185px 160px;
+  border-top-right-radius: 200px 195px;
+  border-bottom-right-radius: 160px 195px;
+  border-bottom-left-radius: 185px 190px
+}
+
+.to-left {
+  position: fixed;
+  opacity: 1;
+  display: inline-block;
+  padding: 1em;
+  top: 1.5em;
+  left: 1em
+}
+
+.to-left .paper-btn {
+  padding: .6em 1em;
+  background: #fff;
+}
+
+.markdown-body pre {
+  background: #232323;
+}
+
+@media screen and (max-width: 600px) {
+  .site-title,
+  .site-items {
+    text-align: center;
+  }
+}

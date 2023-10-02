@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/some-magic-things/" property="og:url"/>
+<link href="https://lfkdsk.github.io/some-magic-things/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "我们来写一些魔法",
+      "headline" : "我们来写一些魔法",
+      "description" : "请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。\nSecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。\n首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, \u0026quot;key\u0026quot;, 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。\n同时在AndroidManifest文件中：\n\u0026lt;receiver android:name=\u0026quot;.SecretReceiver\u0026quot; android:enabled=\u0026quot;true\u0026quot; android:exported=\u0026quot;true\u0026quot;\u0026gt; \u0026lt;intent-filter\u0026gt; \u0026lt;action android:name=\u0026quot;android.provider.Telephony.SECRET_CODE\u0026quot; \/\u0026gt; \u0026lt;data android:host=\u0026quot;12467\u0026quot; android:scheme=\u0026quot;android_secret_code\u0026quot; \/\u0026gt; \u0026lt;\/intent-filter\u0026gt; \u0026lt;\/receiver\u0026gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。\nhost代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：\n添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-06-16 21:30:29 \u002b0000 UTC",
+      "dateModified" : "2016-06-16 21:30:29 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/some-magic-things\/",
+      "keywords" : [ "Interesting!","Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>我们来写一些魔法 - lfkdsk's Blog</title>
+<meta content="我们来写一些魔法 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='请问要来点魔法么？ 但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。
+SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。
+首先定义一个广播接收器 package com.lfk.myapplication; import android.content.BroadcastReceiver; import android.content.Context; import android.content.Intent; public class SecretReceiver extends BroadcastReceiver { public SecretReceiver() { } @Override public void onReceive(Context context, Intent intent) { SpUtils.put(context, "key", 1); } }  这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。
+同时在AndroidManifest文件中：
+&lt;receiver android:name=".SecretReceiver" android:enabled="true" android:exported="true"&gt; &lt;intent-filter&gt; &lt;action android:name="android.provider.Telephony.SECRET_CODE" /&gt; &lt;data android:host="12467" android:scheme="android_secret_code" /&gt; &lt;/intent-filter&gt; &lt;/receiver&gt;  添加对应的静态注册的广播接收器的过滤器，选择SECRET_CODE选项并且加入host和scheme值。
+host代表了匹配什么符号进行触发，虽然写的时候是12467但是输入的时候要输入*#*#12467#*#* 才能正确的响应：
+添加处理逻辑 package com.lfk.myapplication; import android.os.Bundle; import android.support.v7.app.AppCompatActivity; import android.widget.TextView; public class MainActivity extends AppCompatActivity { private TextView textView; @Override protected void onCreate(Bundle savedInstanceState) { super.' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">我们来写一些魔法</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2016-06-16 21:30:29 UTC">
+                  16 Jun 2016
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<h2 id="请问要来点魔法么">请问要来点魔法么？</h2>
+<p>但凡大型应用开发完成之后大多都会留一些用于调试的建议接口，就像微信之前的通过输入呼出的隐藏按钮，系统上的隐藏功能也不例外，从纯粹的java机时代就有各家厂商留下来的隐藏呼出代码，一般用于查看内存啊，强制重启啊，查看电量消耗什么的，多数用组合键或者是号码簿呼出的。Android平台之前也流传过很多假的SecretCode，但是其实SecretCode是真实存在于Android平台上的，并且我们也有机会实现自己的SecretCode。</p>
+<p>SecretCode在Android上大多数是由拨号盘输入特定序列触发的，其实质上也不过是一个特殊的全局广播的收发，我们之前应该学过广播接收器，那理解起来就很容易，所谓的SecretCode也就只是个很有趣的小功能了。</p>
+<h3 id="首先定义一个广播接收器">首先定义一个广播接收器</h3>
+<pre><code class="language-java">package com.lfk.myapplication;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class SecretReceiver extends BroadcastReceiver {
+    public SecretReceiver() {
+
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        SpUtils.put(context, "key", 1);
+    }
+}
+
+</code></pre>
+<p>这里面没做什么复杂的操作，只是把SharePerference的一个key值变成1。</p>
+<p>同时在AndroidManifest文件中：</p>
+<pre><code class="language-xml">        &lt;receiver
+            android:name=".SecretReceiver"
+            android:enabled="true"
+            android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.provider.Telephony.SECRET_CODE" /&gt;
+
+                &lt;data
+                    android:host="12467"
+                    android:scheme="android_secret_code" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+</code></pre>
+<p>添加对应的静态注册的广播接收器的过滤器，选择<code>SECRET_CODE</code>选项并且加入host和scheme值。</p>
+<p>host代表了匹配什么符号进行触发，虽然写的时候是<code>12467</code>但是输入的时候要输入<code>*#*#12467#*#*</code> 才能正确的响应：</p>
+<p><img alt="input" src="input.png"/></p>
+<h3 id="添加处理逻辑">添加处理逻辑</h3>
+<pre><code class="language-java">package com.lfk.myapplication;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    private TextView textView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        SpUtils.put(this, "key", 0);
+        textView = (TextView) findViewById(R.id.text_view);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if ((int) SpUtils.get(this, "key", 0) != 0) {
+            textView.setText("HAHAHA");
+        }
+    }
+}
+
+</code></pre>
+<p>这里只定义了简单的一个显示逻辑，当检测到key值变化的时候修改文字的显示，但实际上SecretCode可以作为一个你应用里的一个彩蛋或是隐藏开关(你可以借由这个功能完成你奇怪内容的隐藏）。</p>
+<h3 id="显示效果">显示效果</h3>
+<p><img alt="close" src="close.png"/></p>
+<p><img alt="open" src="open.png"/></p>
+<blockquote>
+<p>PS：常用的SecretCode ：<a href="http://www.androidupdater.com/2015/02/if-you-are-android-user-than-you-should.html">If you are an Android User, Than you Should try these 32 Secret Codes!</a></p>
+</blockquote>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>
