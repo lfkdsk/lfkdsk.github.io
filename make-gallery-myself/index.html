@@ -124,7 +124,7 @@
 <li>二是 PicX 本身也可以实现上传图片、压缩图片、以及打水印、对图片进行管理（删除、重命名）等一系列操作，我们相机支出的图片比较大，直接上传到 Github 可以会有下载、解析速度比较慢的问题，压缩到 WebP 可能就会好很多。</li>
 </ol>
 <p>下一步就是 Gallery 的总部署，这里我们的创建主题仍然是一个手动进行管理的方案，因为我们要手动的对主题进行排序。而如果我们需要自动使用某些顺序来进行管理（比如说日期），那我们可能会需要对每个主题文件夹下增加一些需要额外的元信息。但是可能我还是会想手动指定顺序而不是根据日期进行决定，因此这里主题的信息是需要自己手动管理的：</p>
-<p>![](“<a href='https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/readmeyml.webp"'>https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/readmeyml.webp"</a>)</p>
+<p><img alt="" src="https://github.com/lfkdsk/picx-images-hosting/raw/master/blog/make-gallery-myself/readmeyml.webp"/></p>
 <p>在这个 <code>README.yml</code> 文件内，格式如上图所示。每个主题的名字会作为最上层 Key 来使用，下面会使用以下集中顺序：</p>
 <ol>
 <li>url: 主题的文件夹名字，这里和我们 PicX 创建的图片文件夹名字一致</li>
