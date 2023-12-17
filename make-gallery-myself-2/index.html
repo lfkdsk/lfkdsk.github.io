@@ -190,6 +190,9 @@ const all = await response.json();
 <pre><code>https://lfkdsk.github.io/gallery/random?widget=true
 </code></pre>
 <p>实现了额外的 widget 参数，这个参数会在上下拓展一定的 padding 空间来适配这种 <code>4X3</code> 的 iPhone Widget 组件。其他还有一些能够把网页形式的 widget 甚至把网页设置为桌面的方案，可以在桌面来浏览定期更新的有趣背景啦~</p>
+<p>另外我还做了每天都会生成一张图摆在我的 github profile 的 Gallery Daily 功能：</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/profile.webp"/></p>
+<p>这个功能也实际上就是通过每日定期的 github action 通过 download 功能来实现的。</p>
 <h2 id="query-status-想查什么查什么">Query/Status：想查什么查什么</h2>
 <p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/query.webp"/></p>
 <p>这个在前端 SQL 直接使用的功能，是这波大更新里我觉得最为好玩的功能。大家看到在前端直接写 SQL 可能会担心注入的问题，但是这个方案其实是我在编译期生成一个了一个 sqlite 文件，而实际上次的查询也发生在使用 wasm 在前端对 sqlite 进行一个查询！</p>
