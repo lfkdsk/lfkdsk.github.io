@@ -6,8 +6,20 @@
 <description>Recent content on lfkdsk's Blog</description>
 <generator>Hugo -- gohugo.io</generator>
 <language>cn</language>
-<lastBuildDate>Tue, 26 Sep 2023 00:00:00 +0000</lastBuildDate>
+<lastBuildDate>Fri, 15 Dec 2023 00:00:00 +0000</lastBuildDate>
 <atom:link href="https://lfkdsk.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>MYGallery: How I made it！部分有趣功能更新</title>
+<link>https://lfkdsk.github.io/make-gallery-myself-2/</link>
+<pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
+<guid>https://lfkdsk.github.io/make-gallery-myself-2/</guid>
+<description>查看了一下 9 月份的上一篇 blog ，三个月过去我的 Gallery post 了很多新的相册（期间购入了 XF50-140 能拍的更细节以及更清晰了），并且也上新了很多新的 feature，简单总结下方案以及实现细节。
+Album：相册页面的大升级 首先介绍 Album 页面的升级，这个页面应该在上个版本就实现了两种 stylesheet 的模式切换（即左文右图的 default 模式，以及上文下图的 fullscreen 模式），这两个模式都可以通过在 README.yml 里面每个选项的配置来修改。
+这个页面主要的修改就是支持了每张图片的边框模式，这种带有相机参数的照片底栏似乎是很多用来展示照片的标配，我最早是在一个被名为 single-page 的页面里增加了这个功能，但是当我统一每个界面的 UI 的之后（即把各种 EXIF 界面，边框信息抽取成为某种 UI Component），最主要的 Album 界面也能支持这个功能了。这里的 EXIF 并非实时读取的，也是在编译期通过 exif-lib 自动取出数据生成到页面里的。
+关于数据的如何统合其实是一个比较麻烦的事情，如果按照传统的 Hexo 静态生成模板的方式，其实是要想办法把一些信息生成到 Markdown 文件的 meta-header 信息的区域里，目前 Gallery 里面的一些东西也确实是通过这种方式注入的，但是实际上这种模式其实在一些复杂结构的解读的时候非常不方便，被作为纯文本读取的 markdown 实际上里面的 metaheader 针对 yml 格式的支持是不完全的，稍有复杂的格式就会破坏结构无法读取。
+Gallery 里的另一种储存大量元信息的方案就是，直接把各种资源丢到 data/*.yml 的文件中去，site.data.* 可以在编译期拿到那我们其实可以通过在编译期搜索的方式来把更多的信息不放到 markdown 而通过编译期搜索来实现：
+&amp;lt;div class=&amp;quot;album-list flex gap-2&amp;quot;&amp;gt; &amp;lt;% for (var i in page.</description>
+</item>
 <item>
 <title>MYGallery: 拍照、选图、上传部署一站式方案</title>
 <link>https://lfkdsk.github.io/make-gallery-myself/</link>

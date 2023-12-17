@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Hugo 0.59.1" name="generator"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Intra-Mind Traveler" name="author"/>
+<meta content="https://lfkdsk.github.io/make-gallery-myself-2/" property="og:url"/>
+<link href="https://lfkdsk.github.io/make-gallery-myself-2/" rel="canonical"/><link href="./img/favicon.ico" rel="apple-touch-icon"/>
+<link href="./img/favicon.ico" rel="icon"/>
+<link href="./img/favicon.ico" rel="shortcut"/><script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/lfkdsk.github.io"
+      },
+      "articleSection" : "",
+      "name" : "MYGallery: How I made it！部分有趣功能更新",
+      "headline" : "MYGallery: How I made it！部分有趣功能更新",
+      "description" : "查看了一下 9 月份的上一篇 blog ，三个月过去我的 Gallery post 了很多新的相册（期间购入了 XF50-140 能拍的更细节以及更清晰了），并且也上新了很多新的 feature，简单总结下方案以及实现细节。\nAlbum：相册页面的大升级 首先介绍 Album 页面的升级，这个页面应该在上个版本就实现了两种 stylesheet 的模式切换（即左文右图的 default 模式，以及上文下图的 fullscreen 模式），这两个模式都可以通过在 README.yml 里面每个选项的配置来修改。\n这个页面主要的修改就是支持了每张图片的边框模式，这种带有相机参数的照片底栏似乎是很多用来展示照片的标配，我最早是在一个被名为 single-page 的页面里增加了这个功能，但是当我统一每个界面的 UI 的之后（即把各种 EXIF 界面，边框信息抽取成为某种 UI Component），最主要的 Album 界面也能支持这个功能了。这里的 EXIF 并非实时读取的，也是在编译期通过 exif-lib 自动取出数据生成到页面里的。\n关于数据的如何统合其实是一个比较麻烦的事情，如果按照传统的 Hexo 静态生成模板的方式，其实是要想办法把一些信息生成到 Markdown 文件的 meta-header 信息的区域里，目前 Gallery 里面的一些东西也确实是通过这种方式注入的，但是实际上这种模式其实在一些复杂结构的解读的时候非常不方便，被作为纯文本读取的 markdown 实际上里面的 metaheader 针对 yml 格式的支持是不完全的，稍有复杂的格式就会破坏结构无法读取。\nGallery 里的另一种储存大量元信息的方案就是，直接把各种资源丢到 data\/*.yml 的文件中去，site.data.* 可以在编译期拿到那我们其实可以通过在编译期搜索的方式来把更多的信息不放到 markdown 而通过编译期搜索来实现：\n\u0026lt;div class=\u0026quot;album-list flex gap-2\u0026quot;\u0026gt; \u0026lt;% for (var i in page.",
+      "inLanguage" : "en-US",
+      "author" : "Intra-Mind Traveler",
+      "creator" : "Intra-Mind Traveler",
+      "publisher": "Intra-Mind Traveler",
+      "accountablePerson" : "Intra-Mind Traveler",
+      "copyrightHolder" : "Intra-Mind Traveler",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-12-15 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2023-12-15 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/lfkdsk.github.io\/make-gallery-myself-2\/",
+      "keywords" : [ "Blog", "lfkdsk's Blog", "lfkdsk", "刘丰恺" ]
+  }
+</script>
+<title>MYGallery: How I made it！部分有趣功能更新 - lfkdsk's Blog</title>
+<meta content="MYGallery: How I made it！部分有趣功能更新 - lfkdsk's Blog" property="og:title"/>
+<meta content="article" property="og:type"/>
+<meta content='查看了一下 9 月份的上一篇 blog ，三个月过去我的 Gallery post 了很多新的相册（期间购入了 XF50-140 能拍的更细节以及更清晰了），并且也上新了很多新的 feature，简单总结下方案以及实现细节。
+Album：相册页面的大升级 首先介绍 Album 页面的升级，这个页面应该在上个版本就实现了两种 stylesheet 的模式切换（即左文右图的 default 模式，以及上文下图的 fullscreen 模式），这两个模式都可以通过在 README.yml 里面每个选项的配置来修改。
+这个页面主要的修改就是支持了每张图片的边框模式，这种带有相机参数的照片底栏似乎是很多用来展示照片的标配，我最早是在一个被名为 single-page 的页面里增加了这个功能，但是当我统一每个界面的 UI 的之后（即把各种 EXIF 界面，边框信息抽取成为某种 UI Component），最主要的 Album 界面也能支持这个功能了。这里的 EXIF 并非实时读取的，也是在编译期通过 exif-lib 自动取出数据生成到页面里的。
+关于数据的如何统合其实是一个比较麻烦的事情，如果按照传统的 Hexo 静态生成模板的方式，其实是要想办法把一些信息生成到 Markdown 文件的 meta-header 信息的区域里，目前 Gallery 里面的一些东西也确实是通过这种方式注入的，但是实际上这种模式其实在一些复杂结构的解读的时候非常不方便，被作为纯文本读取的 markdown 实际上里面的 metaheader 针对 yml 格式的支持是不完全的，稍有复杂的格式就会破坏结构无法读取。
+Gallery 里的另一种储存大量元信息的方案就是，直接把各种资源丢到 data/*.yml 的文件中去，site.data.* 可以在编译期拿到那我们其实可以通过在编译期搜索的方式来把更多的信息不放到 markdown 而通过编译期搜索来实现：
+&lt;div class="album-list flex gap-2"&gt; &lt;% for (var i in page.' name="description"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet"/>
+<link href="https://unpkg.com/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css" rel="stylesheet"/>
+<link href="/css/paper.css" rel="stylesheet"/>
+<link href="/css/index.css" rel="stylesheet"/>
+<link href="/index.xml" rel="alternate" title="lfkdsk's Blog" type="application/rss+xml"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet"/>
+<script>
+    
+
+    (function(undefined) {}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8TMSDJG47Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TMSDJG47Q');
+</script>
+</head>
+<body>
+<article class="post Chinese" id="article">
+<div class="row">
+<div class="paper col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+<a href="/">
+<div class="head-line"></div>
+</a>
+<header class="post-header">
+<h1 class="post-title">MYGallery: How I made it！部分有趣功能更新</h1>
+<div class="row">
+<div class="col-xs-6">
+<time class="post-date" datetime="2023-12-15 00:00:00 UTC">
+                  15 Dec 2023
+                </time>
+</div>
+<div class="col-xs-6">
+<div class="post-author">
+<a href="https://lfkdsk.github.io/" target="_blank">@Intra-Mind Traveler</a>
+</div>
+</div>
+</div>
+</header>
+<div class="post-content markdown-body">
+<p><img alt="现在的 Gallery 状态" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/WX20231217-225558@2x.webp"/></p>
+<p>查看了一下 9 月份的上一篇 blog ，三个月过去我的 Gallery post 了很多新的相册（期间购入了 XF50-140 能拍的更细节以及更清晰了），并且也上新了很多新的 feature，简单总结下方案以及实现细节。</p>
+<h2 id="album-相册页面的大升级">Album：相册页面的大升级</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/WX20231217-231607@2x.webp"/></p>
+<p>首先介绍 Album 页面的升级，这个页面应该在上个版本就实现了两种 stylesheet 的模式切换（即左文右图的 default 模式，以及上文下图的 fullscreen 模式），这两个模式都可以通过在 README.yml 里面每个选项的配置来修改。</p>
+<p>这个页面主要的修改就是支持了每张图片的边框模式，这种带有相机参数的照片底栏似乎是很多用来展示照片的标配，我最早是在一个被名为 single-page 的页面里增加了这个功能，但是当我统一每个界面的 UI 的之后（即把各种 EXIF 界面，边框信息抽取成为某种 UI Component），最主要的 Album 界面也能支持这个功能了。这里的 EXIF 并非实时读取的，也是在编译期通过 exif-lib 自动取出数据生成到页面里的。</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/WX20231217-232208@2x.webp"/></p>
+<p>关于数据的如何统合其实是一个比较麻烦的事情，如果按照传统的 Hexo 静态生成模板的方式，其实是要想办法把一些信息生成到 Markdown 文件的 meta-header 信息的区域里，目前 Gallery 里面的一些东西也确实是通过这种方式注入的，但是实际上这种模式其实在一些复杂结构的解读的时候非常不方便，被作为纯文本读取的 markdown 实际上里面的 metaheader 针对 yml 格式的支持是不完全的，稍有复杂的格式就会破坏结构无法读取。</p>
+<p>Gallery 里的另一种储存大量元信息的方案就是，直接把各种资源丢到 <code>data/*.yml</code> 的文件中去，<code>site.data.*</code> 可以在编译期拿到那我们其实可以通过在编译期搜索的方式来把更多的信息不放到 markdown 而通过编译期搜索来实现：</p>
+<pre><code class="language-javascript">      &lt;div class="album-list flex gap-2"&gt;
+        &lt;% for (var i in page.photos) { %&gt;
+          &lt;% var p = page.photos[i]; %&gt;
+          &lt;%
+          function searchPhoto(data, url) {
+            for (var key in data) {
+              if (key.toString() == url) {
+                return data[key]
+              }
+            }
+            return {}
+          }          
+          %&gt;
+          &lt;% var extra = searchPhoto(site.data.photos, share) %&gt;
+      &lt;/div&gt;
+
+</code></pre>
+<p>之前实现起来有点烦恼的 desc 针对各种特殊符号的支持也可以之后再通过类似的方案来实现。</p>
+<h2 id="独立页面-singlepage">独立页面 SinglePage</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/WX20231217-233818@2x.webp"/></p>
+<p>这个是只可以展示一张照片的 Single Page，当然设计这个页面的最开始的考虑是为了缓解打开 Album 页面加载速度的问题，不过加载速度在缩略图系统加入之后已经有所缓解了，所以这个页面也聚焦在在了分享给别人一张单独的页面。这个页面的加入是我试图在 hexo 里面加入部分动态系统的开始，因为 CDN 或者 github url 本身是包含 album name + file name 组合规律的因此 single page 本身的 url 被设计为:</p>
+<pre><code>https://lfkdsk.github.io/gallery/photo?name=ZiYuHouse/DSCF5646.webp
+</code></pre>
+<p>缩略图的 url 会在页面之中被组装，并且会找到 CDN 的 url 来加载图片。最开始这个页面是只有一张图片的信息的，因此比较好处理，由于这个 url 参数本身不太容易写，因此我还在 Album 的页面下端增加了一个 copy url 的 button，点击复制即可以分享页面给他人。</p>
+<p>不过这个功能在 EXIF 以及相框的功能加入之后变得不是很方便了，因为 EXIF 的复杂信息都是在 yml 文件里，而不能在编译期完全确定。一种可以的方案是可以把那段 yml json 化放到页面之中进行解析搜索，最开始也确实是这么实现的，不过如果需要搜索页面增多了或者图片信息本身增多了，就会导致多个页面 HTML 的大小膨胀。</p>
+<p>之后我就在编译期生成了一个 <code>json</code> 文件，通过模拟后端的方式在前端直接 request json 并且解析：</p>
+<pre><code class="language-python">with open(f"./{public}/photos.json", 'w', encoding="utf-8") as f:
+    print(f'generate photos.json with {len(all_files)} items.')
+    json.dump(all_files, f, ensure_ascii=False)
+
+with open("./source/_data/photos.yml", "w", encoding="utf-8") as f:
+    yaml.safe_dump(all_files, f, allow_unicode=True)
+
+</code></pre>
+<p>解析：</p>
+<pre><code class="language-javascript">const response = await fetch('photos.json');
+const all = await response.json();
+</code></pre>
+<p>这里我们 Hexo-Like 的静态站迎来一波 mock backend 方案的升级。除此以外的那个 download 的按钮是直接使用了 <code>html2canvas</code> 来把一整个 dom 保存为图片，同时也会保存好 EXIF 的美丽边框~~</p>
+<h2 id="map-你在哪里拍照">Map: 你在哪里拍照</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/map.webp"/></p>
+<p>Map 功能是我制作 Gallery 开始就很想加入的一个功能，就像我在手机上也使用 <code>世界迷雾</code> 这个软件来 trace 我的日常路径，如果我们在拍摄的时候也能记录下在哪里进行拍摄的应该也会特别酷！之前就把 exif location 的提取做了一部分（甚至在我的 EXIF 相框之前），不过界面一直拖着没有搞，不过有次憋不住力！就利用下午喝咖啡的一会时间写了一下。没想到效果还不错！</p>
+<p>首先要有记录的功能，用手机拍摄的照片自然都会带 location 了，我平时使用的富士相机如果希望记录比较精准的 location 需要打开蓝牙，并且在拍摄前打开手机 <code>X-App</code> ，富士就可以一直使用手机提供的 location 数据了。除此以为每个相册我还会填写一个 location 用来提供相册级别的位置信息:</p>
+<pre><code class="language-yaml">紫玉庄园:
+  url: ZiYuHouse
+  date: 2023-11-25
+  style: fullscreen
+  cover: ZiYuHouse/DSCF5646.webp
+  location: [40.012316530859515, 116.40339054137779]
+</code></pre>
+<p>另外一方面每个 pin 要能有一定的交互以及反向寻找照片的功能，因为我拼接了对应的 album 的 link 以及缩略图的页面生成到 popup widget 里。而每个单纯图片包含 location 的页面也会生成一个跳转到 single page 的页面。</p>
+<p>这个页面里我暂时还是通过 jsonify data 来实现的数据，而非使用 request json 来实现的。另一个有用的优化是每个有保存 location 的图片信息都会独立生成到一个新的 <code>location.yml</code> 的文件之中，因此这里不会序列化所有的图片进行搜索，而是会直接使用搜索到的全部 <code>locations</code> 来填写数据:</p>
+<pre><code class="language-javascript">    var album_data = JSON.parse(`&lt;%- JSON.stringify(site.data.album) %&gt;`);
+    var single_data = JSON.parse(`&lt;%- JSON.stringify(site.data.location) %&gt;`);
+
+    var slogan = $("#slogan")[0];
+    var map = L.map('map');
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;'
+    }).addTo(map);
+    var first = null;
+    var firstMark = null;
+    var keys = Object.keys(single_data)
+    // photos data.
+    for (const key of keys) {
+      var v = single_data[key];
+      var file = v.path;
+      if (album !== "" &amp;&amp; album !== null) {
+        if (album != v.dir) {
+          continue
+        }
+      }
+      var cover = '&lt;%- config.thumbnail_url %&gt;' + file.substr(0, file.lastIndexOf(".")) + ".webp"
+      if (v.hasOwnProperty('location') &amp;&amp; v.location.length !== 0) {
+        // add marker
+        var marker = L.marker(v.location).addTo(map);
+        marker.bindPopup(`&lt;a href="&lt;%- url_for() %&gt;${v.dir}?name=${v.name}"&gt;LINK&lt;/a&gt;` + `&lt;img class="gmarker nofancy" src=${cover} style="margin-top:4px;" /&gt;`);
+      }
+    }
+</code></pre>
+<p>还有就是除了全局性质的 <code>global map</code> 我还针对每个相册的 album 也实现了针对性的 <code>album map</code> ，实现方式也很简单只需要传入针对性的 <code>album</code> 参数，并且在前端过滤就可以了。</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/album_map.webp"/></p>
+<p>我也在每个 Album 页面加装了一个跳转 MAP 的功能，能进入对应的 <code>album map</code>。</p>
+<h2 id="random-随机到了什么">Random：随机到了什么？</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/random.webp"/></p>
+<p>随即页面的点子来源于一个朋友，感觉很酷！类似于一个 Wikipedia 站点会有的随机页面，一个网站包含的图片毕竟很多了，不太可能仔细的审看每张图片。但是如果我们有一个随机页面就可以随时刷新这个页面并且获取不同的返回图片，实现这个随机页面的功能也非常容易，只需要和 single page 类似获取所有的图片信息，并且使用一个随机函数获取这个页面就可以实现了。其他的功能比如 <code>Copy-URL</code> 已经下载 <code>Download</code> 已经在前述的功能里介绍过了，<code>next-one</code> 就只需要生成一次重新随机就可以实现了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/IMG_1967.webp" style="zoom:33%;"/></p>
+<p>生成这个功能之后我们就可以拓展很多的玩法了，比如我可以使用 <code>Glimpse</code> 的小组件生成一个 Random 页面的网页小组件，设置为 15min 刷新间隔，我们就可以在手机桌面上浏览这个定期变更的 Widget 了，这里我还为这种 Widget 支持了:</p>
+<pre><code>https://lfkdsk.github.io/gallery/random?widget=true
+</code></pre>
+<p>实现了额外的 widget 参数，这个参数会在上下拓展一定的 padding 空间来适配这种 <code>4X3</code> 的 iPhone Widget 组件。其他还有一些能够把网页形式的 widget 甚至把网页设置为桌面的方案，可以在桌面来浏览定期更新的有趣背景啦~</p>
+<h2 id="query-status-想查什么查什么">Query/Status：想查什么查什么</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/query.webp"/></p>
+<p>这个在前端 SQL 直接使用的功能，是这波大更新里我觉得最为好玩的功能。大家看到在前端直接写 SQL 可能会担心注入的问题，但是这个方案其实是我在编译期生成一个了一个 sqlite 文件，而实际上次的查询也发生在使用 wasm 在前端对 sqlite 进行一个查询！</p>
+<pre><code class="language-python">class Photo(BaseModel):
+    id = AutoField()
+    path = CharField(unique=True)
+    dir = ForeignKeyField(Album, backref='photos')
+    exif = CharField()
+    location = ForeignKeyField(Location, backref='photo', null=True)
+    name = CharField()
+    desc = CharField()
+    exif_data = ForeignKeyField(EXIFData, backref='photo', null=True)
+    tag = ForeignKeyField(Tag, backref='photos', null=True)
+
+</code></pre>
+<p>这里对数据处理的更为规范了，之前写入 md 、json 、yml 的功能都有了统一的数据管理，通过 python orm 的实现在编译期生成了 sqlite，但是并没有拖慢很多编译期速度。另外一方面是针对 database query 的结果，实现了一个 table 的通用解析，并且在遇到疑似图片的时候也可以使用缩略图补充到 table 之中。</p>
+<p>实现这个功能的目的，是之前想统计自己的图片有哪些参数，比如说：在哪个国家拍摄的、一共有多少张照片、以及我经常使用哪些焦段哪些光圈等信息。最开始我是希望实现一个比较详细的 Filter 功能，不过出于先实现 Infra 再实现功能的思考之下，我先实现了数据层面并且实现了任意的查询功能，拓展了可玩性。</p>
+<p>比如说现在 Gallery 里面的 Staus 界面查询功能就完全是通过 wasm sql 查询来实现的：</p>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/location.webp"/></p>
+<p>可以比较方便的展示热力图，以及我想要的几个固定的 Gallery 查询表单~</p>
+<h2 id="其他-编辑器功能">其他: 编辑器功能？！</h2>
+<p><img alt="" src="https://cdn.jsdelivr.net/gh/lfkdsk/picx-images-hosting@master/blog/make-gallery-meself-2/WX20231218-003441@2x.webp"/></p>
+<p>这里其实我就直接 <code>FilerobotImageEditor</code> 提供的一些功能了，自己没有实现某些开发。每个 Album 都会有对应的跳转接口，可以把当前选中的图片跳转到对应的 editor 功能。不过我觉得这个 Editor 功能也足够满足了我的一些功能需求了，一些简单的滤镜可以调调看，还有一些参数可以进行一些尝试，最起码可以当成一个 resize 功能来使用啦。</p>
+</div>
+<p>Subscribe：<a href="https://lfkdsk.github.io/index.xml" target="_blank">lfkdsk's Blog</a></p>
+<div style="height:50px"></div>
+<div class="post-comments">
+<div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://lfkdsk.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+</div>
+</article>
+<script src="/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+  
+  var posts = document.getElementById('posts-list');
+  posts && quicklink({
+    el: posts,
+    priority: true,
+  });
+</script>
+</body>
+</html>
